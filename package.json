@@ -20,7 +20,6 @@
     "async": "^0.9.0",
     "cheerio": "^0.17.0",
     "cluster": "^0.7.7",
-    "colors": "^1.0.3",
     "express": "^4.9.7",
     "helmet": "^0.4.1",
     "mongoose": "^3.8.17",

@@ -4,7 +4,7 @@
 // Set environment mode; possible values: 'development', 'preproduction', 'production'
 var mode = process.NODE_ENV;
 if (!mode ||
-    !('development' == mode || 'preproduction' == mode || 'production' == mode)) {
+    !('development' === mode || 'preproduction' === mode || 'production' === mode)) {
     process.NODE_ENV = 'development';
     mode = process.NODE_ENV;
 }
@@ -26,7 +26,7 @@ var main = function() {
     if (cluster.isMaster) {
         global.processId = 'Master';
 
-        var clusterPerCpu   = ('production' == process.NODE_ENV ? 4 : 1);
+        var clusterPerCpu   = ('production' === process.NODE_ENV ? 4 : 1);
         var clusterCount    = parseInt(require('os').cpus().length * clusterPerCpu);
 
         cluster.on('fork', function(worker) {
