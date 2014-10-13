@@ -107,8 +107,8 @@ var runServer = function() {
     var serverRouter = express.Router();
     var routes = require('./controllers/_routes');
 
-    serverApp.use('/backoffice', routes.defineBackOfficeRoutes(serverApp, express.Router()));
-    serverApp.use('/', routes.defineFrontRoutes(serverApp, express.Router()));
+    serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
+    serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
 
     var port = constants.serverPort;
     serverApp.listen(port);
