@@ -1,0 +1,30 @@
+{
+  "name": "Newpattitu.de",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://Pampattitude@github.com/Pampattitude/Newpattitu.de.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pampattitude/Newpattitu.de/issues"
+  },
+  "homepage": "https://github.com/Pampattitude/Newpattitu.de",
+  "dependencies": {
+    "async": "^0.9.0",
+    "cheerio": "^0.17.0",
+    "cluster": "^0.7.7",
+    "colors": "^1.0.3",
+    "express": "^4.9.7",
+    "helmet": "^0.4.1",
+    "mongoose": "^3.8.17",
+    "require-dir": "^0.1.0",
+    "winston": "^0.8.1"
+  }
+}
