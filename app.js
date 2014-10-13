@@ -103,6 +103,15 @@ var main = function() {
 };
 
 var runServer = function() {
+    var serverApp = express();
+    var routes = require('./controllers/_routes');
+
+    serverApp.use('/', routes.defineFrontRoutes(serverApp, express.Router()));
+    serverApp.use('/backoffice', routes.defineBackOfficeRoutes(serverApp, express.Router()));
+
+    var port = constants.serverPort;
+    serverApp.listen(port);
+    printer.info('Server listening on port ' + port);
 };
 
 return main();
