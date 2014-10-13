@@ -104,10 +104,11 @@ var main = function() {
 
 var runServer = function() {
     var serverApp = express();
+    var serverRouter = express.Router();
     var routes = require('./controllers/_routes');
 
-    serverApp.use('/', routes.defineFrontRoutes(serverApp, express.Router()));
     serverApp.use('/backoffice', routes.defineBackOfficeRoutes(serverApp, express.Router()));
+    serverApp.use('/', routes.defineFrontRoutes(serverApp, express.Router()));
 
     var port = constants.serverPort;
     serverApp.listen(port);
