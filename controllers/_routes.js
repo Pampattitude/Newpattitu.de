@@ -1,6 +1,6 @@
 'use strict';
 
-var constants = require('../lib/constants');
+var constants   = require('../lib/constants');
 
 exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
