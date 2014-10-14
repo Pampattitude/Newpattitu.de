@@ -97,6 +97,7 @@ var main = function() {
             requireDir(__dirname + '/models/');
             printer.info('Models sync\'ed');
 
+            // In case of a worker, run the actual Web server
             return runServer();
         });
     }
@@ -106,6 +107,17 @@ var runServer = function() {
     var serverApp = express();
     var serverRouter = express.Router();
     var routes = require('./controllers/_routes');
+
+    if ('preproduction' == process.NODE_ENV)
+        serverApp.set('env', 'development');
+    else
+        serverApp.set('env', process.NODE_ENV);
+    serverApp.set('x-powered-by', false);
+
+    // Rendering engine
+    serverApp.engine('html', require('ejs').renderFile);
+    serverApp.set('view engine', 'ejs');
+    serverApp.set('views', constants.viewBasePath);
 
     serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
     serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
