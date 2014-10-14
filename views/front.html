@@ -3,9 +3,13 @@
   <head>
     <title>Pampattitu.de<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
 
+    <!-- Global injection -->
     <script type="application/javascript">
       var globals = <% if ('undefined' != typeof locals && 'undefined' != typeof locals._locals) { %><%- JSON.stringify(locals._locals) %><% } else { %>{}<% } %>;
     </script>
+    <!-- !Global injection -->
+
+    <link rel="icon" href="/img/Pmp.ico" />
 
     <!-- External scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -19,13 +23,82 @@
     <script src="/js/app.js"></script>
 
     <link rel="stylesheet" href="/css/icomoon.css" />
+    <link rel="stylesheet" href="/css/pmp.grid.css" />
     <link rel="stylesheet" href="/css/pmp.css" />
   </head>
 
   <body ng-app="frontApp">
     <!-- General app controller -->
     <div ng-controller="generalController">
-      Hello, world! You are on page "{{globals.title}}".
+      <div class="grid-12">
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+
+        <div class="cell-1 cell-handheld-3">
+          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+        </div>
+      </div>
     </div>
     <!-- !General app controller -->
   </body>

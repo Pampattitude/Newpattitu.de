@@ -2,6 +2,27 @@
 <html>
   <head>
     <title>Pampattitu.de BO<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
+    <title>Pampattitu.de<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
+
+    <!-- Global injection -->
+    <script type="application/javascript">
+      var globals = <% if ('undefined' != typeof locals && 'undefined' != typeof locals._locals) { %><%- JSON.stringify(locals._locals) %><% } else { %>{}<% } %>;
+    </script>
+    <!-- !Global injection -->
+
+    <link rel="icon" href="/img/Pmp-BO.ico" />
+
+    <!-- External scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <!-- !External scripts -->
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,900" type="text/css" />
+    <!-- !External stylesheets -->
+
+    <link rel="stylesheet" href="/css/icomoon.css" />
+    <link rel="stylesheet" href="/css/pmp.grid.css" />
   </head>
 
   <body>
