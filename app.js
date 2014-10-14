@@ -13,7 +13,6 @@ if (!mode ||
 var async               = require('async');
 var cluster             = require('cluster');
 var express             = require('express');
-var helmet              = require('helmet');
 var mongoose            = require('mongoose');
 var requireDir          = require('require-dir');
 
@@ -122,20 +121,44 @@ var runServer = function() {
 
     // Global middlewares
     if ('development' == process.env.NODE_ENV)
-        serverApp.use(require('morgan')({
-            format: 'dev',
+        serverApp.use(require('morgan')('dev', {
             stream: {
                 write: function(str) { return printer.info(str.replace(/[\r\n]+/g, '')); },
             },
         }));
     else
-        serverApp.use(require('morgan')({
-            format: 'combined',
+        serverApp.use(require('morgan')('combined', {
             stream: {
                 write: function(str) { return printer.info(str.replace(/[\r\n]+/g, '')); },
                 skip: function(req, res) { return 400 >= res.statusCode; },
             },
         }));
+
+    var bodyParser      = require('body-parser');
+    var connectMongo    = require('connect-mongo');
+    var cookieParser    = require('cookie-parser');
+    var expressSession  = require('express-session');
+    var helmet          = require('helmet');
+
+    // Security headers
+    serverApp.use(helmet.xframe());
+    serverApp.use(helmet.xssFilter());
+    serverApp.use(helmet.nosniff());
+    serverApp.use(helmet.nocache());
+
+    serverApp.use(bodyParser.urlencoded({extended: true}));
+    serverApp.use(bodyParser.json());
+    serverApp.use(cookieParser());
+
+    var mongoStore = require('connect-mongo')(expressSession);
+    serverApp.use(expressSession({
+        store: new mongoStore({
+            url: constants.databaseUri + '/sessions',
+        }),
+        secret: constants.sessionSecret,
+        resave: true,
+        saveUninitialized: true,
+    }));
 
     serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
     serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
