@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pampattitu.de<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
+
+    <script type="application/javascript">
+      var globals = <% if ('undefined' != typeof locals && 'undefined' != typeof locals._locals) { %><%- JSON.stringify(locals._locals) %><% } else { %>{}<% } %>;
+
+      console.log(globals);
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    <script>
+      var websiteApp = angular.module('websiteApp', []);
+
+      websiteApp.controller('generalController', ['$scope', '$rootScope', '$global', function($scope, $rootScope, $global) {
+      console.log($rootScope.opts);
+      }]);
+    </script>
+  </head>
+
+  <body ng-app="websiteApp">
+    Hello, world!
+  </body>
+</html>
