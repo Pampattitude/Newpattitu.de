@@ -2,11 +2,11 @@
 
 // Awake
 // Set environment mode; possible values: 'development', 'preproduction', 'production'
-var mode = process.NODE_ENV;
+var mode = process.env.NODE_ENV;
 if (!mode ||
     !('development' === mode || 'preproduction' === mode || 'production' === mode)) {
-    process.NODE_ENV = 'development';
-    mode = process.NODE_ENV;
+    process.env.NODE_ENV = 'development';
+    mode = process.env.NODE_ENV;
 }
 // !Awake
 
@@ -21,12 +21,12 @@ var constants           = require('./lib/constants');
 var printer             = require('./lib/printer');
 
 var main = function() {
-    printer.info('Started application in ' + process.NODE_ENV + ' mode');
+    printer.info('Started application in ' + process.env.NODE_ENV + ' mode');
 
     if (cluster.isMaster) {
         global.processId = 'Master';
 
-        var clusterPerCpu   = ('production' === process.NODE_ENV ? 4 : 1);
+        var clusterPerCpu   = ('production' === process.env.NODE_ENV ? 4 : 1);
         var clusterCount    = parseInt(require('os').cpus().length * clusterPerCpu);
 
         cluster.on('fork', function(worker) {
@@ -108,16 +108,34 @@ var runServer = function() {
     var serverRouter = express.Router();
     var routes = require('./controllers/_routes');
 
-    if ('preproduction' == process.NODE_ENV)
+    // Settings
+    if ('preproduction' == process.env.NODE_ENV)
         serverApp.set('env', 'development');
     else
-        serverApp.set('env', process.NODE_ENV);
+        serverApp.set('env', process.env.NODE_ENV);
     serverApp.set('x-powered-by', false);
 
     // Rendering engine
     serverApp.engine('html', require('ejs').renderFile);
     serverApp.set('view engine', 'ejs');
     serverApp.set('views', constants.viewBasePath);
+
+    // Global middlewares
+    if ('development' == process.env.NODE_ENV)
+        serverApp.use(require('morgan')({
+            format: 'dev',
+            stream: {
+                write: function(str) { return printer.info(str.replace(/[\r\n]+/g, '')); },
+            },
+        }));
+    else
+        serverApp.use(require('morgan')({
+            format: 'combined',
+            stream: {
+                write: function(str) { return printer.info(str.replace(/[\r\n]+/g, '')); },
+                skip: function(req, res) { return 400 >= res.statusCode; },
+            },
+        }));
 
     serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
     serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
