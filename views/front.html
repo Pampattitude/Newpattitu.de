@@ -7,15 +7,26 @@
       var globals = <% if ('undefined' != typeof locals && 'undefined' != typeof locals._locals) { %><%- JSON.stringify(locals._locals) %><% } else { %>{}<% } %>;
     </script>
 
+    <!-- External scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <!-- !External scripts -->
 
-    <script src="/js/frontControllers"></script>
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,900" type="text/css" />
+    <!-- !External stylesheets -->
+
+    <script src="/js/app.js"></script>
+
+    <link rel="stylesheet" href="/css/icomoon.css" />
+    <link rel="stylesheet" href="/css/pmp.css" />
   </head>
 
   <body ng-app="frontApp">
+    <!-- General app controller -->
     <div ng-controller="generalController">
       Hello, world! You are on page "{{globals.title}}".
     </div>
+    <!-- !General app controller -->
   </body>
 </html>
