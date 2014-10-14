@@ -19,6 +19,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
 
+    router.get ('/js/:file', function(req, res) { return res.sendFile(constants.viewBasePath + '/js/' + req.params.file + '.js'); })
+
     router.get ('/*', bindPage(controllers.home.page));
 
     return router;
