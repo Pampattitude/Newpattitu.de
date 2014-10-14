@@ -1,0 +1,714 @@
+@media all {
+  [class*="grid-"] {
+    width: 100%;
+    margin: 0;
+  }
+
+  .grid-2:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-2 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-2 > .cell-1 {
+    width: 50%;
+  }
+  .grid-2 > .cell-2 {
+    width: 100%;
+  }
+
+  .grid-3:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-3 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-3 > .cell-1 {
+    width: 33.33%;
+  }
+  .grid-3 > .cell-2 {
+    width: 66.66%;
+  }
+  .grid-3 > .cell-3 {
+    width: 100%;
+  }
+
+  .grid-4:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-4 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-4 > .cell-1 {
+    width: 25%;
+  }
+  .grid-4 > .cell-2 {
+    width: 50%;
+  }
+  .grid-4 > .cell-3 {
+    width: 75%;
+  }
+  .grid-4 > .cell-4 {
+    width: 100%;
+  }
+
+  .grid-5:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-5 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-5 > .cell-1 {
+    width: 20%;
+  }
+  .grid-5 > .cell-2 {
+    width: 40%;
+  }
+  .grid-5 > .cell-3 {
+    width: 60%;
+  }
+  .grid-5 > .cell-4 {
+    width: 80%;
+  }
+  .grid-5 > .cell-5 {
+    width: 100%;
+  }
+
+  .grid-6:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-6 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-6 > .cell-1 {
+    width: 16.66%;
+  }
+  .grid-6 > .cell-2 {
+    width: 33.33%;
+  }
+  .grid-6 > .cell-3 {
+    width: 50%;
+  }
+  .grid-6 > .cell-4 {
+    width: 66.66%;
+  }
+  .grid-6 > .cell-5 {
+    width: 83.33%;
+  }
+  .grid-6 > .cell-6 {
+    width: 100%;
+  }
+
+  .grid-8:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-8 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-8 > .cell-1 {
+    width: 12.5%;
+  }
+  .grid-8 > .cell-2 {
+    width: 25%;
+  }
+  .grid-8 > .cell-3 {
+    width: 37.5%;
+  }
+  .grid-8 > .cell-4 {
+    width: 50%;
+  }
+  .grid-8 > .cell-5 {
+    width: 62.5%;
+  }
+  .grid-8 > .cell-6 {
+    width: 75%;
+  }
+  .grid-8 > .cell-7 {
+    width: 87.5%;
+  }
+  .grid-8 > .cell-8 {
+    width: 100%;
+  }
+
+  .grid-10:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-10 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-10 > .cell-1 {
+    width: 10%;
+  }
+  .grid-10 > .cell-2 {
+    width: 20%;
+  }
+  .grid-10 > .cell-3 {
+    width: 30%;
+  }
+  .grid-10 > .cell-4 {
+    width: 40%;
+  }
+  .grid-10 > .cell-5 {
+    width: 50%;
+  }
+  .grid-10 > .cell-6 {
+    width: 60%;
+  }
+  .grid-10 > .cell-7 {
+    width: 70%;
+  }
+  .grid-10 > .cell-8 {
+    width: 80%;
+  }
+  .grid-10 > .cell-9 {
+    width: 90%;
+  }
+  .grid-10 > .cell-10 {
+    width: 100%;
+  }
+
+  .grid-12:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-12 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-12 > .cell-1 {
+    width: 8.33%;
+  }
+  .grid-12 > .cell-2 {
+    width: 16.66%;
+  }
+  .grid-12 > .cell-3 {
+    width: 25%;
+  }
+  .grid-12 > .cell-4 {
+    width: 33.33%;
+  }
+  .grid-12 > .cell-5 {
+    width: 41.66%;
+  }
+  .grid-12 > .cell-6 {
+    width: 50%;
+  }
+  .grid-12 > .cell-7 {
+    width: 58.33%;
+  }
+  .grid-12 > .cell-8 {
+    width: 66.66%;
+  }
+  .grid-12 > .cell-9 {
+    width: 75%;
+  }
+  .grid-12 > .cell-10 {
+    width: 83.33%;
+  }
+  .grid-12 > .cell-11 {
+    width: 91.66%;
+  }
+  .grid-12 > .cell-12 {
+    width: 100%;
+  }
+
+  .grid-16:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-16 > [class*="cell"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-16 > .cell-1 {
+    width: 6.25%;
+  }
+  .grid-16 > .cell-2 {
+    width: 12.5%;
+  }
+  .grid-16 > .cell-3 {
+    width: 18.75%;
+  }
+  .grid-16 > .cell-4 {
+    width: 25%;
+  }
+  .grid-16 > .cell-5 {
+    width: 31.25%;
+  }
+  .grid-16 > .cell-6 {
+    width: 37.5%;
+  }
+  .grid-16 > .cell-7 {
+    width: 43.75%;
+  }
+  .grid-16 > .cell-8 {
+    width: 50%;
+  }
+  .grid-16 > .cell-9 {
+    width: 56.25%;
+  }
+  .grid-16 > .cell-10 {
+    width: 62.5%;
+  }
+  .grid-16 > .cell-11 {
+    width: 68.75%;
+  }
+  .grid-16 > .cell-12 {
+    width: 75%;
+  }
+  .grid-16 > .cell-13 {
+    width: 81.25%;
+  }
+  .grid-16 > .cell-14 {
+    width: 87.5%;
+  }
+  .grid-16 > .cell-15 {
+    width: 93.75%;
+  }
+  .grid-16 > .cell-16 {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 991px) {
+  [class*="grid-"] {
+    width: 100%;
+    margin: 0;
+  }
+
+  .grid-2:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-2 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-2 > .cell-handheld-1 {
+    width: 50%;
+  }
+  .grid-2 > .cell-handheld-2 {
+    width: 100%;
+  }
+
+  .grid-3:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-3 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-3 > .cell-handheld-1 {
+    width: 33.33%;
+  }
+  .grid-3 > .cell-handheld-2 {
+    width: 66.66%;
+  }
+  .grid-3 > .cell-handheld-3 {
+    width: 100%;
+  }
+
+  .grid-4:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-4 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-4 > .cell-handheld-1 {
+    width: 25%;
+  }
+  .grid-4 > .cell-handheld-2 {
+    width: 50%;
+  }
+  .grid-4 > .cell-handheld-3 {
+    width: 75%;
+  }
+  .grid-4 > .cell-handheld-4 {
+    width: 100%;
+  }
+
+  .grid-5:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-5 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-5 > .cell-handheld-1 {
+    width: 20%;
+  }
+  .grid-5 > .cell-handheld-2 {
+    width: 40%;
+  }
+  .grid-5 > .cell-handheld-3 {
+    width: 60%;
+  }
+  .grid-5 > .cell-handheld-4 {
+    width: 80%;
+  }
+  .grid-5 > .cell-handheld-5 {
+    width: 100%;
+  }
+
+  .grid-6:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-6 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-6 > .cell-handheld-1 {
+    width: 16.66%;
+  }
+  .grid-6 > .cell-handheld-2 {
+    width: 33.33%;
+  }
+  .grid-6 > .cell-handheld-3 {
+    width: 50%;
+  }
+  .grid-6 > .cell-handheld-4 {
+    width: 66.66%;
+  }
+  .grid-6 > .cell-handheld-5 {
+    width: 83.33%;
+  }
+  .grid-6 > .cell-handheld-6 {
+    width: 100%;
+  }
+
+  .grid-8:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-8 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-8 > .cell-handheld-1 {
+    width: 12.5%;
+  }
+  .grid-8 > .cell-handheld-2 {
+    width: 25%;
+  }
+  .grid-8 > .cell-handheld-3 {
+    width: 37.5%;
+  }
+  .grid-8 > .cell-handheld-4 {
+    width: 50%;
+  }
+  .grid-8 > .cell-handheld-5 {
+    width: 62.5%;
+  }
+  .grid-8 > .cell-handheld-6 {
+    width: 75%;
+  }
+  .grid-8 > .cell-handheld-7 {
+    width: 87.5%;
+  }
+  .grid-8 > .cell-handheld-8 {
+    width: 100%;
+  }
+
+  .grid-10:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-10 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-10 > .cell-handheld-1 {
+    width: 10%;
+  }
+  .grid-10 > .cell-handheld-2 {
+    width: 20%;
+  }
+  .grid-10 > .cell-handheld-3 {
+    width: 30%;
+  }
+  .grid-10 > .cell-handheld-4 {
+    width: 40%;
+  }
+  .grid-10 > .cell-handheld-5 {
+    width: 50%;
+  }
+  .grid-10 > .cell-handheld-6 {
+    width: 60%;
+  }
+  .grid-10 > .cell-handheld-7 {
+    width: 70%;
+  }
+  .grid-10 > .cell-handheld-8 {
+    width: 80%;
+  }
+  .grid-10 > .cell-handheld-9 {
+    width: 90%;
+  }
+  .grid-10 > .cell-handheld-10 {
+    width: 100%;
+  }
+
+  .grid-12:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-12 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-12 > .cell-handheld-1 {
+    width: 8.33%;
+  }
+  .grid-12 > .cell-handheld-2 {
+    width: 16.66%;
+  }
+  .grid-12 > .cell-handheld-3 {
+    width: 25%;
+  }
+  .grid-12 > .cell-handheld-4 {
+    width: 33.33%;
+  }
+  .grid-12 > .cell-handheld-5 {
+    width: 41.66%;
+  }
+  .grid-12 > .cell-handheld-6 {
+    width: 50%;
+  }
+  .grid-12 > .cell-handheld-7 {
+    width: 58.33%;
+  }
+  .grid-12 > .cell-handheld-8 {
+    width: 66.66%;
+  }
+  .grid-12 > .cell-handheld-9 {
+    width: 75%;
+  }
+  .grid-12 > .cell-handheld-10 {
+    width: 83.33%;
+  }
+  .grid-12 > .cell-handheld-11 {
+    width: 91.66%;
+  }
+  .grid-12 > .cell-handheld-12 {
+    width: 100%;
+  }
+
+  .grid-16:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .grid-16 > [class*="cell-handheld"] {
+    width: 0%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+  .grid-16 > .cell-handheld-1 {
+    width: 6.25%;
+  }
+  .grid-16 > .cell-handheld-2 {
+    width: 12.5%;
+  }
+  .grid-16 > .cell-handheld-3 {
+    width: 18.75%;
+  }
+  .grid-16 > .cell-handheld-4 {
+    width: 25%;
+  }
+  .grid-16 > .cell-handheld-5 {
+    width: 31.25%;
+  }
+  .grid-16 > .cell-handheld-6 {
+    width: 37.5%;
+  }
+  .grid-16 > .cell-handheld-7 {
+    width: 43.75%;
+  }
+  .grid-16 > .cell-handheld-8 {
+    width: 50%;
+  }
+  .grid-16 > .cell-handheld-9 {
+    width: 56.25%;
+  }
+  .grid-16 > .cell-handheld-10 {
+    width: 62.5%;
+  }
+  .grid-16 > .cell-handheld-11 {
+    width: 68.75%;
+  }
+  .grid-16 > .cell-handheld-12 {
+    width: 75%;
+  }
+  .grid-16 > .cell-handheld-13 {
+    width: 81.25%;
+  }
+  .grid-16 > .cell-handheld-14 {
+    width: 87.5%;
+  }
+  .grid-16 > .cell-handheld-15 {
+    width: 93.75%;
+  }
+  .grid-16 > .cell-handheld-16 {
+    width: 100%;
+  }
+}
