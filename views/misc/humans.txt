@@ -1,0 +1,31 @@
+/* TEAM */
+   Leader: Guillaume "Pampa" Delahodde
+   From: Le Kremlin-Bicêtre, Val-de-Marne, France
+   Site: http://pampattitu.de
+   Twitter: @Pampattitude
+
+/* THANKS */
+   Design: 9eme Art
+   Site: http://www.9emeart.fr/
+   Twitter: @9emeArt
+
+   Icons: Icomoon
+   Site: http://icomoon.io/
+   Twitter: @Keyamoon
+
+   Background image: Waseem Dahman
+   Site: http://www.transparenttextures.com/
+
+   Graphics & human support: Eve Charmant
+   Twitter: @eve2046
+
+   Human support: Barbara "db0" Lepage
+   Site: http://db0.fr/
+
+   Human support: Life.
+   Site: http://life.tl/
+
+/* SITE */
+   Language: English
+   Doctype: HTML5
+   IDE: emacs, Notepad++
