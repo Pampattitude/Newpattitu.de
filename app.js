@@ -160,6 +160,7 @@ var runServer = function() {
         saveUninitialized: true,
     }));
 
+    serverApp.use('/', express.static(constants.resourcePath));
     serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
     serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
 
