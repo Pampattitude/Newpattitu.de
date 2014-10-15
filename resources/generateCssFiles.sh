@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PWD="$(dirname $0)"
-DIRFILES="$(ls $PWD/scss/*.scss)"
+DIRFILES="$(ls $PWD/scss/*.scss | grep -v 'scss/_')"
 
 mkdir -p "$PWD/css"
 
