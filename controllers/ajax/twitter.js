@@ -17,11 +17,9 @@ exports.getLatest = function(req, res, callback) {
             data = data.slice(0, constants.frontTwitterListCount);
 
         var tweets = data.map(function(elem) {
-            console.log(elem);
-
             return {
                 text: elem.text,
-                url: 'https://twitter.com/' + elem.user.screen_name + '/status/' + elem.id,
+                url: 'https://twitter.com/' + elem.user.screen_name + '/status/' + elem.id_str,
                 retweetCount: elem.retweet_count,
                 favoriteCount: elem.favorite_count,
                 created: new Date(elem.created_at),
