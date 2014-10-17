@@ -14,10 +14,15 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     var controllers = {
         home: require('./front/home'),
+        report: require('./front/report'),
     };
 
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
+
+    router.get ('/home', bindPage(controllers.home.page));
+
+    router.get ('/report', bindPage(controllers.report.page));
 
     router.get ('/*', bindPage(controllers.home.page));
 
