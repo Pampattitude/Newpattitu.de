@@ -2,6 +2,7 @@ $.getScript('/js/_textareaResize.js');
 
 (function() {
     $(document).ready(function() {
+        /* Fixed top menu */
         var minHeight = $('#pmp-nav-desktop')[0].getBoundingClientRect().top +
             $(this).scrollTop();
         var nav = $('#pmp-nav-fixed');
@@ -13,5 +14,10 @@ $.getScript('/js/_textareaResize.js');
                 nav.addClass   ('hidden-desktop');
             }
         });
+        /* !Fixed top menu */
+
+        /* Konami code to access BO */
+        new Konami('/back-office');
+        /* !Konami code to access BO */
     });
 })();
