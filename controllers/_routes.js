@@ -13,7 +13,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'front.html'); };
 
     var controllers = {
-        home: require('./front/home'),
+        error:  require('./front/error'),
+        home:   require('./front/home'),
         report: require('./front/report'),
     };
 
@@ -21,10 +22,15 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
 
     router.get ('/home', bindPage(controllers.home.page));
+    router.get ('/', bindPage(controllers.home.page));
 
     router.get ('/report', bindPage(controllers.report.page));
 
-    router.get ('/*', bindPage(controllers.home.page));
+    router.get ('/*', bindPage(controllers.error.page404));
+    router.use (function(err, req, res, next) {
+        console.error(err);
+        return bindPage(controllers.error.page500)(req, res);
+    });
 
     return router;
 };

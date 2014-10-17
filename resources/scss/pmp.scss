@@ -10,6 +10,9 @@ $header-image-background-color: rgb(240, 240, 240);
 
 $footer-background-color:       rgba(0, 0, 0, 0.85);
 
+$error-404-color:               rgb(200, 32, 32);
+$error-500-color:               rgb(144, 144, 144);
+
 body {
     margin: 0;
     padding: 0;
@@ -251,6 +254,55 @@ body {
     font-size: 0.7em;
 }
 /* !Articles */
+
+/* Error */
+.pmp-error {
+    @extend .pmp-page-content-box-content;
+
+    font-size: 1.3em;
+    text-align: left;
+}
+
+.pmp-error .pmp-error-title {
+    margin: 0 0 1em 0;
+}
+
+.pmp-error .pmp-error-title .pmp-error-code {
+    padding: 0.2em 0.4em;
+
+    color: $white-mild;
+    font-size: 1.25em;
+
+    border-radius: 0.3em;
+}
+
+.pmp-error .pmp-error-title .pmp-error-code-404 {
+    background-color: $error-404-color; /* TMP */
+}
+.pmp-error .pmp-error-title .pmp-error-code-500 {
+    background-color: $error-500-color; /* TMP */
+}
+
+.pmp-error .pmp-error-title .pmp-error-text-404 {
+    color: $error-404-color; /* TMP */
+}
+.pmp-error .pmp-error-title .pmp-error-text-500 {
+    color: $error-500-color; /* TMP */
+}
+
+.pmp-error .pmp-error-data {
+}
+
+.pmp-error .pmp-error-data p {
+    margin: 0.5em auto;
+}
+.pmp-error .pmp-error-data p:first-child {
+    margin-top: 0;
+}
+.pmp-error .pmp-error-data p:last-child {
+    margin-bottom: 0;
+}
+/* !Error */
 /* !Page content */
 
 /* Right menu */
