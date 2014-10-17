@@ -3,6 +3,8 @@
   <head>
     <title>Pampattitu.de<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <!-- Global injection -->
     <script type="application/javascript">
       var globals = <% if ('undefined' != typeof locals && 'undefined' != typeof locals._locals) { %><%- JSON.stringify(locals._locals) %><% } else { %>{}<% } %>;
@@ -13,17 +15,20 @@
 
     <!-- External scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.autosize/1.18.9/jquery.autosize.min.js"></script> <!-- autosize textarea[data-resizable] -->
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <!-- !External scripts -->
 
     <!-- External stylesheets -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,900" type="text/css" />
     <!-- !External stylesheets -->
 
     <script src="/js/app.js"></script>
+    <script src="/js/front.js"></script>
 
     <link rel="stylesheet" href="/css/icomoon.css" />
-    <link rel="stylesheet" href="/css/pmp.grid.css" />
     <link rel="stylesheet" href="/css/pmp.css" />
 
     <style>
@@ -36,75 +41,37 @@
   <body ng-app="frontApp">
     <!-- General app controller -->
     <div ng-controller="generalController">
-      <div class="grid-12">
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
+      <!-- Header -->
+      <% include common/header.html %>
+      <!-- !Header -->
 
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
+      <!-- Top navigation menu -->
+      <% include common/topNav.html %>
+      <!-- !Top navigation menu -->
 
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
+      <!-- Body -->
+      <div class="pmp-body">
+        <div class="grid-3">
+          <div class="cell-2 cell-mobile-3" ng-class="{'cell-3': globals.hidePageMenu}">
+            <!-- Page content -->
+            <div class="pmp-page-content">
+              <% include page %>
+            </div>
+            <!-- !Page content -->
+          </div>
 
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
-        </div>
-
-        <div class="cell-1 cell-handheld-3 box">
-          <span class="icon icon-home"></span>&nbsp;&nbsp;Hello, world! You are on page "{{globals.title}}".
+          <div class="cell-1 hidden-mobile" ng-class="{'hidden-desktop': globals.hidePageMenu}">
+            <!-- Page menu -->
+            <% include common/pageMenu.html %>
+            <!-- Page menu -->
+          </div>
         </div>
       </div>
+      <!-- !Body -->
+
+      <!-- Footer -->
+      <% include common/footer.html %>
+      <!-- !Footer -->
     </div>
     <!-- !General app controller -->
   </body>

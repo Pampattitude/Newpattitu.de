@@ -1,0 +1,373 @@
+/* Color defines */
+$transparent:           rgba(0, 0, 0, 0);
+
+$black:                 rgb(0, 0, 0);
+$black-mild:            rgb(32, 32, 32);
+$black-milder:          rgb(64, 64, 64);
+
+$white:                 rgb(255, 255, 255);
+$white-mild:            rgb(240, 240, 240);
+$white-milder:            rgb(224, 224, 224);
+/* !Color defines */
+
+/* General defines */
+$link-text-color:       rgb(32, 128, 32);
+
+$harder-shadow-color:   rgba(0, 0, 0, 0.8);
+$hard-shadow-color:     rgba(0, 0, 0, 0.6);
+$soft-shadow-color:     rgba(0, 0, 0, 0.3);
+
+$button-default-text-color:     $white-mild;
+$button-default-background-color:       rgb(160, 160, 160);
+$button-default-hover-background-color: rgb(192, 192, 192);
+$button-default-focus-background-color: rgb(128, 128, 128);
+
+$button-github-background-color:        rgb(238, 185, 153);
+$button-github-hover-background-color:  rgb(246, 207, 179);
+$button-github-focus-background-color:  rgb(190, 148, 122);
+
+$button-facebook-background-color:      rgb(59, 89, 152);
+$button-facebook-hover-background-color: rgb(98, 122, 172);
+$button-facebook-focus-background-color: rgb(47, 71, 121);
+
+$button-twitter-background-color:       rgb(64, 153, 255);
+$button-twitter-hover-background-color: rgb(102, 173, 255);
+$button-twitter-focus-background-color: rgb(51, 122, 204);
+
+$button-linkedin-background-color:      rgb(0, 123, 182);
+$button-linkedin-hover-background-color: rgb(50, 149, 196);
+$button-linkedin-focus-background-color: rgb(0, 98, 145);
+
+$button-rss-background-color:           rgb(255, 98, 0);
+$button-rss-hover-background-color:     rgb(255, 129, 50);
+$button-rss-focus-background-color:     rgb(204, 78, 0);
+/* !General defines */
+
+/* Common classes */
+/* On handheld devices */
+@media only screen and (max-width: 991px) {
+    .hidden-mobile {
+        display: none !important;
+        margin: 0 !important;
+    }
+
+    .hidden-mobile * {
+        display: none !important;
+    }
+}
+/* !On handheld devices */
+
+/* On desktop devices */
+@media only screen and (min-width: 992px) {
+    .hidden-desktop {
+        display: none !important;
+        margin: 0 !important;
+    }
+
+    .hidden-desktop * {
+        display: none !important;
+    }
+}
+/* !On desktop devices */
+
+a {
+    color: $link-text-color;
+    text-decoration: none;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.block { display: block; }
+.inline-block { display: inline-block; }
+.inline { display: inline; }
+
+/* Shadows */
+.hard-shadow {
+    box-shadow: 0 0 4px $hard-shadow-color;
+}
+.harder-shadow {
+    box-shadow: 0 0 6px $harder-shadow-color;
+}
+.soft-shadow {
+    box-shadow: 0 0 2px $soft-shadow-color;
+}
+.hard-text-shadow {
+    text-shadow: 0 0 4px $hard-shadow-color;
+}
+.harder-text-shadow {
+    text-shadow: 0 0 8px $hard-shadow-color;
+}
+.soft-text-shadow {
+    text-shadow: 0 0 2px $soft-shadow-color;
+}
+/* !Shadows */
+
+/* Buttons */
+ button,
+.button {
+    display: inline-block;
+
+    padding: 0.4em 0.5em;
+
+    color: $button-default-text-color;
+    text-decoration: none;
+    text-align: center;
+
+    background-color: $button-default-background-color;
+    border: 0;
+    outline: 0;
+
+    transition: background-color 200ms;
+}
+ button:hover,
+.button:hover {
+    background-color: $button-default-hover-background-color;
+}
+ button:active,
+ button:focus,
+.button:active,
+.button:focus {
+    background-color: $button-default-focus-background-color;
+}
+
+ button.button-round,
+.button.button-round {
+    padding: 0.4em 0.5em;
+
+    border-radius: 100em;
+}
+
+/* Social buttons */
+.button.button-github {
+    color: $black-milder;
+    background-color: $button-github-background-color;
+}
+.button.button-github:hover {
+    background-color: $button-github-hover-background-color;
+}
+.button.button-github:active,
+.button.button-github:focus {
+    background-color: $button-github-focus-background-color;
+}
+
+.button.button-facebook {
+    background-color: $button-facebook-background-color;
+}
+.button.button-facebook:hover {
+    background-color: $button-facebook-hover-background-color;
+}
+.button.button-facebook:active,
+.button.button-facebook:focus {
+    background-color: $button-facebook-focus-background-color;
+}
+
+.button.button-twitter {
+    background-color: $button-twitter-background-color;
+}
+.button.button-twitter:hover {
+    background-color: $button-twitter-hover-background-color;
+}
+.button.button-twitter:active,
+.button.button-twitter:focus {
+    background-color: $button-twitter-focus-background-color;
+}
+
+.button.button-linkedin {
+    background-color: $button-linkedin-background-color;
+}
+.button.button-linkedin:hover {
+    background-color: $button-linkedin-hover-background-color;
+}
+.button.button-linkedin:active,
+.button.button-linkedin:focus {
+    background-color: $button-linkedin-focus-background-color;
+}
+
+.button.button-rss {
+    background-color: $button-rss-background-color;
+}
+.button.button-rss:hover {
+    background-color: $button-rss-hover-background-color;
+}
+.button.button-rss:active,
+.button.button-rss:focus {
+    background-color: $button-rss-focus-background-color;
+}
+/* !Social buttons */
+/* !Buttons */
+
+/* Form */
+textarea {
+    resize: vertical;
+}
+
+.input-group {
+    width: 100%;
+    position: relative;
+}
+
+.input-group .input-group-placeholder {
+    position: absolute;
+    bottom: 0;
+    right: 2.5%;
+    z-index: 8;
+
+    padding-bottom: 0.2em;
+
+//    color: rgba(240, 240, 240, 0.8); /* TMP */
+    color: rgba(32, 32, 32, 0.8); /* TMP */
+    font-size: 1.1em;
+    text-align: right;
+
+    transition: color 200ms, font-weight 200ms;
+}
+
+.input-group .input-group-data {
+    width: 100%;
+    z-index: 10;
+
+    padding: 0.2em 0.4em;
+
+//    color: $white-mild; /* TMP */
+    color: $black-mild; /* TMP */
+
+    background-color: $transparent;
+    border: 0px solid $transparent;
+    border-bottom: 1px solid rgb(0, 128, 0); /* TMP */
+    outline: 0;
+
+    transition: border-color 200ms;
+}
+.input-group .input-group-data:hover {
+    border-bottom: 1px solid rgb(0, 160, 0); /* TMP */
+}
+.input-group .input-group-data:active,
+.input-group .input-group-data:focus {
+    border-bottom: 1px solid rgb(0, 192, 0); /* TMP */
+}
+
+.input-group-with-button {
+    height: 2.275em;
+}
+
+.input-group-with-button .input-group-button {
+    position: absolute;
+    right: 0;
+
+    padding: 0.5em 0.5em;
+
+    text-align: center;
+}
+
+.input-group .input-group-data:active + .input-group-placeholder,
+.input-group .input-group-data:focus  + .input-group-placeholder {
+//    color: rgba(240, 240, 240, 0.2); /* TMP */
+    color: rgba(32, 32, 32, 0.2); /* TMP */
+}
+
+.input-group .input-group-data.has-data  + .input-group-placeholder {
+//    color: rgba(240, 240, 240, 0); /* TMP */
+    color: rgba(32, 32, 32, 0); /* TMP */
+}
+
+/* With button */
+.input-group.input-group-with-button .input-group-placeholder {
+    width: 80%;
+    right: 22.5%;
+}
+
+.input-group.input-group-with-button .input-group-data {
+    width: 80%;
+}
+.input-group.input-group-with-button:hover .input-group-data {
+    border-bottom: 1px solid rgb(0, 160, 0); /* TMP */
+}
+.input-group.input-group-with-button:hover .input-group-button {
+    background-color: rgb(0, 160, 0); /* TMP */
+}
+.input-group.input-group-with-button .input-group-data:active ~ .input-group-button,
+.input-group.input-group-with-button .input-group-data:focus ~ .input-group-button {
+    background-color: rgb(0, 192, 0); /* TMP */
+}
+
+.input-group.input-group-with-button .input-group-button {
+    width: 20%;
+    top: 1px;
+
+    color: $white-mild; /* TMP */
+    background-color: rgb(0, 128, 0); /* TMP */
+}
+.input-group.input-group-with-button .input-group-button:hover {
+    background-color: rgb(0, 160, 0); /* TMP */
+}
+.input-group.input-group-with-button .input-group-button:active,
+.input-group.input-group-with-button .input-group-button:focus {
+    background-color: rgb(0, 128, 0); /* TMP */
+}
+/* !With button */
+/* !Form */
+
+/* Box vignettes */
+.box-vignette-left {
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    z-index: 20;
+
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    color: $white-mild;
+
+    background-color: rgb(48, 192, 48); /* TMP */
+}
+.box-vignette-left:after {
+    content: "";
+
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+
+    border-style: solid;
+    border-width: 0 16px 6px 0;
+    border-color: transparent rgb(24, 96, 24) transparent transparent; /* TMP */
+}
+
+.box-vignette-right {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    z-index: 20;
+
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    color: $white-mild;
+
+    background-color: rgb(48, 192, 48); /* TMP */
+}
+.box-vignette-right:after {
+    content: "";
+
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+
+    border-style: solid;
+    border-width: 0 0 6px 16px;
+    border-color: transparent transparent transparent rgb(24, 96, 24); /* TMP */
+}
+/* !Box vignettes */
+/* !Common classes */
