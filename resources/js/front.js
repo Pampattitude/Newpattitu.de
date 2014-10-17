@@ -2,7 +2,8 @@ $.getScript('/js/_textareaResize.js');
 
 (function() {
     $(document).ready(function() {
-        var minHeight = $('#pmp-nav-desktop').offset().top;
+        var minHeight = $('#pmp-nav-desktop')[0].getBoundingClientRect().top +
+            $(this).scrollTop();
         var nav = $('#pmp-nav-fixed');
 
         $(window).scroll(function() {
