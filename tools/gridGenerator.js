@@ -9,7 +9,7 @@ var modeList = [
     },
     {
         media: '@media only screen and (max-width: 991px)',
-        suffix: '-handheld',
+        suffix: '-mobile',
     }
 ];
 
