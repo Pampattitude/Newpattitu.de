@@ -13,6 +13,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'front.html'); };
 
     var controllers = {
+        about:  require('./front/about'),
         error:  require('./front/error'),
         home:   require('./front/home'),
         report: require('./front/report'),
@@ -23,6 +24,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/home', bindPage(controllers.home.page));
     router.get ('/', bindPage(controllers.home.page));
+
+    router.get ('/about', bindPage(controllers.about.page));
 
     router.get ('/report', bindPage(controllers.report.page));
 

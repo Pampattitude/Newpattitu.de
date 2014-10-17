@@ -255,6 +255,12 @@ body {
 }
 /* !Articles */
 
+/* About */
+.pmp-about {
+    @extend .pmp-page-content-box-content;
+}
+/* !About */
+
 /* Error */
 .pmp-error {
     @extend .pmp-page-content-box-content;
