@@ -3,7 +3,6 @@
       globals.hidePageMenu: removes menu entirely and makes the page body full screen
       globals.pageMenu.hideAboutMe: hides "About me" box
       globals.pageMenu.hideSocial:  hides "Social" box
-      globals.pageMenu.hideReport:  hides "Report" box
 -->
 
 <div class="pmp-page-menu">
@@ -58,28 +57,6 @@
          href="/rss">
         <span class="icon icon-feed2"></span>
       </a>
-    </div>
-  </div>
-
-  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideReport">
-    <h3 class="box-vignette-right">Leave a report</h3>
-
-    <div class="pmp-report">
-      <p>
-        If you encountered an error, please include page URL and details on what you were doing before having the error!
-      </p>
-
-      <div class="input-group">
-        <input class="input-group-data" type="text" ng-model="reportName" ng-class="{'has-data': reportName.length}" />
-
-        <div class="input-group-placeholder">Name...</div>
-      </div>
-
-      <div class="input-group">
-        <textarea class="input-group-data" ng-model="reportText" ng-class="{'has-data': reportText.length}" data-resizable></textarea>
-
-        <div class="input-group-placeholder">Report data...</div>
-      </div>
     </div>
   </div>
 </div>
