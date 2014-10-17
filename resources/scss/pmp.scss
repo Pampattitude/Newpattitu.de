@@ -30,8 +30,9 @@ body {
 
 /* Header */
 .pmp-header {
+    @extend .fronter;
+
     width: 100%;
-    z-index: 100;
 
     padding: 0.4em 0.8em;
 
@@ -40,11 +41,12 @@ body {
 
 /* Header logo */
 .pmp-header .pmp-header-logo {
+    @extend .frontest;
+
     display: inline-block;
     position: absolute;
     top: 0.1em;
     left: 0;
-    z-index: 12;
 
     margin: auto;
 }
@@ -66,7 +68,7 @@ body {
 /* !Header logo */
 
 .pmp-header .pmp-header-title {
-    z-index: 10;
+    @extend .front;
 
     padding: 0;
 
@@ -91,11 +93,12 @@ body {
 }
 
 .pmp-header .pmp-header-actions {
+    @extend .frontest;
+
     display: inline-block;
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 12;
 
     padding: 1em 1.5em;
 }
@@ -110,8 +113,9 @@ body {
 
 /* Top navigation menu */
 .pmp-nav {
+    @extend .frontest;
+
     width: 100%;
-    z-index: 50;
 
     background-color: $white-mild;
     box-shadow: 0 -0.2em 0 rgba(0, 0, 0, 0.2) inset;
@@ -187,10 +191,10 @@ body {
 }
 
 .pmp-page-box {
+    @extend .front;
     @extend .harder-shadow;
 
     width: 100%;
-    z-index: 5;
 
     margin: 2rem auto;
 
@@ -320,8 +324,9 @@ body {
 
 /* Footer */
 .pmp-footer {
+    @extend .fronter;
+
     width: 100%;
-    z-index: 5;
 
     margin-top: 2rem;
     padding: 0.8em 0.8em;

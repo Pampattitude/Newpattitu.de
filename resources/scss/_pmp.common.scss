@@ -87,6 +87,15 @@ a {
 .inline-block { display: inline-block; }
 .inline { display: inline; }
 
+/* Z-index */
+.frontest { z-index: 3; }
+.fronter { z-index: 2; }
+.front { z-index: 1; }
+.back { z-index: 0; }
+.backer { z-index: -1; }
+.backest { z-index: -2; }
+/* !Z-index */
+
 /* Shadows */
 .hard-shadow {
     box-shadow: 0 0 4px $hard-shadow-color;
@@ -213,10 +222,11 @@ textarea {
 }
 
 .input-group .input-group-placeholder {
+    @extend .back;
+
     position: absolute;
     bottom: 0;
     right: 2.5%;
-    z-index: 8;
 
     padding-bottom: 0.2em;
 
@@ -230,7 +240,7 @@ textarea {
 
 .input-group .input-group-data {
     width: 100%;
-    z-index: 10;
+    @extend .front;
 
     padding: 0.2em 0.4em;
 
@@ -315,10 +325,11 @@ textarea {
 
 /* Box vignettes */
 .box-vignette-left {
+    @extend .fronter;
+
     position: absolute;
     top: -1rem;
     left: -1rem;
-    z-index: 20;
 
     margin: 0;
     padding: 0.3em 0.6em;
@@ -343,10 +354,11 @@ textarea {
 }
 
 .box-vignette-right {
+    @extend .fronter;
+
     position: absolute;
     top: -1rem;
     right: -1rem;
-    z-index: 20;
 
     margin: 0;
     padding: 0.3em 0.6em;
