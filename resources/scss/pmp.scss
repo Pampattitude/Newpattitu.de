@@ -364,6 +364,35 @@ body {
     font-size: 1.2em;
 }
 /* !Social */
+
+
+/* Twitter */
+.pmp-page-menu .pmp-page-menu-box .pmp-twitter {
+    @extend .pmp-page-menu-box-content;
+}
+
+.pmp-twitter-post {
+}
+
+.pmp-twitter-post .pmp-twitter-post-date {
+    margin: 0;
+    padding: 0;
+
+    color: rgba(32, 32, 32, 0.5); /* TMP */
+    font-size: 0.7em;
+    text-align: right;
+}
+
+.pmp-twitter-post .pmp-twitter-post-text {
+    margin-top: 0;
+
+    text-align: left;
+}
+
+.pmp-twitter-post .pmp-twitter-post-text .pmp-twitter-post-link {
+    float: right;
+}
+/* !Twitter */
 /* !Right menu */
 /* !Body */
 

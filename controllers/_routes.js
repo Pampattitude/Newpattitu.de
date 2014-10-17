@@ -5,12 +5,16 @@ var bindArg     = require('../lib/bind').arg;
 var constants   = require('../lib/constants');
 var methods     = require('../lib/methods');
 
-var bindGet = function(m) { return bind.bind(methods.get, bindArg._1, bindArg._2, m); };
-var bindPost = function(m) { return bind.bind(methods.post, bindArg._1, bindArg._2, m); };
-var bindAjax = function(m) { return bind.bind(methods.ajax, bindArg._1, bindArg._2, m); };
+var bindGet = function(m) { return bind(methods.get, bindArg._1, bindArg._2, m); };
+var bindPost = function(m) { return bind(methods.post, bindArg._1, bindArg._2, m); };
+var bindAjax = function(m) { return bind(methods.ajax, bindArg._1, bindArg._2, m); };
 
 exports.defineFrontRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'front.html'); };
+
+    var ajax = {
+        twitter:        require('./ajax/twitter'),
+    };
 
     var controllers = {
         about:  require('./front/about'),
@@ -28,6 +32,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/about', bindPage(controllers.about.page));
 
     router.get ('/report', bindPage(controllers.report.page));
+
+    router.get ('/ajax/twitter/getLatest', bindAjax(ajax.twitter.getLatest));
 
     router.get ('/*', bindPage(controllers.error.page404));
     router.use (function(err, req, res, next) {

@@ -3,6 +3,7 @@
       globals.hidePageMenu: removes menu entirely and makes the page body full screen
       globals.pageMenu.hideAboutMe: hides "About me" box
       globals.pageMenu.hideSocial:  hides "Social" box
+      globals.pageMenu.hideTwitter:  hides "Twitter" box
 -->
 
 <div class="pmp-page-menu">
@@ -57,6 +58,24 @@
          href="/rss">
         <span class="icon icon-feed2"></span>
       </a>
+    </div>
+  </div>
+
+  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideTwitter">
+    <h3 class="box-vignette-right"><span class="icon icon-twitter"></span> Twitter</h3>
+
+    <div class="pmp-twitter" poll-twitter>
+      <div class="pmp-twitter-post" ng-repeat="post in twitterPosts">
+        <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
+
+        <p class="pmp-twitter-post-text">
+          {{post.text}}
+
+          <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
+            <span class="icon icon-newtab"></span>
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
