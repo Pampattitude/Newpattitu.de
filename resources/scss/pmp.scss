@@ -295,6 +295,14 @@ body {
 }
 /* !About me */
 
+/* Social */
+.pmp-page-menu .pmp-page-menu-box .pmp-social {
+    @extend .pmp-page-menu-box-content;
+
+    font-size: 1.2em;
+}
+/* !Social */
+
 /* Report */
 .pmp-report {
     @extend .pmp-page-menu-box-content;

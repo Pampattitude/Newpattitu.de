@@ -2,6 +2,7 @@
     Server options:
       globals.hidePageMenu: removes menu entirely and makes the page body full screen
       globals.pageMenu.hideAboutMe: hides "About me" box
+      globals.pageMenu.hideSocial:  hides "Social" box
       globals.pageMenu.hideReport:  hides "Report" box
 -->
 
@@ -16,6 +17,47 @@
       <p class="pmp-me-description">
         Hey there! Pampa, developer.<br />Check out the <a href="/about">about</a> page!
       </p>
+    </div>
+  </div>
+
+  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideSocial">
+    <h3 class="box-vignette-right">
+      Stalk me
+    </h3>
+
+    <div class="pmp-social">
+      <a class="button button-github"
+         href="https://www.github.com/Pampattitude">
+        <span class="icon icon-github"></span>
+      </a>
+
+      &nbsp;
+
+      <a class="button button-linkedin"
+         href="https://www.linkedin.com/pub/guillaume-delahodde/5a/751/44a">
+        <span class="icon icon-linkedin"></span>
+      </a>
+
+      &nbsp;
+
+      <a class="button button-twitter"
+         href="https://www.twitter.com/Pampattitude">
+        <span class="icon icon-twitter"></span>
+      </a>
+
+      &nbsp;
+
+      <a class="button button-facebook"
+         href="https://www.facebook.com/Pampattitude">
+        <span class="icon icon-facebook"></span>
+      </a>
+
+      &nbsp;
+
+      <a class="button button-rss"
+         href="/rss">
+        <span class="icon icon-feed2"></span>
+      </a>
     </div>
   </div>
 
