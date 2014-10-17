@@ -372,6 +372,10 @@ body {
 }
 
 .pmp-twitter-post {
+    margin-bottom: 1.5em;
+}
+.pmp-twitter-post:last-child {
+    margin-bottom: 0;
 }
 
 .pmp-twitter-post .pmp-twitter-post-date {
@@ -380,11 +384,11 @@ body {
 
     color: rgba(32, 32, 32, 0.5); /* TMP */
     font-size: 0.7em;
-    text-align: right;
+    float: left;
 }
 
 .pmp-twitter-post .pmp-twitter-post-text {
-    margin-top: 0;
+    margin: 0;
 
     text-align: left;
 }

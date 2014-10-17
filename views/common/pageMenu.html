@@ -65,16 +65,18 @@
     <h3 class="box-vignette-right"><span class="icon icon-twitter"></span> Twitter</h3>
 
     <div class="pmp-twitter" poll-twitter>
-      <div class="pmp-twitter-post" ng-repeat="post in twitterPosts">
-        <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
+      <div class="clearfix">
+        <div class="pmp-twitter-post" ng-repeat="post in twitterPosts">
+          <p class="pmp-twitter-post-text">
+            {{post.text}}
 
-        <p class="pmp-twitter-post-text">
-          {{post.text}}
+            <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
+              <span class="icon icon-newtab"></span>
+            </a>
+          </p>
 
-          <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
-            <span class="icon icon-newtab"></span>
-          </a>
-        </p>
+          <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
+        </div>
       </div>
     </div>
   </div>
