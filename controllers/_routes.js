@@ -11,7 +11,7 @@ var bindPost = function(m) { return bind(methods.post, bindArg._1, bindArg._2, m
 var bindAjax = function(m) { return bind(methods.ajax, bindArg._1, bindArg._2, m); };
 
 exports.defineFrontRoutes = function(serverApp, router) {
-    var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'front.html'); };
+    var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'front/layout.html'); };
 
     var ajax = {
         twitter:        require('./ajax/twitter'),
