@@ -10,11 +10,11 @@ var schema = new mongoose.Schema({
     // author: {type: String, ref: 'User'}, // Temporarily removed
 
     title: {type: String, required: true},
-    technicalName: {type: String, required: true, unique: true},
+    technicalName: {type: String, required: true, unique: true, index: true},
 
     caption: {type: String, required: true},
     text: {type: String, required: true},
-    tags: {type: [String]},
+    tags: {type: [String], index: true},
 
     type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'other'], default: 'other'},
 
