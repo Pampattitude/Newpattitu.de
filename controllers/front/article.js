@@ -17,12 +17,17 @@ exports.page = function(req, res, callback) {
 
         res.locals.article = article;
 
-        return mongoose.model('Comment').find({article: article._id}).sort({created: 1}).exec(function(err, comments) {
+        ++article.views;
+        return article.save(function(err) {
             if (err) return callback(err);
 
-            res.locals.commentList = comments;
+            return mongoose.model('Comment').find({article: article._id}).sort({created: 1}).exec(function(err, comments) {
+                if (err) return callback(err);
 
-            return callback();
+                res.locals.commentList = comments;
+
+                return callback();
+            });
         });
     });
 };

@@ -19,6 +19,8 @@ var schema = new mongoose.Schema({
     type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'other'], default: 'other'},
 
     featured: {type: Boolean, default: false},
+
+    views: {type: Number, default: 0},
     created: {type: Date, default: Date.now},
 });
 
