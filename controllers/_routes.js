@@ -21,6 +21,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
         error:  require('./front/error'),
         home:   require('./front/home'),
         report: require('./front/report'),
+        rss:    require('./front/rss'),
         search: require('./front/search'),
     };
 
@@ -35,6 +36,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/about', bindPage(controllers.about.page));
 
     router.get ('/report', bindPage(controllers.report.page));
+
+    router.get ('/rss', bindGet(controllers.rss.get));
 
     router.get ('/ajax/twitter/getLatest', bindAjax(ajax.twitter.getLatest));
 
