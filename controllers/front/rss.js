@@ -12,7 +12,7 @@ exports.get = function(req, res, callback) {
     res.locals.page = 'pages/home.html';
     res.locals.activeTopMenu = 'blog';
 
-    return mongoose.model('Article').find().sort({created: -1}).exec(function(err, articles) {
+    return mongoose.model('Article').find().sort({created: -1}).limit(constants.rssMaxFeedItemCount).exec(function(err, articles) {
         if (err)
             return callback(err);
 
