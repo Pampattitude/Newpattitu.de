@@ -40,6 +40,7 @@ exports.get = function(req, res, callback) {
         rss += '  </channel>\n';
         rss += '</rss>\n'
 
+        res.set('Content-Type', 'text/xml');
         return callback(null, rss);
     });
 };
