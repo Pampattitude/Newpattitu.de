@@ -6,10 +6,10 @@ var mongoose = require('mongoose');
 var constants = require('../../lib/constants');
 
 exports.page = function(req, res, callback) {
-    res.locals.title = 'Home';
+    res.locals.title = 'Blog';
 
     res.locals.page = 'pages/home.html';
-    res.locals.activeTopMenu = 'home';
+    res.locals.activeTopMenu = 'blog';
 
     return async.series([
         function(serieCallback) { // Get featured article
