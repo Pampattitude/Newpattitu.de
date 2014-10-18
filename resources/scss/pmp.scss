@@ -13,8 +13,9 @@ $footer-background-color:       rgba(0, 0, 0, 0.85);
 $error-404-color:               rgb(200, 32, 32);
 $error-500-color:               rgb(144, 144, 144);
 
+$twitter-user-color:            rgb(153, 50, 153);
 $twitter-hashtag-color:         $link-text-color;
-$twitter-link-color:            $twitter-background-color;
+$twitter-link-color:            rgb(51, 122, 204);
 
 body {
     margin: 0;
@@ -390,6 +391,11 @@ body {
 
 .pmp-twitter-post .pmp-twitter-post-text a {
     color: $twitter-link-color;
+}
+
+.pmp-twitter-post .pmp-twitter-post-text .user {
+    color: $twitter-user-color;
+    font-weight: bold;
 }
 
 .pmp-twitter-post .pmp-twitter-post-text .hashtag {

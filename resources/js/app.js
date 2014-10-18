@@ -47,8 +47,11 @@ frontApp.directive('pollTwitter', function() {
                     console.log('DONE', data);
 
                     $scope.twitterPosts = data.map(function(elem) {
-                        elem.text = linkify(elem.text
-                            .replace(/(#[A-Za-z0-9\-_]+)/g, '<span class="hashtag">$1</span>')); // Hashtags
+                        elem.text = linkify(
+                            elem.text
+                                .replace(/(@[A-Za-z0-9\-_]+)/g, '<span class="user">$1</span>')  // Users
+                                .replace(/(#[A-Za-z0-9\-_]+)/g, '<span class="hashtag">$1</span>')
+                        ); // Hashtags
                         return elem;
                     });
                     $scope.refresh();
