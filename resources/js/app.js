@@ -5,7 +5,7 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
     // globals are defined by EJS. When it renders the page, it prints "var global = ..."
     // with '...' being the full res.locals object
     $scope.globals = globals;
-    $scope.apply = function() {
+    $scope.refresh = function() {
         if (!$scope.$$phase)
             $scope.$apply();
     };
@@ -22,7 +22,7 @@ frontApp.directive('pollTwitter', function() {
                     console.log('DONE', data);
 
                     $scope.twitterPosts = data;
-                    $scope.apply();
+                    $scope.refresh();
 
                     return doneCallback(null, data);
                 }).error(function(data) {
