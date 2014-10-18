@@ -25,6 +25,11 @@ body {
     background-image: $body-background-image;
     background-attachment: fixed;
 }
+@media only screen and (min-width: 992px) {
+    body {
+        margin-top: 3em;
+    }
+}
 
 * {
     position: relative;
@@ -63,10 +68,15 @@ body {
 .pmp-header .pmp-header-logo img {
     height: 7em;
 
-    padding: 0.4em;
-
     background-color: $header-image-background-color;
-    border-radius: 100em;
+    background-image: url('/img/IconBackground.png');
+    background-size: cover;
+    border-radius: 10em;
+
+    transition: border-radius 200ms;
+}
+.pmp-header .pmp-header-logo img:hover {
+    border-radius: 1em;
 }
 /* !Header logo */
 
@@ -93,24 +103,6 @@ body {
     @extend .harder-text-shadow;
 
     color: $white-mild;
-}
-
-.pmp-header .pmp-header-actions {
-    @extend .frontest;
-
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    padding: 1em 1.5em;
-}
-
-.pmp-header .pmp-header-actions .pmp-header-search {
-}
-
-.pmp-header .pmp-header-actions .pmp-header-social {
-    margin-top: 1em;
 }
 /* !Header */
 

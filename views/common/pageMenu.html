@@ -8,7 +8,7 @@
 
 <div class="pmp-page-menu">
   <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideAboutMe">
-    <h3 class="box-vignette-right">Me</h3>
+    <h3 class="box-vignette-right"><span class="icon icon-user"></h3>
 
     <div class="pmp-about-me">
       <a class="pmp-me-face" href="/about"><img src="/img/IconFace.png" alt="" /></a>
@@ -21,9 +21,7 @@
   </div>
 
   <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideSocial">
-    <h3 class="box-vignette-right">
-      Stalk me
-    </h3>
+    <h3 class="box-vignette-right"><span class="icon icon-share"></h3>
 
     <div class="pmp-social">
       <a class="button button-github"
@@ -62,13 +60,13 @@
   </div>
 
   <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideTwitter">
-    <h3 class="box-vignette-right"><span class="icon icon-twitter"></span> Twitter</h3>
+    <h3 class="box-vignette-right twitter-vignette"><span class="icon icon-twitter"></span></h3>
 
     <div class="pmp-twitter" poll-twitter>
       <div class="clearfix">
         <div class="pmp-twitter-post" ng-repeat="post in twitterPosts">
           <p class="pmp-twitter-post-text">
-            {{post.text}}
+            <span ng-bind="post.text"></span>
 
             <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
               <span class="icon icon-newtab"></span>

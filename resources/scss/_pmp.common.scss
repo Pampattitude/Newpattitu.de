@@ -30,6 +30,8 @@ $button-facebook-background-color:      rgb(59, 89, 152);
 $button-facebook-hover-background-color: rgb(98, 122, 172);
 $button-facebook-focus-background-color: rgb(47, 71, 121);
 
+$twitter-background-color:              rgb(64, 153, 255);
+$twitter-background-color-dark:         rgb(51, 122, 204);
 $button-twitter-background-color:       rgb(64, 153, 255);
 $button-twitter-hover-background-color: rgb(102, 173, 255);
 $button-twitter-focus-background-color: rgb(51, 122, 204);
@@ -349,7 +351,7 @@ textarea {
     left: 0;
 
     border-style: solid;
-    border-width: 0 16px 6px 0;
+    border-width: 0 17px 7px 0;
     border-color: transparent rgb(24, 96, 24) transparent transparent; /* TMP */
 }
 
@@ -378,8 +380,20 @@ textarea {
     right: 0;
 
     border-style: solid;
-    border-width: 0 0 6px 16px;
+    border-width: 0 0 6px 17px;
     border-color: transparent transparent transparent rgb(24, 96, 24); /* TMP */
+}
+
+.twitter-vignette {
+    color: $white-mild;
+
+    background-color: $twitter-background-color;
+}
+.box-vignette-left.twitter-vignette:after {
+    border-color: transparent $twitter-background-color-dark transparent transparent;
+}
+.box-vignette-right.twitter-vignette:after {
+    border-color: transparent transparent transparent $twitter-background-color-dark;
 }
 /* !Box vignettes */
 /* !Common classes */
