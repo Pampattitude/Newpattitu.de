@@ -8,6 +8,8 @@ $body-background-image:         url('http://i.imgur.com/7XmZFgC.png');
 $header-background-color:       rgba(0, 0, 0, 0.85);
 $header-image-background-color: rgb(240, 240, 240);
 
+$page-box-margin-v:             2rem;
+
 $footer-background-color:       rgba(0, 0, 0, 0.85);
 
 $error-404-color:               rgb(200, 32, 32);
@@ -234,7 +236,7 @@ body {
 
     width: 100%;
 
-    margin: 2rem auto;
+    margin: $page-box-margin-v auto;
 
     color: $black-mild;
     text-align: center;
@@ -251,6 +253,14 @@ body {
 /* Page content */
 .pmp-page-content .pmp-page-content-box {
     @extend .pmp-page-box;
+}
+@media only screen and (min-width: 992px) {
+    .pmp-page-content .pmp-page-content-box.first-desktop {
+        margin-top: 0;
+    }
+}
+.pmp-page-content .pmp-page-content-box.last {
+    margin-bottom: 0;
 }
 
 .pmp-page-content .pmp-page-content-box .pmp-page-content-box-content {

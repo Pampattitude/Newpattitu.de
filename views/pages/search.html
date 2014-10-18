@@ -17,7 +17,7 @@
 <!-- !Search -->
 
 <!-- Article -->
-<div class="pmp-page-content-box" ng-repeat="article in globals.articleList">
+<div class="pmp-page-content-box first-desktop" ng-class="{last: $last}" ng-repeat="article in globals.articleList">
   <h2 class="box-vignette-left news-vignette" ng-show="'news' == article.type">News</h2>
   <h2 class="box-vignette-left life-vignette" ng-show="'life' == article.type">Personal</h2>
   <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
@@ -41,7 +41,7 @@
 <!-- !Article -->
 
 <!-- If no result -->
-<div class="pmp-page-content-box" ng-hide="0 < globals.articleList.length">
+<div class="pmp-page-content-box first-desktop last" ng-hide="0 < globals.articleList.length">
   <div class="pmp-search-not-found">
     <p class="pmp-search-not-found-main-text">
       No article found for search &quot;<span class="">{{globals.searchString}}</span>&quot;.
