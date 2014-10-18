@@ -11,6 +11,9 @@ $white-milder:            rgb(224, 224, 224);
 /* !Color defines */
 
 /* General defines */
+$selection-text-color:  $white-mild;
+$selection-background-color:    rgb(80, 152, 80);
+
 $link-text-color:       rgb(32, 128, 32);
 
 $harder-shadow-color:   rgba(0, 0, 0, 0.8);
@@ -71,6 +74,17 @@ $button-rss-focus-background-color:     rgb(204, 78, 0);
     }
 }
 /* !On desktop devices */
+
+* {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+*::selection {
+    color: $selection-text-color;
+    background: $selection-background-color;
+}
 
 a {
     color: $link-text-color;

@@ -256,6 +256,64 @@ body {
 /* About */
 .pmp-about {
     @extend .pmp-page-content-box-content;
+
+    text-align: left;
+}
+
+.pmp-about-face {
+    @extend .fronter;
+    float: left;
+
+    margin: 0 1em 1em 0;
+}
+
+.pmp-about-face > img {
+    height: 10em;
+
+    background-image: url('/img/IconBackground.png');
+    background-size: cover;
+    border-radius: 10em;
+
+    transition: border-radius 200ms;
+}
+.pmp-about-face:hover > img {
+    border-radius: 1em;
+}
+
+.pmp-about-name {
+    margin-top: 0;
+
+    font-size: 1.5em;
+}
+
+.pmp-about-name .pmp-about-pampa {
+    color: rgb(24, 96, 24);/* TMP */
+}
+
+.pmp-about-description p {
+    margin: 1em;
+}
+.pmp-about-description p:first-child {
+    margin-top: 0;
+}
+.pmp-about-description p:last-child {
+    margin-bottom: 0;
+}
+
+.pmp-about-description .comment {
+    opacity: 0.6;
+}
+
+.pmp-about-social {
+    margin-top: 1em;
+
+    font-size: 1.2em;
+}
+
+.pmp-about-social .pmp-about-social-buttons {
+    margin-top: 0.2em;
+
+    text-align: center;
 }
 /* !About */
 
