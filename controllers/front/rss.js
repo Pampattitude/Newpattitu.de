@@ -18,8 +18,9 @@ exports.get = function(req, res, callback) {
 
         var rss = '';
         rss += '<?xml version="1.0"?>\n';
-        rss += '<rss version="2.0">\n';
+        rss += '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n';
         rss += '  <channel>\n';
+        rss += '    <atom:link href="' + req.protocol + '://' + req.get('host') + req.originalUrl + '" rel="self" type="application/rss+xml" />\n';
         rss += '    <title>Pampattitu.de</title>\n';
         rss += '    <description>Guillaume "Pampa" Delahodde\'s very own website</description>\n';
         rss += '    <link>' + constants.serverBaseUrl + '</link>\n';
