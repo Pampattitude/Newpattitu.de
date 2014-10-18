@@ -1,6 +1,7 @@
 'use strict';
 
 var async = require('async');
+var loremIpsum = require('lorem-ipsum');
 var mongoose = require('mongoose');
 var requireDir = require('require-dir');
 
@@ -23,15 +24,19 @@ return mongoose.connection.once('open', function () {
 
     return async.series([
         function(callback) {
+            var title = loremIpsum({count: parseInt(5 + Math.random() * 3, 10), units: 'words', format: 'plain'});
+            var caption = loremIpsum({count: parseInt(2 + Math.random(), 10), units: 'paragraphs', format: 'html'});
+            var text = loremIpsum({count: parseInt(8 + Math.random() * 4, 10), units: 'paragraphs', format: 'html'});
+
             var article = new (mongoose.model('Article'))({
-                title: 'Lorem ipsum dolor sit amet',
-                technicalName: 'loremIpsum',
+                title: title,
+                technicalName: title.split(' ').join('_'),
 
-                caption: '<p>Sed a pellentesque nulla. Ut risus libero, rhoncus eu mauris sagittis, sollicitudin tincidunt nisl. Nunc tempus velit arcu, sed condimentum erat molestie non. Suspendisse elementum eu elit ac sagittis. Maecenas sit amet tempus dolor, ut rutrum elit. Nullam in enim at ligula aliquet ultrices a ut erat. Curabitur facilisis est nibh, vel sollicitudin felis porttitor at. Integer a varius massa. Quisque vulputate convallis posuere. Nunc ut mi et ex malesuada sagittis. Nullam ac ornare elit. Cras sed dui feugiat turpis congue interdum eget ac leo.</p><p>Morbi at egestas lacus, iaculis sodales metus. Duis ultrices rutrum auctor. Cras iaculis, metus in blandit vestibulum, erat turpis euismod tortor, non aliquet augue lorem ut justo. Quisque varius, ex non sollicitudin tincidunt, tellus ipsum fringilla neque, sit amet dapibus est sem vitae ligula.</p>',
-                text: 'test',
-                tags: ['lorem', 'ipsum', 'dolor', 'sit', 'amet'],
+                caption: caption,
+                text: text,
+                tags: title.split(' '),
 
-                type: (['news', 'life', 'project', 'tutorial'][Math.round(Math.random() * 4)]),
+                type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.round(Math.random() * 4), 10)]),
 
                 featured: true,
             });
@@ -49,15 +54,19 @@ return mongoose.connection.once('open', function () {
             var i = 2;
 
             return async.whilst(function() { return generateArticleCount--; }, function(whilstCallback) {
+                var title = loremIpsum({count: parseInt(5 + Math.random() * 3, 10), units: 'words', format: 'plain'});
+                var caption = loremIpsum({count: parseInt(2 + Math.random(), 10), units: 'paragraphs', format: 'html'});
+                var text = loremIpsum({count: parseInt(8 + Math.random() * 4, 10), units: 'paragraphs', format: 'html'});
+
                 var article = new (mongoose.model('Article'))({
-                    title: 'Lorem ipsum dolor sit amet #' + i,
-                    technicalName: 'loremIpsum' + i,
+                    title: title + ' #' + i,
+                    technicalName: title.split(' ').join('_') + i,
 
-                    caption: '<p>Sed a pellentesque nulla. Ut risus libero, rhoncus eu mauris sagittis, sollicitudin tincidunt nisl. Nunc tempus velit arcu, sed condimentum erat molestie non. Suspendisse elementum eu elit ac sagittis. Maecenas sit amet tempus dolor, ut rutrum elit. Nullam in enim at ligula aliquet ultrices a ut erat. Curabitur facilisis est nibh, vel sollicitudin felis porttitor at. Integer a varius massa. Quisque vulputate convallis posuere. Nunc ut mi et ex malesuada sagittis. Nullam ac ornare elit. Cras sed dui feugiat turpis congue interdum eget ac leo.</p><p>Morbi at egestas lacus, iaculis sodales metus. Duis ultrices rutrum auctor. Cras iaculis, metus in blandit vestibulum, erat turpis euismod tortor, non aliquet augue lorem ut justo. Quisque varius, ex non sollicitudin tincidunt, tellus ipsum fringilla neque, sit amet dapibus est sem vitae ligula.</p>',
-                    text: 'test',
-                    tags: ['lorem', 'ipsum', 'dolor', 'sit', 'amet'],
+                    caption: caption,
+                    text: text,
+                    tags: title.split(' '),
 
-                    type: (['news', 'life', 'project', 'tutorial'][Math.round(Math.random() * 4)]),
+                    type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.round(Math.random() * 4), 10)]),
                 });
                 ++i;
 
