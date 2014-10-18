@@ -7,6 +7,7 @@
 -->
 
 <div class="pmp-page-menu">
+  <!-- User -->
   <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideAboutMe">
     <h3 class="box-vignette-right"><span class="icon icon-user"></h3>
 
@@ -19,7 +20,29 @@
       </p>
     </div>
   </div>
+  <!-- !User -->
 
+  <!-- Search -->
+  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideSearch">
+    <h3 class="box-vignette-right"><span class="icon icon-search"></h3>
+
+    <div class="pmp-search">
+      <form method="GET" action="/search">
+        <div class="input-group input-group-with-button">
+          <input class="input-group-data" type="text" name="search" ng-model="searchString" ng-init="searchString = searchString || ''" ng-class="{'has-data': 0 != searchString.length}" />
+
+          <div class="input-group-placeholder">Search...</div>
+
+          <button class="button input-group-button" type="submit">
+            <span class="icon icon-search"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- !Search -->
+
+  <!-- Social -->
   <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideSocial">
     <h3 class="box-vignette-right"><span class="icon icon-share"></h3>
 
@@ -58,7 +81,9 @@
       </a>
     </div>
   </div>
+  <!-- !Social -->
 
+  <!-- Twitter -->
   <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideTwitter">
     <h3 class="box-vignette-right twitter-vignette"><span class="icon icon-twitter"></span></h3>
 
@@ -78,4 +103,5 @@
       </div>
     </div>
   </div>
+  <!-- !Twitter -->
 </div>
