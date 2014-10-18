@@ -11,6 +11,8 @@ var schema = new mongoose.Schema({
 
     author: {type: String},
     text: {type: String},
+
+    created: {type: Date, default: Date.now},
 });
 
 exports.model = mongoose.model('Comment', schema, 'comments');

@@ -21,14 +21,22 @@
 <!-- !Article -->
 
 <!-- Comment -->
-<div class="pmp-page-content-box">
+<div class="pmp-page-content-box" id="pmp-comments">
   <h2 class="box-vignette-left">Comments</h2>
 
   <div class="pmp-comments">
-    <div class="pmp-comment"></div>
+    <div class="pmp-comment clearfix" ng-repeat="comment in globals.commentList">
+      <div class="pmp-comment-author" ng-bind="comment.author"></div>
+      <div class="pmp-comment-date">
+        <span class="pmp-comment-date-date" ng-bind="comment.created | date: 'yyyy-MM-dd'"></span>,
+        <b><span class="pmp-comment-date-date" ng-bind="comment.created | date: 'hh:mm'"></span></b>
+      </div>
+
+      <div class="pmp-comment-text" ng-bind="comment.text"></div>
+    </div>
 
     <div class="pmp-add-comment">
-      <form method="POST" action="{{'/article/' + globals.article.technicalName + '/addComment'}}">
+      <form method="POST" action="{{'/article/' + globals.article.technicalName + '/comment'}}">
         <div class="input-group">
           <input class="input-group-data" type="text" name="author" ng-model="newCommentAuthor" ng-init="newCommentAuthor = newCommentAuthor || ''" ng-class="{'has-data': 0 != newCommentAuthor.length}" />
 

@@ -34,6 +34,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/', bindPage(controllers.home.page));
 
     router.get ('/article/:articleTechnicalName', bindPage(controllers.article.page));
+    router.post('/article/:articleTechnicalName/comment', bindPost(controllers.article.postComment));
 
     router.get ('/search', bindPage(controllers.search.page));
 

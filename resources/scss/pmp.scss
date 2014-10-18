@@ -35,6 +35,18 @@ $project-vignette-background-dark-color:        rgb(8, 81, 163);
 $tutorial-vignette-background-color:    rgb(64, 128, 64);
 $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
 
+$comment-text-color:            $black-milder;
+$comment-background-color:      rgb(220, 220, 220);
+$comment-border-color:          rgb(200, 200, 200);
+
+$comment-author-text-color:     $white-mild;
+$comment-author-background-color:       rgb(128, 128, 220);
+$comment-author-background-darker-color:        rgb(80, 80, 176);
+
+$comment-date-text-color:       $white-mild;
+$comment-date-background-color: rgb(128, 128, 220);
+$comment-date-background-darker-color:  rgb(80, 80, 176);
+
 body {
     min-width: 300px;
 
@@ -52,6 +64,11 @@ body {
 @media only screen and (min-width: 992px) {
     body {
         margin-top: 3em;
+    }
+}
+@media only screen and (max-width: 991px) {
+    body {
+        font-size: 18px;
     }
 }
 
@@ -343,6 +360,82 @@ body {
 /* Article comments */
 .pmp-comments {
     @extend .pmp-page-content-box-content;
+
+    text-align: left;
+}
+
+.pmp-comments .pmp-comment .pmp-comment-author {
+    position: absolute;
+    top: -1em;
+    left: -1em;
+
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    color: $comment-author-text-color;
+    font-size: 0.9em;
+
+    background-color: $comment-author-background-color;
+}
+.pmp-comments .pmp-comment .pmp-comment-author:after {
+    content: "";
+
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    z-index: -1;
+
+    border-style: solid;
+    border-width: 0 16px 6px 0;
+    border-color: transparent $comment-author-background-darker-color transparent transparent;
+}
+
+.pmp-comments .pmp-comment {
+    margin-bottom: 1em;
+    padding: 0.6em 1.2em;
+
+    color: $comment-text-color;
+
+    background-color: $comment-background-color;
+    border: 1px solid $comment-border-color;
+}
+.pmp-comments .pmp-comment:first-child {
+    margin-top: 1em;
+}
+.pmp-comments .pmp-comment:last-child {
+    margin-bottom: 0;
+}
+
+.pmp-comments .pmp-comment .pmp-comment-date {
+    position: absolute;
+    top: -1em;
+    right: -1em;
+
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    color: $comment-date-text-color;
+    font-size: 0.7em;
+
+    background-color: $comment-date-background-color;
+}
+.pmp-comments .pmp-comment .pmp-comment-date:after {
+    content: "";
+
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    z-index: -1;
+
+    border-style: solid;
+    border-width: 0 0 6px 16px;
+    border-color: transparent transparent transparent $comment-date-background-darker-color;
 }
 /* !Article comments */
 /* !Articles */
