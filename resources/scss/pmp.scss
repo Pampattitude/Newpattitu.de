@@ -36,6 +36,8 @@ $tutorial-vignette-background-color:    rgb(64, 128, 64);
 $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
 
 body {
+    min-width: 300px;
+
     margin: 0;
     padding: 0;
 
