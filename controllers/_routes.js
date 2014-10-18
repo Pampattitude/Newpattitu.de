@@ -21,6 +21,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
         error:  require('./front/error'),
         home:   require('./front/home'),
         report: require('./front/report'),
+        search: require('./front/search'),
     };
 
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
@@ -28,6 +29,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/home', bindPage(controllers.home.page));
     router.get ('/', bindPage(controllers.home.page));
+
+    router.get ('/search', bindPage(controllers.search.page));
 
     router.get ('/about', bindPage(controllers.about.page));
 
