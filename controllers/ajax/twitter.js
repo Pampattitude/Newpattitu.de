@@ -26,8 +26,6 @@ exports.getLatest = function(req, res, callback) {
             };
         });
 
-        console.log(tweets);
-
         return callback(null, tweets);
     });
 };
