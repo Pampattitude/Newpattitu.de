@@ -1,6 +1,11 @@
 <!-- Article -->
 <div class="pmp-page-content-box" ng-repeat="article in globals.articleList">
-  <h2 class="box-vignette-left" ng-show="true == article.featured">
+  <h2 class="box-vignette-left news-vignette" ng-show="'news' == article.type">News</h2>
+  <h2 class="box-vignette-left life-vignette" ng-show="'life' == article.type">Personal</h2>
+  <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
+  <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == article.type">Tutorial</h2>
+
+  <h2 class="box-vignette-right featured-vignette" ng-show="true == article.featured">
     <span class="icon icon-star3"></span>
   </h2>
 

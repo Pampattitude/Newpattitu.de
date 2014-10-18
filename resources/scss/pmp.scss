@@ -17,6 +17,21 @@ $twitter-user-color:            rgb(153, 50, 153);
 $twitter-hashtag-color:         $link-text-color;
 $twitter-link-color:            rgb(51, 122, 204);
 
+$featured-vignette-background-color:        rgb(208, 208, 32);
+$featured-vignette-background-dark-color:   rgb(144, 144, 16);
+
+$news-vignette-background-color:        rgb(32, 32, 32);
+$news-vignette-background-dark-color:   rgb(8, 8, 8);
+
+$life-vignette-background-color:        rgb(213, 103, 148);
+$life-vignette-background-dark-color:   rgb(156, 82, 118);
+
+$project-vignette-background-color:     rgb(32, 102, 204);
+$project-vignette-background-dark-color:        rgb(8, 81, 163);
+
+$tutorial-vignette-background-color:    rgb(64, 128, 64);
+$tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
+
 body {
     margin: 0;
     padding: 0;
@@ -224,6 +239,43 @@ body {
 .pmp-article {
     @extend .pmp-page-content-box-content;
 }
+
+/* Article vignettes */
+.featured-vignette {
+    background-color: $featured-vignette-background-color;
+}
+.featured-vignette:after {
+    border-color: transparent transparent transparent $featured-vignette-background-dark-color;
+}
+
+.news-vignette {
+    background-color: $news-vignette-background-color;
+}
+.news-vignette:after {
+    border-color: transparent $news-vignette-background-dark-color transparent transparent;
+}
+
+.life-vignette {
+    background-color: $life-vignette-background-color;
+}
+.life-vignette:after {
+    border-color: transparent $life-vignette-background-dark-color transparent transparent;
+}
+
+.project-vignette {
+    background-color: $project-vignette-background-color;
+}
+.project-vignette:after {
+    border-color: transparent $project-vignette-background-dark-color transparent transparent;
+}
+
+.tutorial-vignette {
+    background-color: $tutorial-vignette-background-color;
+}
+.tutorial-vignette:after {
+    border-color: transparent $tutorial-vignette-background-dark-color transparent transparent;
+}
+/* !Article vignettes */
 
 .pmp-article .pmp-article-title {
     margin: 0;

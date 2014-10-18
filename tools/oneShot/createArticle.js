@@ -31,6 +31,8 @@ return mongoose.connection.once('open', function () {
                 text: 'test',
                 tags: ['lorem', 'ipsum', 'dolor', 'sit', 'amet'],
 
+                type: (['news', 'life', 'project', 'tutorial'][Math.round(Math.random() * 4)]),
+
                 featured: true,
             });
             
@@ -54,6 +56,8 @@ return mongoose.connection.once('open', function () {
                     caption: '<p>Sed a pellentesque nulla. Ut risus libero, rhoncus eu mauris sagittis, sollicitudin tincidunt nisl. Nunc tempus velit arcu, sed condimentum erat molestie non. Suspendisse elementum eu elit ac sagittis. Maecenas sit amet tempus dolor, ut rutrum elit. Nullam in enim at ligula aliquet ultrices a ut erat. Curabitur facilisis est nibh, vel sollicitudin felis porttitor at. Integer a varius massa. Quisque vulputate convallis posuere. Nunc ut mi et ex malesuada sagittis. Nullam ac ornare elit. Cras sed dui feugiat turpis congue interdum eget ac leo.</p><p>Morbi at egestas lacus, iaculis sodales metus. Duis ultrices rutrum auctor. Cras iaculis, metus in blandit vestibulum, erat turpis euismod tortor, non aliquet augue lorem ut justo. Quisque varius, ex non sollicitudin tincidunt, tellus ipsum fringilla neque, sit amet dapibus est sem vitae ligula.</p>',
                     text: 'test',
                     tags: ['lorem', 'ipsum', 'dolor', 'sit', 'amet'],
+
+                    type: (['news', 'life', 'project', 'tutorial'][Math.round(Math.random() * 4)]),
                 });
                 ++i;
 

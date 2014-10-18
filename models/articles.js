@@ -16,6 +16,8 @@ var schema = new mongoose.Schema({
     text: {type: String, required: true},
     tags: {type: [String]},
 
+    type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'other'], default: 'other'},
+
     featured: {type: Boolean, default: false},
     created: {type: Date, default: Date.now},
 });
