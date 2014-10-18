@@ -305,6 +305,45 @@ body {
 }
 /* !Articles */
 
+/* Search */
+.pmp-search-article {
+    @extend .pmp-page-content-box-content;
+}
+
+.relevance-vignette {
+    font-size: 0.9em;
+}
+
+.pmp-search-article .pmp-search-article-title {
+    @extends .pmp-article-title;
+}
+
+.pmp-search-article .pmp-search-article-caption {
+    @extends .pmp-article-caption;
+}
+
+.pmp-search-article .pmp-search-article-access {
+    text-align: right;
+}
+.pmp-search-article .pmp-search-article-access .icon {
+    font-size: 0.7em;
+}
+
+.pmp-search-not-found {
+    @extend .pmp-page-content-box-content;
+
+    text-align: center;
+}
+
+.pmp-search-not-found p {
+    margin: 0;
+}
+
+.pmp-search-not-found .pmp-search-not-found-main-text {
+    font-size: 1.5em;
+}
+/* !Search */
+
 /* About */
 .pmp-about {
     @extend .pmp-page-content-box-content;
@@ -464,6 +503,14 @@ body {
     margin: 0;
 }
 /* !About me */
+
+/* Search */
+.pmp-page-menu .pmp-page-menu-box .pmp-search {
+    @extend .pmp-page-menu-box-content;
+
+    font-size: 1.2em;
+}
+/* !Search */
 
 /* Social */
 .pmp-page-menu .pmp-page-menu-box .pmp-social {

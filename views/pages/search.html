@@ -1,0 +1,37 @@
+<!-- Article -->
+<div class="pmp-page-content-box" ng-repeat="article in globals.articleList">
+  {{article.pointDetail}}
+
+  <h2 class="box-vignette-left news-vignette" ng-show="'news' == article.type">News</h2>
+  <h2 class="box-vignette-left life-vignette" ng-show="'life' == article.type">Personal</h2>
+  <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
+  <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == article.type">Tutorial</h2>
+
+  <h2 class="box-vignette-right relevance-vignette" ng-bind="article.points | number: 0"></h2>
+
+  <div class="pmp-search-article">
+    <h1 class="pmp-search-article-title"><a href="/article/{{article.technicalName}}" ng-bind-html="article.title | trust"></a></h1>
+
+    <div class="pmp-search-article-caption" ng-bind-html="article.caption | trust">
+    </div>
+
+    <div class="pmp-search-article-access">
+      <a href="/article/{{article.technicalName}}">Read blog post&nbsp;&nbsp;<span class="icon icon-arrow-right2"></span></a>
+    </div>
+  </div>
+</div>
+<!-- !Article -->
+
+<!-- If no result -->
+<div class="pmp-page-content-box" ng-hide="0 < globals.articleList.length">
+  <div class="pmp-search-not-found">
+    <p class="pmp-search-not-found-main-text">
+      No article found for search &quot;<span class="">{{globals.searchString}}</span>&quot;.
+    </p>
+
+    <p>
+      Perhaps you should not have searched for such a refined theme.
+    </p>
+  </div>
+</div>
+<!-- !If no result -->
