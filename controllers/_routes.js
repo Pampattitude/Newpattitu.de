@@ -56,7 +56,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 };
 
 exports.defineBackOfficeRoutes = function(serverApp, router) {
-    var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'back-office.html'); };
+    var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'back-office/layout.html'); };
 
     var controllers = {
         home: require('./back-office/home'),
