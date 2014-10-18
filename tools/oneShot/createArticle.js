@@ -36,7 +36,7 @@ return mongoose.connection.once('open', function () {
                 text: text,
                 tags: title.split(' '),
 
-                type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.round(Math.random() * 4), 10)]),
+                type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.floor(Math.random() * 4), 10)]),
 
                 featured: true,
             });
@@ -66,7 +66,7 @@ return mongoose.connection.once('open', function () {
                     text: text,
                     tags: title.split(' '),
 
-                    type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.round(Math.random() * 4), 10)]),
+                    type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.floor(Math.random() * 4), 10)]),
                 });
                 ++i;
 
