@@ -44,21 +44,21 @@ frontApp.directive('pollTwitter', function() {
             var pollTwitter = function(doneCallback) {
                 var url = '/ajax/twitter/getLatest';
                 return $.ajax(url).done(function(data) {
-                    console.log('DONE', data);
-
-                    $scope.twitterPosts = data.map(function(elem) {
-                        elem.text = linkify(
-                            elem.text
-                                .replace(/(@[A-Za-z0-9\-_]+)/g, '<span class="user">$1</span>')  // Users
-                                .replace(/(#[A-Za-z0-9\-_]+)/g, '<span class="hashtag">$1</span>')
-                        ); // Hashtags
-                        return elem;
-                    });
-                    $scope.refresh();
+                    if (data) {
+                        $scope.twitterPosts = data.map(function(elem) {
+                            elem.text = linkify(
+                                elem.text
+                                    .replace(/(@[A-Za-z0-9\-_]+)/g, '<span class="user">$1</span>')  // Users
+                                    .replace(/(#[A-Za-z0-9\-_]+)/g, '<span class="hashtag">$1</span>')
+                            ); // Hashtags
+                            return elem;
+                        });
+                        $scope.refresh();
+                    }
 
                     return doneCallback(null, data);
                 }).error(function(data) {
-                    console.log('ERR', data);
+                    return doneCallback(err);
                 });
             };
 
