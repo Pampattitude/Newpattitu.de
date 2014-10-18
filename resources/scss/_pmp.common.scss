@@ -247,15 +247,16 @@ textarea {
     padding-bottom: 0.2em;
 
     color: rgba(32, 32, 32, 0.8); /* TMP */
-    font-size: 1.1em;
+    font-size: 1em;
     text-align: right;
 
     transition: color 200ms, font-weight 200ms;
 }
 
 .input-group .input-group-data {
-    width: 100%;
     @extend .front;
+
+    width: 100%;
 
     padding: 0.2em 0.4em;
 
@@ -276,16 +277,12 @@ textarea {
     border-bottom: 1px solid rgb(0, 192, 0); /* TMP */
 }
 
-.input-group-with-button {
-    height: 2.275em;
-}
-
 .input-group-with-button .input-group-button {
-    position: absolute;
-    right: 0;
+    float: right;
 
     padding: 0.5em 0.5em;
 
+    font-size: 0.72em;
     text-align: center;
 }
 

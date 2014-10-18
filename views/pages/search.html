@@ -1,3 +1,21 @@
+<!-- Search -->
+<div class="pmp-page-content-box hidden-desktop">
+  <div class="pmp-search-input-box">
+    <form method="GET" action="/search">
+      <div class="input-group input-group-with-button">
+        <input class="input-group-data" type="text" name="search" ng-model="searchString" ng-init="searchString = searchString || ''" ng-class="{'has-data': 0 != searchString.length}" />
+
+        <div class="input-group-placeholder">Search...</div>
+
+        <button class="button input-group-button" type="submit">
+          <span class="icon icon-search"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- !Search -->
+
 <!-- Article -->
 <div class="pmp-page-content-box" ng-repeat="article in globals.articleList">
   <h2 class="box-vignette-left news-vignette" ng-show="'news' == article.type">News</h2>

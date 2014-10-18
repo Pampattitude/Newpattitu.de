@@ -321,6 +321,10 @@ body {
 /* !Articles */
 
 /* Search */
+.pmp-search-input-box {
+    padding: 0.6em 1.2em;
+}
+
 .pmp-search-article {
     @extend .pmp-page-content-box-content;
 }
