@@ -148,19 +148,22 @@ a {
 
     background-color: $button-default-background-color;
     border: 0;
+    border-color: $button-default-background-color;
     outline: 0;
 
-    transition: background-color 200ms;
+    transition: background-color 200ms, border-color 200ms;
 }
  button:hover,
 .button:hover {
     background-color: $button-default-hover-background-color;
+    border-color: $button-default-hover-background-color;
 }
  button:active,
  button:focus,
 .button:active,
 .button:focus {
     background-color: $button-default-focus-background-color;
+    border-color: $button-default-focus-background-color;
 }
 
  button.button-round,
@@ -174,57 +177,72 @@ a {
 .button.button-github {
     color: $black-milder;
     background-color: $button-github-background-color;
+    border-color: $button-github-background-color;
 }
 .button.button-github:hover {
     background-color: $button-github-hover-background-color;
+    border-color: $button-github-hover-background-color;
 }
 .button.button-github:active,
 .button.button-github:focus {
     background-color: $button-github-focus-background-color;
+    border-color: $button-github-focus-background-color;
 }
 
 .button.button-facebook {
     background-color: $button-facebook-background-color;
+    border-color: $button-facebook-background-color;
 }
 .button.button-facebook:hover {
     background-color: $button-facebook-hover-background-color;
+    border-color: $button-facebook-hover-background-color;
 }
 .button.button-facebook:active,
 .button.button-facebook:focus {
     background-color: $button-facebook-focus-background-color;
+    border-color: $button-facebook-focus-background-color;
 }
 
 .button.button-twitter {
     background-color: $button-twitter-background-color;
+    border-color: $button-twitter-background-color;
 }
 .button.button-twitter:hover {
     background-color: $button-twitter-hover-background-color;
+    border-color: $button-twitter-hover-background-color;
 }
 .button.button-twitter:active,
 .button.button-twitter:focus {
     background-color: $button-twitter-focus-background-color;
+    border-color: $button-twitter-focus-background-color;
 }
 
 .button.button-linkedin {
     background-color: $button-linkedin-background-color;
+    border-color: $button-linkedin-background-color;
 }
 .button.button-linkedin:hover {
     background-color: $button-linkedin-hover-background-color;
+    border-color: $button-linkedin-hover-background-color;
 }
 .button.button-linkedin:active,
 .button.button-linkedin:focus {
     background-color: $button-linkedin-focus-background-color;
+    border-color: $button-linkedin-focus-background-color;
 }
 
 .button.button-rss {
     background-color: $button-rss-background-color;
+    border-color: $button-rss-background-color;
 }
 .button.button-rss:hover {
     background-color: $button-rss-hover-background-color;
+    border-color: $button-rss-hover-background-color;
 }
 .button.button-rss:active,
 .button.button-rss:focus {
     background-color: $button-rss-focus-background-color;
+    border-color: $button-rss-focus-background-color;
 }
 /* !Social buttons */
 /* !Buttons */
@@ -237,11 +255,21 @@ textarea {
 .input-group {
     width: 100%;
     position: relative;
+
+    font-size: 1em;
+}
+.input-group:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 
 .input-group .input-group-placeholder {
     @extend .back;
 
+    width: 97.5%;
     position: absolute;
     bottom: 0;
     right: 2.5%;
@@ -259,6 +287,7 @@ textarea {
     @extend .front;
 
     width: 100%;
+    float: left;
 
     padding: 0.2em 0.4em;
 
@@ -268,72 +297,35 @@ textarea {
     border: 0px solid $transparent;
     border-bottom: 1px solid rgb(0, 128, 0); /* TMP */
     outline: 0;
-
-    transition: border-color 200ms;
-}
-.input-group .input-group-data:hover {
-    border-bottom: 1px solid rgb(0, 160, 0); /* TMP */
-}
-.input-group .input-group-data:active,
-.input-group .input-group-data:focus {
-    border-bottom: 1px solid rgb(0, 192, 0); /* TMP */
 }
 
-.input-group-with-button .input-group-button {
-    float: right;
-
-    padding: 0.5em 0.5em;
-
-    font-size: 0.72em;
-    text-align: center;
+.input-group .input-group-data.has-data + .input-group-placeholder {
+    color: rgba(32, 32, 32, 0.1);
 }
 
-.input-group .input-group-data:active + .input-group-placeholder,
-.input-group .input-group-data:focus  + .input-group-placeholder {
-//    color: rgba(240, 240, 240, 0.2); /* TMP */
-    color: rgba(32, 32, 32, 0.2); /* TMP */
-}
-
-.input-group .input-group-data.has-data  + .input-group-placeholder {
-//    color: rgba(240, 240, 240, 0); /* TMP */
-    color: rgba(32, 32, 32, 0); /* TMP */
-}
-
-/* With button */
-.input-group.input-group-with-button .input-group-placeholder {
-    width: 80%;
+.input-group-with-button .input-group-placeholder {
+    width: 77.5%;
     right: 22.5%;
 }
 
-.input-group.input-group-with-button .input-group-data {
+.input-group-with-button .input-group-data {
     width: 80%;
 }
-.input-group.input-group-with-button:hover .input-group-data {
-    border-bottom: 1px solid rgb(0, 160, 0); /* TMP */
-}
-.input-group.input-group-with-button:hover .input-group-button {
-    background-color: rgb(0, 160, 0); /* TMP */
-}
-.input-group.input-group-with-button .input-group-data:active ~ .input-group-button,
-.input-group.input-group-with-button .input-group-data:focus ~ .input-group-button {
-    background-color: rgb(0, 192, 0); /* TMP */
-}
 
-.input-group.input-group-with-button .input-group-button {
+.input-group-with-button .input-group-button {
     width: 20%;
-    top: 1px;
+    float: right;
 
-    color: $white-mild; /* TMP */
-    background-color: rgb(0, 128, 0); /* TMP */
+    padding: 0.2em 0.4em;
+
+    font-size: 1em;
+    text-align: center;
 }
-.input-group.input-group-with-button .input-group-button:hover {
-    background-color: rgb(0, 160, 0); /* TMP */
+
+.input-group-with-button .input-group-button {
+    border-bottom-width: 1px !important;
+    border-bottom-style: solid !important;
 }
-.input-group.input-group-with-button .input-group-button:active,
-.input-group.input-group-with-button .input-group-button:focus {
-    background-color: rgb(0, 128, 0); /* TMP */
-}
-/* !With button */
 /* !Form */
 
 /* Box vignettes */
