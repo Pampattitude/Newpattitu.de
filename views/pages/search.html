@@ -5,6 +5,8 @@
   <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
   <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == article.type">Tutorial</h2>
 
+  <h2 class="box-vignette-left date-vignette" ng-bind="article.created | date: 'yyyy-MM-dd'"></h2>
+
   <h2 class="box-vignette-right relevance-vignette" ng-bind="article.points | number: 0"></h2>
 
   <div class="pmp-search-article">

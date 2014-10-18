@@ -5,6 +5,8 @@
   <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
   <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == article.type">Tutorial</h2>
 
+  <h2 class="box-vignette-left date-vignette" ng-bind="article.created | date: 'yyyy-MM-dd'"></h2>
+
   <h2 class="box-vignette-right featured-vignette" ng-show="true == article.featured">
     <span class="icon icon-star3"></span>
   </h2>

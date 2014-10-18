@@ -17,6 +17,9 @@ $twitter-user-color:            rgb(153, 50, 153);
 $twitter-hashtag-color:         $link-text-color;
 $twitter-link-color:            rgb(51, 122, 204);
 
+$date-vignette-background-color:        rgb(128, 128, 160);
+$date-vignette-background-dark-color:   rgb(72, 72, 96);
+
 $featured-vignette-background-color:        rgb(208, 208, 32);
 $featured-vignette-background-dark-color:   rgb(144, 144, 16);
 
@@ -275,10 +278,22 @@ body {
 .tutorial-vignette:after {
     border-color: transparent $tutorial-vignette-background-dark-color transparent transparent;
 }
+
+.date-vignette {
+    top: 3em;
+
+    font-size: 0.7em;
+
+    background-color: $date-vignette-background-color;
+}
+.date-vignette:after {
+    border-color: transparent $date-vignette-background-dark-color transparent transparent;
+}
+
 /* !Article vignettes */
 
 .pmp-article .pmp-article-title {
-    margin: 0;
+    margin: 0 1.25em;
     margin-bottom: 0.6em;
 }
 
