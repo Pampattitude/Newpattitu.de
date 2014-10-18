@@ -17,7 +17,6 @@ exports.page = function(req, res, callback) {
         if (err) return callback(err);
 
         res.locals.articleList = articles;
-//        console.log(JSON.stringify(res.locals.articleList, null, 2));
         res.locals.searchString = req.query.search;
 
         return callback();
