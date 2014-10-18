@@ -15,6 +15,11 @@ exports.getLatest = function(req, res, callback) {
     return twit.get('/statuses/user_timeline.json', {}, function(data) {
         if (!data)
             return callback(null, []);
+        else if (data.statusCode)
+            return callback({
+                code: data.statusCode,
+                message: JSON.stringify(data.errors),
+            });
 
         if (constants.frontTwitterListCount < data.length)
             data = data.slice(0, constants.frontTwitterListCount);
