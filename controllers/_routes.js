@@ -4,6 +4,7 @@ var bind        = require('../lib/bind').bind;
 var bindArg     = require('../lib/bind').arg;
 var constants   = require('../lib/constants');
 var methods     = require('../lib/methods');
+var printer     = require('../lib/printer');
 
 var bindGet = function(m) { return bind(methods.get, bindArg._1, bindArg._2, m); };
 var bindPost = function(m) { return bind(methods.post, bindArg._1, bindArg._2, m); };
@@ -17,12 +18,13 @@ exports.defineFrontRoutes = function(serverApp, router) {
     };
 
     var controllers = {
-        about:  require('./front/about'),
-        error:  require('./front/error'),
-        home:   require('./front/home'),
-        report: require('./front/report'),
-        rss:    require('./front/rss'),
-        search: require('./front/search'),
+        about:          require('./front/about'),
+        article:        require('./front/article'),
+        error:          require('./front/error'),
+        home:           require('./front/home'),
+        report:         require('./front/report'),
+        rss:            require('./front/rss'),
+        search:         require('./front/search'),
     };
 
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
@@ -30,6 +32,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/home', bindPage(controllers.home.page));
     router.get ('/', bindPage(controllers.home.page));
+
+    router.get ('/article/:articleTechnicalName', bindPage(controllers.article.page));
 
     router.get ('/search', bindPage(controllers.search.page));
 
@@ -43,7 +47,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/*', bindPage(controllers.error.page404));
     router.use (function(err, req, res, next) {
-        console.error(err);
+        printer.error(err);
         return bindPage(controllers.error.page500)(req, res);
     });
 

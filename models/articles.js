@@ -7,7 +7,7 @@ var schemaOptions = {
 };
 
 var schema = new mongoose.Schema({
-    // author: {type: String, ref: 'User'}, // Temporarily removed
+    // author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, // Temporarily removed
 
     title: {type: String, required: true},
     technicalName: {type: String, required: true, unique: true, index: true},

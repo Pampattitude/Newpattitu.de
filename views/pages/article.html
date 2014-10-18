@@ -1,0 +1,51 @@
+<!-- Article -->
+<div class="pmp-page-content-box">
+  <h2 class="box-vignette-left news-vignette" ng-show="'news' == globals.article.type">News</h2>
+  <h2 class="box-vignette-left life-vignette" ng-show="'life' == globals.article.type">Personal</h2>
+  <h2 class="box-vignette-left project-vignette" ng-show="'project' == globals.article.type">Project</h2>
+  <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == globals.article.type">Tutorial</h2>
+
+  <h2 class="box-vignette-left date-vignette" ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></h2>
+
+  <h2 class="box-vignette-right featured-vignette" ng-show="true == globals.article.featured">
+    <span class="icon icon-star3"></span>
+  </h2>
+
+  <div class="pmp-article">
+    <h1 class="pmp-article-title"><a href="/article/{{globals.article.technicalName}}" ng-bind-html="globals.article.title | trust"></a></h1>
+
+    <div class="pmp-article-text" ng-bind-html="globals.article.text | trust">
+    </div>
+  </div>
+</div>
+<!-- !Article -->
+
+<!-- Comment -->
+<div class="pmp-page-content-box">
+  <h2 class="box-vignette-left">Comments</h2>
+
+  <div class="pmp-comments">
+    <div class="pmp-comment"></div>
+
+    <div class="pmp-add-comment">
+      <form method="POST" action="{{'/article/' + globals.article.technicalName + '/addComment'}}">
+        <div class="input-group">
+          <input class="input-group-data" type="text" name="author" ng-model="newCommentAuthor" ng-init="newCommentAuthor = newCommentAuthor || ''" ng-class="{'has-data': 0 != newCommentAuthor.length}" />
+
+          <div class="input-group-placeholder">Name...</div>
+        </div>
+
+        <div class="input-group">
+          <textarea class="input-group-data" type="text" name="text" ng-model="newCommentText" ng-init="newCommentText = newCommentText || ''" ng-class="{'has-data': 0 != newCommentText.length}" data-resizable rows="3"></textarea>
+
+          <div class="input-group-placeholder">Text...</div>
+        </div>
+
+        <button class="button" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- !Comment -->

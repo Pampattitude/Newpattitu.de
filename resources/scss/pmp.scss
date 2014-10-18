@@ -304,6 +304,15 @@ body {
     text-align: left;
 }
 
+.pmp-article .pmp-article-text {
+    color: $black-milder;
+    text-align: left;
+}
+
+.pmp-article .pmp-article-text p:first-letter {
+    padding-left: 1.5em;
+}
+
 .pmp-article .pmp-article-caption p {
     margin: 0.6em auto;
 }
@@ -314,12 +323,28 @@ body {
     margin-bottom: 0;
 }
 
+.pmp-article .pmp-article-text p {
+    margin: 0.6em auto;
+}
+.pmp-article .pmp-article-text p:first-child {
+    margin-top: 0;
+}
+.pmp-article .pmp-article-text p:last-child {
+    margin-bottom: 0;
+}
+
 .pmp-article .pmp-article-access {
     text-align: right;
 }
 .pmp-article .pmp-article-access .icon {
     font-size: 0.7em;
 }
+
+/* Article comments */
+.pmp-comments {
+    @extend .pmp-page-content-box-content;
+}
+/* !Article comments */
 /* !Articles */
 
 /* Search */
