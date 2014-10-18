@@ -119,15 +119,17 @@ body {
     background-color: $white-mild;
     box-shadow: 0 -0.2em 0 rgba(0, 0, 0, 0.2) inset;
 }
-
-.pmp-nav-fixed {
-    position: fixed;
-    top: 0;
+@media only screen and (min-width: 992px) {
+    .pmp-nav {
+        position: fixed;
+        top: 0;
+    }
 }
-
-.pmp-nav-mobile {
-    position: fixed;
-    bottom: 0;
+@media only screen and (max-width: 991px) {
+    .pmp-nav {
+        position: fixed;
+        bottom: 0;
+    }
 }
 
 .pmp-nav .pmp-nav-elems {
