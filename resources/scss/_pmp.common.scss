@@ -58,6 +58,7 @@ $button-rss-focus-background-color:     rgb(204, 78, 0);
 
     .hidden-mobile * {
         display: none !important;
+        margin: 0 !important;
     }
 }
 /* !On handheld devices */
@@ -71,6 +72,7 @@ $button-rss-focus-background-color:     rgb(204, 78, 0);
 
     .hidden-desktop * {
         display: none !important;
+        margin: 0 !important;
     }
 }
 /* !On desktop devices */
