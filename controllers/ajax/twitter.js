@@ -1,10 +1,15 @@
 'use strict';
 
+var cache = require('memory-cache');
 var twitter = require('twitter');
 
 var constants = require('../../lib/constants');
 
 exports.getLatest = function(req, res, callback) {
+    var previousData = cache.get('latestTweets');
+    if (previousData)
+        return callback(null, previousData);
+
     var twit = new twitter({
         consumer_key: constants.twitterApiKey,
         consumer_secret: constants.twitterApiSecret,
@@ -33,6 +38,8 @@ exports.getLatest = function(req, res, callback) {
                 created: new Date(elem.created_at),
             };
         });
+
+        cache.put('latestTweets', tweets, 60 * 1000 /* ms */);
 
         return callback(null, tweets);
     });
