@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pampattitu.de BO<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
-    <title>Pampattitu.de<% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
+    <title>Pampattitu.de - Admin Panel - <% if ('undefined' != typeof title) { %> - <%= title %><% } %></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Global injection -->
     <script type="application/javascript">
@@ -10,22 +11,35 @@
     </script>
     <!-- !Global injection -->
 
-    <link rel="icon" href="/img/Pmp-BO.ico" />
+    <link rel="icon" href="/img/Pmp.ico" />
 
     <!-- External scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.autosize/1.18.9/jquery.autosize.min.js"></script> <!-- autosize textarea[data-resizable] -->
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <!-- !External scripts -->
 
     <!-- External stylesheets -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,900" type="text/css" />
     <!-- !External stylesheets -->
 
+    <script src="/js/konami.js"></script>
+    <script src="/js/backOfficeApp.js"></script>
+    <script src="/js/backOffice.js"></script>
+
     <link rel="stylesheet" href="/css/icomoon.css" />
-    <link rel="stylesheet" href="/css/pmp.grid.css" />
+    <link rel="stylesheet" href="/css/pmp-back.css" />
+
+    <style>
+      .box {
+        padding: 0.5em 1em !important;
+      }
+    </style>
   </head>
 
-  <body>
+  <body ng-app="backOfficeApp">
     Hello, back-office world!
   </body>
 </html>
