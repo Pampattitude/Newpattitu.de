@@ -37,6 +37,16 @@ $project-vignette-background-dark-color:        rgb(8, 81, 163);
 $tutorial-vignette-background-color:    rgb(64, 128, 64);
 $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
 
+$tag-group-text-color:          $white-mild;
+$tag-group-background-color:    rgb(64, 64, 128);
+$tag-group-background-hover-color:      rgb(96, 96, 168);
+$tag-group-background-focus-color:      rgb(48, 48, 96);
+
+$tag-text-color:                $white-mild;
+$tag-background-color:          rgb(64, 128, 64);
+$tag-background-hover-color:    rgb(96, 168, 96);
+$tag-background-focus-color:    rgb(48, 96, 48);
+
 $comment-text-color:            $black-milder;
 $comment-background-color:      rgb(220, 220, 220);
 $comment-border-color:          rgb(200, 200, 200);
@@ -367,6 +377,49 @@ body {
     font-size: 0.7em;
 }
 
+.pmp-article .pmp-article-tags {
+    font-size: 0.8em;
+}
+
+.pmp-article .pmp-article-tags .pmp-article-tag-group {
+    margin: auto 0.2em;
+    padding: 0.5em 0.6em;
+
+    color: $tag-group-text-color;
+    font-size: 1.2em;
+
+    background-color: $tag-group-background-color;
+    border-radius: 10em;
+
+    transition: background-color 200ms, border-radius 200ms;
+}
+.pmp-article .pmp-article-tags .pmp-article-tag-group:hover {
+    background-color: $tag-group-background-hover-color;
+    border-radius: 0.5em;
+}
+.pmp-article .pmp-article-tags .pmp-article-tag-group:active,
+.pmp-article .pmp-article-tags .pmp-article-tag-group:focus {
+    background-color: $tag-group-background-focus-color;
+}
+
+.pmp-article .pmp-article-tags .pmp-article-tag {
+    margin: auto 0.2em;
+    padding: 0.2em 0.4em;
+
+    color: $tag-text-color;
+
+    background-color: $tag-background-color;
+
+    transition: background-color 200ms;
+}
+.pmp-article .pmp-article-tags .pmp-article-tag:hover {
+    background-color: $tag-background-hover-color;
+}
+.pmp-article .pmp-article-tags .pmp-article-tag:active,
+.pmp-article .pmp-article-tags .pmp-article-tag:focus {
+    background-color: $tag-background-focus-color;
+}
+
 /* Article comments */
 .pmp-comments {
     @extend .pmp-page-content-box-content;
@@ -464,11 +517,13 @@ body {
 }
 
 .pmp-search-article .pmp-search-article-title {
-    @extends .pmp-article-title;
+    margin: 0 1.25em;
+    margin-bottom: 0.6em;
 }
 
 .pmp-search-article .pmp-search-article-caption {
-    @extends .pmp-article-caption;
+    color: $black-mild;
+    text-align: left;
 }
 
 .pmp-search-article .pmp-search-article-access {
@@ -476,6 +531,49 @@ body {
 }
 .pmp-search-article .pmp-search-article-access .icon {
     font-size: 0.7em;
+}
+
+.pmp-search-article .pmp-search-article-tags {
+    font-size: 0.8em;
+}
+
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag-group {
+    margin: auto 0.2em;
+    padding: 0.5em 0.6em;
+
+    color: $tag-group-text-color;
+    font-size: 1.2em;
+
+    background-color: $tag-group-background-color;
+    border-radius: 10em;
+
+    transition: background-color 200ms, border-radius 200ms;
+}
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag-group:hover {
+    background-color: $tag-group-background-hover-color;
+    border-radius: 0.5em;
+}
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag-group:active,
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag-group:focus {
+    background-color: $tag-group-background-focus-color;
+}
+
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag {
+    margin: auto 0.2em;
+    padding: 0.2em 0.4em;
+
+    color: $tag-text-color;
+
+    background-color: $tag-background-color;
+
+    transition: background-color 200ms;
+}
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag:hover {
+    background-color: $tag-background-hover-color;
+}
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag:active,
+.pmp-search-article .pmp-search-article-tags .pmp-search-article-tag:focus {
+    background-color: $tag-background-focus-color;
 }
 
 .pmp-search-not-found {

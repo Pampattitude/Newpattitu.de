@@ -36,6 +36,12 @@
     <div class="pmp-search-article-access">
       <a href="/article/{{article.technicalName}}">Read blog post&nbsp;&nbsp;<span class="icon icon-arrow-right2"></span></a>
     </div>
+
+    <div class="pmp-search-article-tags">
+      <a class="pmp-search-article-tag-group" href="/search?search={{article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
+
+      <a class="pmp-search-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag"></a>
+    </div>
   </div>
 </div>
 <!-- !Article -->
