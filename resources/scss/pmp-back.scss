@@ -1,1 +1,182 @@
+@import '_pmp.common';
 @import '_pmp.grid';
+
+$body-text-color:               $white-mild;
+$body-background-color:         $black-mild;
+$body-background-image:         url('http://i.imgur.com/7XmZFgC.png');
+
+$main-menu-background-color:    rgb(64, 96, 172);
+
+$main-menu-title-text-color:    $white-mild;
+
+$menu-item-text-color:          $white-mild;
+$menu-item-background-color:    rgb(32, 64, 128);
+
+$page-content-text-color:          $black-mild;
+$page-content-background-color:    $white-mild;
+
+body {
+    min-width: 300px;
+
+    margin: 0;
+    padding: 0;
+
+    color: $body-text-color;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+
+    background-color: $body-background-color;
+    background-image: $body-background-image;
+    background-attachment: fixed;
+
+    @media only screen and (max-width: 991px) {
+        margin-top: 6.5em;
+
+        font-size: 18px;
+    }
+}
+
+* {
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Main menu/nav */
+.pmp-main-menu {
+    @extend .frontest;
+
+    height: 100vh;
+    overflow: auto;
+
+    padding-bottom: 1.2em;
+
+    background-color: $main-menu-background-color;
+
+    @media only screen and (max-width: 991px) {
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        padding-bottom: 0;
+    }
+
+    .pmp-main-menu-title {
+        @extend .block;
+
+        margin: 0;
+        padding: 0.6em 0.8em;
+
+        font-size: 1.6em;
+        text-align: center;
+
+        > a {
+            color: $main-menu-title-text-color;
+        }
+    }
+
+    .pmp-menu-list {
+        margin: 0;
+        padding: 0;
+
+        @media only screen and (max-width: 991px) {
+            width: 100%;
+
+            text-align: center;
+
+            &:after {
+                content: '';
+                clear: both;
+                visibility: hidden;
+            }
+        }
+
+        .pmp-menu-item {
+            list-style-type: none;
+
+            color: $menu-item-text-color;
+            font-size: 1.1em;
+
+            background-color: $menu-item-background-color;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+
+            transition: background-color 200ms;
+
+            &:hover {
+                background-color: rgb(220, 128, 64);
+            }
+            &:active,
+            &:focus {
+                background-color: rgb(192, 112, 56);
+            }
+
+            @media only screen and (min-width: 992px) {
+                &:first-child {
+                    border-top: 0;
+                }
+                &:last-child {
+                    box-shadow: none;
+                }
+            }
+
+            > a {
+                @extend .block;
+
+                padding: 0.6em 0.8em;
+
+                color: $white-mild; /* TMP */
+
+                @media only screen and (max-width: 991px) {
+                }
+            }
+
+            &.restricted > a {
+                color: transparent;
+                text-shadow: 0 0 3px $white-mild; /* TMP */
+            }
+
+            @media only screen and (max-width: 991px) {
+                width: 25%;
+                display: block;
+                float: left;
+            }
+        }
+    }
+
+    .menu-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        padding: 0.4em 0.8em;
+
+        font-size: 0.8em;
+        text-align: center;
+
+        background-color: rgba(0, 0, 0, 0.5);
+
+        @media only screen and (max-width: 991px) {
+            display: none;
+            margin: 0;
+        }
+
+        a {
+            color: $white-mild;
+            font-weight: bold;
+        }
+    }
+}
+/* !Main menu/nav */
+
+/* Page content */
+.pmp-page-content {
+    padding: 1em;
+
+    color: $page-content-text-color;
+
+    background-color: $page-content-background-color;
+}
+/* !Page content */
