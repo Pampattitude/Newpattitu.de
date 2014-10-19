@@ -22,6 +22,19 @@ return mongoose.connection.once('open', function () {
 
     var generateArticleCount = 9;
 
+    var getUnique = function(arr) {
+        var ret = [];
+
+        var i = 0;
+        arr.forEach(function(elem) {
+            if (i == arr.indexOf(elem))
+                ret.push(elem);
+            ++i;
+        });
+
+        return ret;
+    };
+
     return async.series([
         function(callback) {
             var title = 'Hello, World!';
@@ -42,7 +55,7 @@ If you no liky, you no stay here.</p>';
 
                 caption: caption,
                 text: text,
-                tags: title.replace(/[^a-zA-Z\-_ ]/g, '').split(' '),
+                tags: getUnique(title.replace(/[^a-zA-Z\-_ ]/g, '').split(' ')),
 
                 type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.floor(Math.random() * 4), 10)]),
 
@@ -72,7 +85,7 @@ If you no liky, you no stay here.</p>';
 
                     caption: caption,
                     text: text,
-                    tags: title.split(' '),
+                    tags: getUnique(title.split(' ')),
 
                     type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.floor(Math.random() * 4), 10)]),
                 });
