@@ -476,8 +476,16 @@ body {
                 margin: 0 0.4em 0 0;
 
                 color: rgba(32, 32, 32, 0.5);
-                font-size: 1.5em;
+                font-size: 1.4em;
                 font-weight: bold;
+            }
+        }
+
+        .tldc {
+            @extend .tldr;
+
+            &:before {
+                content: 'tl;dc';
             }
         }
     }
@@ -779,6 +787,37 @@ body {
 
     .comment {
         opacity: 0.6;
+    }
+
+    .tldr {
+        @extend .clearfix;
+
+        margin-top: 1.5em;
+        padding: 0.3em 0.6em;
+
+        background-color: rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.16);
+
+        &:before {
+            @extend .inline-block;
+
+            content: 'tl;dr';
+            float: left;
+
+            margin: 0 0.4em 0 0;
+
+            color: rgba(32, 32, 32, 0.5);
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+    }
+
+    .tldc {
+        @extend .tldr;
+
+        &:before {
+            content: 'tl;dc';
+        }
     }
 }
 
