@@ -18,7 +18,7 @@ $.getScript('/js/_textareaResize.js');
                 return ;
             }
 
-            $(elem).addClass('external-link').attr('target', '_blank').append('&nbsp;&nbsp;<span class="icon icon-newtab"></span>');
+            $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-newtab"></span></span>');
         });
         /* !External links */
 

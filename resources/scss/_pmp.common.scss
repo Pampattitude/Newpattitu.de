@@ -99,6 +99,11 @@ a {
     &:hover { color: $link-text-hover-color; }
     &:active,
     &:focus { color: $link-text-focus-color; }
+
+    &.external-link .external-icon {
+        font-size: 0.8em;
+        vertical-align: super;
+    }
 }
 
 .clearfix:after {
