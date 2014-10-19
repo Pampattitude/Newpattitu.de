@@ -34,67 +34,29 @@
   </head>
 
   <body ng-app="backOfficeApp">
-    <div class="grid-5">
-      <div class="cell-1 cell-mobile-5">
-        <!-- Main menu -->
-        <div class="pmp-main-menu">
-          <h1 class="pmp-main-menu-title">
-            <a href="/back-office">
-              <span class="icon icon-dashboard"></span>&nbsp;&nbsp;
-              Pampattitu.de
-            </a>
-          </h1>
+    <!-- General app controller -->
+    <div ng-controller="generalController">
+      <!-- Alerts -->
+      <% include partials/alerts.html %>
+      <!-- !Alerts -->
 
-          <ul class="pmp-menu-list">
-            <li class="pmp-menu-item" ng-class="{restricted: true != logged}">
-              <a href="/back-office/statistics">
-                <span class="icon icon-stats"></span>
-                <span class="hidden-mobile">
-                  &nbsp;&nbsp;Statistics
-                </span>
-              </a>
-            </li>
-            
-            <li class="pmp-menu-item" ng-class="{restricted: true != logged}">
-              <a href="/back-office/articles">
-                <span class="icon icon-blog"></span>
-                <span class="hidden-mobile">
-                  &nbsp;&nbsp;Articles
-                </span>
-              </a>
-            </li>
+      <div class="grid-5">
+        <div class="cell-1 cell-mobile-5">
+          <!-- Main menu -->
+          <% include partials/mainMenu.html %>
+          <!-- !Main menu -->
+        </div>
 
-            <li class="pmp-menu-item" ng-class="{restricted: true != logged}">
-              <a href="/back-office/articles">
-                <span class="icon icon-signup"></span>
-                <span class="hidden-mobile">
-                  &nbsp;&nbsp;Reports
-                </span>
-              </a>
-            </li>
-
-            <li class="pmp-menu-item" ng-class="{restricted: true != logged}">
-              <a href="/back-office/articles">
-                <span class="icon icon-share"></span>
-                <span class="hidden-mobile">
-                  &nbsp;&nbsp;Share
-                </span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="menu-footer">
-            Made by <a href="/about">Guillaume &laquo;Pampa&raquo; Delahodde</a>
+        <div class="cell-4 cell-mobile-5">
+          <!-- Page content -->
+          <div class="pmp-page-content">
+              <% include page %>
           </div>
-        </div>
-        <!-- !Main menu -->
-      </div>
-
-      <div class="cell-4 cell-mobile-5">
-        <div class="pmp-page-content">
-          Hello, back-office world!
+          <!-- !Page content -->
         </div>
       </div>
+      <!-- !General controller -->
     </div>
+    <!-- App -->
   </body>
 </html>

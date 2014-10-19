@@ -1,0 +1,25 @@
+<!-- Error -->
+<div class="pmp-page-content-box">
+  <div class="pmp-error">
+    <h1 class="pmp-error-title">
+      <span class="pmp-error-code pmp-error-code-404">404</span> <span class="pmp-error-text-404">Not Found</span>
+    </h1>
+
+    <div class="pmp-error-data">
+      <p>
+        It seems that the page or content you are looking for doesn't exist.
+      </p>
+      <p>
+        <% var prevPageLink = '/home';
+           if ('undefined' !== typeof previousPage) {
+           prevPageLink = previousPage;
+           } %>
+        From this point on, you can either <a href="/report">report the error</a>, go back or make your way through the menus to get back to some awesome (and <i>available</i>) content!
+      </p>
+      <p>
+        <small>But, let's face it, I would love some <a href="/report">feedback</a>. I need it.</small>
+      </p>
+    </div>
+  </div>
+</div>
+<!-- !Error -->

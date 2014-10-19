@@ -1,0 +1,68 @@
+<div class="pmp-main-menu">
+  <h1 class="pmp-main-menu-title hidden-mobile">
+    <a href="/back-office">
+      <span class="icon icon-dashboard"></span>&nbsp;&nbsp;
+      Pampattitu.de
+    </a>
+  </h1>
+
+  <ul class="pmp-menu-list">
+    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+      <a href="/back-office/stats">
+        <span class="icon icon-stats"></span>
+        <span class="hidden-mobile">
+          &nbsp;&nbsp;Statistics
+        </span>
+      </a>
+    </li>
+    
+    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+      <a href="/back-office/articles">
+        <span class="icon icon-blog"></span>
+        <span class="hidden-mobile">
+          &nbsp;&nbsp;Articles
+        </span>
+      </a>
+    </li>
+
+    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+      <a href="/back-office/reports">
+        <span class="icon icon-signup"></span>
+        <span class="hidden-mobile">
+          &nbsp;&nbsp;Reports
+        </span>
+      </a>
+    </li>
+
+    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+      <a href="/back-office/share">
+        <span class="icon icon-share"></span>
+        <span class="hidden-mobile">
+          &nbsp;&nbsp;Share
+        </span>
+      </a>
+    </li>
+
+    <li class="pmp-menu-item pmp-menu-item-exit">
+      <a href="#" ng-click="logout()">
+        <span class="icon icon-exit"></span>
+        <span class="hidden-mobile">
+          &nbsp;&nbsp;
+          <span ng-show="true == globals.logged">Logout & exit</span>
+          <span ng-hide="true == globals.logged">Exit</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <h1 class="pmp-main-menu-title hidden-desktop">
+    <a href="/back-office">
+      <span class="icon icon-dashboard"></span>&nbsp;&nbsp;
+      Pampattitu.de
+    </a>
+  </h1>
+
+  <div class="menu-footer">
+    Made by <a href="/about">Guillaume &laquo;Pampa&raquo; Delahodde</a>
+  </div>
+</div>

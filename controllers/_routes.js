@@ -63,10 +63,27 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'back-office/layout.html'); };
 
     var controllers = {
-        home: require('./back-office/home'),
+        error: require('./back-office/error'),
+        login: require('./back-office/login'),
+        stats: require('./back-office/stats'),
     };
+    var middleware = require('./middleware/back.js');
 
-    router.get ('*', bindPage(controllers.home.page));
+    router.get ('/login', bindPage(controllers.login.page));
+    router.post('/login', bindAjax(controllers.login.ajaxLogin));
+    router.post('/logout', bindAjax(controllers.login.ajaxLogout));
+
+    router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
+
+    router.get ('/', middleware.isLoggedIn, function(req, res) { return res.redirect('/back-office/stats'); });
+
+    router.get ('*', middleware.isLoggedIn, bindPage(controllers.error.page404));
+    router.use (function(err, req, res, next) {
+        res.locals.logged = (undefined != req.session && undefined != req.session.user);
+
+        printer.error(err);
+        return bindPage(controllers.error.page500)(req, res);
+    });
 
     return router;
 };
