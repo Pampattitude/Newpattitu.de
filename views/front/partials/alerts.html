@@ -4,6 +4,6 @@
       <span class="icon icon-close"></span>
     </button>
 
-    <div class="pmp-alert-message" ng-bind="alert.message"></div>
+    <div class="pmp-alert-message" ng-bind-html="alert.message | trust"></div>
   </div>
 </div>

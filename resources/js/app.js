@@ -23,6 +23,9 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
         $scope.alertList.push(alert);
         $scope.refresh();
 
+        if ('error' == state)
+            return ; // Do not set automatic close on error
+
         return setTimeout(function() {
             for (var i = 0 ; $scope.alertList.length > i ; ++i) {
                 if ($scope.alertList[i].idx_ == alert.idx_)
