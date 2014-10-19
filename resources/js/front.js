@@ -12,7 +12,7 @@ $.getScript('/js/_textareaResize.js');
                 $(elem).hasClass('external-link')) // External, already treated
                 return ;
 
-            if (/^\/[^\/]/.test($(elem).attr('href')) ||
+            if (/^\/([^\/]|$)/.test($(elem).attr('href')) ||
                 (new RegExp('(http:)?\/\/' + host)).test($(elem).attr('href'))) { // Internal
                 $(elem).addClass('internal-link');
                 return ;
