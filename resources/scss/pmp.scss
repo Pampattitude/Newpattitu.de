@@ -412,20 +412,19 @@ body {
             @extend .inline-block;
 
             margin: auto 0.2em;
-            padding: 0.2em 0.4em;
+            padding: 0.2em 0.2em;
 
-            color: $tag-text-color;
+            color: rgba(0, 0, 0, 0.4);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 
-            background-color: $tag-background-color;
-
-            transition: background-color 200ms;
+            transition: color 200ms;
             
             &:hover {
-                background-color: $tag-background-hover-color;
+                color: rgba(0, 0, 0, 0.6);
             }
             &:active,
             &:focus {
-                background-color: $tag-background-focus-color;
+                color: rgba(0, 0, 0, 0.8);
             }
         }
     }
@@ -601,20 +600,19 @@ body {
             @extend .inline-block;
 
             margin: auto 0.2em;
-            padding: 0.2em 0.4em;
+            padding: 0.2em 0.2em;
 
-            color: $tag-text-color;
+            color: rgba(0, 0, 0, 0.4);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 
-            background-color: $tag-background-color;
-
-            transition: background-color 200ms;
+            transition: color 200ms;
 
             &:hover {
-                background-color: $tag-background-hover-color;
+                color: rgba(0, 0, 0, 0.6);
             }
             &:active,
             &:focus {
-                background-color: $tag-background-focus-color;
+                color: rgba(0, 0, 0, 0.8);
             }
         }
     }

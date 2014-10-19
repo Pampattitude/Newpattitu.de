@@ -42,7 +42,8 @@
     <div class="pmp-article-tags">
       <a class="pmp-article-tag-group" href="/search?search={{article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
 
-      <a class="pmp-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag"></a>
+      <a class="pmp-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag">
+      </a>
     </div>
   </div>
 </div>
