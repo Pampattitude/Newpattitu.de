@@ -103,14 +103,16 @@ body {
     .pmp-header-logo {
         @extend .frontest;
 
-        display: inline-block;
         position: absolute;
         top: 0.1em;
         left: 0;
 
         margin: auto;
 
-        > * { padding: 1em 1.5em; }
+        > * {
+            display:inline-block;
+            padding: 0 1.5em;
+        }
 
         img {
             height: 7em;
@@ -123,6 +125,14 @@ body {
             transition: border-radius 200ms;
 
             &:hover { border-radius: 1em; }
+        }
+    }
+    @media only screen and (max-width: 991px) {
+        .pmp-header-logo {
+            display: block;
+            position: relative;
+
+            text-align: center;
         }
     }
     /* !Header logo */
