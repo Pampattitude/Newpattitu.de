@@ -63,6 +63,7 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'back-office/layout.html'); };
 
     var controllers = {
+        articles: require('./back-office/articles'),
         error: require('./back-office/error'),
         login: require('./back-office/login'),
         stats: require('./back-office/stats'),
@@ -74,6 +75,8 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.post('/logout', bindAjax(controllers.login.ajaxLogout));
 
     router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
+
+    router.get ('/articles', middleware.isLoggedIn, bindPage(controllers.articles.page));
 
     router.get ('/', middleware.isLoggedIn, function(req, res) { return res.redirect('/back-office/stats'); });
 
