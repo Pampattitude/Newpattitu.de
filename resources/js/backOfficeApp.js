@@ -48,7 +48,6 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         $scope.refresh();
     };
 
-    console.log($scope.globals);
     if ($scope.globals.alertList) {
         for (var i = 0 ; $scope.globals.alertList.length > i ; ++i) {
             var alert = $scope.globals.alertList[i];
