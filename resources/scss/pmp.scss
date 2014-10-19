@@ -596,6 +596,8 @@ body {
 .pmp-search-not-found {
     @extend .pmp-page-content-box-content;
 
+    overflow: hidden;
+
     text-align: center;
 
     p {
