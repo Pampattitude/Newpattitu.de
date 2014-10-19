@@ -1,0 +1,9 @@
+<div class="pmp-alerts">
+  <div class="pmp-alert" ng-repeat="alert in alertList" ng-class="{success: 'success' == alert.state, debug: 'debug' == alert.state, warning: 'warning' == alert.state, error: 'error' == alert.state}">
+    <button class="pmp-alert-remove-button" type="button" ng-click="removeAlert(alert);">
+      <span class="icon icon-close"></span>
+    </button>
+
+    <div class="pmp-alert-message" ng-bind="alert.message"></div>
+  </div>
+</div>

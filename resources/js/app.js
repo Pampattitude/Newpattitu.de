@@ -9,6 +9,40 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
         if (!$scope.$$phase)
             $scope.$apply();
     };
+
+    $scope.alertList = [];
+    $scope.alertIdx_ = 0;
+
+    $scope.addAlert = function(state, message) {
+        var alert = {
+            idx_: ($scope.alertIdx_)++,
+            state: state,
+            message: message,
+            disappear: false
+        };
+        $scope.alertList.push(alert);
+        $scope.refresh();
+
+        return setTimeout(function() {
+            for (var i = 0 ; $scope.alertList.length > i ; ++i) {
+                if ($scope.alertList[i].idx_ == alert.idx_)
+                    break ;
+            }
+            if ($scope.alertList.length == i)
+                return $scope.removeAlert(alert);
+
+            $($('.pmp-alert')[i]).slideUp(200 /*ms*/, function() {
+                $scope.removeAlert(alert);
+            });
+        }, 5000 /*ms*/);
+    };
+
+    $scope.removeAlert = function(alert) {
+        $scope.alertList = $scope.alertList.filter(function(elem) {
+            return elem.idx_ != alert.idx_;
+        });
+        $scope.refresh();
+    };
 }]);
 
 /* Filter for trusted HTML. Usage: ng-bind-html="var | trust" */
@@ -58,6 +92,8 @@ frontApp.directive('pollTwitter', function() {
 
                     return doneCallback(null, data);
                 }).error(function(data) {
+                    $scope.addAlert('error', 'Could not retrieve tweets from Twitter');
+
                     return doneCallback(err);
                 });
             };

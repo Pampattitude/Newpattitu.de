@@ -8,6 +8,15 @@ $body-background-image:         url('http://i.imgur.com/7XmZFgC.png');
 $header-background-color:       rgba(0, 0, 0, 0.85);
 $header-image-background-color: rgb(240, 240, 240);
 
+$alert-success-text-color:      $white-mild;
+$alert-success-background-color:        rgb(64, 192, 64);
+$alert-debug-text-color:        $white-mild;
+$alert-debug-background-color:          rgb(64, 64, 192);
+$alert-warning-text-color:      $white-mild;
+$alert-warning-background-color:        rgb(192, 192, 64);
+$alert-error-text-color:        $white-mild;
+$alert-error-background-color:  rgb(192, 64, 64);
+
 $page-box-margin-v:             2rem;
 
 $footer-background-color:       rgba(0, 0, 0, 0.85);
@@ -233,6 +242,61 @@ body {
     }
 }
 /* !Top navigation menu */
+
+/* Alerts */
+.pmp-alerts {
+    @extend .frontest;
+
+    position: fixed;
+    top: 4em;
+    right: 1%;
+
+    margin-left: 1%;
+
+    @media only screen and (max-width: 991px) {
+        top: 0.2em;
+    }
+
+    .pmp-alert {
+        margin-bottom: 0.4em;
+
+        text-align: left;
+
+        &.success {
+            color: $alert-success-text-color;
+            background-color: $alert-success-background-color;
+        }
+        &.debug {
+            color: $alert-debug-text-color;
+            background-color: $alert-debug-background-color;
+        }
+        &.warning {
+            color: $alert-warning-text-color;
+            background-color: $alert-warning-background-color;
+        }
+        &.error {
+            color: $alert-error-text-color;
+            background-color: $alert-error-background-color;
+        }
+
+        .pmp-alert-message {
+            @extend .fronter;
+
+            max-width: 20em;
+
+            padding: 0.4em 0.8em;
+        }
+
+        .pmp-alert-remove-button {
+            @extend .frontest;
+
+            float: right;
+
+            background-color: rgba(0, 0, 0, 0.2); /* TMP */
+        }
+    }
+}
+/* !Alerts */
 
 /* Body */
 .pmp-body {
