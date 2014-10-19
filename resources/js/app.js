@@ -10,6 +10,7 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
             $scope.$apply();
     };
 
+    /* Alerts */
     $scope.alertList = [];
     $scope.alertIdx_ = 0;
 
@@ -46,6 +47,14 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
         });
         $scope.refresh();
     };
+
+    if ($scope.globals.alertList) {
+        for (var i = 0 ; $scope.globals.alertList.length > i ; ++i) {
+            var alert = $scope.globals.alertList[i];
+            $scope.addAlert(alert.state, alert.message);
+        }
+    }
+    /* !Alerts */
 }]);
 
 /* Filter for trusted HTML. Usage: ng-bind-html="var | trust" */
