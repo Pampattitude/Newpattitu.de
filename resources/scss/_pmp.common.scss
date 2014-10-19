@@ -398,4 +398,9 @@ textarea {
     border-color: transparent transparent transparent $twitter-background-color-dark;
 }
 /* !Box vignettes */
+
+.elem-list {
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+}
 /* !Common classes */
