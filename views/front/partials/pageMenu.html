@@ -29,7 +29,7 @@
     <div class="pmp-search">
       <form method="GET" action="/search">
         <div class="input-group input-group-with-button">
-          <input class="input-group-data" type="text" name="search" ng-model="searchString" ng-init="searchString = searchString || ''" ng-class="{'has-data': 0 != searchString.length}" />
+          <input class="input-group-data" type="text" name="search" ng-model="searchString" ng-init="searchString = searchString || ''" ng-class="{'has-data': 0 != searchString.length}" maxlength="64" />
 
           <div class="input-group-placeholder">Search...</div>
 

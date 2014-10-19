@@ -13,6 +13,9 @@ exports.page = function(req, res, callback) {
     res.locals.page = 'pages/search.html';
     res.locals.activeTopMenu = 'blog';
 
+    if (constants.searchStringMaxLength < req.query.search.length)
+        req.query.search = req.query.search.substring(0, constants.searchStringMaxLength);
+
     return search_(req.query.search || '', function(err, articles) {
         if (err) return callback(err);
 
