@@ -285,12 +285,19 @@ body {
             max-width: 20em;
 
             padding: 0.4em 0.8em;
+
+            > a {
+                color: $white-mild; /* TMP */
+                font-weight: bold;
+            }
         }
 
         .pmp-alert-remove-button {
             @extend .frontest;
 
             float: right;
+
+            margin: 0 0 0 0.5em;
 
             background-color: rgba(0, 0, 0, 0.2); /* TMP */
         }
