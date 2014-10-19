@@ -7,7 +7,31 @@ $black-milder:          rgb(64, 64, 64);
 
 $white:                 rgb(255, 255, 255);
 $white-mild:            rgb(240, 240, 240);
-$white-milder:            rgb(224, 224, 224);
+$white-milder:          rgb(224, 224, 224);
+
+$red:                   rgb(184, 64, 64);
+$red-light:             rgb(200, 88, 88);
+$red-lighter:           rgb(216, 104, 104);
+$red-dark:              rgb(152, 56, 56);
+$red-darker:            rgb(128, 40, 40);
+
+$green:                 rgb(80, 152, 80);
+$green-light:           rgb(96, 184, 96);
+$green-lighter:         rgb(112, 208, 112);
+$green-dark:            rgb(64, 128, 64);
+$green-darker:          rgb(48, 104, 48);
+
+$blue:                  rgb(80, 80, 152);
+$blue-light:            rgb(96, 96, 184);
+$blue-lighter:          rgb(112, 112, 208);
+$blue-dark:             rgb(64, 64, 128);
+$blue-darker:           rgb(48, 48, 104);
+
+$orange:                rgb(200, 128, 64);
+$orange-light:          rgb(216, 144, 80);
+$orange-lighter:        rgb(224, 160, 96);
+$orange-dark:           rgb(184, 104, 48);
+$orange-darker:         rgb(160, 88, 32);
 /* !Color defines */
 
 /* General defines */
@@ -23,9 +47,31 @@ $hard-shadow-color:     rgba(0, 0, 0, 0.6);
 $soft-shadow-color:     rgba(0, 0, 0, 0.3);
 
 $button-default-text-color:     $white-mild;
+$button-default-text-hover-color:       $white-mild;
+$button-default-text-focus-color:       $white-mild;
 $button-default-background-color:       rgb(160, 160, 160);
 $button-default-hover-background-color: rgb(192, 192, 192);
 $button-default-focus-background-color: rgb(128, 128, 128);
+
+$button-success-text-color:     $white-mild;
+$button-success-background-color:       $green;
+$button-success-hover-background-color: $green-light;
+$button-success-focus-background-color: $green-dark;
+
+$button-info-text-color:        $white-mild;
+$button-info-background-color:  $blue;
+$button-info-hover-background-color:    $blue-light;
+$button-info-focus-background-color:    $blue-dark;
+
+$button-warning-text-color:     $white-mild;
+$button-warning-background-color:       $orange;
+$button-warning-hover-background-color: $orange-light;
+$button-warning-focus-background-color: $orange-dark;
+
+$button-error-text-color:       $white-mild;
+$button-error-background-color: $red;
+$button-error-hover-background-color:   $red-light;
+$button-error-focus-background-color:   $red-dark;
 
 $button-github-background-color:        rgb(238, 185, 153);
 $button-github-hover-background-color:  rgb(246, 207, 179);
@@ -167,14 +213,95 @@ a {
     transition: background-color 200ms, border-color 200ms;
 
     &:hover {
+        color: $button-default-text-hover-color;
         background-color: $button-default-hover-background-color;
         border-color: $button-default-hover-background-color;
     }
 
     &:active,
     &:focus {
+        color: $button-default-text-focus-color;
         background-color: $button-default-focus-background-color;
         border-color: $button-default-focus-background-color;
+    }
+
+    &.button-success {
+        background-color: $button-success-background-color;
+        border-color: $button-success-background-color;
+
+        &:hover {
+            background-color: $button-success-hover-background-color;
+            border-color: $button-success-hover-background-color;
+        }
+
+        &:active,
+        &:focus {
+            background-color: $button-success-focus-background-color;
+            border-color: $button-success-focus-background-color;
+        }
+    }
+
+    &.button-info {
+        background-color: $button-info-background-color;
+        border-color: $button-info-background-color;
+
+        &:hover {
+            background-color: $button-info-hover-background-color;
+            border-color: $button-info-hover-background-color;
+        }
+
+        &:active,
+        &:focus {
+            background-color: $button-info-focus-background-color;
+            border-color: $button-info-focus-background-color;
+        }
+    }
+
+    &.button-warning {
+        background-color: $button-warning-background-color;
+        border-color: $button-warning-background-color;
+
+        &:hover {
+            background-color: $button-warning-hover-background-color;
+            border-color: $button-warning-hover-background-color;
+        }
+
+        &:active,
+        &:focus {
+            background-color: $button-warning-focus-background-color;
+            border-color: $button-warning-focus-background-color;
+        }
+    }
+
+    &.button-error {
+        background-color: $button-error-background-color;
+        border-color: $button-error-background-color;
+
+        &:hover {
+            background-color: $button-error-hover-background-color;
+            border-color: $button-error-hover-background-color;
+        }
+
+        &:active,
+        &:focus {
+            background-color: $button-error-focus-background-color;
+            border-color: $button-error-focus-background-color;
+        }
+    }
+
+    &.button-labeled {
+        overflow: hidden;
+
+        padding: 0 0.4em 0 0;
+    }
+
+    &.button-labeled .button-label {
+        @extend .inline-block;
+
+        margin-right: 0.4em;
+        padding: 0.4em 0.5em;
+
+        background-color: rgba(0, 0, 0, 0.2);
     }
 
     &.button-round {
