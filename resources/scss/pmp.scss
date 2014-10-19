@@ -363,6 +363,7 @@ body {
 
 /* Article vignettes */
 .featured-vignette {
+    font-size: 1.4em;
     background-color: $featured-vignette-background-color;
 
     &:after {
@@ -370,7 +371,12 @@ body {
     }
 }
 
+.article-type-vignette {
+    font-size: 1.2em;
+}
+
 .news-vignette {
+    @extend .article-type-vignette;
     background-color: $news-vignette-background-color;
 
     &:after {
@@ -379,6 +385,7 @@ body {
 }
 
 .life-vignette {
+    @extend .article-type-vignette;
     background-color: $life-vignette-background-color;
 
     &:after {
@@ -387,6 +394,7 @@ body {
 }
 
 .project-vignette {
+    @extend .article-type-vignette;
     background-color: $project-vignette-background-color;
 
     &:after {
@@ -395,6 +403,7 @@ body {
 }
 
 .tutorial-vignette {
+    @extend .article-type-vignette;
     background-color: $tutorial-vignette-background-color;
 
     &:after {
@@ -403,7 +412,7 @@ body {
 }
 
 .date-vignette {
-    top: 3em;
+    top: 2.1em;
 
     font-size: 0.7em;
 
@@ -417,8 +426,14 @@ body {
 
 .pmp-article {
     .pmp-article-title {
-        margin: 0 1.25em;
-        margin-bottom: 0.6em;
+        margin-top: 0.6em auto;
+
+        font-size: 1.8em;
+        text-align: center;
+
+        @media only screen and (max-width: 991px) {
+            font-size: 1.5em;
+        }
     }
 
     .pmp-article-caption {
@@ -429,10 +444,6 @@ body {
     .pmp-article-text {
         color: $black-mild;
         text-align: left;
-
-        p:first-letter {
-            padding-left: 1.5em;
-        }
     }
 
     .pmp-article-caption,
@@ -441,6 +452,29 @@ body {
             @extend .elem-list;
 
             margin: 0.6em auto;
+        }
+
+        .tldr {
+            @extend .clearfix;
+
+            margin-top: 1.5em;
+            padding: 0.3em 0.6em;
+
+            background-color: rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.16);
+
+            &:before {
+                @extend .inline-block;
+
+                content: 'tl;dr';
+                float: left;
+
+                margin: 0 0.2em 0 0;
+
+                color: rgba(32, 32, 32, 0.5);
+                font-size: 1.5em;
+                font-weight: bold;
+            }
         }
     }
 
