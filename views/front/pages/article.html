@@ -27,7 +27,7 @@
 <!-- !Article -->
 
 <!-- Comment -->
-<div class="pmp-page-content-box" id="pmp-comments">
+<div class="pmp-page-content-box" id="pmp-comments" ng-controller="articleCommentsController">
   <h2 class="box-vignette-left">Comments</h2>
 
   <div class="pmp-comments">
@@ -41,24 +41,22 @@
       <div class="pmp-comment-text" ng-bind="comment.text"></div>
     </div>
 
-    <div class="pmp-add-comment">
-      <form method="POST" action="{{'/article/' + globals.article.technicalName + '/comment'}}">
-        <div class="input-group">
-          <input class="input-group-data" type="text" name="author" ng-model="newCommentAuthor" ng-init="newCommentAuthor = newCommentAuthor || ''" ng-class="{'has-data': 0 != newCommentAuthor.length}" />
+    <div class="pmp-add-comment" ng-hide="true == newCommentPosted">
+      <div class="input-group">
+        <input class="input-group-data" type="text" name="author" ng-model="newComment.author" ng-init="newComment.author = newComment.author || ''" ng-class="{'has-data': 0 != newComment.author.length}" />
 
-          <div class="input-group-placeholder">Name...</div>
-        </div>
+        <div class="input-group-placeholder">Name...</div>
+      </div>
 
-        <div class="input-group">
-          <textarea class="input-group-data" type="text" name="text" ng-model="newCommentText" ng-init="newCommentText = newCommentText || ''" ng-class="{'has-data': 0 != newCommentText.length}" data-resizable rows="3"></textarea>
+      <div class="input-group">
+        <textarea class="input-group-data" type="text" name="text" ng-model="newComment.text" ng-init="newComment.text = newComment.text || ''" ng-class="{'has-data': 0 != newComment.text.length}" data-resizable rows="3"></textarea>
 
-          <div class="input-group-placeholder">Text...</div>
-        </div>
+        <div class="input-group-placeholder">Text...</div>
+      </div>
 
-        <button class="button" type="submit">
-          Submit
-        </button>
-      </form>
+      <button class="button" type="button" ng-click="postComment()">
+        Submit
+      </button>
     </div>
   </div>
 </div>

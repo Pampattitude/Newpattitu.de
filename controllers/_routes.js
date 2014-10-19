@@ -14,6 +14,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'front/layout.html'); };
 
     var ajax = {
+        article:        require('./ajax/article'),
         twitter:        require('./ajax/twitter'),
     };
 
@@ -44,6 +45,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/rss', bindGet(controllers.rss.get));
 
+    router.get ('/ajax/article/:articleTechnicalName/getComments', bindAjax(ajax.article.getComments));
+    router.post('/ajax/article/:articleTechnicalName/comment', bindAjax(ajax.article.postComment));
     router.get ('/ajax/twitter/getLatest', bindAjax(ajax.twitter.getLatest));
 
     router.get ('/*', bindPage(controllers.error.page404));

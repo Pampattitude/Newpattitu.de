@@ -117,3 +117,38 @@ frontApp.directive('pollTwitter', function() {
     };
 });
 /* !Twitter */
+
+frontApp.controller('articleCommentsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    $scope.postComment = function() {
+        if (!$scope.newComment)
+            return $scope.addAlert('error', 'An error occured with the comment form, please <a href="/report">report it</a>');
+
+        if (!$scope.newComment.author ||
+            2 >= $scope.newComment.author.length)
+            return $scope.addAlert('error', 'Name too short, refusing to send such a useless comment!');
+
+        if (!$scope.newComment.text ||
+            10 >= $scope.newComment.text.length)
+            return $scope.addAlert('error', 'Comment content too short, refusing to send such a useless comment!');
+
+        var postCommentUrl = '/ajax/article/' + $scope.globals.article.technicalName + '/comment';
+        return $http.post(postCommentUrl, {
+            author: $scope.newComment.author,
+            text: $scope.newComment.text,
+        }).then(function(response) { // Success
+            $scope.addAlert('success', 'Comment successfully posted, thank you for the feedback!');
+            delete $scope.newComment;
+            $scope.newCommentPosted = true;
+
+            var getCommentsUrl = '/ajax/article/' + $scope.globals.article.technicalName + '/getComments';
+            return $http.get(getCommentsUrl, {}).then(function(response) { // Success
+                $scope.globals.commentList = response.data.commentList;
+                $scope.refresh();
+            }, function(response) { // Error
+                return $scope.addAlert('error', 'An error occured while retrieving comment list, please <a href="/report">report it</a>. Error data: "' + JSON.stringify(response.data) + '"');
+            });
+        }, function(response) { // Error
+            $scope.addAlert('error', 'Could not save comment because: "' + JSON.stringify(response.data) + '"');
+        });
+    };
+}]);
