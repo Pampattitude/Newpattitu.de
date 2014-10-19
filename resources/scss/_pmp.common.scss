@@ -251,18 +251,12 @@ textarea {
 }
 
 .input-group {
+    @extend .clearfix;
+
     width: 100%;
     position: relative;
 
     font-size: 1em;
-
-    &:after {
-        content: "";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
 
     .input-group-placeholder {
         @extend .back;
