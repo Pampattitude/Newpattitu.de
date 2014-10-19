@@ -43,7 +43,7 @@
       </a>
     </li>
 
-    <li class="pmp-menu-item pmp-menu-item-exit hidden-mobile">
+    <li class="pmp-menu-item pmp-menu-item-exit hidden-mobile" ng-class="{restricted: true != globals.logged}">
       <a href="#" ng-click="logout()">
         <span class="icon icon-exit"></span>
         <span class="hidden-mobile">

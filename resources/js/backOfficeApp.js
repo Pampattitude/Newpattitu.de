@@ -82,9 +82,12 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
     };
 
     $scope.logout = function() {
+        if (!$scope.globals.logged)
+            return ;
+
         var url = '/back-office/logout';
         return $http.post(url, {}).then(function(response) {
-            window.location = '/'; // Redirect to front
+            window.location = '/back-office'; // Redirect to front
         }, function(response) {
             $scope.addAlert('error', response.data.message + '! Could not log you out.');
         });
