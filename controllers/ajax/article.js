@@ -40,6 +40,9 @@ exports.postComment = function(req, res, callback) {
             text: req.body.text,
         });
 
+        if (req.session.user)
+            comment.user = req.session.user._id;
+
         return comment.save(function(err) {
             if (err) return callback(err);
 

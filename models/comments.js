@@ -10,6 +10,7 @@ var schema = new mongoose.Schema({
     article: {type: mongoose.Schema.Types.ObjectId, ref: 'Article'},
 
     author: {type: String},
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     text: {type: String},
 
     created: {type: Date, default: Date.now},

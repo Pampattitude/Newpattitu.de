@@ -64,6 +64,9 @@ $comment-author-text-color:     $white-mild;
 $comment-author-background-color:       rgb(128, 128, 220);
 $comment-author-background-darker-color:        rgb(80, 80, 176);
 
+$comment-logged-author-background-color:        rgb(104, 180, 104);
+$comment-logged-author-background-darker-color: rgb(64, 144, 64);
+
 $comment-date-text-color:       $white-mild;
 $comment-date-background-color: rgb(128, 128, 220);
 $comment-date-background-darker-color:  rgb(80, 80, 176);
@@ -593,6 +596,14 @@ body {
                 border-style: solid;
                 border-width: 0 16px 6px 0;
                 border-color: transparent $comment-author-background-darker-color transparent transparent;
+            }
+
+            &.pmp-comment-author-user {
+                background-color: $comment-logged-author-background-color;
+
+                &:after {
+                    border-color: transparent $comment-logged-author-background-darker-color transparent transparent;
+                }
             }
         }
 

@@ -32,7 +32,13 @@
 
   <div class="pmp-comments">
     <div class="pmp-comment clearfix" ng-repeat="comment in globals.commentList">
-      <div class="pmp-comment-author" ng-bind="comment.author"></div>
+      <div class="pmp-comment-author" ng-class="{'pmp-comment-author-user': undefined != comment.user}">
+        <span ng-hide="undefined != comment.user" ng-bind="comment.author"></span>
+        <span ng-show="undefined != comment.user">
+          <span ng-show="comment.user.username == comment.author">{{comment.user.username}}</span>
+          <span ng-hide="comment.user.username == comment.author">{{comment.user.username}} as {{comment.author}}</span>
+        </span>
+      </div>
       <div class="pmp-comment-date">
         <span class="pmp-comment-date-date" ng-bind="comment.created | date: 'yyyy-MM-dd'"></span>,
         <b><span class="pmp-comment-date-date" ng-bind="comment.created | date: 'hh:mm'"></span></b>
@@ -44,13 +50,20 @@
     <!-- Add comment -->
     <div class="pmp-add-comment" ng-hide="true == newCommentPosted">
       <div class="input-group">
-        <input class="input-group-data" type="text" name="author" ng-model="newComment.author" ng-init="newComment.author = newComment.author || ''" ng-class="{'has-data': 0 != newComment.author.length}" />
+        <input class="input-group-data" type="text" name="author"
+               ng-model="newComment.author"
+               ng-init="newComment.author = globals.user.username || newComment.author || ''"
+               ng-class="{'has-data': 0 != newComment.author.length}" />
 
         <div class="input-group-placeholder">Name...</div>
       </div>
 
       <div class="input-group">
-        <textarea class="input-group-data" type="text" name="text" ng-model="newComment.text" ng-init="newComment.text = newComment.text || ''" ng-class="{'has-data': 0 != newComment.text.length}" data-resizable rows="3"></textarea>
+        <textarea class="input-group-data" type="text" name="text"
+                  ng-model="newComment.text"
+                  ng-init="newComment.text = newComment.text || ''"
+                  ng-class="{'has-data': 0 != newComment.text.length}" data-resizable
+                  rows="3"></textarea>
 
         <div class="input-group-placeholder">Text...</div>
       </div>
