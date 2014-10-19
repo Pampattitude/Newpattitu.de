@@ -656,8 +656,14 @@ body {
     @extend .pmp-page-content-box-content;
 
     .pmp-search-article-title {
-        margin: 0 1.25em;
-        margin-bottom: 0.6em;
+        margin-top: 0.6em auto;
+
+        font-size: 1.8em;
+        text-align: center;
+
+        @media only screen and (max-width: 991px) {
+            font-size: 1.5em;
+        }
     }
 
     .pmp-search-article-caption {
