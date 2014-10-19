@@ -43,11 +43,20 @@
       </a>
     </li>
 
-    <li class="pmp-menu-item pmp-menu-item-exit">
+    <li class="pmp-menu-item pmp-menu-item-exit hidden-mobile">
       <a href="#" ng-click="logout()">
         <span class="icon icon-exit"></span>
         <span class="hidden-mobile">
-          &nbsp;&nbsp;<span ng-show="true == globals.logged">Logout & exit</span><span ng-hide="true == globals.logged">Exit</span>
+          &nbsp;&nbsp;Logout
+        </span>
+      </a>
+    </li>
+
+    <li class="pmp-menu-item pmp-menu-item-exit">
+      <a href="/">
+        <span class="icon icon-earth"></span>
+        <span class="hidden-mobile">
+          &nbsp;&nbsp;Back to website
         </span>
       </a>
     </li>
