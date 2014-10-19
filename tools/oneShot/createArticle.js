@@ -38,11 +38,11 @@ If you no liky, you no stay here.</p>';
 
             var article = new (mongoose.model('Article'))({
                 title: title,
-                technicalName: title.split(' ').join('_').replace(/[^a-zA-Z\-_]/g, ''),
+                technicalName: title.split(' ').join('_').replace(/[^a-zA-Z\-_ ]/g, ''),
 
                 caption: caption,
                 text: text,
-                tags: title.split(' '),
+                tags: title.replace(/[^a-zA-Z\-_ ]/g, '').split(' '),
 
                 type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.floor(Math.random() * 4), 10)]),
 
