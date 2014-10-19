@@ -1,23 +1,25 @@
-<div class="pmp-login">
-  <div class="input-group">
-    <input class="input-group-data" type="text" name="username"
-           ng-model="loginData.username"
-           ng-init="loginData.username = loginData.username || ''"
-           ng-class="{'has-data': loginData.username.length}" />
+<div class="pmp-page-content-box">
+  <div class="pmp-login">
+    <div class="input-group">
+      <input class="input-group-data" type="text" name="username"
+             ng-model="loginData.username"
+             ng-init="loginData.username = loginData.username || ''"
+             ng-class="{'has-data': loginData.username.length}" />
 
-    <div class="input-group-placeholder">Username...</div>
+      <div class="input-group-placeholder">Username...</div>
+    </div>
+
+    <div class="input-group">
+      <input class="input-group-data" type="password" name="password"
+             ng-model="loginData.password"
+             ng-init="loginData.password = loginData.password || ''"
+             ng-class="{'has-data': loginData.password.length}" />
+
+      <div class="input-group-placeholder">Password...</div>
+    </div>
+
+    <button class="button pmp-login-button" ng-click="login()">
+      <span class="icon icon-checkmark"></span>
+    </button>
   </div>
-
-  <div class="input-group">
-    <input class="input-group-data" type="password" name="password"
-           ng-model="loginData.password"
-           ng-init="loginData.password = loginData.password || ''"
-           ng-class="{'has-data': loginData.password.length}" />
-
-    <div class="input-group-placeholder">Password...</div>
-  </div>
-
-  <button class="button pmp-login-button" ng-click="login()">
-    <span class="icon icon-checkmark"></span>
-  </button>
 </div>

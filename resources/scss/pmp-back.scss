@@ -192,9 +192,25 @@ body {
 
 /* Page content */
 .pmp-page-content {
-    padding: 1em;
+    .pmp-page-content-box {
+        .pmp-page-content-box-content {
+            padding: 1.25em 1em;
 
+            @media only screen and (max-width: 991px) {
+                padding: 1em 0.75em;
+            }
+
+            &.no-padd {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.pmp-page-content {
     .pmp-login {
+        @extend .pmp-page-content-box-content;
+
         max-width: 16em;
         margin: 0 auto;
 
