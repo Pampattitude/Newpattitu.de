@@ -1,18 +1,10 @@
+@import '_pmp.generic';
 @import '_pmp.common';
 @import '_pmp.grid';
 
-$body-text-color:               $white-mild;
-$body-background-color:         $black-mild;
-$body-background-image:         url('http://i.imgur.com/7XmZFgC.png');
-
-$alert-success-text-color:      $white-mild;
-$alert-success-background-color:        rgb(64, 192, 64);
-$alert-debug-text-color:        $white-mild;
-$alert-debug-background-color:          rgb(64, 64, 192);
-$alert-warning-text-color:      $white-mild;
-$alert-warning-background-color:        rgb(192, 192, 64);
-$alert-error-text-color:        $white-mild;
-$alert-error-background-color:  rgb(192, 64, 64);
+$body-text-color:               $black-mild;
+$body-background-color:         $white-mild;
+$body-background-image:         url('http://i.imgur.com/EeRiLZ8.png');
 
 $main-menu-background-color:    rgb(64, 96, 172);
 
@@ -24,9 +16,6 @@ $menu-item-background-color:    rgb(32, 64, 128);
 $menu-item-exit-background-color:       rgb(192, 64, 64);
 $menu-item-exit-background-hover-color: rgb(216, 88, 88);
 $menu-item-exit-background-focus-color: rgb(168, 52, 52);
-
-$page-content-text-color:          $black-mild;
-$page-content-background-color:    $white-mild;
 
 body {
     min-width: 300px;
@@ -53,68 +42,6 @@ body {
     position: relative;
     box-sizing: border-box;
 }
-
-/* Alerts */
-.pmp-alerts {
-    @extend .frontest;
-
-    position: fixed;
-    top: 0.5em;
-    right: 1%;
-
-    margin-left: 1%;
-
-    @media only screen and (max-width: 991px) {
-        top: 0.2em;
-    }
-
-    .pmp-alert {
-        margin-bottom: 0.4em;
-
-        text-align: left;
-
-        &.success {
-            color: $alert-success-text-color;
-            background-color: $alert-success-background-color;
-        }
-        &.debug {
-            color: $alert-debug-text-color;
-            background-color: $alert-debug-background-color;
-        }
-        &.warning {
-            color: $alert-warning-text-color;
-            background-color: $alert-warning-background-color;
-        }
-        &.error {
-            color: $alert-error-text-color;
-            background-color: $alert-error-background-color;
-        }
-
-        .pmp-alert-message {
-            @extend .fronter;
-
-            max-width: 20em;
-
-            padding: 0.4em 0.8em;
-
-            > a {
-                color: $white-mild; /* TMP */
-                font-weight: bold;
-            }
-        }
-
-        .pmp-alert-remove-button {
-            @extend .frontest;
-
-            float: right;
-
-            margin: 0 0 0 0.5em;
-
-            background-color: rgba(0, 0, 0, 0.2); /* TMP */
-        }
-    }
-}
-/* !Alerts */
 
 /* Main menu/nav */
 .pmp-main-menu {
@@ -266,10 +193,6 @@ body {
 /* Page content */
 .pmp-page-content {
     padding: 1em;
-
-    color: $page-content-text-color;
-
-    background-color: $page-content-background-color;
 
     .pmp-login {
         max-width: 16em;

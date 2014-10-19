@@ -1,3 +1,4 @@
+@import '_pmp.generic';
 @import '_pmp.common';
 @import '_pmp.grid';
 
@@ -8,21 +9,7 @@ $body-background-image:         url('http://i.imgur.com/7XmZFgC.png');
 $header-background-color:       rgba(0, 0, 0, 0.85);
 $header-image-background-color: rgb(240, 240, 240);
 
-$alert-success-text-color:      $white-mild;
-$alert-success-background-color:        rgb(64, 192, 64);
-$alert-debug-text-color:        $white-mild;
-$alert-debug-background-color:          rgb(64, 64, 192);
-$alert-warning-text-color:      $white-mild;
-$alert-warning-background-color:        rgb(192, 192, 64);
-$alert-error-text-color:        $white-mild;
-$alert-error-background-color:  rgb(192, 64, 64);
-
-$page-box-margin-v:             2rem;
-
 $footer-background-color:       rgba(0, 0, 0, 0.85);
-
-$error-404-color:               rgb(200, 32, 32);
-$error-500-color:               rgb(144, 144, 144);
 
 $twitter-user-color:            rgb(153, 50, 153);
 $twitter-hashtag-color:         $link-text-color;
@@ -246,68 +233,6 @@ body {
 }
 /* !Top navigation menu */
 
-/* Alerts */
-.pmp-alerts {
-    @extend .frontest;
-
-    position: fixed;
-    top: 4em;
-    right: 1%;
-
-    margin-left: 1%;
-
-    @media only screen and (max-width: 991px) {
-        top: 0.2em;
-    }
-
-    .pmp-alert {
-        margin-bottom: 0.4em;
-
-        text-align: left;
-
-        &.success {
-            color: $alert-success-text-color;
-            background-color: $alert-success-background-color;
-        }
-        &.debug {
-            color: $alert-debug-text-color;
-            background-color: $alert-debug-background-color;
-        }
-        &.warning {
-            color: $alert-warning-text-color;
-            background-color: $alert-warning-background-color;
-        }
-        &.error {
-            color: $alert-error-text-color;
-            background-color: $alert-error-background-color;
-        }
-
-        .pmp-alert-message {
-            @extend .fronter;
-
-            max-width: 20em;
-
-            padding: 0.4em 0.8em;
-
-            > a {
-                color: $white-mild; /* TMP */
-                font-weight: bold;
-            }
-        }
-
-        .pmp-alert-remove-button {
-            @extend .frontest;
-
-            float: right;
-
-            margin: 0 0 0 0.5em;
-
-            background-color: rgba(0, 0, 0, 0.2); /* TMP */
-        }
-    }
-}
-/* !Alerts */
-
 /* Body */
 .pmp-body {
     max-width: 1136px;
@@ -317,51 +242,6 @@ body {
 
     [class*="cell-"] { padding: 0 1em; }
 }
-
-.pmp-page-box {
-    @extend .front;
-    @extend .harder-shadow;
-    @extend .elem-list;
-
-    width: 100%;
-
-    margin: $page-box-margin-v auto;
-
-    color: $black-mild;
-    text-align: center;
-
-    background-color: $white-mild;
-}
-
-/* Page content */
-.pmp-page-content {
-    .pmp-page-content-box {
-        @extend .pmp-page-box;
-    }
-}
-@media only screen and (min-width: 992px) {
-    .pmp-page-content {
-        .pmp-page-content-box.first-desktop {
-            margin-top: 0;
-        }
-    }
-}
-.pmp-page-content {
-    .pmp-page-content-box {
-        &.last {
-            margin-bottom: 0;
-        }
-
-        .pmp-page-content-box-content {
-            padding: 1.75em 1.5em;
-
-            @media only screen and (max-width: 991px) {
-                padding: 1.4em 1em;
-            }
-        }
-    }
-}
-
 
 /* Articles */
 .pmp-article {
@@ -850,49 +730,6 @@ body {
     }
 }
 /* !About */
-
-/* Error */
-.pmp-error {
-    @extend .pmp-page-content-box-content;
-
-    font-size: 1.3em;
-    text-align: left;
-
-    .pmp-error-title {
-        margin: 0 0 1em 0;
-        
-        .pmp-error-code {
-            padding: 0.2em 0.4em;
-
-            color: $white-mild;
-            font-size: 1.25em;
-
-            border-radius: 0.3em;
-        }
-
-        .pmp-error-code-404 {
-            background-color: $error-404-color; /* TMP */
-        }
-        .pmp-error-code-500 {
-            background-color: $error-500-color; /* TMP */
-        }
-
-        .pmp-error-text-404 {
-            color: $error-404-color; /* TMP */
-        }
-        .pmp-error-text-500 {
-            color: $error-500-color; /* TMP */
-        }
-    }
-
-    .pmp-error-data {
-        p {
-            @extend .elem-list;
-            margin: 0.5em auto;
-        }
-    }
-}
-/* !Error */
 /* !Page content */
 
 /* Right menu */
