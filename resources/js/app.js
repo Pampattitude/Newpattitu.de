@@ -112,10 +112,8 @@ frontApp.directive('pollTwitter', function() {
 
             var loop = function() {
                 return pollTwitter(function(err, data) {
-                    if (err) {
-                        console.log(err); // TMP, should display an error and send a report
+                    if (err)
                         return ;
-                    }
 
                     return setTimeout(loop, 10000 /* ms, so 10s */);
                 });
