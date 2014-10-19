@@ -24,13 +24,20 @@ return mongoose.connection.once('open', function () {
 
     return async.series([
         function(callback) {
-            var title = loremIpsum({count: parseInt(5 + Math.random() * 3, 10), units: 'words', format: 'plain'});
-            var caption = loremIpsum({count: parseInt(2 + Math.random(), 10), units: 'paragraphs', format: 'html'});
-            var text = loremIpsum({count: parseInt(8 + Math.random() * 4, 10), units: 'paragraphs', format: 'html'});
+            var title = 'Hello, World!';
+            var caption = '<p>So I heard every blog needs a first post. Well, this is my attempt at it.</p>';
+            var text = '<p>Hey there!</p>\
+<p>This is my first second time writing a blog post, so I might come off a little nervous. That’s because I am.</p>\
+<p>For those who don’t know me, hi! My name is Guillaume “Pampa” Delahodde and I’m a developer. I love C++, enjoy doodling with Node.js and HTML5 and hate – and I mean it – CSS.</p>\
+<p>It’s been a while – maybe a year and a half? – since I wanted to create a blog. I’ve been working, and still am, on a custom system with Node.js / Express.js on the back and HTML5 / CSS3 – and now Angular.js \o/ – on the front (both the old and current codes can be found somewhere on GitHub).<br/>\
+But getting things right is hard when you don’t know blogging. Hence the Tumblr WordPress. Dammit, I’ll never get that post right.</p>\
+<p>So hi, I sincerely hope you’ll enjoy what’s here and, if you do, that you’ll like it on my own system, with my own crazy stuff distracting you from reading!</p>\
+<p>Wait, what? People create blogs for them to be read? Damn, I knew it was a bad idea.</p>\
+<p class="tldr"><b>tl;dr</b>: developer, stuff about what I do and like, trying a blogging platform.</p>';
 
             var article = new (mongoose.model('Article'))({
                 title: title,
-                technicalName: title.split(' ').join('_'),
+                technicalName: title.split(' ').join('_').replace(/[^a-zA-Z\-_]/g, ''),
 
                 caption: caption,
                 text: text,
