@@ -2,6 +2,15 @@ $.getScript('/js/_textareaResize.js');
 
 (function() {
     $(document).ready(function() {
+        /* Remove mobile nav on input focus */
+        $('input,textarea').on('focus', function() {
+            $('#pmp-nav-mobile').slideUp(200);
+        });
+        $('input,textarea').on('blur', function() {
+            $('#pmp-nav-mobile').slideDown(400);
+        });
+        /* Remove mobile nav on input focus */
+
         /* External links */
         var host = window.location.host;
 

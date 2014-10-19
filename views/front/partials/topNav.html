@@ -1,9 +1,9 @@
-<div class="pmp-nav">
+<div class="pmp-nav hidden-mobile">
   <div class="pmp-nav-elems">
     <div class="grid-2">
       <div class="cell-1">
         <a href="/blog" class="button" ng-class="{active: 'blog'==globals.activeTopMenu}">
-          <span class="button-icon hidden-mobile">
+          <span class="button-icon">
             <span class="icon icon-blog"></span>
           </span>
           <span class="button-text">
@@ -14,11 +14,33 @@
 
       <div class="cell-1">
         <a href="/about" class="button" ng-class="{active: 'about'==globals.activeTopMenu}">
-          <span class="button-icon hidden-mobile">
+          <span class="button-icon">
             <span class="icon icon-profile"></span>
           </span>
           <span class="button-text">
             About
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pmp-nav hidden-desktop" id="pmp-nav-mobile">
+  <div class="pmp-nav-elems">
+    <div class="grid-2">
+      <div class="cell-1">
+        <a href="/blog" class="button" ng-class="{active: 'blog'==globals.activeTopMenu}">
+          <span class="button-text">
+            <span class="icon icon-blog"></span>
+          </span>
+        </a>
+      </div>
+
+      <div class="cell-1">
+        <a href="/about" class="button" ng-class="{active: 'about'==globals.activeTopMenu}">
+          <span class="button-text">
+            <span class="icon icon-profile"></span>
           </span>
         </a>
       </div>
