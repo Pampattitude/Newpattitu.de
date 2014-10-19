@@ -15,6 +15,8 @@ $selection-text-color:  $white-mild;
 $selection-background-color:    rgb(80, 152, 80);
 
 $link-text-color:       rgb(32, 128, 32);
+$link-text-hover-color: rgb(48, 160, 48);
+$link-text-focus-color: rgb(24,  96, 24);
 
 $harder-shadow-color:   rgba(0, 0, 0, 0.8);
 $hard-shadow-color:     rgba(0, 0, 0, 0.6);
@@ -91,6 +93,12 @@ $button-rss-focus-background-color:     rgb(204, 78, 0);
 a {
     color: $link-text-color;
     text-decoration: none;
+
+    transition: color 200ms;
+
+    &:hover { color: $link-text-hover-color; }
+    &:active,
+    &:focus { color: $link-text-focus-color; }
 }
 
 .clearfix:after {

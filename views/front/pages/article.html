@@ -41,6 +41,7 @@
       <div class="pmp-comment-text" ng-bind="comment.text"></div>
     </div>
 
+    <!-- Add comment -->
     <div class="pmp-add-comment" ng-hide="true == newCommentPosted">
       <div class="input-group">
         <input class="input-group-data" type="text" name="author" ng-model="newComment.author" ng-init="newComment.author = newComment.author || ''" ng-class="{'has-data': 0 != newComment.author.length}" />
@@ -58,6 +59,15 @@
         Submit
       </button>
     </div>
+    <!-- !Add comment -->
+
+    <!-- Thanks for comment -->
+    <div class="pmp-comment-thanks" ng-show="true == newCommentPosted">
+      Thanks for the comment!
+      <br />
+      <span class="pmp-comment-reenable" ng-click="newCommentPosted = false">Want to add another comment?</span>
+    </div>
+    <!-- !Thanks for comment -->
   </div>
 </div>
 <!-- !Comment -->

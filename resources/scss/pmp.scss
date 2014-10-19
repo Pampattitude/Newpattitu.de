@@ -580,6 +580,19 @@ body {
             }
         }
     }
+
+    .pmp-comment-thanks {
+        font-size: 1.3em;
+        text-align: center;
+
+        .pmp-comment-reenable {
+            @extend a;
+
+            cursor: pointer;
+
+            font-size: 0.6em;
+        }
+    }
 }
 /* !Article comments */
 /* !Articles */
