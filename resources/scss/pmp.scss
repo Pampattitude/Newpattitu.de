@@ -348,7 +348,6 @@ body {
             padding: 0.3em 0.6em;
 
             background-color: rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.16);
 
             &:before {
                 @extend .inline-block;
@@ -361,14 +360,6 @@ body {
                 color: rgba(32, 32, 32, 0.5);
                 font-size: 1.4em;
                 font-weight: bold;
-            }
-        }
-
-        .tldc {
-            @extend .tldr;
-
-            &:before {
-                content: 'tl;dc';
             }
         }
     }
@@ -713,7 +704,6 @@ body {
         padding: 0.3em 0.6em;
 
         background-color: rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(0, 0, 0, 0.16);
 
         &:before {
             @extend .inline-block;
