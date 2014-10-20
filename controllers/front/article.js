@@ -6,8 +6,6 @@ var mongoose = require('mongoose');
 var constants = require('../../lib/constants');
 
 exports.page = function(req, res, callback) {
-    res.locals.title = 'Blog';
-
     res.locals.page = 'pages/article.html';
     res.locals.activeTopMenu = 'blog';
 
@@ -16,6 +14,7 @@ exports.page = function(req, res, callback) {
         if (!article) return res.redirect('/404');
 
         res.locals.article = article;
+        res.locals.title = article.title;
 
         ++article.views;
         return article.save(function(err) {
