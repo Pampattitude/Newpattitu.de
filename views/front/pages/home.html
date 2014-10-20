@@ -35,15 +35,20 @@
     <div class="pmp-article-caption" ng-bind-html="article.caption | trust">
     </div>
 
-    <div class="pmp-article-access">
-      <a href="/article/{{article.technicalName}}">Read blog post&nbsp;&nbsp;<span class="icon icon-arrow-right2"></span></a>
-    </div>
+    <div class="pmp-article-more">
+      <div class="pmp-article-access">
+        <a class="button button-labeled-inverse button-info" href="/article/{{article.technicalName}}">
+          Read blog post
+          <div class="button-label"><span class="icon icon-arrow-right"></span></div>
+        </a>
+      </div>
 
-    <div class="pmp-article-tags">
-      <a class="pmp-article-tag-group" href="/search?search={{article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
+      <div class="pmp-article-tags">
+        <a class="pmp-article-tag-group" href="/search?search={{article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
 
-      <a class="pmp-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag">
-      </a>
+        <a class="pmp-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag">
+        </a>
+      </div>
     </div>
   </div>
 </div>

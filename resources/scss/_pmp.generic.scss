@@ -304,6 +304,21 @@ a {
         background-color: rgba(0, 0, 0, 0.2);
     }
 
+    &.button-labeled-inverse {
+        overflow: hidden;
+
+        padding: 0 0 0 0.4em;
+    }
+
+    &.button-labeled-inverse .button-label {
+        @extend .inline-block;
+
+        margin-left: 0.4em;
+        padding: 0.4em 0.5em;
+
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
     &.button-round {
         padding: 0.4em 0.5em;
 
