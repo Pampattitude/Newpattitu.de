@@ -57,19 +57,19 @@ exports.deactivate = function(req, res, callback) {
 
 exports.save = function(req, res, callback) {
     if (!req.body.title ||
-        4 >= req.body.title.length)
+        4 > req.body.title.length)
         return callback({code: 400, message: 'Title too short or missing'});
     if (!req.body.technicalName ||
-        4 >= req.body.technicalName.length)
+        4 > req.body.technicalName.length)
         return callback({code: 400, message: 'Technical name too short or missing'});
     if (!req.body.caption ||
-        32 >= req.body.caption.length)
+        32 > req.body.caption.length)
         return callback({code: 400, message: 'Caption too short or missing'});
     if (!req.body.text ||
-        32 >= req.body.text.length)
+        32 > req.body.text.length)
         return callback({code: 400, message: 'Text too short or missing'});
     if (!req.body.tags ||
-        1 >= req.body.tags.length)
+        2 > req.body.tags.length)
         return callback({code: 400, message: 'Too few or no tags'});
     if (!req.body.type)
         return callback({code: 400, message: 'Missing article type'});
