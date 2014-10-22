@@ -57,9 +57,10 @@ If you no liky, you no stay here.</p>';
                 text: text,
                 tags: getUnique(title.replace(/[^a-zA-Z\-_ ]/g, '').split(' ')),
 
-                type: (['news', 'life', 'project', 'tutorial'][parseInt(Math.floor(Math.random() * 4), 10)]),
+                type: 'news',
 
                 featured: true,
+                activated: true,
             });
             
             printer.info('Creating article "' + article.technicalName + '"...');
