@@ -8,7 +8,7 @@ var constants = require('../../lib/constants');
 exports.page = function(req, res, callback) {
     res.locals.title = 'Articles';
 
-    res.locals.page = 'pages/articles.html';
+    res.locals.page = 'pages/articles/list.html';
 
     return mongoose.model('Article').find().sort({created: -1}).exec(function(err, articles) {
         if (err) return callback(err);
