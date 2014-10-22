@@ -80,6 +80,7 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.get ('/article/:technicalName?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));
     router.post('/article/:technicalName/activate', middleware.isLoggedIn, bindAjax(controllers.articles.activate));
     router.post('/article/:technicalName/deactivate', middleware.isLoggedIn, bindAjax(controllers.articles.deactivate));
+    router.post('/article/:technicalName/delete', middleware.isLoggedIn, bindAjax(controllers.articles.remove));
 
     router.get ('/', middleware.isLoggedIn, function(req, res) { return res.redirect('/back-office/stats'); });
 
