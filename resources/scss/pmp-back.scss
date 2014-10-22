@@ -18,6 +18,8 @@ $menu-item-exit-background-color:       rgb(192, 64, 64);
 $menu-item-exit-background-hover-color: rgb(216, 88, 88);
 $menu-item-exit-background-focus-color: rgb(168, 52, 52);
 
+$page-toolbar-background-color: $main-menu-background-color;
+
 body {
     min-width: 300px;
 
@@ -52,6 +54,14 @@ body {
     padding-bottom: 1.2em;
 
     background-color: $main-menu-background-color;
+
+    @media only screen and (min-width: 992px) {
+        width: 20%;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
 
     @media only screen and (max-width: 991px) {
         height: auto;
@@ -173,6 +183,7 @@ body {
 
         padding: 0.4em 0.8em;
 
+        color: $white-mild; /* TMP */
         font-size: 0.8em;
         text-align: center;
 
@@ -193,6 +204,39 @@ body {
 
 /* Page content */
 .pmp-page-content {
+    .pmp-has-toolbar {
+        margin-top: 2em;
+
+        @media only screen and (max-width: 991px) {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .pmp-toolbar {
+        @extend .frontest;
+
+        width: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+
+        background-color: $page-toolbar-background-color;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+        @media only screen and (max-width: 991px) {
+            top: initial;
+            bottom: 0;
+        }
+
+        [class*="cell-"] > .button {
+            width: 100%;
+            display: block;
+        }
+    }
+
     .pmp-page-content-box {
         .pmp-page-content-box-content {
             padding: 1.25em 1em;
@@ -314,4 +358,17 @@ body {
     }
 }
 /* !Articles */
+
+/* Article edit */
+.pmp-article-edit {
+    .pmp-article {
+        @extend .clearfix;
+        @extend .pmp-page-content-box;
+
+        .pmp-article-content {
+            @extend .pmp-page-content-box-content;
+        }
+    }
+}
+/* !Article edit */
 /* !Page content */

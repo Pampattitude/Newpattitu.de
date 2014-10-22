@@ -18,6 +18,25 @@ exports.page = function(req, res, callback) {
     });
 };
 
+exports.editPage = function(req, res, callback) {
+    res.locals.page = 'pages/articles/edit.html';
+
+    if (!req.params.technicalName) {
+        res.locals.title = 'Create article';
+        return callback();
+    }
+
+    return mongoose.model('Article').findOne({technicalName: req.params.technicalName}, function(err, article) {
+        if (err) return callback(err);
+        if (!article) return callback(new Error('Could not find article with technical name "' + req.params.technicalName + '"'));
+
+        res.locals.title = article.title + ' - Edit';
+        res.locals.article = article;
+
+        return callback();
+    });
+};
+
 exports.activate = function(req, res, callback) {
     return mongoose.model('Article').update({technicalName: req.params.technicalName}, {$set: {activated: true}}, function(err, updatedCount) {
         if (err) return callback({code: 500, message: err});

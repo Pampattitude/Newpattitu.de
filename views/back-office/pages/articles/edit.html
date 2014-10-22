@@ -1,0 +1,130 @@
+<div class="pmp-article-edit pmp-has-toolbar" ng-controller="editArticleController">
+  <!-- Article -->
+  <div class="pmp-article">
+    <div class="pmp-article-content">
+      <div class="pmp-article-title-and-technical-name grid-3">
+        <div class="cell-2">
+          <div class="pmp-article-title">
+            <div class="input-group">
+              <input class="input-group-data"
+                     ng-model="article.title"
+                     ng-init="article.title = article.title || ''"
+                     ng-class="{'has-data': 0 < article.title.length}" />
+
+              <div class="input-group-placeholder">Title...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell-1">
+          <div class="pmp-article-technical-name">
+            <div class="input-group input-group-with-button">
+              <input class="input-group-data"
+                     ng-model="article.technicalName"
+                     ng-init="article.technicalName = article.technicalName || ''"
+                     ng-class="{'has-data': 0 < article.technicalName.length}" />
+
+              <div class="input-group-placeholder">Technical name...</div>
+
+              <button type="button" class="button button-success input-group-button" ng-click="generateTechnicalName()">
+                <span class="icon icon-shuffle"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pmp-article-caption">
+        <div class="input-group">
+          <textarea class="input-group-data"
+                    ng-model="article.caption"
+                    ng-init="article.caption = article.caption || ''"
+                    ng-class="{'has-data': 0 < article.caption.length}"
+                    rows="4" data-resizable></textarea>
+
+          <div class="input-group-placeholder">Caption...</div>
+        </div>
+      </div>
+
+      <div class="pmp-article-text">
+        <div class="input-group">
+          <textarea class="input-group-data"
+                    ng-model="article.text"
+                    ng-init="article.text = article.text || ''"
+                    ng-class="{'has-data': 0 < article.text.length}"
+                    rows="8" data-resizable></textarea>
+
+          <div class="input-group-placeholder">Text...</div>
+        </div>
+      </div>
+
+      <div class="pmp-article-tags">
+        <span class="pmp-article-tag" ng-repeat="tag in article.tags">
+          <span ng-bind="tag"></span>
+          <span class="icon icon-close" ng-click="removeTag(tag)">
+          </span>
+        </span>
+
+        <div class="input-group input-group-inline">
+          <input class="input-group-data"
+                 ng-model="newTag"
+                 ng-init="newTag = newTag || ''"
+                 ng-class="{'has-data': 0 < newTag.length}" />
+
+          <div class="input-group-placeholder">Tag...</div>
+        </div>
+      </div>
+
+      <div class="pmp-article-type">
+        <select ng-model="article.type" ng-init="article.type = article.type || 'news'">
+          <option value="news">News</option>
+          <option value="life">Life</option>
+          <option value="project">Project</option>
+          <option value="tutorial">Tutorial</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!-- !Article -->
+
+  <!-- Toolbar -->
+  <div class="pmp-toolbar grid-6 grid-mobile-3">
+    <div class="cell-1 hidden-mobile">
+      <a class="button button-warning button-labeled back-button" href="/back-office/articles">
+        <span class="button-label"><span class="icon icon-undo"></span></span>
+        Go back
+      </a>
+    </div>
+
+    <div class="cell-1 cell-mobile-2" ng-show="true == articleExists">
+      <button type="button" class="button button-error button-labeled" ng-click="deleteArticle">
+        <span class="button-label"><span class="icon icon-remove"></span></span>
+        Delete
+      </button>
+    </div>
+
+    <!-- Padd -->
+    <div class="cell-1" ng-hide="true == articleExists">
+      <!-- If article does not exist yet, padd to replace delete button -->
+    </div>
+    <div class="cell-2 hidden-mobile">
+    </div>
+    <!-- !Padd -->
+
+    <div class="cell-1 cell-mobile-2">
+      <button type="button" class="button button-info button-labeled">
+        <span class="button-label"><span class="icon icon-eye"></span></span>
+        Preview
+      </button>
+    </div>
+
+    <div class="cell-1 cell-mobile-2">
+      <button type="button" class="button button-success button-labeled">
+        <span class="button-label"><span class="icon icon-disk"></span></span>
+        Save
+      </button>
+    </div>
+  </div>
+  <!-- !Toolbar -->
+</div>

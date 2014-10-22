@@ -125,3 +125,14 @@ backOfficeApp.filter('trust', ['$sce', function($sce) {
         return $sce.trustAsHtml(text);
     };
 }]);
+
+backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    $scope.article = globals.article;
+    $scope.articleExists = undefined != globals.article;
+
+    /* Article */
+    $scope.deleteArticle = function() {
+        var url = '/back-office/article/' + $scope.article.technicalName + '/delete';
+    };
+    /* !Article */
+}]);
