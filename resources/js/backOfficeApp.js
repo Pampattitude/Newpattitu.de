@@ -146,10 +146,28 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
     };
 
     $scope.activateArticle = function(article) {
-        return $scope.changeArticleStatus_(article, true);
+        var confirmBox = {
+            title: 'Activate article?',
+            text: 'Do you really want to make the article "' + article.title + '" visible to anyone?',
+            acceptCallback: function() {
+                $scope.closeConfirmBox();
+                return $scope.changeArticleStatus_(article, true);
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
     };
     $scope.deactivateArticle = function(article) {
-        return $scope.changeArticleStatus_(article, false);
+        var confirmBox = {
+            title: 'Deactivate article?',
+            text: 'Do you really want to make the article "' + article.title + '" invisible?',
+            acceptCallback: function() {
+                $scope.closeConfirmBox();
+                return $scope.changeArticleStatus_(article, false);
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
     };
     /* !Articles */
 }]);
@@ -168,8 +186,8 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     /* Article */
     $scope.deleteArticle = function() {
         var confirmBox = {
-            title: 'Delete article "' + $scope.article.title + '"?',
-            text: 'Do you really want to delete the article "' + $scope.article.title + '" ("' + $scope.article.technicalName + '")? This operation is not reversible',
+            title: 'Delete article?',
+            text: 'Do you really want to delete the article "' + $scope.article.title + '"? This operation is not reversible.',
             acceptCallback: function() {
                 var url = '/back-office/article/' + $scope.article.technicalName + '/delete';
                 $http.post(url, {}).then(function(response) {
@@ -181,8 +199,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             },
         };
 
-        $rootScope.openConfirmBox(confirmBox);
-
+        return $rootScope.openConfirmBox(confirmBox);
     };
     /* !Article */
 }]);
