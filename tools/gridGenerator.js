@@ -42,6 +42,7 @@ for (var modeIdx in modeList) {
 
         console.log('  .grid-' + gridSize + ' > [class*="cell' + mode.suffix + '"] {');
         console.log('    width: 0%;');
+        console.log('    min-height: 1px;');
         console.log('    display: inline-block;');
         console.log('    box-sizing: border-box;');
         console.log('    float: left;');
