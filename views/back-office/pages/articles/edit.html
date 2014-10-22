@@ -91,10 +91,18 @@
   <!-- Toolbar -->
   <div class="pmp-toolbar grid-6 grid-mobile-3">
     <div class="cell-1 cell-mobile-2" ng-show="true == articleExists">
-      <button type="button" class="button button-error button-labeled" ng-click="deleteArticle()">
-        <span class="button-label"><span class="icon icon-remove"></span></span>
-        Delete
-      </button>
+      <div class="hidden-mobile">
+        <button type="button" class="button button-error button-labeled" ng-click="deleteArticle()">
+          <span class="button-label"><span class="icon icon-remove"></span></span>
+          Delete
+        </button>
+      </div>
+
+      <div class="hidden-desktop">
+        <button type="button" class="button button-error" ng-click="deleteArticle()">
+          <span class="icon icon-remove"></span>
+        </button>
+      </div>
     </div>
 
     <!-- Padd -->
@@ -106,17 +114,33 @@
     <!-- !Padd -->
 
     <div class="cell-1" ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
-      <button type="button" class="button button-info button-labeled">
-        <span class="button-label"><span class="icon icon-eye"></span></span>
-        Preview
-      </button>
+      <div class="hidden-mobile">
+        <button type="button" class="button button-info button-labeled">
+          <span class="button-label"><span class="icon icon-eye"></span></span>
+          Preview
+        </button>
+      </div>
+
+      <div class="hidden-desktop">
+        <button type="button" class="button button-info">
+          <span class="icon icon-eye"></span>
+        </button>
+      </div>
     </div>
 
     <div class="cell-1" ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
-      <button type="button" class="button button-success button-labeled">
-        <span class="button-label"><span class="icon icon-disk"></span></span>
-        Save
-      </button>
+      <div class="hidden-mobile">
+        <button type="button" class="button button-success button-labeled">
+          <span class="button-label"><span class="icon icon-disk"></span></span>
+          Save
+        </button>
+      </div>
+
+      <div class="hidden-desktop">
+        <button type="button" class="button button-success">
+          <span class="icon icon-disk"></span>
+        </button>
+      </div>
     </div>
   </div>
   <!-- !Toolbar -->
