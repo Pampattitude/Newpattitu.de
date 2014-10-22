@@ -147,14 +147,14 @@
 
     <div class="cell-1" ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
       <div class="hidden-mobile">
-        <button type="button" class="button button-success button-labeled">
+        <button type="button" class="button button-success button-labeled" ng-click="saveArticle()">
           <span class="button-label"><span class="icon icon-disk"></span></span>
           Save
         </button>
       </div>
 
       <div class="hidden-desktop">
-        <button type="button" class="button button-success">
+        <button type="button" class="button button-success" ng-click="saveArticle()">
           <span class="icon icon-disk"></span>
         </button>
       </div>

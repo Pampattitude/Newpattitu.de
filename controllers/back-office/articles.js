@@ -21,14 +21,14 @@ exports.page = function(req, res, callback) {
 exports.editPage = function(req, res, callback) {
     res.locals.page = 'pages/articles/edit.html';
 
-    if (!req.params.technicalName) {
+    if (!req.params.articleId) {
         res.locals.title = 'Create article';
         return callback();
     }
 
-    return mongoose.model('Article').findOne({technicalName: req.params.technicalName}, function(err, article) {
+    return mongoose.model('Article').findOne({_id: req.params.articleId}, function(err, article) {
         if (err) return callback(err);
-        if (!article) return callback(new Error('Could not find article with technical name "' + req.params.technicalName + '"'));
+        if (!article) return callback(new Error('Could not find article with ID "' + req.params.articleId + '"'));
 
         res.locals.title = article.title + ' - Edit';
         res.locals.article = article;
@@ -38,27 +38,73 @@ exports.editPage = function(req, res, callback) {
 };
 
 exports.activate = function(req, res, callback) {
-    return mongoose.model('Article').findOneAndUpdate({technicalName: req.params.technicalName}, {$set: {activated: true}}, function(err, updatedArticle) {
+    return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {activated: true}}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
-        if (!updatedArticle) return callback({code: 404, message: 'Article with technical name "' + req.params.technicalName + '" not found'});
+        if (!updatedArticle) return callback({code: 404, message: 'Article with ID "' + req.params.articleId + '" not found'});
 
         return callback();
     });
 };
 
 exports.deactivate = function(req, res, callback) {
-    return mongoose.model('Article').findOneAndUpdate({technicalName: req.params.technicalName}, {$set: {activated: false}}, function(err, updatedArticle) {
+    return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {activated: false}}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
-        if (!updatedArticle) return callback({code: 404, message: 'Article with technical name "' + req.params.technicalName + '" not found'});
+        if (!updatedArticle) return callback({code: 404, message: 'Article with ID "' + req.params.articleId + '" not found'});
+
+        return callback();
+    });
+};
+
+exports.save = function(req, res, callback) {
+    if (!req.body.title ||
+        4 >= req.body.title.length)
+        return callback({code: 400, message: 'Title too short or missing'});
+    if (!req.body.technicalName ||
+        4 >= req.body.technicalName.length)
+        return callback({code: 400, message: 'Technical name too short or missing'});
+    if (!req.body.caption ||
+        32 >= req.body.caption.length)
+        return callback({code: 400, message: 'Caption too short or missing'});
+    if (!req.body.text ||
+        32 >= req.body.text.length)
+        return callback({code: 400, message: 'Text too short or missing'});
+    if (!req.body.tags ||
+        1 >= req.body.tags.length)
+        return callback({code: 400, message: 'Too few or no tags'});
+    if (!req.body.type)
+        return callback({code: 400, message: 'Missing article type'});
+
+    var findOptions = {};
+    if (req.body._id)
+        findOptions._id = req.body._id;
+
+    var updateOptions = {
+        title: req.body.title,
+        technicalName: req.body.technicalName,
+        caption: req.body.caption,
+        text: req.body.text,
+        tags: req.body.tags,
+        type: req.body.type,
+        lastUpdated: new Date(),
+    };
+    var onInsertOptions = {
+        featured: false,
+        activated: false,
+        views: 0,
+        created: new Date(),
+    };
+
+    return mongoose.model('Article').findOneAndUpdate(findOptions, {$set: updateOptions, $setOnInsert: onInsertOptions}, {upsert: true}, function(err, updatedArticle) {
+        if (err) return callback({code: 500, message: err});
 
         return callback();
     });
 };
 
 exports.remove = function(req, res, callback) {
-    return mongoose.model('Article').findOneAndRemove({technicalName: req.params.technicalName}, function(err, deletedArticle) {
+    return mongoose.model('Article').findOneAndRemove({_id: req.params.articleId}, function(err, deletedArticle) {
         if (err) return callback({code: 500, message: err});
-        if (!deletedArticle) return callback({code: 404, message: 'Article with technical name "' + req.params.technicalName + '" not found'});
+        if (!deletedArticle) return callback({code: 404, message: 'Article with ID "' + req.params.articleId + '" not found'});
 
         return callback();
     });

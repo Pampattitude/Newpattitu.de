@@ -134,12 +134,16 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         var url = null;
 
         if (activate)
-            url = '/back-office/article/' + article.technicalName + '/activate';
+            url = '/back-office/article/' + article._id + '/activate';
         else
-            url = '/back-office/article/' + article.technicalName + '/deactivate';
+            url = '/back-office/article/' + article._id + '/deactivate';
 
         return $http.post(url, {}).then(function(response) {
             article.activated = activate;
+            if (article.activated)
+                $scope.addAlert('success', 'Article "' + article.title + '" is now public!');
+            else
+                $scope.addAlert('success', 'Article "' + article.title + '" is now private.');
         }, function(response) {
             $scope.addAlert('error', 'Could not change article availability because: ' + response.data.message);
         });
@@ -189,10 +193,28 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             title: 'Delete article?',
             text: 'Do you really want to delete the article "' + $scope.article.title + '"? This operation is not reversible.',
             acceptCallback: function() {
-                var url = '/back-office/article/' + $scope.article.technicalName + '/delete';
+                var url = '/back-office/article/' + $scope.article._id + '/delete';
                 $http.post(url, {}).then(function(response) {
                     $scope.closeConfirmBox();
                     window.location = '/back-office/articles';
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
+                });
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
+    };
+
+    $scope.saveArticle = function() {
+        var confirmBox = {
+            title: 'Save article?',
+            text: 'Do you really want to save the article "' + $scope.article.title + '"?',
+            acceptCallback: function() {
+                var url = '/back-office/article/' + $scope.article._id + '/save';
+                $http.post(url, $scope.article).then(function(response) {
+                    $scope.closeConfirmBox();
+                    $scope.addAlert('success', 'Article saved!');
                 }, function(response) {
                     $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
                 });

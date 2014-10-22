@@ -23,6 +23,7 @@ var schema = new mongoose.Schema({
     views: {type: Number, default: 0},
     activated: {type: Boolean, default: false, index: true},
     created: {type: Date, default: Date.now},
+    lastUpdated: {type: Date, default: Date.now},
 });
 
 exports.model = mongoose.model('Article', schema, 'articles');

@@ -77,10 +77,11 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
 
     router.get ('/articles', middleware.isLoggedIn, bindPage(controllers.articles.page));
-    router.get ('/article/:technicalName?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));
-    router.post('/article/:technicalName/activate', middleware.isLoggedIn, bindAjax(controllers.articles.activate));
-    router.post('/article/:technicalName/deactivate', middleware.isLoggedIn, bindAjax(controllers.articles.deactivate));
-    router.post('/article/:technicalName/delete', middleware.isLoggedIn, bindAjax(controllers.articles.remove));
+    router.get ('/article/:articleId?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));
+    router.post('/article/:articleId/activate', middleware.isLoggedIn, bindAjax(controllers.articles.activate));
+    router.post('/article/:articleId/deactivate', middleware.isLoggedIn, bindAjax(controllers.articles.deactivate));
+    router.post('/article/:articleId/save', middleware.isLoggedIn, bindAjax(controllers.articles.save));
+    router.post('/article/:articleId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.remove));
 
     router.get ('/', middleware.isLoggedIn, function(req, res) { return res.redirect('/back-office/stats'); });
 
