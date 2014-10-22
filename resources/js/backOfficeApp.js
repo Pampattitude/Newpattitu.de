@@ -206,6 +206,27 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
         return $rootScope.openConfirmBox(confirmBox);
     };
 
+    $scope.previewArticle = function() {
+        var confirmBox = {
+            title: 'Save article?',
+            text: 'Do you really want to save the article "' + $scope.article.title + '"? The article must be saved in order to preview it.',
+            acceptCallback: function() {
+                var url = '/back-office/article/' + $scope.article._id + '/save';
+                $http.post(url, $scope.article).then(function(response) {
+                    $scope.closeConfirmBox();
+                    $scope.addAlert('success', 'Article saved!');
+
+                    var previewUrl = '/article/preview/' + $scope.article.technicalName;
+                    window.open(previewUrl, '_blank').focus();
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not save article because: ' + response.data.message);
+                });
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
+    };
+
     $scope.saveArticle = function() {
         var confirmBox = {
             title: 'Save article?',

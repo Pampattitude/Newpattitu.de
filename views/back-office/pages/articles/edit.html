@@ -132,14 +132,14 @@
 
     <div class="cell-1" ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
       <div class="hidden-mobile">
-        <button type="button" class="button button-info button-labeled">
+        <button type="button" class="button button-info button-labeled" ng-click="previewArticle()">
           <span class="button-label"><span class="icon icon-eye"></span></span>
           Preview
         </button>
       </div>
 
       <div class="hidden-desktop">
-        <button type="button" class="button button-info">
+        <button type="button" class="button button-info" ng-click="previewArticle()">
           <span class="icon icon-eye"></span>
         </button>
       </div>

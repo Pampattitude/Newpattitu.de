@@ -28,6 +28,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
         search:         require('./front/search'),
     };
 
+    var middleware = require('./middleware/front.js');
+
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
 
@@ -37,6 +39,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/article/:articleTechnicalName', bindPage(controllers.article.page));
     router.post('/article/:articleTechnicalName/comment', bindPost(controllers.article.postComment));
+    router.get ('/article/preview/:articleTechnicalName', middleware.isLoggedInBackOffice, bindPage(controllers.article.previewPage));
 
     router.get ('/search', bindPage(controllers.search.page));
 
