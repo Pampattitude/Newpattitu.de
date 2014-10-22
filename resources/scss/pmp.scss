@@ -1,5 +1,6 @@
 @import '_pmp.generic';
 @import '_pmp.common';
+@import '_pmp.vignette';
 @import '_pmp.grid';
 
 $body-text-color:               $white-mild;
@@ -14,24 +15,6 @@ $footer-background-color:       rgba(0, 0, 0, 0.85);
 $twitter-user-color:            rgb(153, 50, 153);
 $twitter-hashtag-color:         $link-text-color;
 $twitter-link-color:            rgb(51, 122, 204);
-
-$date-vignette-background-color:        rgb(128, 128, 160);
-$date-vignette-background-dark-color:   rgb(72, 72, 96);
-
-$featured-vignette-background-color:        rgb(208, 208, 32);
-$featured-vignette-background-dark-color:   rgb(144, 144, 16);
-
-$news-vignette-background-color:        rgb(32, 32, 32);
-$news-vignette-background-dark-color:   rgb(8, 8, 8);
-
-$life-vignette-background-color:        rgb(213, 103, 148);
-$life-vignette-background-dark-color:   rgb(156, 82, 118);
-
-$project-vignette-background-color:     rgb(32, 102, 204);
-$project-vignette-background-dark-color:        rgb(8, 81, 163);
-
-$tutorial-vignette-background-color:    rgb(64, 128, 64);
-$tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
 
 $tag-group-text-color:          $white-mild;
 $tag-group-background-color:    rgb(64, 64, 128);
@@ -247,69 +230,6 @@ body {
 .pmp-article {
     @extend .pmp-page-content-box-content;
 }
-
-/* Article vignettes */
-.featured-vignette {
-    font-size: 1.4em;
-    background-color: $featured-vignette-background-color;
-
-    &:after {
-        border-color: transparent transparent transparent $featured-vignette-background-dark-color;
-    }
-}
-
-.article-type-vignette {
-    font-size: 1.2em;
-}
-
-.news-vignette {
-    @extend .article-type-vignette;
-    background-color: $news-vignette-background-color;
-
-    &:after {
-        border-color: transparent $news-vignette-background-dark-color transparent transparent;
-    }
-}
-
-.life-vignette {
-    @extend .article-type-vignette;
-    background-color: $life-vignette-background-color;
-
-    &:after {
-        border-color: transparent $life-vignette-background-dark-color transparent transparent;
-    }
-}
-
-.project-vignette {
-    @extend .article-type-vignette;
-    background-color: $project-vignette-background-color;
-
-    &:after {
-        border-color: transparent $project-vignette-background-dark-color transparent transparent;
-    }
-}
-
-.tutorial-vignette {
-    @extend .article-type-vignette;
-    background-color: $tutorial-vignette-background-color;
-
-    &:after {
-        border-color: transparent $tutorial-vignette-background-dark-color transparent transparent;
-    }
-}
-
-.date-vignette {
-    top: 2.1em;
-
-    font-size: 0.7em;
-
-    background-color: $date-vignette-background-color;
-
-    &:after {
-        border-color: transparent $date-vignette-background-dark-color transparent transparent;
-    }
-}
-/* !Article vignettes */
 
 .pmp-article {
     .pmp-article-title {

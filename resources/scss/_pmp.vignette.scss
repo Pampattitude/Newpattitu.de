@@ -1,0 +1,159 @@
+@import '_pmp.generic';
+
+$date-vignette-background-color:        rgb(128, 128, 160);
+$date-vignette-background-dark-color:   rgb(72, 72, 96);
+
+$featured-vignette-background-color:        rgb(208, 208, 32);
+$featured-vignette-background-dark-color:   rgb(144, 144, 16);
+
+$news-vignette-background-color:        rgb(32, 32, 32);
+$news-vignette-background-dark-color:   rgb(8, 8, 8);
+
+$life-vignette-background-color:        rgb(213, 103, 148);
+$life-vignette-background-dark-color:   rgb(156, 82, 118);
+
+$project-vignette-background-color:     rgb(32, 102, 204);
+$project-vignette-background-dark-color:        rgb(8, 81, 163);
+
+$tutorial-vignette-background-color:    rgb(64, 128, 64);
+$tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
+
+
+/* Box vignettes */
+.box-vignette-left {
+    @extend .fronter;
+
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    color: $white-mild;
+
+    background-color: rgb(48, 192, 48); /* TMP */
+
+    &:after {
+        content: "";
+
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        z-index: -1;
+
+        border-style: solid;
+        border-width: 0 16px 6px 0;
+        border-color: transparent rgb(24, 96, 24) transparent transparent; /* TMP */
+    }
+}
+
+.box-vignette-right {
+    @extend .fronter;
+
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    color: $white-mild;
+
+    background-color: rgb(48, 192, 48); /* TMP */
+
+    &:after {
+        content: "";
+
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: -6px;
+        right: 0;
+        z-index: -1;
+
+        border-style: solid;
+        border-width: 0 0 6px 16px;
+        border-color: transparent transparent transparent rgb(24, 96, 24); /* TMP */
+    }
+}
+
+.twitter-vignette {
+    color: $white-mild;
+
+    background-color: $twitter-background-color;
+}
+.box-vignette-left.twitter-vignette:after {
+    border-color: transparent $twitter-background-color-dark transparent transparent;
+}
+.box-vignette-right.twitter-vignette:after {
+    border-color: transparent transparent transparent $twitter-background-color-dark;
+}
+/* !Box vignettes */
+
+/* Vignettes */
+.featured-vignette {
+    font-size: 1.4em;
+    background-color: $featured-vignette-background-color;
+
+    &:after {
+        border-color: transparent transparent transparent $featured-vignette-background-dark-color;
+    }
+}
+
+.article-type-vignette {
+    font-size: 1.2em;
+}
+
+.news-vignette {
+    @extend .article-type-vignette;
+    background-color: $news-vignette-background-color;
+
+    &:after {
+        border-color: transparent $news-vignette-background-dark-color transparent transparent;
+    }
+}
+
+.life-vignette {
+    @extend .article-type-vignette;
+    background-color: $life-vignette-background-color;
+
+    &:after {
+        border-color: transparent $life-vignette-background-dark-color transparent transparent;
+    }
+}
+
+.project-vignette {
+    @extend .article-type-vignette;
+    background-color: $project-vignette-background-color;
+
+    &:after {
+        border-color: transparent $project-vignette-background-dark-color transparent transparent;
+    }
+}
+
+.tutorial-vignette {
+    @extend .article-type-vignette;
+    background-color: $tutorial-vignette-background-color;
+
+    &:after {
+        border-color: transparent $tutorial-vignette-background-dark-color transparent transparent;
+    }
+}
+
+.date-vignette {
+    top: 2.1em;
+
+    font-size: 0.7em;
+
+    background-color: $date-vignette-background-color;
+
+    &:after {
+        border-color: transparent $date-vignette-background-dark-color transparent transparent;
+    }
+}
+/* !Vignettes */
