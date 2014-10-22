@@ -309,15 +309,15 @@ a {
         overflow: hidden;
 
         padding: 0 0.4em 0 0;
-    }
 
-    &.button-labeled .button-label {
-        @extend .inline-block;
+        > .button-label {
+            @extend .inline-block;
 
-        margin-right: 0.4em;
-        padding: 0.4em 0.5em;
+            margin-right: 0.4em;
+            padding: 0.4em 0.5em;
 
-        background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
     }
 
     &.button-labeled-inverse {
@@ -428,6 +428,12 @@ textarea {
     position: relative;
 
     font-size: 1em;
+
+    &.input-group-inline {
+        @extend .inline-block;
+
+        width: auto;
+    }
 
     .input-group-placeholder {
         @extend .back;
