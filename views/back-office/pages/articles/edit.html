@@ -2,8 +2,34 @@
   <!-- Article -->
   <div class="pmp-article">
     <div class="pmp-article-content">
+      <div class="pmp-article-type" ng-init="article.type = article.type || 'news'">
+        <button type="button" class="vignette-button news-vignette"
+                ng-click="article.type = 'news'"
+                ng-class="{'inactive': 'news' != article.type}">
+          News
+        </button>
+
+        <button type="button" class="vignette-button life-vignette"
+                ng-click="article.type = 'life'"
+                ng-class="{'inactive': 'life' != article.type}">
+          Life
+        </button>
+
+        <button type="button" class="vignette-button project-vignette"
+                ng-click="article.type = 'project'"
+                ng-class="{'inactive': 'project' != article.type}">
+          Project
+        </button>
+
+        <button type="button" class="vignette-button tutorial-vignette"
+                ng-click="article.type = 'tutorial'"
+                ng-class="{'inactive': 'tutorial' != article.type}">
+          Tutorial
+        </button>
+      </div>
+
       <div class="pmp-article-title-and-technical-name grid-3">
-        <div class="cell-2">
+        <div class="cell-2 cell-mobile-3">
           <div class="pmp-article-title">
             <div class="input-group">
               <input class="input-group-data"
@@ -16,7 +42,7 @@
           </div>
         </div>
 
-        <div class="cell-1">
+        <div class="cell-1 cell-mobile-3">
           <div class="pmp-article-technical-name">
             <div class="input-group input-group-with-button">
               <input class="input-group-data"
@@ -61,8 +87,9 @@
       <div class="pmp-article-tags">
         <span class="pmp-article-tag" ng-repeat="tag in article.tags">
           <span ng-bind="tag"></span>
-          <span class="icon icon-close" ng-click="removeTag(tag)">
-          </span>
+          <button type="button" class="button button-remove-tag" ng-click="article.tags.splice($index, 1)">
+            <span class="icon icon-close"></span>
+          </button>
         </span>
 
         <div class="input-group input-group-inline">
@@ -73,16 +100,6 @@
 
           <div class="input-group-placeholder">Tag...</div>
         </div>
-      </div>
-
-      <div class="pmp-article-type">
-        <select ng-model="article.type" ng-init="article.type = article.type || 'news'">
-          <option value="news">News</option>
-          <option value="life">Life</option>
-          <option value="project">Project</option>
-          <option value="tutorial">Tutorial</option>
-          <option value="other">Other</option>
-        </select>
       </div>
     </div>
   </div>

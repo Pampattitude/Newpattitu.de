@@ -8,15 +8,23 @@ $featured-vignette-background-dark-color:   rgb(144, 144, 16);
 
 $news-vignette-background-color:        rgb(32, 32, 32);
 $news-vignette-background-dark-color:   rgb(8, 8, 8);
+$news-vignette-button-background-hover-color:   rgb(64, 64, 64);
+$news-vignette-button-background-focus-color:   rgb(16, 16, 16);
 
 $life-vignette-background-color:        rgb(213, 103, 148);
 $life-vignette-background-dark-color:   rgb(156, 82, 118);
+$life-vignette-button-background-hover-color:   rgb(228, 128, 180);
+$life-vignette-button-background-focus-color:   rgb(184, 76, 112);
 
 $project-vignette-background-color:     rgb(32, 102, 204);
 $project-vignette-background-dark-color:        rgb(8, 81, 163);
+$project-vignette-button-background-hover-color:        rgb(48, 128, 220);
+$project-vignette-button-background-focus-color:        rgb(24, 72, 172);
 
 $tutorial-vignette-background-color:    rgb(64, 128, 64);
 $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
+$tutorial-vignette-button-background-hover-color:       rgb(96, 160, 96);
+$tutorial-vignette-button-background-focus-color:       rgb(40, 96, 40);
 
 
 /* Box vignettes */
@@ -116,6 +124,13 @@ $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
     &:after {
         border-color: transparent $news-vignette-background-dark-color transparent transparent;
     }
+
+    &.vignette-button:hover {
+        background-color: $news-vignette-button-background-hover-color;
+    }
+    &.vignette-button:active {
+        background-color: $news-vignette-button-background-focus-color;
+    }
 }
 
 .life-vignette {
@@ -124,6 +139,13 @@ $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
 
     &:after {
         border-color: transparent $life-vignette-background-dark-color transparent transparent;
+    }
+
+    &.vignette-button:hover {
+        background-color: $life-vignette-button-background-hover-color;
+    }
+    &.vignette-button:active {
+        background-color: $life-vignette-button-background-focus-color;
     }
 }
 
@@ -134,6 +156,13 @@ $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
     &:after {
         border-color: transparent $project-vignette-background-dark-color transparent transparent;
     }
+
+    &.vignette-button:hover {
+        background-color: $project-vignette-button-background-hover-color;
+    }
+    &.vignette-button:active {
+        background-color: $project-vignette-button-background-focus-color;
+    }
 }
 
 .tutorial-vignette {
@@ -142,6 +171,13 @@ $tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
 
     &:after {
         border-color: transparent $tutorial-vignette-background-dark-color transparent transparent;
+    }
+
+    &.vignette-button:hover {
+        background-color: $tutorial-vignette-button-background-hover-color;
+    }
+    &.vignette-button:active {
+        background-color: $tutorial-vignette-button-background-focus-color;
     }
 }
 

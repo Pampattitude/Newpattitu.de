@@ -20,6 +20,11 @@ $menu-item-exit-background-focus-color: rgb(168, 52, 52);
 
 $page-toolbar-background-color: $main-menu-background-color;
 
+$tag-text-color:                $white-mild;
+$tag-background-color:          rgb(64, 128, 64);
+$tag-background-hover-color:    rgb(96, 168, 96);
+$tag-background-focus-color:    rgb(48, 96, 48);
+
 body {
     min-width: 300px;
 
@@ -440,8 +445,62 @@ body {
         @extend .clearfix;
         @extend .pmp-page-content-box;
 
+        margin: 0;
+
         .pmp-article-content {
             @extend .pmp-page-content-box-content;
+
+            .pmp-article-tags {
+                text-align: left;
+
+                .pmp-article-tag {
+                    @extend .inline-block;
+
+                    cursor: default;
+
+                    margin: 0 0.3em;
+                    padding: 0.2em 0.4em;
+
+                    color: $tag-text-color;
+
+                    background-color: $tag-background-color;
+
+                    transition: background-color 200ms;
+
+                    &:hover {
+                        background-color: $tag-background-hover-color;
+                    }
+
+                    &:active {
+                        background-color: $tag-background-focus-color;
+                    }
+
+                    &:first-child { margin-left: 0; }
+                    &:last-child { margin-right: 0; }
+
+                    .button-remove-tag {
+                        margin: 0;
+                        padding: 0 0 0 0.4em;
+
+                        color: inherit;
+                        font-size: 0.5em;
+
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            .pmp-article-type {
+                margin-bottom: 1em;
+
+                .vignette-button.inactive {
+                    background-color: rgb(128, 128, 128); /* TMP */
+
+                    &:hover {
+                        background-color: rgb(152, 152, 152); /* TMP */
+                    }
+                }
+            }
         }
     }
 }
