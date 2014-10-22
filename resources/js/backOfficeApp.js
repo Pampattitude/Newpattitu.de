@@ -93,6 +93,30 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         });
     };
     /* !Login */
+
+    /* Articles */
+    $scope.changeArticleStatus_ = function(article, activate) {
+        var url = null;
+
+        if (activate)
+            url = '/back-office/article/' + article.technicalName + '/activate';
+        else
+            url = '/back-office/article/' + article.technicalName + '/deactivate';
+
+        return $http.post(url, {}).then(function(response) {
+            article.activated = activate;
+        }, function(response) {
+            $scope.addAlert('error', response.data.message);
+        });
+    };
+
+    $scope.activateArticle = function(article) {
+        return $scope.changeArticleStatus_(article, true);
+    };
+    $scope.deactivateArticle = function(article) {
+        return $scope.changeArticleStatus_(article, false);
+    };
+    /* !Articles */
 }]);
 
 /* Filter for trusted HTML. Usage: ng-bind-html="var | trust" */

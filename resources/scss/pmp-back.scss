@@ -227,4 +227,91 @@ body {
         }
     }
 }
+
+/* Articles */
+.pmp-articles {
+    & > [class*="cell-"] {
+        padding: 0.2em 0.2em;
+    }
+
+    .pmp-article {
+        @extend .pmp-page-content-box;
+
+        height: 10em;
+
+        [class*="box-vignette"] {
+            font-size: 1em;
+        }
+
+        .pmp-article-content {
+            @extend .pmp-page-content-box-content;
+
+            overflow: hidden;
+
+            &.pmp-new-article {
+                font-size: 2em;
+
+                .button {
+                    padding: 0.6em 0.8em;
+                }
+            }
+
+            .pmp-article-title {
+                @extend .back;
+
+                height: 3.5em;
+                overflow: hidden;
+
+                margin: 0;
+
+                &:after {
+                    content: '';
+
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+
+                    box-shadow: 0 -0.4em 0.4em $pmp-page-box-background-color inset;
+                }
+            }
+
+            .pmp-article-date {
+                color: $black-milder; /* TMP */
+                font-size: 0.7em;
+            }
+        }
+
+        .pmp-article-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            .button {
+                width: 100%;
+            }
+
+            .button.button-activate {
+                @extend .button-success;
+            }
+
+            .button.button-deactivate {
+                @extend .button-default;
+            }
+
+            .button.button-edit {
+                @extend .button-info;
+            }
+
+            .button.button-moderate {
+                @extend .button-warning;
+            }
+        }
+    }
+}
+/* !Articles */
 /* !Page content */
