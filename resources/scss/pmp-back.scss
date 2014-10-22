@@ -198,8 +198,7 @@ body {
             &:hover {
                 background-color: rgb(220, 128, 64);
             }
-            &:active,
-            &:focus {
+            &:active {
                 background-color: rgb(192, 112, 56);
             }
 
@@ -238,8 +237,7 @@ body {
                 background-color: $menu-item-exit-background-color;
 
                 &:hover { background-color: $menu-item-exit-background-hover-color; }
-                &:active,
-                &:focus { background-color: $menu-item-exit-background-focus-color; }
+                &:active { background-color: $menu-item-exit-background-focus-color; }
             }
 
             @media only screen and (max-width: 991px) {

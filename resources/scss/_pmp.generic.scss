@@ -143,8 +143,7 @@ a {
     transition: color 200ms;
 
     &:hover { color: $link-text-hover-color; }
-    &:active,
-    &:focus { color: $link-text-focus-color; }
+    &:active { color: $link-text-focus-color; }
 
     &.external-link .external-icon {
         font-size: 0.8em;
@@ -219,8 +218,7 @@ a {
         border-color: $button-default-hover-background-color;
     }
 
-    &:active,
-    &:focus {
+    &:active {
         color: $button-default-text-focus-color;
         background-color: $button-default-focus-background-color;
         border-color: $button-default-focus-background-color;
@@ -235,8 +233,7 @@ a {
             border-color: $button-default-hover-background-color;
         }
 
-        &:active,
-        &:focus {
+        &:active {
             background-color: $button-default-focus-background-color;
             border-color: $button-default-focus-background-color;
         }
@@ -251,8 +248,7 @@ a {
             border-color: $button-success-hover-background-color;
         }
 
-        &:active,
-        &:focus {
+        &:active {
             background-color: $button-success-focus-background-color;
             border-color: $button-success-focus-background-color;
         }
@@ -267,8 +263,7 @@ a {
             border-color: $button-info-hover-background-color;
         }
 
-        &:active,
-        &:focus {
+        &:active {
             background-color: $button-info-focus-background-color;
             border-color: $button-info-focus-background-color;
         }
@@ -283,8 +278,7 @@ a {
             border-color: $button-warning-hover-background-color;
         }
 
-        &:active,
-        &:focus {
+        &:active {
             background-color: $button-warning-focus-background-color;
             border-color: $button-warning-focus-background-color;
         }
@@ -299,8 +293,7 @@ a {
             border-color: $button-error-hover-background-color;
         }
 
-        &:active,
-        &:focus {
+        &:active {
             background-color: $button-error-focus-background-color;
             border-color: $button-error-focus-background-color;
         }
@@ -352,8 +345,7 @@ a {
         background-color: $button-github-hover-background-color;
         border-color: $button-github-hover-background-color;
     }
-    &.button-github:active,
-    &.button-github:focus {
+    &.button-github:active {
         background-color: $button-github-focus-background-color;
         border-color: $button-github-focus-background-color;
     }
@@ -366,8 +358,7 @@ a {
         background-color: $button-facebook-hover-background-color;
         border-color: $button-facebook-hover-background-color;
     }
-    &.button-facebook:active,
-    &.button-facebook:focus {
+    &.button-facebook:active {
         background-color: $button-facebook-focus-background-color;
         border-color: $button-facebook-focus-background-color;
     }
@@ -380,8 +371,7 @@ a {
         background-color: $button-twitter-hover-background-color;
         border-color: $button-twitter-hover-background-color;
     }
-    &.button-twitter:active,
-    &.button-twitter:focus {
+    &.button-twitter:active {
         background-color: $button-twitter-focus-background-color;
         border-color: $button-twitter-focus-background-color;
     }
@@ -394,8 +384,7 @@ a {
         background-color: $button-linkedin-hover-background-color;
         border-color: $button-linkedin-hover-background-color;
     }
-    &.button-linkedin:active,
-    &.button-linkedin:focus {
+    &.button-linkedin:active {
         background-color: $button-linkedin-focus-background-color;
         border-color: $button-linkedin-focus-background-color;
     }
@@ -408,8 +397,7 @@ a {
         background-color: $button-rss-hover-background-color;
         border-color: $button-rss-hover-background-color;
     }
-    &.button-rss:active,
-    &.button-rss:focus {
+    &.button-rss:active {
         background-color: $button-rss-focus-background-color;
         border-color: $button-rss-focus-background-color;
     }
