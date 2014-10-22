@@ -216,7 +216,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
                     $scope.closeConfirmBox();
                     $scope.addAlert('success', 'Article saved!');
                 }, function(response) {
-                    $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
+                    $scope.addAlert('error', 'Could not save article because: ' + response.data.message);
                 });
             },
         };
