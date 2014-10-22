@@ -225,6 +225,22 @@ a {
         border-color: $button-default-focus-background-color;
     }
 
+    &.button-default {
+        background-color: $button-default-background-color;
+        border-color: $button-default-background-color;
+
+        &:hover {
+            background-color: $button-default-hover-background-color;
+            border-color: $button-default-hover-background-color;
+        }
+
+        &:active,
+        &:focus {
+            background-color: $button-default-focus-background-color;
+            border-color: $button-default-focus-background-color;
+        }
+    }
+
     &.button-success {
         background-color: $button-success-background-color;
         border-color: $button-success-background-color;
