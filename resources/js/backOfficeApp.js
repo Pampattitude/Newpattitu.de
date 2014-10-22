@@ -4,17 +4,52 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
     // Big hack here:
     // globals are defined by EJS. When it renders the page, it prints "var global = ..."
     // with '...' being the full res.locals object
-    $scope.globals = globals;
-    $scope.refresh = function() {
+    $rootScope.globals = $scope.globals = globals;
+
+    $rootScope.refresh = $scope.refresh = function() {
         if (!$scope.$$phase)
             $scope.$apply();
     };
+
+    /* Confirm box */
+    /* Confirm box options:
+         - title: String
+         - text: HTML string
+         - refuseText: String, defaults to "Refuse"
+         - refuseCallback: Function(), defaults to $scope.closeConfirmBox
+         - acceptText: String, defaults to "Accept"
+         - acceptCallback: Function(), defaults to $scope.closeConfirmBox */
+    $rootScope.openConfirmBox = $scope.openConfirmBox = function(confirmBox) {
+        $('#page-hider').addClass('active');
+
+        if (!confirmBox.refuseText)
+            confirmBox.refuseText = 'Refuse';
+        if (!confirmBox.refuseCallback)
+            confirmBox.refuseCallback = $scope.closeConfirmBox;
+        if (!confirmBox.acceptText)
+            confirmBox.acceptText = 'Accept';
+        if (!confirmBox.acceptCallback)
+            confirmBox.acceptCallback = $scope.closeConfirmBox;
+
+        $scope.confirmBox = confirmBox;
+        $scope.confirmBoxOpened = true;
+        $scope.refresh();
+    };
+
+    $rootScope.closeConfirmBox = $scope.closeConfirmBox = function(confirmBox) {
+        $('#page-hider').removeClass('active');
+        if ($scope.confirmBox)
+            delete $scope.confirmBox;
+
+        $scope.confirmBoxOpened = false;
+    };
+    /* !Confirm box */
 
     /* Alerts */
     $scope.alertList = [];
     $scope.alertIdx_ = 0;
 
-    $scope.addAlert = function(state, message) {
+    $rootScope.addAlert = $scope.addAlert = function(state, message) {
         var alert = {
             idx_: ($scope.alertIdx_)++,
             state: state,
@@ -41,7 +76,7 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         }, 5000 /*ms*/);
     };
 
-    $scope.removeAlert = function(alert) {
+    $rootScope.removeAlert = $scope.removeAlert = function(alert) {
         $scope.alertList = $scope.alertList.filter(function(elem) {
             return elem.idx_ != alert.idx_;
         });
@@ -106,7 +141,7 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         return $http.post(url, {}).then(function(response) {
             article.activated = activate;
         }, function(response) {
-            $scope.addAlert('error', response.data.message);
+            $scope.addAlert('error', 'Could not change article availability because: ' + response.data.message);
         });
     };
 
@@ -132,7 +167,22 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
 
     /* Article */
     $scope.deleteArticle = function() {
-        var url = '/back-office/article/' + $scope.article.technicalName + '/delete';
+        var confirmBox = {
+            title: 'Delete article "' + $scope.article.title + '"?',
+            text: 'Do you really want to delete the article "' + $scope.article.title + '" ("' + $scope.article.technicalName + '")? This operation is not reversible',
+            acceptCallback: function() {
+                var url = '/back-office/article/' + $scope.article.technicalName + '/delete';
+                $http.post(url, {}).then(function(response) {
+                    $scope.closeConfirmBox();
+                    window.location = '/back-office/articles';
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
+                });
+            },
+        };
+
+        $rootScope.openConfirmBox(confirmBox);
+
     };
     /* !Article */
 }]);

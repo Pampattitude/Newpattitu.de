@@ -46,6 +46,81 @@ body {
     box-sizing: border-box;
 }
 
+/* Page hider */
+.pmp-page-hider {
+    @extend .frontestest;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+
+    background-color: rgba(0, 0, 0, 0);
+
+    transition: background-color 200ms;
+
+    &.active {
+        width: 100%;
+        height: 100vh;
+
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+/* !Page hider */
+
+/* Confirm box */
+.pmp-confirm-box-container {
+    @extend .frontestest;
+
+    width: 100%;
+
+    position: fixed;
+    top: 20vh;
+
+    .pmp-confirm-box {
+        @extend .clearfix;
+
+        width: 40em;
+        max-width: 80%;
+
+        margin: auto;
+
+        background-color: $white;
+
+        .pmp-confirm-box-close {
+            float: right;
+
+            font-size: 0.7em;
+        }
+
+        .pmp-confirm-box-content {
+            padding: 0.4em 0.8em;
+
+            .pmp-confirm-box-title {
+                margin: 0.2em 0;
+
+                border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+            }
+
+            .pmp-confirm-box-text {
+                margin: 1em 0;
+            }
+        }
+
+        .pmp-confirm-box-actions {
+            .pmp-confirm-box-refuse-button {
+                float: left;
+            }
+
+            .pmp-confirm-box-accept-button {
+                float: right;
+            }
+        }
+    }
+}
+/* !Confirm box */
+
 /* Main menu/nav */
 .pmp-main-menu {
     height: 100vh;
