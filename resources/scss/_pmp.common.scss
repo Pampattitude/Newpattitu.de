@@ -1,5 +1,8 @@
 @import '_pmp.generic';
 
+$pmp-page-box-text-color:       $black-mild;
+$pmp-page-box-background-color: $white-mild;
+
 $alert-success-text-color:      $white-mild;
 $alert-success-background-color:        rgb(64, 192, 64);
 $alert-debug-text-color:        $white-mild;
@@ -129,10 +132,10 @@ $page-box-margin-v:             2rem;
 
     margin: $page-box-margin-v auto;
 
-    color: $black-mild;
+    color: $pmp-page-box-text-color;
     text-align: center;
 
-    background-color: $white-mild;
+    background-color: $pmp-page-box-background-color;
 }
 
 /* Page content */
