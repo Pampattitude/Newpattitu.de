@@ -40,7 +40,7 @@ var search_ = function(queryString, callback) {
     var data = utils.trim(queryString).split(' ');
 
     var finalArticleList = [];
-    return mongoose.model('Article').find({}).exec(function(err, articleList) {
+    return mongoose.model('Article').find({activated: true}).exec(function(err, articleList) {
         if (err)
             return callback(err);
 

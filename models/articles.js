@@ -21,6 +21,7 @@ var schema = new mongoose.Schema({
     featured: {type: Boolean, default: false},
 
     views: {type: Number, default: 0},
+    activated: {type: Boolean, default: false, index: true},
     created: {type: Date, default: Date.now},
 });
 

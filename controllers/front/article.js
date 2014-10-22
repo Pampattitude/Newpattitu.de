@@ -9,7 +9,7 @@ exports.page = function(req, res, callback) {
     res.locals.page = 'pages/article.html';
     res.locals.activeTopMenu = 'blog';
 
-    return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName}, function(err, article) {
+    return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName, activated: true}, function(err, article) {
         if (err) return callback(err);
         if (!article) return res.redirect('/404');
 

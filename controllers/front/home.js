@@ -13,7 +13,7 @@ exports.page = function(req, res, callback) {
 
     return async.series([
         function(serieCallback) { // Get featured article
-            return mongoose.model('Article').findOne({featured: true}, function(err, featuredArticle) {
+            return mongoose.model('Article').findOne({featured: true, activated: true}, function(err, featuredArticle) {
                 if (err) return serieCallback(err);
                 if (featuredArticle)
                     res.locals.featuredArticle = featuredArticle;
@@ -22,7 +22,7 @@ exports.page = function(req, res, callback) {
             });
         },
         function(serieCallback) { // Get article list
-            return mongoose.model('Article').find().sort({created: -1}).limit(constants.frontHomePageArticleCount).exec(function(err, articles) {
+            return mongoose.model('Article').find({activated: true}).sort({created: -1}).limit(constants.frontHomePageArticleCount).exec(function(err, articles) {
                 if (err)
                     return callback(err);
 
