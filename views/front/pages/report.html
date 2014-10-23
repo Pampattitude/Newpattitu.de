@@ -1,28 +1,35 @@
-<div class="pmp-page-content-box">
+<div class="pmp-page-content-box" ng-controller="reportController">
   <h2 class="box-vignette-left">Leave a report</h2>
 
-  <div class="pmp-report"> <!-- TMP -->
+  <div class="pmp-report">
     <div class="pmp-report-header">
-      <p>
+      <p class="pmp-report-thanks">
         Thanks for leaving a report!
       </p>
       <p>
-        If you encountered an error, please include page URL and details on what you were doing before having the error.
+        If you encountered an error, please include page URL and
+        details on what you were doing before having the error.
       </p>
     </div>
 
-    <div class="input-group">
-      <input class="input-group-data" type="text" ng-model="reportName" ng-class="{'has-data': reportName.length}" />
+    <div class="pmp-report-content">
+      <input class="control" type="text"
+             ng-model="report.name"
+             ng-class="{'has-data': reportName.length}"
+             maxlength="64"
+             placeholder="Name..." />
 
-      <div class="input-group-placeholder">Name...</div>
+      <textarea class="control"
+                ng-model="report.text"
+                ng-class="{'has-data': reportText.length}"
+                rows="4" maxlength="1024"
+                data-resizable
+                placeholder="What happened?"></textarea>
+
+      <button class="button button-success button-labeled pmp-submit-report" type="button" ng-click="sendReport()">
+        <span class="button-label"><span class="icon icon-checkmark"></span></span>
+        Submit
+      </button>
     </div>
-
-    <div class="input-group">
-      <textarea class="input-group-data" ng-model="reportText" ng-class="{'has-data': reportText.length}" rows="2"></textarea>
-
-      <div class="input-group-placeholder">Report...</div>
-    </div>
-
-    <br /><!-- TMP -->
   </div>
 </div>

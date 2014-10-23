@@ -159,3 +159,19 @@ frontApp.controller('articleCommentsController', ['$scope', '$rootScope', '$http
         });
     };
 }]);
+
+frontApp.controller('reportController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    $scope.sendReport = function() {
+        var sendReportUrl = '/report/send';
+
+        return $http.post(sendReportUrl, $scope.report).then(function(response) {
+            $($scope).find('.control').attr('disabled', 'disabled');
+            $scope.addAlert('success', 'Thanks for the report!<br />Redirecting you to the homepage...');
+            return setTimeout(function() {
+                window.location = '/';
+            }, 2000);
+        }, function(response) {
+            $scope.addAlert('error', 'Could not save report because: "' + JSON.stringify(response.data) + '"');
+        });
+    };
+}]);

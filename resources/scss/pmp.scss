@@ -660,6 +660,45 @@ body {
     }
 }
 /* !About */
+
+/* Report */
+.pmp-report {
+    @extend .pmp-page-content-box-content;
+
+    text-align: left;
+
+    .pmp-report-header {
+        margin-bottom: 1em;
+
+        p {
+            font-size: 0.9em;
+            margin: 0.4em auto;
+
+            &:first-child { margin-top: 0; }
+            &:last-child { margin-bottom: 0; }
+
+            &.pmp-report-thanks {
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    .pmp-report-content {
+        @extend .clearfix;
+
+        .control {
+            margin: 0.4em auto;
+
+            &:first-child { margin-top: 0; }
+            &:last-child { margin-bottom: 0; }
+        }
+
+        .pmp-submit-report {
+            float: right;
+        }
+    }
+}
+/* !Report */
 /* !Page content */
 
 /* Right menu */

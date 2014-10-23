@@ -46,6 +46,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/about', bindPage(controllers.about.page));
 
     router.get ('/report', bindPage(controllers.report.page));
+    router.post('/report/send', bindAjax(controllers.report.send));
 
     router.get ('/rss', bindGet(controllers.rss.get));
 
