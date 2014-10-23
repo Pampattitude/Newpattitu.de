@@ -273,7 +273,6 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             });
         }
         else {
-            $scope.addAlert('debug', 'Skipping autosave because not all fields are set');
             return setTimeout($scope.autoSave, 30000);
         }
     };
