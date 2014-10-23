@@ -339,6 +339,10 @@ body {
         max-width: 16em;
         margin: 0 auto;
 
+        .control {
+            margin-bottom: 0.2em;
+        }
+
         .pmp-login-button {
             @extend .block;
 

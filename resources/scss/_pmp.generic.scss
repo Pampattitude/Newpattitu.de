@@ -487,6 +487,88 @@ textarea {
         border-bottom-style: solid !important;
     }
 }
+
+/* Control */
+input.control,
+textarea.control {
+    @extend .block;
+
+    width: 100%;
+
+    color: $black-mild;
+
+    padding: 0.3em 0.6em;
+
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 0;
+    border-left: 3px solid rgb(160, 160, 160);
+    outline: 0;
+
+    transition: background-color 200ms, border-color 200ms;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        border-color: rgb(192, 192, 192);
+    }
+
+    &:focus {
+        color: $black;
+
+        background-color: rgba(0, 0, 0, 0.06);
+        border-color: rgb(136, 136, 136);
+    }
+
+    &.control-inline {
+        @extend .inline-block;
+        width: auto;
+    }
+
+    &.control-default {
+        &:hover {}
+        &:focus {}
+    }
+
+    &.control-success {
+        border-color: $green;
+
+        &:hover { border-color: $green-light; }
+        &:focus {
+            background-color: rgba(48, 104, 48, 0.1); /* TMP */
+            border-color: $green-dark;
+        }
+    }
+
+    &.control-info {
+        border-color: $blue;
+
+        &:hover { border-color: $blue-light; }
+        &:focus {
+            background-color: rgba(48, 48, 104, 0.1); /* TMP */
+            border-color: $blue-dark;
+        }
+    }
+
+    &.control-warning {
+        border-color: $orange;
+
+        &:hover { border-color: $orange-light; }
+        &:focus {
+            background-color: rgba(160, 88, 32, 0.1); /* TMP */
+            border-color: $orange-dark;
+        }
+    }
+
+    &.control-error {
+        border-color: $red;
+
+        &:hover { border-color: $red-light; }
+        &:focus {
+            background-color: rgba(128, 40, 40, 0.1); /* TMP */
+            border-color: $red-dark;
+        }
+    }
+}
+/* !Control */
 /* !Form */
 
 .elem-list {
