@@ -1,0 +1,165 @@
+@import 'icomoon';
+
+.pmp-bb {
+    width: 100%;
+
+    .pmp-bb-controls {
+        @extend .clearfix;
+
+        width: 100%;
+
+        list-style-type: none;
+
+        margin: 0;
+        padding: 0;
+
+        color: $black-mild;
+
+        background-color: $white-milder;
+        border-bottom: 3px solid rgb(160, 160, 160);
+
+        .pmp-bb-control,
+        .pmp-bb-separator {
+            width: 6.25%;
+            min-height: 1px;
+            height: 2.2rem; /* We use rem because text size is not the same between buttons */
+            display: block;
+            float: left;
+
+            margin: 0;
+            padding: 0.6em 0.6em;
+
+            text-align: center;
+
+            @media only screen and (max-width: 991px) {
+                width: 12.5%;
+                height: 2.4rem; /* We use rem because text size is not the same between buttons */
+            }
+        }
+
+        .pmp-bb-control {
+            transition: background-color 200ms;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $white-mild;
+            }
+            &:active { background-color: $white-milderer; }
+
+            &.pmp-bb-title {
+                @extend .icon;
+
+                padding: 0.5em 0.6em;
+
+                &:before {
+                    content: 'H';
+                    font-family: serif;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                }
+            }
+
+            &.pmp-bb-subtitle {
+                @extend .icon;
+
+                padding: 0.5em 0.6em;
+
+                &:before {
+                    content: 'H';
+                    font-family: serif;
+                    font-size: 0.9em;
+                    font-weight: bold;
+                }
+            }
+
+            &.pmp-bb-paragraph {
+                @extend .icon;
+
+                padding: 0.4em 0.6em;
+
+                &:before {
+                    content: '\00B6';
+                    font-family: sans-serif;
+                    font-weight: bold;
+                }
+            }
+
+
+            &.pmp-bb-bold {
+                @extend .icon;
+                @extend .icon-bold;
+            }
+
+            &.pmp-bb-italic {
+                @extend .icon;
+                @extend .icon-italic;
+            }
+
+            &.pmp-bb-strikethrough {
+                @extend .icon;
+                @extend .icon-strikethrough;
+            }
+
+            &.pmp-bb-underline {
+                @extend .icon;
+                @extend .icon-underline;
+            }
+
+
+            &.pmp-bb-picture {
+                @extend .icon;
+                @extend .icon-image;
+            }
+
+            &.pmp-bb-link {
+                @extend .icon;
+                @extend .icon-link;
+            }
+
+
+            &.pmp-bb-quote {
+                @extend .icon;
+                @extend .icon-quotes-left;
+            }
+
+            &.pmp-bb-code {
+                @extend .icon;
+                @extend .icon-code;
+            }
+
+            &.pmp-bb-comment {
+                @extend .icon;
+                @extend .icon-bubbles4;
+            }
+
+            &.pmp-bb-tldr {
+                @extend .icon;
+
+                &:before {
+                    content: '\00B7\00B7\00B7';
+                    font-weight: bold;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 991px) {
+            .pmp-bb-separator-desktop {
+                width: 0;
+                display: none;
+                margin: 0;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .pmp-bb-separator-mobile {
+                width: 0;
+                display: none;
+                margin: 0;
+            }
+        }
+    }
+
+    .markItUpHeader ul { /* List of control buttons */
+        @extend .pmp-bb-controls;
+    }
+}

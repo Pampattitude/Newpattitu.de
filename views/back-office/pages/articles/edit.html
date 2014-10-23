@@ -51,20 +51,21 @@
       </div>
 
       <div class="pmp-article-caption">
-        <textarea class="control"
+        <textarea class="pmp-bb-textarea control"
                   ng-model="article.caption"
                   ng-init="article.caption = article.caption || ''"
                   placeholder="Caption..."
-                  rows="4" data-resizable></textarea>
+                  data-resizable rows="8"
+                  bbcode-it-up></textarea>
       </div>
 
       <div class="pmp-article-text">
-        <textarea class="control"
+        <textarea class="pmp-bb-textarea control"
                   ng-model="article.text"
                   ng-init="article.text = article.text || ''"
                   placeholder="Text..."
-                  rows="8" data-resizable
-                  style="text-align: left;"></textarea>
+                  data-resizable rows="8"
+                  bbcode-it-up></textarea>
       </div>
 
       <div class="pmp-article-tags">

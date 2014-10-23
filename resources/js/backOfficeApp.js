@@ -352,3 +352,64 @@ backOfficeApp.controller('reportsController', ['$scope', '$rootScope', '$http', 
         return $rootScope.openConfirmBox(confirmBox);
     };
 }]);
+
+backOfficeApp.factory('bbcodeitupSettings', [
+    function() {
+        var markset = [
+            { name: '',                 openWith: '[title]', closeWith: '[/title]',             className: 'pmp-bb-control pmp-bb-title' },
+            { name: '',                 openWith: '[subtitle]', closeWith: '[/subtitle]',       className: 'pmp-bb-control pmp-bb-subtitle' },
+            { name: '',                 openWith: '[p]\n', closeWith: '\n[/p]',                 className: 'pmp-bb-control pmp-bb-paragraph' },
+
+            { separator: '', className: 'pmp-bb-separator' },
+
+            { name: '', key: 'B',       openWith: '[b]', closeWith: '[/b]',                     className: 'pmp-bb-control pmp-bb-bold' },
+            { name: '', key: 'I',       openWith: '[i]', closeWith: '[/i]',                     className: 'pmp-bb-control pmp-bb-italic' },
+            { name: '', key: 'S',       openWith: '[s]', closeWith: '[/s]',                     className: 'pmp-bb-control pmp-bb-strikethrough' },
+            { name: '', key: 'U',       openWith: '[u]', closeWith: '[/u]',                     className: 'pmp-bb-control pmp-bb-underline' },
+
+            { separator: '', className: 'pmp-bb-separator pmp-bb-separator-desktop' },
+
+            { name: '', key: 'P',       replaceWith: '[img][![URL:]!][/img]',                   className: 'pmp-bb-control pmp-bb-picture' },
+            { name: '', key: 'L',       replaceWith: '[url=[![URL:]!]][![Link name:]!][/url]',  className: 'pmp-bb-control pmp-bb-link' },
+
+            { separator: '', className: 'pmp-bb-separator' },
+            { separator: '', className: 'pmp-bb-separator pmp-bb-separator-mobile' },
+
+            { name: '',                 openWith: '[quote]', closeWith: '[/quote]',             className: 'pmp-bb-control pmp-bb-quote'},
+            { name: '',                 openWith: '[code]', closeWith: '[/code]',               className: 'pmp-bb-control pmp-bb-code'},
+            { name: '',                 openWith: '[comment]', closeWith: '[/comment]',         className: 'pmp-bb-control pmp-bb-comment'},
+            { name: '',                 openWith: '[tldr]', closeWith: '[/tldr]',               className: 'pmp-bb-control pmp-bb-tldr'},
+        ];
+
+        var factory = {
+            create: function(callback) {
+                return {
+                    nameSpace: 'pmp-bb',
+                    afterInsert: callback,
+                    previewParserPath: '',
+                    markupSet: markset,
+                };
+            },
+        };
+
+        return factory;
+    }
+]);
+
+backOfficeApp.directive('bbcodeItUp', ['bbcodeitupSettings', function(markitupSettings) {
+    return {
+        restrict: 'A',
+        scope: {
+            ngModel: '='
+        },
+        link: function(scope, element, attrs) {
+            var settings;
+            settings = markitupSettings.create(function(event) {
+                scope.$apply(function() {
+                    scope.ngModel = event.textarea.value;
+                });
+            });
+            angular.element(element).markItUp(settings);
+        }
+    };
+}]);

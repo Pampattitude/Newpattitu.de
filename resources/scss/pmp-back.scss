@@ -2,6 +2,7 @@
 @import '_pmp.common';
 @import '_pmp.vignette';
 @import '_pmp.grid';
+@import '_pmp.bbcode';
 
 $body-text-color:               $black-mild;
 $body-background-color:         $white-mild;
@@ -502,7 +503,7 @@ body {
             .pmp-article-caption,
             .pmp-article-text {
                 textarea {
-                    font-size: 0.8em;
+                    font-size: 0.9em;
                 }
 
                 .pmp-article-caption-actions,
