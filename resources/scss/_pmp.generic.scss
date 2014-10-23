@@ -567,6 +567,12 @@ textarea.control {
             border-color: $red-dark;
         }
     }
+
+    &.control[disabled] {
+        cursor: not-allowed;
+
+        color: rgb(96, 96, 96);
+    }
 }
 /* !Control */
 /* !Form */

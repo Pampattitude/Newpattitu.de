@@ -109,3 +109,15 @@ exports.remove = function(req, res, callback) {
         return callback();
     });
 };
+
+exports.generateTechnicalName = function(req, res, callback) {
+    if (!req.query.title ||
+       4 > req.query.title.length)
+        return callback({code: 400, message: 'Title too short or missing'});
+
+    var technicalName = req.query.title.replace(/ /g, '_')
+        .replace(/[^A-Za-z0-9\-_]/g, '')
+        .toLowerCase();
+
+    return callback(null, technicalName);
+};

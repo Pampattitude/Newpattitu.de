@@ -174,6 +174,7 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         return $rootScope.openConfirmBox(confirmBox);
     };
     /* !Articles */
+    $scope.addAlert('error', 'Article saved!');
 }]);
 
 /* Filter for trusted HTML. Usage: ng-bind-html="var | trust" */
@@ -194,15 +195,28 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     };
     $scope.articleExists = undefined != globals.article;
 
+    $scope.saveArticle_ = function(callback) {
+        var url = '/back-office/article/' + $scope.article._id + '/save';
+        $http.post(url, $scope.article).then(function(response) {
+            $scope.addAlert('success', 'Article saved!');
+            if (callback)
+                return callback();
+        }, function(response) {
+            $scope.addAlert('error', 'Could not save article because: ' + response.data.message);
+            if (callback)
+                return callback(response.data);
+        });
+    };
+
     /* Article */
     $scope.deleteArticle = function() {
         var confirmBox = {
             title: 'Delete article?',
             text: 'Do you really want to delete the article "' + $scope.article.title + '"? This operation is not reversible.',
             acceptCallback: function() {
+                $scope.closeConfirmBox();
                 var url = '/back-office/article/' + $scope.article._id + '/delete';
                 $http.post(url, {}).then(function(response) {
-                    $scope.closeConfirmBox();
                     window.location = '/back-office/articles';
                 }, function(response) {
                     $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
@@ -218,9 +232,9 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             title: 'Save article?',
             text: 'Do you really want to save the article "' + $scope.article.title + '"? The article must be saved in order to preview it.',
             acceptCallback: function() {
+                $scope.closeConfirmBox();
                 var url = '/back-office/article/' + $scope.article._id + '/save';
                 $http.post(url, $scope.article).then(function(response) {
-                    $scope.closeConfirmBox();
                     $scope.addAlert('success', 'Article saved!');
 
                     var previewUrl = '/article/preview/' + $scope.article.technicalName;
@@ -239,18 +253,33 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             title: 'Save article?',
             text: 'Do you really want to save the article "' + $scope.article.title + '"?',
             acceptCallback: function() {
-                var url = '/back-office/article/' + $scope.article._id + '/save';
-                $http.post(url, $scope.article).then(function(response) {
-                    $scope.closeConfirmBox();
-                    $scope.addAlert('success', 'Article saved!');
-                }, function(response) {
-                    $scope.addAlert('error', 'Could not save article because: ' + response.data.message);
-                });
+                $scope.closeConfirmBox();
+                $scope.saveArticle_();
             },
         };
 
         return $rootScope.openConfirmBox(confirmBox);
     };
+
+    $scope.autoSave = function() {
+        if ($scope.article &&
+            $scope.article.title && $scope.article.title.length &&
+            $scope.article.technicalName && $scope.article.technicalName.length &&
+            $scope.article.caption && $scope.article.caption.length &&
+            $scope.article.text && $scope.article.text.length &&
+            $scope.article.tags && $scope.article.tags.length) {
+            return $scope.saveArticle_(function(err) {
+                if (err) return ;
+                return setTimeout($scope.autoSave, 60000);
+            });
+        }
+        else {
+            $scope.addAlert('debug', 'Skipping autosave because not all fields are set');
+            return setTimeout($scope.autoSave, 30000);
+        }
+    };
+
+    setTimeout($scope.autoSave, 30000);
     /* !Article */
 }]).directive('controlTags', function() {
     return {
@@ -272,4 +301,21 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             });
         },
     };
-});
+}).directive('updateTechnicalName', ['$http', function($http) {
+    return {
+        restrict: 'A',
+        link: function($scope, $elem) {
+            $elem.on('change', function() {
+                if (!$scope.article.title.length)
+                    return ;
+
+                var generateTechnicalNameUrl = '/back-office/article/generateTechnicalName?title=' + $scope.article.title;
+                return $http.get(generateTechnicalNameUrl, {}).then(function(response) {
+                    $scope.article.technicalName = response.data;
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not generate a technical name because: ' + response.data.message);
+                });
+            });
+        },
+    };
+}]);

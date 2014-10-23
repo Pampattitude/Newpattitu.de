@@ -126,6 +126,12 @@ body {
 }
 /* !Confirm box */
 
+/* Alerts */
+.pmp-alerts {
+    top: 3em;
+}
+/* !Alerts */
+
 /* Main menu/nav */
 .pmp-main-menu {
     height: 100vh;
@@ -465,16 +471,26 @@ body {
                     margin-right: 0.2em;
 
                     font-size: 1.2em;
+
+                    @media only screen and (max-width: 991px) {
+                        margin-right: 0;
+                    }
                 }
 
                 .pmp-article-technical-name {
                     margin-left: 0.2em;
+
+                    @media only screen and (max-width: 991px) {
+                        margin-left: 0;
+                    }
 
                     input {
                         padding-top: 0.5em;
                         padding-bottom: 0.5em;
                     }
                 }
+
+
             }
 
             .pmp-article-caption,
