@@ -7,7 +7,7 @@ var schemaOptions = {
 };
 
 var schema = new mongoose.Schema({
-    author: {type: String, unique: true},
+    author: {type: String},
     text: {type: String},
 
     status: {type: String, enum: ['new', 'fixed', 'wontFix'], default: 'new'},
