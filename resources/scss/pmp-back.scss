@@ -570,4 +570,134 @@ body {
     }
 }
 /* !Article edit */
+
+/* Reports */
+.pmp-reports {
+    & > [class*="cell-"] {
+        padding: 0.4em 0.2em;
+
+        &:first-child { padding-top: 0.2em; }
+        &:last-child { padding-bottom: 0.2em; }
+    }
+
+    .pmp-report {
+        @extend .pmp-page-content-box;
+
+        .pmp-report-content-container {
+            padding: 0.8em 1.2em;
+
+            .pmp-report-content {
+                @extend .front;
+
+                padding: 0.6em 0.8em 0.4em 0.8em;
+
+                text-align: left;
+
+                background-color: rgba(0, 0, 0, 0.1); /* TMP */
+
+                .pmp-report-author {
+                    position: absolute;
+                    top: -1em;
+                    left: -1.2em;
+
+                    margin: 0;
+                    padding: 0.3em 0.6em;
+
+                    color: $white-mild; /* TMP */
+                    font-size: 0.8em;
+
+                    background-color: $green-dark; /* TMP */
+
+                    &:after {
+                        content: "";
+
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        position: absolute;
+                        bottom: -6px;
+                        left: 0;
+                        z-index: -1;
+
+                        border-style: solid;
+                        border-width: 0 16px 6px 0;
+                        border-color: transparent $green-darker transparent transparent; /* TMP */
+                    }
+
+                    .pmp-report-author-name {
+                        font-weight: bold;
+                    }
+                }
+
+                .pmp-report-text {
+                    @extend .front;
+                }
+
+                .pmp-report-date {
+                    position: absolute;
+                    top: -1em;
+                    right: -1.2em;
+
+                    margin: 0;
+                    padding: 0.3em 0.6em;
+
+                    color: $white-mild; /* TMP */
+                    font-size: 0.7em;
+
+                    background-color: $blue-dark; /* TMP */
+
+                    &:after {
+                        content: "";
+
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        position: absolute;
+                        bottom: -6px;
+                        right: 0;
+                        z-index: -1;
+
+                        border-style: solid;
+                        border-width: 0 0 6px 16px;
+                        border-color: transparent transparent transparent $blue-darker; /* TMP */
+                    }
+                }
+            }
+        }
+
+        .pmp-report-actions {
+            .button {
+                width: 100%;
+
+                &.button-open {
+                    &.active {
+                        background-color: $yellow;
+                    }
+
+                    &:hover { background-color: $yellow-light; }
+                    &:active { background-color: $yellow-dark; }
+                }
+
+                &.button-treated {
+                    &.active {
+                        background-color: $green;
+                    }
+
+                    &:hover { background-color: $green-light; }
+                    &:active { background-color: $green-dark; }
+                }
+
+                &.button-closed {
+                    &.active {
+                        background-color: $orange;
+                    }
+
+                    &:hover { background-color: $orange-light; }
+                    &:active { background-color: $orange-dark; }
+                }
+            }
+        }
+    }
+}
+/* !Reports */
 /* !Page content */

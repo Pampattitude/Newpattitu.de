@@ -1,1 +1,57 @@
-Reports
+<div class="pmp-reports grid-12" ng-controller="reportsController">
+  <!-- Report -->
+  <div class="cell-12 cell-mobile-12"
+       ng-repeat="report in globals.reportList">
+    <div class="pmp-report">
+      <div class="pmp-report-content-container">
+        <div class="pmp-report-content">
+          <div class="pmp-report-author">
+            By <span class="pmp-report-author-name"
+                     ng-bind="report.author"></span>
+          </div>
+
+          <div class="pmp-report-date"
+               ng-bind="report.created | date: 'yyyy-MM-dd'"></div>
+
+          <div class="pmp-report-text"
+               ng-bind="report.text"></div>
+        </div>
+      </div>
+
+      <!-- Report actions -->
+      <div class="pmp-report-actions grid-4">
+        <div class="cell-1">
+          <button type="button" class="button button-open"
+                  ng-class="{active: 'open' == report.status}"
+                  ng-click="changeReportStatus(report, 'open')">
+            <span class="icon icon-star3"></span>
+          </button>
+        </div>
+
+        <div class="cell-1">
+          <button type="button" class="button button-treated"
+                  ng-class="{active: 'treated' == report.status}"
+                  ng-click="changeReportStatus(report, 'treated')">
+            <span class="icon icon-checkmark"></span>
+          </button>
+        </div>
+
+        <div class="cell-1">
+          <button type="button" class="button button-closed"
+                  ng-class="{active: 'closed' == report.status}"
+                  ng-click="changeReportStatus(report, 'closed')">
+            <span class="icon icon-close"></span>
+          </button>
+        </div>
+
+        <div class="cell-1">
+          <button type="button" class="button button-error" ng-click="deleteReport(report)">
+            <span class="icon icon-remove"></span>
+          </button>
+        </div>
+      </div>
+      <!-- !Report actions -->
+    </div>
+  </div>
+  <!-- !Report -->
+</div>

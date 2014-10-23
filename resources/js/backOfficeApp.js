@@ -13,12 +13,12 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
 
     /* Confirm box */
     /* Confirm box options:
-         - title: String
-         - text: HTML string
-         - refuseText: String, defaults to "Refuse"
-         - refuseCallback: Function(), defaults to $scope.closeConfirmBox
-         - acceptText: String, defaults to "Accept"
-         - acceptCallback: Function(), defaults to $scope.closeConfirmBox */
+       - title: String
+       - text: HTML string
+       - refuseText: String, defaults to "Refuse"
+       - refuseCallback: Function(), defaults to $scope.closeConfirmBox
+       - acceptText: String, defaults to "Accept"
+       - acceptCallback: Function(), defaults to $scope.closeConfirmBox */
     $rootScope.openConfirmBox = $scope.openConfirmBox = function(confirmBox) {
         $('#page-hider').addClass('active');
 
@@ -289,7 +289,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
 
                 if (13 == e.which && newTag.length) { // Enter
                     if (-1 == $scope.article.tags.indexOf(newTag))
-                    $scope.article.tags.push(newTag);
+                        $scope.article.tags.push(newTag);
                     $scope.newTag = '';
                     $scope.refresh();
                 }
@@ -316,5 +316,40 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
                 });
             });
         },
+    };
+}]);
+
+backOfficeApp.controller('reportsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    $scope.changeReportStatus = function(report, newStatus) {
+        var changeReportStatusUrl = '/back-office/report/' + report._id + '/setStatus';
+        return $http.post(changeReportStatusUrl, {status: newStatus}).then(function(response) {
+            $scope.addAlert('success', 'Report status changed!');
+            report.status = newStatus;
+            $scope.refresh();
+        }, function(response) {
+            $scope.addAlert('error', 'Could not update report status because: ' + response.data.message);
+        });
+    };
+
+    $scope.deleteReport = function(report) {
+        var confirmBox = {
+            title: 'Delete report?',
+            text: 'Do you really want to delete this report? This operation is not reversible.',
+            acceptCallback: function() {
+                $scope.closeConfirmBox();
+                var url = '/back-office/report/' + report._id + '/delete';
+                $http.post(url, {}).then(function(response) {
+                    $scope.addAlert('success', 'Report deleted!');
+                    $scope.globals.reportList = $scope.globals.reportList.filter(function(elem) {
+                        return report._id != elem._id;
+                    });
+                    $scope.refresh();
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
+                });
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
     };
 }]);
