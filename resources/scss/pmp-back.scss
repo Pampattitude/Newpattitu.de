@@ -454,6 +454,45 @@ body {
         .pmp-article-content {
             @extend .pmp-page-content-box-content;
 
+            .pmp-article-title-and-technical-name,
+            .pmp-article-caption,
+            .pmp-article-text {
+                margin-bottom: 1em;
+            }
+
+            .pmp-article-title-and-technical-name {
+                .pmp-article-title {
+                    margin-right: 0.2em;
+
+                    font-size: 1.2em;
+                }
+
+                .pmp-article-technical-name {
+                    margin-left: 0.2em;
+
+                    input {
+                        padding-top: 0.5em;
+                        padding-bottom: 0.5em;
+                    }
+                }
+            }
+
+            .pmp-article-caption,
+            .pmp-article-text {
+                textarea {
+                    font-size: 0.8em;
+                }
+
+                .pmp-article-caption-actions,
+                .pmp-article-text-actions {
+                    font-size: 0.9em;
+
+                    [class*="cell-"] > button {
+                        width: 100%;
+                    }
+                }
+            }
+
             .pmp-article-tags {
                 text-align: left;
 

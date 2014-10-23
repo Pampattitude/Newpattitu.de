@@ -28,60 +28,41 @@
         </button>
       </div>
 
-      <div class="pmp-article-title-and-technical-name grid-3">
-        <div class="cell-2 cell-mobile-3">
+      <div class="pmp-article-title-and-technical-name grid-4">
+        <div class="cell-2 cell-mobile-4">
           <div class="pmp-article-title">
-            <div class="input-group">
-              <input class="input-group-data"
-                     ng-model="article.title"
-                     ng-init="article.title = article.title || ''"
-                     ng-class="{'has-data': 0 < article.title.length}" />
-
-              <div class="input-group-placeholder">Title...</div>
-            </div>
+            <input class="control"
+                   ng-model="article.title"
+                   ng-init="article.title = article.title || ''"
+                   placeholder="Title..." />
           </div>
         </div>
 
-        <div class="cell-1 cell-mobile-3">
+        <div class="cell-2 cell-mobile-4">
           <div class="pmp-article-technical-name">
-            <div class="input-group input-group-with-button">
-              <input class="input-group-data"
-                     ng-model="article.technicalName"
-                     ng-init="article.technicalName = article.technicalName || ''"
-                     ng-class="{'has-data': 0 < article.technicalName.length}" />
-
-              <div class="input-group-placeholder">Technical name...</div>
-
-              <button type="button" class="button button-success input-group-button" ng-click="generateTechnicalName()">
-                <span class="icon icon-shuffle"></span>
-              </button>
-            </div>
+            <input class="control"
+                   ng-model="article.technicalName"
+                   ng-init="article.technicalName = article.technicalName || ''"
+                   placeholder="Technical name..." />
           </div>
         </div>
       </div>
 
       <div class="pmp-article-caption">
-        <div class="input-group">
-          <textarea class="input-group-data"
-                    ng-model="article.caption"
-                    ng-init="article.caption = article.caption || ''"
-                    ng-class="{'has-data': 0 < article.caption.length}"
-                    rows="4" data-resizable></textarea>
-
-          <div class="input-group-placeholder">Caption...</div>
-        </div>
+        <textarea class="control"
+                  ng-model="article.caption"
+                  ng-init="article.caption = article.caption || ''"
+                  placeholder="Caption..."
+                  rows="4" data-resizable></textarea>
       </div>
 
       <div class="pmp-article-text">
-        <div class="input-group">
-          <textarea class="input-group-data"
-                    ng-model="article.text"
-                    ng-init="article.text = article.text || ''"
-                    ng-class="{'has-data': 0 < article.text.length}"
-                    rows="8" data-resizable></textarea>
-
-          <div class="input-group-placeholder">Text...</div>
-        </div>
+        <textarea class="control"
+                  ng-model="article.text"
+                  ng-init="article.text = article.text || ''"
+                  placeholder="Text..."
+                  rows="8" data-resizable
+                  style="text-align: left;"></textarea>
       </div>
 
       <div class="pmp-article-tags">
@@ -92,15 +73,11 @@
           </button>
         </span>
 
-        <div class="input-group input-group-inline">
-          <input class="input-group-data"
-                 ng-model="newTag"
-                 ng-init="newTag = newTag || ''"
-                 ng-class="{'has-data': 0 < newTag.length}" />
-
-          <div class="input-group-placeholder">Tag...</div>
+        <input class="control control-inline"
+               ng-model="newTag"
+               ng-init="newTag = newTag || ''"
+               placeholder="New tag..." control-tags />
         </div>
-      </div>
     </div>
   </div>
   <!-- !Article -->

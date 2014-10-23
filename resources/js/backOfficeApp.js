@@ -184,7 +184,14 @@ backOfficeApp.filter('trust', ['$sce', function($sce) {
 }]);
 
 backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
-    $scope.article = globals.article;
+    $rootScope.article = $scope.article = globals.article || {
+        title: '',
+        technicalName: '',
+        caption: '',
+        text: '',
+        tags: [],
+        type: null,
+    };
     $scope.articleExists = undefined != globals.article;
 
     /* Article */
@@ -245,4 +252,24 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
         return $rootScope.openConfirmBox(confirmBox);
     };
     /* !Article */
-}]);
+}]).directive('controlTags', function() {
+    return {
+        restrict: 'A',
+        link: function($scope, $elem) {
+            $($elem).on('keyup', function(e) {
+                var newTag = $scope.newTag.trim();
+
+                if (13 == e.which && newTag.length) { // Enter
+                    if (-1 == $scope.article.tags.indexOf(newTag))
+                    $scope.article.tags.push(newTag);
+                    $scope.newTag = '';
+                    $scope.refresh();
+                }
+                else if (8 == e.which && !$scope.newTag.length) {
+                    $scope.newTag = $scope.article.tags.pop();
+                    $scope.refresh();
+                }
+            });
+        },
+    };
+});
