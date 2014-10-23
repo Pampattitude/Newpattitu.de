@@ -20,6 +20,14 @@ exports.page = function(req, res, callback) {
         if (err) return callback(err);
 
         res.locals.articleList = articles;
+        res.locals.articleList.forEach(function(elem) {
+            elem.caption = elem.compressedCaption;
+            delete elem.compressedCaption;
+
+            elem.text = elem.compressedText;
+            delete elem.compressedText;
+        });
+
         res.locals.searchString = req.query.search;
 
         return callback();

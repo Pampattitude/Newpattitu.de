@@ -37,6 +37,14 @@ exports.page = function(req, res, callback) {
                 if (res.locals.featuredArticle)
                     res.locals.articleList.unshift(res.locals.featuredArticle);
 
+                res.locals.articleList.forEach(function(elem) {
+                    elem.caption = elem.compressedCaption;
+                    delete elem.compressedCaption;
+
+                    elem.text = elem.compressedText;
+                    delete elem.compressedText;
+                });
+
                 return callback();
             });
         },

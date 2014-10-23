@@ -14,6 +14,12 @@ exports.page = function(req, res, callback) {
         if (!article) return res.redirect('/404');
 
         res.locals.article = article;
+        res.locals.article.caption = res.locals.article.compressedCaption;
+        delete res.locals.article.compressedCaption;
+
+        res.locals.article.text = res.locals.article.compressedText;
+        delete res.locals.article.compressedText;
+
         res.locals.title = article.title;
 
         ++article.views;
@@ -44,6 +50,12 @@ exports.previewPage = function(req, res, callback) {
         if (!article) return res.redirect('/back-office/404');
 
         res.locals.article = article;
+        res.locals.article.caption = res.locals.article.compressedCaption;
+        delete res.locals.article.compressedCaption;
+
+        res.locals.article.text = res.locals.article.compressedText;
+        delete res.locals.article.compressedText;
+
         res.locals.title = article.title + ' - Preview';
 
         ++article.views;
