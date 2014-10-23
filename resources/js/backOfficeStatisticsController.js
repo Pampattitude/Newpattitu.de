@@ -3,7 +3,8 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralArticleStatistics = function() {
         var generalArticleStatisticsUrl = '/back-office/stats/articles/general';
         $http.get(generalArticleStatisticsUrl, {}).then(function(response) {
-            $scope.generalArticleStatistics = response.data.generalArticleStatistics;
+            if (response.data.generalArticleStatistics)
+                $scope.generalArticleStatistics = response.data.generalArticleStatistics;
         }, function(response) {
             $scope.addAlert('error', 'Could not get general article statistics because: ' + response.data.message);
         });
@@ -15,7 +16,8 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralCommentStatistics = function() {
         var generalCommentStatisticsUrl = '/back-office/stats/comments/general';
         $http.get(generalCommentStatisticsUrl, {}).then(function(response) {
-            $scope.generalCommentStatistics = response.data.generalCommentStatistics;
+            if (response.data.generalCommentStatistics)
+                $scope.generalCommentStatistics = response.data.generalCommentStatistics;
         }, function(response) {
             $scope.addAlert('error', 'Could not get general comment statistics because: ' + response.data.message);
         });
@@ -52,7 +54,8 @@ backOfficeApp.directive('linechart', function($parse) {
             };
 
             $scope.$watch($attrs.data, function() {
-                generateChart();
+                if ($attrs.data && $attrs.data.length)
+                    generateChart();
             });
         },
     };
@@ -86,7 +89,8 @@ backOfficeApp.directive('areachart', function($parse) {
             };
 
             $scope.$watch($attrs.data, function() {
-                generateChart();
+                if ($attrs.data && $attrs.data.length)
+                    generateChart();
             });
         },
     };
@@ -120,7 +124,8 @@ backOfficeApp.directive('barchart', function($parse) {
             };
 
             $scope.$watch($attrs.data, function() {
-                generateChart();
+                if ($attrs.data && $attrs.data.length)
+                    generateChart();
             });
         },
     };
