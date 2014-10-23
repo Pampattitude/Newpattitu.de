@@ -259,7 +259,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
 
         return $rootScope.openConfirmBox(confirmBox);
     };
-
+    /*
     $scope.autoSave = function() {
         if ($scope.article &&
             $scope.article.title && $scope.article.title.length &&
@@ -278,6 +278,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     };
 
     setTimeout($scope.autoSave, 30000);
+    */
     /* !Article */
 }]).directive('controlTags', function() {
     return {
