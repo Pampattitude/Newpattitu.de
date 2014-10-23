@@ -9,6 +9,7 @@ exports.page = function(req, res, callback) {
     res.locals.title = 'Articles';
 
     res.locals.page = 'pages/articles/list.html';
+    res.locals.activeTopMenu = 'articles';
 
     return mongoose.model('Article').find().sort({created: -1}).exec(function(err, articles) {
         if (err) return callback(err);
@@ -20,6 +21,7 @@ exports.page = function(req, res, callback) {
 
 exports.editPage = function(req, res, callback) {
     res.locals.page = 'pages/articles/edit.html';
+    res.locals.activeTopMenu = 'articles';
 
     if (!req.params.articleId) {
         res.locals.title = 'Create article';

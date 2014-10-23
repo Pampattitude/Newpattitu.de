@@ -7,7 +7,9 @@
   </h1>
 
   <ul class="pmp-menu-list">
-    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+    <li class="pmp-menu-item"
+        ng-class="{restricted: true != globals.logged,
+                  active: 'stats' == globals.activeTopMenu}">
       <a href="/back-office/stats">
         <span class="icon icon-stats"></span>
         <span class="hidden-mobile">
@@ -16,7 +18,9 @@
       </a>
     </li>
     
-    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+    <li class="pmp-menu-item"
+        ng-class="{restricted: true != globals.logged,
+                  active: 'articles'==globals.activeTopMenu}">
       <a href="/back-office/articles">
         <span class="icon icon-blog"></span>
         <span class="hidden-mobile">
@@ -25,7 +29,9 @@
       </a>
     </li>
 
-    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+    <li class="pmp-menu-item"
+        ng-class="{restricted: true != globals.logged,
+                  active: 'reports'==globals.activeTopMenu}">
       <a href="/back-office/reports">
         <span class="icon icon-signup"></span>
         <span class="hidden-mobile">
@@ -34,7 +40,9 @@
       </a>
     </li>
 
-    <li class="pmp-menu-item" ng-class="{restricted: true != globals.logged}">
+    <li class="pmp-menu-item"
+        ng-class="{restricted: true != globals.logged,
+                  active: 'share'==globals.activeTopMenu}">
       <a href="/back-office/share">
         <span class="icon icon-share"></span>
         <span class="hidden-mobile">

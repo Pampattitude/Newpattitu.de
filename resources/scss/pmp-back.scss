@@ -210,11 +210,13 @@ body {
 
             transition: background-color 200ms;
 
+            &:active,
+            &.active {
+                background-color: rgb(192, 112, 56);
+            }
+
             &:hover {
                 background-color: rgb(220, 128, 64);
-            }
-            &:active {
-                background-color: rgb(192, 112, 56);
             }
 
             @media only screen and (min-width: 992px) {
