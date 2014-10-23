@@ -94,13 +94,14 @@ body {
         background-color: $white;
 
         .pmp-confirm-box-close {
+            @extend .frontestest;
             float: right;
 
             font-size: 0.7em;
         }
 
         .pmp-confirm-box-content {
-            padding: 0.4em 0.8em;
+            padding: 0.6em 1.2em;
 
             .pmp-confirm-box-title {
                 margin: 0.2em 0;
@@ -114,6 +115,9 @@ body {
         }
 
         .pmp-confirm-box-actions {
+            @extend .clearfix;
+            padding: 0.6em 1.2em;
+
             .pmp-confirm-box-refuse-button {
                 float: left;
             }
