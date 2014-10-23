@@ -174,7 +174,6 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         return $rootScope.openConfirmBox(confirmBox);
     };
     /* !Articles */
-    $scope.addAlert('error', 'Article saved!');
 }]);
 
 /* Filter for trusted HTML. Usage: ng-bind-html="var | trust" */
