@@ -3,7 +3,6 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralArticleStatistics = function() {
         var generalArticleStatisticsUrl = '/back-office/stats/articles/general';
         $http.get(generalArticleStatisticsUrl, {}).then(function(response) {
-            console.log(response);
             $scope.generalArticleStatistics = response.data.generalArticleStatistics;
         }, function(response) {
             $scope.addAlert('error', 'Could not get general article statistics because: ' + response.data.message);
@@ -16,7 +15,6 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralCommentStatistics = function() {
         var generalCommentStatisticsUrl = '/back-office/stats/comments/general';
         $http.get(generalCommentStatisticsUrl, {}).then(function(response) {
-            console.log(response);
             $scope.generalCommentStatistics = response.data.generalCommentStatistics;
         }, function(response) {
             $scope.addAlert('error', 'Could not get general comment statistics because: ' + response.data.message);
@@ -32,26 +30,35 @@ backOfficeApp.directive('linechart', function($parse) {
         template: '<div></div>',
         replace: true,
         link: function($scope, $elem, $attrs) {
-            var data = $parse($attrs.data)($scope);
-            var xkey = $parse($attrs.xkey)($scope);
-            var ykeys = $parse($attrs.ykeys)($scope);
-            var labels = $parse($attrs.labels)($scope);
-            var resize = $parse($attrs.resize)($scope) || false;
+            var generateChart = function() {
+                var data = $parse($attrs.data)($scope);
+                var xkey = $parse($attrs.xkey)($scope);
+                var ykeys = $parse($attrs.ykeys)($scope);
+                var labels = $parse($attrs.labels)($scope);
+                var resize = $parse($attrs.resize)($scope) || false;
 
-            return Morris.Line({
-                element: $elem,
-                data: data,
-                xkey: xkey,
-                ykeys: ykeys,
-                labels: labels,
-                resize: resize,
-                smooth: true,
-                parseTime: false,
-                gridTextFamily: 'Lato',
+                $elem.empty();
+                return Morris.Line({
+                    element: $elem,
+                    data: data,
+                    xkey: xkey,
+                    ykeys: ykeys,
+                    labels: labels,
+                    resize: resize,
+                    smooth: true,
+                    parseTime: false,
+                    gridTextFamily: 'Lato',
+                });
+            };
+
+            $scope.$watch($attrs.data, function() {
+                generateChart();
             });
         },
     };
-}).directive('areachart', function($parse) {
+});
+
+backOfficeApp.directive('areachart', function($parse) {
     return {
         restrict: 'EA',
         template: '<div></div>',
@@ -64,8 +71,7 @@ backOfficeApp.directive('linechart', function($parse) {
                 var labels = $parse($attrs.labels)($scope);
                 var resize = $parse($attrs.resize)($scope) || false;
 
-                console.log('DATA', data);
-
+                $elem.empty();
                 return Morris.Area({
                     element: $elem,
                     data: data,
@@ -80,33 +86,41 @@ backOfficeApp.directive('linechart', function($parse) {
             };
 
             $scope.$watch($attrs.data, function() {
-                console.log('has changed');
                 generateChart();
             });
         },
     };
-}).directive('barchart', function($parse) {
+});
+
+backOfficeApp.directive('barchart', function($parse) {
     return {
         restrict: 'EA',
         template: '<div></div>',
         replace: true,
         link: function($scope, $elem, $attrs) {
-            var data = $parse($attrs.data)($scope);
-            var xkey = $parse($attrs.xkey)($scope);
-            var ykeys = $parse($attrs.ykeys)($scope);
-            var labels = $parse($attrs.labels)($scope);
-            var resize = $parse($attrs.resize)($scope) || false;
+            var generateChart = function() {
+                var data = $parse($attrs.data)($scope);
+                var xkey = $parse($attrs.xkey)($scope);
+                var ykeys = $parse($attrs.ykeys)($scope);
+                var labels = $parse($attrs.labels)($scope);
+                var resize = $parse($attrs.resize)($scope) || false;
 
-            return Morris.Bar({
-                element: $elem,
-                data: data,
-                xkey: xkey,
-                ykeys: ykeys,
-                labels: labels,
-                resize: resize,
-                smooth: true,
-                parseTime: false,
-                gridTextFamily: 'Lato',
+                $elem.empty();
+                return Morris.Bar({
+                    element: $elem,
+                    data: data,
+                    xkey: xkey,
+                    ykeys: ykeys,
+                    labels: labels,
+                    resize: resize,
+                    smooth: true,
+                    parseTime: false,
+                    gridTextFamily: 'Lato',
+                });
+            };
+
+            $scope.$watch($attrs.data, function() {
+                generateChart();
             });
         },
     };

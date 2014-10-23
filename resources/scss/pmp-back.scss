@@ -755,13 +755,28 @@ body {
             padding-top: 1em;
 
             .chart {
+                overflow: hidden;
+
                 &.chart-big {
                     max-height: 16em;
+                    @media only screen and (max-width: 991px) { max-height: 12em; }
                 }
                 &.chart-small {
-                    max-height: 10em;
+                    max-height: 12em;
+                    @media only screen and (max-width: 991px) { max-height: 9em; }
                 }
-            }
+
+                @media only screen and (max-width: 991px) {
+                    &.chart-mobile-big {
+                        max-height: 16em;
+                        @media only screen and (max-width: 991px) { max-height: 12em; }
+                    }
+                    &.chart-mobile-small {
+                        max-height: 12em;
+                        @media only screen and (max-width: 991px) { max-height: 9em; }
+                    }
+                }
+             }
         }
     }
 }
