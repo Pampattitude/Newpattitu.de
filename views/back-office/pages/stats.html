@@ -1,1 +1,37 @@
-Stats
+<div class="pmp-stats grid-12" ng-controller="statisticsController">
+  <!-- Articles - General -->
+  <div class="cell-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Articles over time</h2>
+
+      <div class="pmp-stat-content">
+        <areachart class="chart chart-big"
+                   xkey="'time'"
+                   ykeys="['count']"
+                   labels="['Article count']"
+                   data="generalArticleStatistics"
+                   resize="true">
+        </areachart>
+      </div>
+    </div>
+  </div>
+  <!-- !Articles - General -->
+
+  <!-- Comments - General -->
+  <div class="cell-6 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Comments</h2>
+
+      <div class="pmp-stat-content">
+        <areachart class="chart chart-small"
+                   xkey="'time'"
+                   ykeys="['count']"
+                   labels="['Comment count']"
+                   data="generalCommentStatistics"
+                   resize="true">
+        </areachart>
+      </div>
+    </div>
+  </div>
+  <!-- !Comments - General -->
+</div>

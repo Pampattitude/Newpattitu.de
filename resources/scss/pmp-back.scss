@@ -711,4 +711,59 @@ body {
     }
 }
 /* !Reports */
+
+/* Statistics */
+.pmp-stats {
+    & > [class*="cell-"] {
+        padding: 1.2em 1.2em;
+    }
+
+    .pmp-stat {
+        @extend .pmp-page-content-box;
+
+        .pmp-stat-title {
+            position: absolute;
+            top: -1em;
+            left: -1em;
+
+            margin: 0;
+            padding: 0.3em 0.6em;
+
+            color: $white-mild; /* TMP */
+            font-size: 1em;
+
+            background-color: $green-dark; /* TMP */
+
+            &:after {
+                content: "";
+
+                display: block;
+                width: 0;
+                height: 0;
+                position: absolute;
+                bottom: -6px;
+                left: 0;
+                z-index: -1;
+
+                border-style: solid;
+                border-width: 0 16px 6px 0;
+                border-color: transparent $green-darker transparent transparent; /* TMP */
+            }
+        }
+
+        .pmp-stat-content {
+            padding-top: 1em;
+
+            .chart {
+                &.chart-big {
+                    max-height: 16em;
+                }
+                &.chart-small {
+                    max-height: 10em;
+                }
+            }
+        }
+    }
+}
+/* !Statistics */
 /* !Page content */

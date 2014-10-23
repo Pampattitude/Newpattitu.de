@@ -80,6 +80,8 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.post('/logout', bindAjax(controllers.login.ajaxLogout));
 
     router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
+    router.get ('/stats/articles/general', middleware.isLoggedIn, bindAjax(controllers.stats.articleGeneralStats));
+    router.get ('/stats/comments/general', middleware.isLoggedIn, bindAjax(controllers.stats.commentGeneralStats));
 
     router.get ('/articles', middleware.isLoggedIn, bindPage(controllers.articles.page));
     router.get ('/article/:articleId?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));
