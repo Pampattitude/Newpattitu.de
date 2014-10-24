@@ -2,6 +2,7 @@
 @import '_pmp.common';
 @import '_pmp.vignette';
 @import '_pmp.grid';
+@import '_pmp.bbcode';
 
 $body-text-color:               $white-mild;
 $body-background-color:         $black-mild;
@@ -249,19 +250,19 @@ body {
     }
 
     .pmp-article-text {
-        color: $black-mild;
-        text-align: left;
+        /*color: $black-mild;
+        text-align: left;*/
     }
 
     .pmp-article-caption,
     .pmp-article-text {
-        p {
+        /*p {
             @extend .elem-list;
 
             margin: 0.6em auto;
-        }
+        }*/
 
-        .tldr {
+        /*.tldr {
             @extend .clearfix;
 
             margin-top: 1.5em;
@@ -281,8 +282,21 @@ body {
                 font-size: 1.4em;
                 font-weight: bold;
             }
-        }
+        }*/
     }
+
+    .pmp-article-caption-before,
+    .pmp-article-caption-after,
+    .pmp-article-text-before,
+    .pmp-article-text-after {
+        color: rgba(32, 32, 32, 0.33);
+        font-size: 0.8em;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+        &:before, &:after { content: ' --- '; }
+    }
+
+    .pmp-article-caption-after { margin-bottom: 1.5em; }
+    .pmp-article-text-before { margin-top: 1.5em; }
 
     .pmp-article-more {
         @extend .clearfix;

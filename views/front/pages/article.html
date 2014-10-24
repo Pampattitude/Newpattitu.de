@@ -14,8 +14,21 @@
   <div class="pmp-article">
     <h1 class="pmp-article-title"><a href="/article/{{globals.article.technicalName}}" ng-bind-html="globals.article.title | trust"></a></h1>
 
-    <div class="pmp-article-text" ng-bind-html="globals.article.text | trust">
+    <div class="pmp-article-caption-before"
+         ng-show="true == globals.isPreview">Caption</div>
+    <div class="pmp-article-caption pmp-bb-generated"
+         ng-show="true == globals.isPreview"
+         ng-bind-html="globals.article.caption | trust">
     </div>
+    <div class="pmp-article-caption-after"
+         ng-show="true == globals.isPreview">Caption</div>
+
+    <div class="pmp-article-text-before"
+         ng-show="true == globals.isPreview">Text</div>
+    <div class="pmp-article-text pmp-bb-generated" ng-bind-html="globals.article.text | trust">
+    </div>
+    <div class="pmp-article-text-after"
+         ng-show="true == globals.isPreview">Text</div>
 
     <div class="pmp-article-more">
       <div class="pmp-article-tags">
