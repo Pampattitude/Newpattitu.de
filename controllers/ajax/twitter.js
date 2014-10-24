@@ -18,7 +18,7 @@ exports.getLatest = function(req, res, callback) {
     });
 
     return twit.get('/statuses/user_timeline.json', {}, function(data) {
-        if (!data)
+        if (!data || !data.length)
             return callback(null, []);
         else if (data.statusCode)
             return callback({
