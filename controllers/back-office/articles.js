@@ -4,6 +4,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
+var utils = require('../../lib/utils');
 
 exports.page = function(req, res, callback) {
     res.locals.title = 'Articles';
@@ -84,9 +85,9 @@ exports.save = function(req, res, callback) {
         title: req.body.title,
         technicalName: req.body.technicalName,
         caption: req.body.caption,
-        compressedCaption: req.body.caption,
+        compressedCaption: utils.bbCodeToHtml(req.body.caption),
         text: req.body.text,
-        compressedText: req.body.text,
+        compressedText: utils.bbCodeToHtml(req.body.text),
         tags: req.body.tags,
         type: req.body.type,
         lastUpdated: new Date(),
