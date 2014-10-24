@@ -151,22 +151,24 @@ var runServer = function() {
     serverApp.use(cookieParser());
 
     var mongoStore = require('connect-mongo')(expressSession);
-    serverApp.use(expressSession({
-        store: new mongoStore({
-            url: constants.databaseUri + '/sessions',
-        }),
-        secret: constants.sessionSecret,
-        resave: true,
-        saveUninitialized: true,
-    }));
+    var store = new mongoStore({
+        url: constants.databaseUri + '/sessions',
+    }, function() {
+        serverApp.use(expressSession({
+            secret: constants.sessionSecret,
+            resave: true,
+            saveUninitialized: true,
+            store: store,
+        }));
 
-    serverApp.use('/', express.static(constants.resourcePath));
-    serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
-    serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
+        serverApp.use('/', express.static(constants.resourcePath));
+        serverApp.use(constants.backOfficeRoute, routes.defineBackOfficeRoutes(serverApp, express.Router()));
+        serverApp.use(constants.frontRoute, routes.defineFrontRoutes(serverApp, express.Router()));
 
-    var port = constants.serverPort;
-    serverApp.listen(port);
-    printer.info('Server listening on port ' + port);
+        var port = constants.serverPort;
+        serverApp.listen(port);
+        printer.info('Server listening on port ' + port);
+    });
 };
 
 return main();
