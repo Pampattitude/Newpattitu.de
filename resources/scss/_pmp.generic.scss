@@ -581,6 +581,29 @@ textarea.control {
         color: rgb(96, 96, 96);
     }
 }
+
+.control-group {
+    @extend .clearfix;
+
+    .control {
+        width: 80%;
+        float: left;
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .control-button {
+        width: 20%;
+        float: right;
+
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.3em 0.6em;
+
+        font-size: 1em;
+    }
+}
 /* !Control */
 /* !Form */
 

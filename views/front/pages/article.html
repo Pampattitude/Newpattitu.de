@@ -64,29 +64,25 @@
 
     <!-- Add comment -->
     <div class="pmp-add-comment" ng-hide="true == newCommentPosted">
-      <div class="input-group">
-        <input class="input-group-data" type="text" name="author"
-               ng-model="newComment.author"
-               ng-init="newComment.author = globals.user.username || newComment.author || ''"
-               ng-class="{'has-data': 0 != newComment.author.length}" />
+      <input class="control" type="text" name="author"
+             ng-model="newComment.author"
+             ng-init="newComment.author = globals.user.username || newComment.author || ''"
+             ng-class="{'has-data': 0 != newComment.author.length}"
+             placeholder="Name..." />
 
-        <div class="input-group-placeholder">Name...</div>
+      <textarea class="control" type="text" name="text"
+                ng-model="newComment.text"
+                ng-init="newComment.text = newComment.text || ''"
+                ng-class="{'has-data': 0 != newComment.text.length}"
+                data-resizable rows="3"
+                placeholder="Comment.."></textarea>
+
+      <div class="pmp-add-comment-button">
+        <button class="button button-labeled button-success" type="button" ng-click="postComment()">
+          <div class="button-label"><span class="icon icon-checkmark"></span></div>
+          Submit
+        </button>
       </div>
-
-      <div class="input-group">
-        <textarea class="input-group-data" type="text" name="text"
-                  ng-model="newComment.text"
-                  ng-init="newComment.text = newComment.text || ''"
-                  ng-class="{'has-data': 0 != newComment.text.length}" data-resizable
-                  rows="3"></textarea>
-
-        <div class="input-group-placeholder">Text...</div>
-      </div>
-
-      <button class="button button-labeled button-success" type="button" ng-click="postComment()">
-        <div class="button-label"><span class="icon icon-checkmark"></span></div>
-        Submit
-      </button>
     </div>
     <!-- !Add comment -->
 

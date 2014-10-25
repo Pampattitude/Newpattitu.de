@@ -249,42 +249,6 @@ body {
         text-align: left;
     }
 
-    .pmp-article-text {
-        /*color: $black-mild;
-        text-align: left;*/
-    }
-
-    .pmp-article-caption,
-    .pmp-article-text {
-        /*p {
-            @extend .elem-list;
-
-            margin: 0.6em auto;
-        }*/
-
-        /*.tldr {
-            @extend .clearfix;
-
-            margin-top: 1.5em;
-            padding: 0.3em 0.6em;
-
-            background-color: rgba(0, 0, 0, 0.08);
-
-            &:before {
-                @extend .inline-block;
-
-                content: 'tl;dr';
-                float: left;
-
-                margin: 0 0.4em 0 0;
-
-                color: rgba(32, 32, 32, 0.5);
-                font-size: 1.4em;
-                font-weight: bold;
-            }
-        }*/
-    }
-
     .pmp-article-caption-before,
     .pmp-article-caption-after,
     .pmp-article-text-before,
@@ -373,7 +337,7 @@ body {
     text-align: left;
 
     .pmp-comment {
-        margin-bottom: 1em;
+        margin-bottom: 0.8em;
         padding: 0.6em 1.2em;
 
         color: $comment-text-color;
@@ -450,6 +414,17 @@ body {
                 border-width: 0 0 6px 16px;
                 border-color: transparent transparent transparent $comment-date-background-darker-color;
             }
+        }
+    }
+
+    .pmp-add-comment {
+        .control {
+            margin-top: 0.2em;
+            margin-bottom: 0.4em;
+        }
+
+        .pmp-add-comment-button {
+            text-align: right;
         }
     }
 
