@@ -89,7 +89,7 @@ exports.save = function(req, res, callback) {
         return callback({code: 400, message: 'Missing article type'});
 
     var findOptions = {
-        _id: req.body._id
+        _id: req.body._id || {$exists: false},
     };
     var updateOptions = {
         title: req.body.title,
