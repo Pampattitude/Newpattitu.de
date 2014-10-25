@@ -65,7 +65,7 @@
                   bbcode-it-up></textarea>
       </div>
 
-      <div class="pmp-article-text">
+      <div class="pmp-article-text" ng-hide="'flash' == article.type">
         <textarea class="pmp-bb-textarea control"
                   ng-model="article.text"
                   ng-init="article.text = article.text || ''"

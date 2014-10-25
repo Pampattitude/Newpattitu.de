@@ -14,8 +14,8 @@ var schema = new mongoose.Schema({
 
     caption: {type: String, required: true},
     compressedCaption: {type: String, required: true},
-    text: {type: String, required: true},
-    compressedText: {type: String, required: true},
+    text: {type: String},
+    compressedText: {type: String},
     tags: {type: [String], index: true},
 
     type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'flash'], default: 'news'},
