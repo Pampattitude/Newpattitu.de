@@ -4,43 +4,38 @@
 @import '_pmp.grid';
 @import '_pmp.bbcode';
 
-$body-text-color:               $white-mild;
-$body-background-color:         $black-mild;
-$body-background-image:         url('http://i.imgur.com/7XmZFgC.png');
+$body-text-color:                               $white-mild;
+$body-background-color:                         $black-mild;
+$body-background-image:                         url('http://i.imgur.com/7XmZFgC.png');
 
-$header-background-color:       rgba(0, 0, 0, 0.85);
-$header-image-background-color: rgb(240, 240, 240);
+$header-background-color:                       rgba($black, 0.85);
+$header-image-background-color:                 $white-mild;
 
-$footer-background-color:       rgba(0, 0, 0, 0.85);
+$footer-background-color:                       rgba($black, 0.85);
 
-$twitter-user-color:            rgb(153, 50, 153);
-$twitter-hashtag-color:         $link-text-color;
-$twitter-link-color:            rgb(51, 122, 204);
+$twitter-user-color:                            $orange;
+$twitter-hashtag-color:                         $blue;
+$twitter-link-color:                            $green;
 
-$tag-group-text-color:          $white-mild;
-$tag-group-background-color:    rgb(64, 64, 128);
-$tag-group-background-hover-color:      rgb(96, 96, 168);
-$tag-group-background-focus-color:      rgb(48, 48, 96);
+$tag-group-text-color:                          $white-mild;
+$tag-group-background-color:                    $blue;
+$tag-group-background-hover-color:              $blue-light;
+$tag-group-background-focus-color:              $blue-dark;
 
-$tag-text-color:                $white-mild;
-$tag-background-color:          rgb(64, 128, 64);
-$tag-background-hover-color:    rgb(96, 168, 96);
-$tag-background-focus-color:    rgb(48, 96, 48);
+$comment-text-color:                            $black-milder;
+$comment-background-color:                      rgb(220, 220, 220);
+$comment-border-color:                          rgb(200, 200, 200);
 
-$comment-text-color:            $black-milder;
-$comment-background-color:      rgb(220, 220, 220);
-$comment-border-color:          rgb(200, 200, 200);
+$comment-author-text-color:                     $white-mild;
+$comment-author-background-color:               $blue;
+$comment-author-background-darker-color:        $blue-darker;
 
-$comment-author-text-color:     $white-mild;
-$comment-author-background-color:       rgb(128, 128, 220);
-$comment-author-background-darker-color:        rgb(80, 80, 176);
+$comment-logged-author-background-color:        $green;
+$comment-logged-author-background-darker-color: $green-darker;
 
-$comment-logged-author-background-color:        rgb(104, 180, 104);
-$comment-logged-author-background-darker-color: rgb(64, 144, 64);
-
-$comment-date-text-color:       $white-mild;
-$comment-date-background-color: rgb(128, 128, 220);
-$comment-date-background-darker-color:  rgb(80, 80, 176);
+$comment-date-text-color:                       $white-mild;
+$comment-date-background-color:                 $pantone;
+$comment-date-background-darker-color:          $pantone-darker;
 
 body {
     min-width: 300px;
@@ -801,6 +796,9 @@ body {
 
                     a {
                         color: $twitter-link-color;
+
+                        &:hover  { color: lighten($twitter-link-color, 10%); }
+                        &:active { color: darken ($twitter-link-color, 10%); }
                     }
 
                     .user {

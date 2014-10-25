@@ -4,27 +4,29 @@
 @import '_pmp.grid';
 @import '_pmp.bbcode';
 
-$body-text-color:               $black-mild;
-$body-background-color:         $white-mild;
-$body-background-image:         url('http://i.imgur.com/EeRiLZ8.png');
+$body-text-color:                       $black-mild;
+$body-background-color:                 $white-mild;
+$body-background-image:                 url('http://i.imgur.com/EeRiLZ8.png');
 
-$main-menu-background-color:    rgb(64, 96, 172);
+$main-menu-background-color:            $blue;
 
-$main-menu-title-text-color:    $white-mild;
+$main-menu-title-text-color:            $white-mild;
 
-$menu-item-text-color:          $white-mild;
-$menu-item-background-color:    rgb(32, 64, 128);
+$menu-item-text-color:                  $white-mild;
+$menu-item-background-color:            $blue-dark;
+$menu-item-background-hover-color:      $orange-light;
+$menu-item-background-active-color:     $orange;
 
-$menu-item-exit-background-color:       rgb(192, 64, 64);
-$menu-item-exit-background-hover-color: rgb(216, 88, 88);
-$menu-item-exit-background-focus-color: rgb(168, 52, 52);
+$menu-item-exit-background-color:       $red;
+$menu-item-exit-background-hover-color: $red-light;
+$menu-item-exit-background-focus-color: $red-dark;
 
-$page-toolbar-background-color: $main-menu-background-color;
+$page-toolbar-background-color:         $main-menu-background-color;
 
-$tag-text-color:                $white-mild;
-$tag-background-color:          rgb(64, 128, 64);
-$tag-background-hover-color:    rgb(96, 168, 96);
-$tag-background-focus-color:    rgb(48, 96, 48);
+$tag-text-color:                        $white-mild;
+$tag-background-color:                  $green;
+$tag-background-hover-color:            $green-light;
+$tag-background-focus-color:            $green-dark;
 
 body {
     min-width: 300px;
@@ -206,18 +208,18 @@ body {
             font-size: 1.1em;
 
             background-color: $menu-item-background-color;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+            border-top: 1px solid rgba($white, 0.1);
+            box-shadow: 0 -1px 0 rgba($black, 0.2) inset;
 
             transition: background-color 200ms;
 
             &:active,
             &.active {
-                background-color: rgb(192, 112, 56);
+                background-color: $menu-item-background-active-color;
             }
 
             &:hover {
-                background-color: rgb(220, 128, 64);
+                background-color: $menu-item-background-hover-color;
             }
 
             @media only screen and (min-width: 992px) {

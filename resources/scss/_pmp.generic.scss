@@ -1,106 +1,160 @@
 /* Color defines */
-$transparent:           rgba(0, 0, 0, 0);
+$transparent:                   transparent;
 
-$black:                 rgb(0, 0, 0);
-$black-mild:            rgb(32, 32, 32);
-$black-milder:          rgb(64, 64, 64);
+$black:                         rgb(0, 0, 0);
+$black-mild:                    adjust-color($black, $lightness:  5%);
+$black-milder:                  adjust-color($black, $lightness: 10%);
+$black-milderer:                adjust-color($black, $lightness: 15%);
 
-$white:                 rgb(255, 255, 255);
-$white-mild:            rgb(240, 240, 240);
-$white-milder:          rgb(224, 224, 224);
-$white-milderer:        rgb(208, 208, 208);
+$white:                         rgb(255, 255, 255);
+$white-mild:                    adjust-color($white, $lightness:  -5%);
+$white-milder:                  adjust-color($white, $lightness: -10%);
+$white-milderer:                adjust-color($white, $lightness: -15%);
 
-$red:                   rgb(184, 64, 64);
-$red-light:             rgb(200, 88, 88);
-$red-lighter:           rgb(216, 104, 104);
-$red-dark:              rgb(152, 56, 56);
-$red-darker:            rgb(128, 40, 40);
+$grey:                          rgb(128, 128, 128);
+$grey-light:                    adjust-color($grey, $lightness: 10%);
+$grey-lighter:                  adjust-color($grey, $lightness: 20%);
+$grey-dark:                     adjust-color($grey, $lightness: -10%);
+$grey-darker:                   adjust-color($grey, $lightness: -20%);
 
-$green:                 rgb(80, 152, 80);
-$green-light:           rgb(96, 184, 96);
-$green-lighter:         rgb(112, 208, 112);
-$green-dark:            rgb(64, 128, 64);
-$green-darker:          rgb(48, 104, 48);
+$red:                           rgb(184, 64, 64);
+$red-light:                     adjust-color($red, $lightness: 10%);
+$red-lighter:                   adjust-color($red, $lightness: 20%);
+$red-dark:                      adjust-color($red, $lightness: -10%);
+$red-darker:                    adjust-color($red, $lightness: -20%);
 
-$blue:                  rgb(80, 80, 152);
-$blue-light:            rgb(96, 96, 184);
-$blue-lighter:          rgb(112, 112, 208);
-$blue-dark:             rgb(64, 64, 128);
-$blue-darker:           rgb(48, 48, 104);
+$green:                         rgb(80, 152, 80);
+$green-light:                   adjust-color($green, $lightness: 10%);
+$green-lighter:                 adjust-color($green, $lightness: 20%);
+$green-dark:                    adjust-color($green, $lightness: -10%);
+$green-darker:                  adjust-color($green, $lightness: -20%);
 
-$orange:                rgb(200, 128, 64);
-$orange-light:          rgb(216, 144, 80);
-$orange-lighter:        rgb(224, 160, 96);
-$orange-dark:           rgb(184, 104, 48);
-$orange-darker:         rgb(160, 88, 32);
+$blue:                          rgb(80, 80, 152);
+$blue-light:                    adjust-color($blue, $lightness: 10%);
+$blue-lighter:                  adjust-color($blue, $lightness: 20%);
+$blue-dark:                     adjust-color($blue, $lightness: -10%);
+$blue-darker:                   adjust-color($blue, $lightness: -20%);
 
-$yellow:                rgb(200, 200, 64);
-$yellow-light:          rgb(216, 216, 80);
-$yellow-lighter:        rgb(224, 224, 96);
-$yellow-dark:           rgb(184, 184, 48);
-$yellow-darker:         rgb(160, 160, 32);
+$orange:                        rgb(200, 128, 64);
+$orange-light:                  adjust-color($orange, $lightness: 10%);
+$orange-lighter:                adjust-color($orange, $lightness: 20%);
+$orange-dark:                   adjust-color($orange, $lightness: -10%);
+$orange-darker:                 adjust-color($orange, $lightness: -20%);
+
+$yellow:                        rgb(200, 200, 64);
+$yellow-light:                  adjust-color($yellow, $lightness: 10%);
+$yellow-lighter:                adjust-color($yellow, $lightness: 20%);
+$yellow-dark:                   adjust-color($yellow, $lightness: -10%);
+$yellow-darker:                 adjust-color($yellow, $lightness: -20%);
+
+$pink:                          rgb(216, 104, 144);
+$pink-light:                    adjust-color($pink, $lightness: 10%);
+$pink-lighter:                  adjust-color($pink, $lightness: 20%);
+$pink-dark:                     adjust-color($pink, $lightness: -10%);
+$pink-darker:                   adjust-color($pink, $lightness: -20%);
+
+$purple:                        rgb(112, 48, 120);
+$purple-light:                  adjust-color($purple, $lightness: 10%);
+$purple-lighter:                adjust-color($purple, $lightness: 20%);
+$purple-dark:                   adjust-color($purple, $lightness: -10%);
+$purple-darker:                 adjust-color($purple, $lightness: -20%);
+
+$pantone:                       rgb(128, 128, 160);
+$pantone-light:                 adjust-color($pantone, $lightness: 10%);
+$pantone-lighter:               adjust-color($pantone, $lightness: 20%);
+$pantone-dark:                  adjust-color($pantone, $lightness: -10%);
+$pantone-darker:                adjust-color($pantone, $lightness: -20%);
+
+
+$facebook-color:                rgb(59, 89, 152);
+$facebook-color-light:          adjust-color($facebook-color, $lightness: 10%);
+$facebook-color-lighter:        adjust-color($facebook-color, $lightness: 20%);
+$facebook-color-dark:           adjust-color($facebook-color, $lightness: -10%);
+$facebook-color-darker:         adjust-color($facebook-color, $lightness: -20%);
+
+$github-color:                  rgb(210, 158, 122);
+$github-color-light:            adjust-color($github-color, $lightness: 10%);
+$github-color-lighter:          adjust-color($github-color, $lightness: 20%);
+$github-color-dark:             adjust-color($github-color, $lightness: -10%);
+$github-color-darker:           adjust-color($github-color, $lightness: -20%);
+
+$linkedin-color:                rgb(0, 123, 182);
+$linkedin-color-light:          adjust-color($linkedin-color, $lightness: 10%);
+$linkedin-color-lighter:        adjust-color($linkedin-color, $lightness: 20%);
+$linkedin-color-dark:           adjust-color($linkedin-color, $lightness: -10%);
+$linkedin-color-darker:         adjust-color($linkedin-color, $lightness: -20%);
+
+$rss-color:                     rgb(250, 155, 57);
+$rss-color-light:               adjust-color($rss-color, $lightness: 10%);
+$rss-color-lighter:             adjust-color($rss-color, $lightness: 20%);
+$rss-color-dark:                adjust-color($rss-color, $lightness: -10%);
+$rss-color-darker:              adjust-color($rss-color, $lightness: -20%);
+
+$twitter-color:                 rgb(64, 153, 255);
+$twitter-color-light:           adjust-color($twitter-color, $lightness: 10%);
+$twitter-color-lighter:         adjust-color($twitter-color, $lightness: 20%);
+$twitter-color-dark:            adjust-color($twitter-color, $lightness: -10%);
+$twitter-color-darker:          adjust-color($twitter-color, $lightness: -20%);
 /* !Color defines */
 
 /* General defines */
-$selection-text-color:  $white-mild;
-$selection-background-color:    rgb(80, 152, 80);
+$selection-text-color:                          $white-mild;
+$selection-background-color:                    $green;
 
-$link-text-color:       rgb(32, 128, 32);
-$link-text-hover-color: rgb(48, 160, 48);
-$link-text-focus-color: rgb(24,  96, 24);
+$link-text-color:                               $green;
+$link-text-hover-color:                         $green-light;
+$link-text-focus-color:                         $green-dark;
 
-$harder-shadow-color:   rgba(0, 0, 0, 0.8);
-$hard-shadow-color:     rgba(0, 0, 0, 0.6);
-$soft-shadow-color:     rgba(0, 0, 0, 0.3);
+$harder-shadow-color:                           rgba($black, 0.8);
+$hard-shadow-color:                             rgba($black, 0.6);
+$soft-shadow-color:                             rgba($black, 0.3);
 
-$button-default-text-color:     $white-mild;
-$button-default-text-hover-color:       $white-mild;
-$button-default-text-focus-color:       $white-mild;
-$button-default-background-color:       rgb(160, 160, 160);
-$button-default-hover-background-color: rgb(192, 192, 192);
-$button-default-focus-background-color: rgb(128, 128, 128);
+$button-default-text-color:                     $white-mild;
+$button-default-text-hover-color:               $white-mild;
+$button-default-text-focus-color:               $white-mild;
+$button-default-background-color:               $grey-light;
+$button-default-hover-background-color:         $grey-lighter;
+$button-default-focus-background-color:         $grey-darker;
 
-$button-success-text-color:     $white-mild;
-$button-success-background-color:       $green;
-$button-success-hover-background-color: $green-light;
-$button-success-focus-background-color: $green-dark;
+$button-success-text-color:                     $white-mild;
+$button-success-background-color:               $green;
+$button-success-hover-background-color:         $green-light;
+$button-success-focus-background-color:         $green-dark;
 
-$button-info-text-color:        $white-mild;
-$button-info-background-color:  $blue;
-$button-info-hover-background-color:    $blue-light;
-$button-info-focus-background-color:    $blue-dark;
+$button-info-text-color:                        $white-mild;
+$button-info-background-color:                  $blue;
+$button-info-hover-background-color:            $blue-light;
+$button-info-focus-background-color:            $blue-dark;
 
-$button-warning-text-color:     $white-mild;
-$button-warning-background-color:       $orange;
-$button-warning-hover-background-color: $orange-light;
-$button-warning-focus-background-color: $orange-dark;
+$button-warning-text-color:                     $white-mild;
+$button-warning-background-color:               $orange;
+$button-warning-hover-background-color:         $orange-light;
+$button-warning-focus-background-color:         $orange-dark;
 
-$button-error-text-color:       $white-mild;
-$button-error-background-color: $red;
-$button-error-hover-background-color:   $red-light;
-$button-error-focus-background-color:   $red-dark;
+$button-error-text-color:                       $white-mild;
+$button-error-background-color:                 $red;
+$button-error-hover-background-color:           $red-light;
+$button-error-focus-background-color:           $red-dark;
 
-$button-github-background-color:        rgb(238, 185, 153);
-$button-github-hover-background-color:  rgb(246, 207, 179);
-$button-github-focus-background-color:  rgb(190, 148, 122);
+$button-github-background-color:                $github-color;
+$button-github-hover-background-color:          $github-color-light;
+$button-github-focus-background-color:          $github-color-dark;
 
-$button-facebook-background-color:      rgb(59, 89, 152);
-$button-facebook-hover-background-color: rgb(98, 122, 172);
-$button-facebook-focus-background-color: rgb(47, 71, 121);
+$button-facebook-background-color:              $facebook-color;
+$button-facebook-hover-background-color:        $facebook-color-light;
+$button-facebook-focus-background-color:        $facebook-color-dark;
 
-$twitter-background-color:              rgb(64, 153, 255);
-$twitter-background-color-dark:         rgb(51, 122, 204);
-$button-twitter-background-color:       rgb(64, 153, 255);
-$button-twitter-hover-background-color: rgb(102, 173, 255);
-$button-twitter-focus-background-color: rgb(51, 122, 204);
+$button-twitter-background-color:               $twitter-color;
+$button-twitter-hover-background-color:         $twitter-color-light;
+$button-twitter-focus-background-color:         $twitter-color-dark;
 
-$button-linkedin-background-color:      rgb(0, 123, 182);
-$button-linkedin-hover-background-color: rgb(50, 149, 196);
-$button-linkedin-focus-background-color: rgb(0, 98, 145);
+$button-linkedin-background-color:              $linkedin-color;
+$button-linkedin-hover-background-color:        $linkedin-color-light;
+$button-linkedin-focus-background-color:        $linkedin-color-dark;
 
-$button-rss-background-color:           rgb(255, 98, 0);
-$button-rss-hover-background-color:     rgb(255, 129, 50);
-$button-rss-focus-background-color:     rgb(204, 78, 0);
+$button-rss-background-color:                   $rss-color;
+$button-rss-hover-background-color:             $rss-color-light;
+$button-rss-focus-background-color:             $rss-color-dark;
 /* !General defines */
 
 /* Common classes */
@@ -317,7 +371,7 @@ a {
             margin-right: 0.4em;
             padding: 0.4em 0.5em;
 
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba($black, 0.2);
         }
     }
 
@@ -333,7 +387,7 @@ a {
         margin-left: 0.4em;
         padding: 0.4em 0.5em;
 
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba($black, 0.2);
     }
 
     &.button-round {
@@ -344,7 +398,6 @@ a {
 
     /* Social buttons */
     &.button-github {
-        color: $black-milder;
         background-color: $button-github-background-color;
         border-color: $button-github-background-color;
     }
@@ -428,23 +481,23 @@ textarea.control {
 
     padding: 0.3em 0.6em;
 
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba($black, 0.05);
     border: 0;
-    border-left: 3px solid rgb(160, 160, 160);
+    border-left: 3px solid $grey-light;
     outline: 0;
 
     transition: background-color 200ms, border-color 200ms;
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
-        border-color: rgb(192, 192, 192);
+        background-color: rgba($black, 0.04);
+        border-color: $grey-lighter;
     }
 
     &:focus {
         color: $black;
 
-        background-color: rgba(0, 0, 0, 0.06);
-        border-color: rgb(136, 136, 136);
+        background-color: rgba($black, 0.06);
+        border-color: $grey;
     }
 
     &.control-inline {
@@ -500,7 +553,7 @@ textarea.control {
     &.control[disabled] {
         cursor: not-allowed;
 
-        color: rgb(96, 96, 96);
+        color: $grey-darker;
     }
 }
 

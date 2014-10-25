@@ -1,35 +1,35 @@
 @import '_pmp.generic';
 
-$date-vignette-background-color:        rgb(128, 128, 160);
-$date-vignette-background-dark-color:   rgb(72, 72, 96);
+$date-vignette-background-color:                        $pantone;
+$date-vignette-background-dark-color:                   $pantone-darker;
 
-$featured-vignette-background-color:        $yellow;
-$featured-vignette-background-dark-color:   $yellow-dark;
+$featured-vignette-background-color:                    $yellow;
+$featured-vignette-background-dark-color:               $yellow-darker;
 
-$news-vignette-background-color:        rgb(32, 32, 32);
-$news-vignette-background-dark-color:   rgb(8, 8, 8);
-$news-vignette-button-background-hover-color:   rgb(64, 64, 64);
-$news-vignette-button-background-focus-color:   rgb(16, 16, 16);
+$news-vignette-background-color:                        $blue;
+$news-vignette-background-dark-color:                   $blue-darker;
+$news-vignette-button-background-hover-color:           $blue-light;
+$news-vignette-button-background-focus-color:           $blue-dark;
 
-$life-vignette-background-color:        rgb(213, 103, 148);
-$life-vignette-background-dark-color:   rgb(156, 82, 118);
-$life-vignette-button-background-hover-color:   rgb(228, 128, 180);
-$life-vignette-button-background-focus-color:   rgb(184, 76, 112);
+$life-vignette-background-color:                        $pink;
+$life-vignette-background-dark-color:                   $pink-darker;
+$life-vignette-button-background-hover-color:           $pink-light;
+$life-vignette-button-background-focus-color:           $pink-dark;
 
-$project-vignette-background-color:     rgb(32, 102, 204);
-$project-vignette-background-dark-color:        rgb(8, 81, 163);
-$project-vignette-button-background-hover-color:        rgb(48, 128, 220);
-$project-vignette-button-background-focus-color:        rgb(24, 72, 172);
+$project-vignette-background-color:                     $purple;
+$project-vignette-background-dark-color:                $purple-darker;
+$project-vignette-button-background-hover-color:        $purple-light;
+$project-vignette-button-background-focus-color:        $purple-dark;
 
-$tutorial-vignette-background-color:    $green;
-$tutorial-vignette-background-dark-color:       $green-darker;
+$tutorial-vignette-background-color:                    $green;
+$tutorial-vignette-background-dark-color:               $green-darker;
 $tutorial-vignette-button-background-hover-color:       $green-light;
 $tutorial-vignette-button-background-focus-color:       $green-dark;
 
-$flash-vignette-background-color:    $yellow;
-$flash-vignette-background-dark-color:       $yellow-darker;
-$flash-vignette-button-background-hover-color:       $yellow-light;
-$flash-vignette-button-background-focus-color:       $yellow-dark;
+$flash-vignette-background-color:                       $orange;
+$flash-vignette-background-dark-color:                  $orange-darker;
+$flash-vignette-button-background-hover-color:          $orange-light;
+$flash-vignette-button-background-focus-color:          $orange-dark;
 
 
 /* Box vignettes */
@@ -45,7 +45,7 @@ $flash-vignette-button-background-focus-color:       $yellow-dark;
 
     color: $white-mild;
 
-    background-color: rgb(48, 192, 48); /* TMP */
+    background-color: $green;
 
     &:after {
         content: "";
@@ -60,7 +60,7 @@ $flash-vignette-button-background-focus-color:       $yellow-dark;
 
         border-style: solid;
         border-width: 0 16px 6px 0;
-        border-color: transparent rgb(24, 96, 24) transparent transparent; /* TMP */
+        border-color: transparent $green-darker transparent transparent; /* TMP */
     }
 }
 
@@ -76,7 +76,7 @@ $flash-vignette-button-background-focus-color:       $yellow-dark;
 
     color: $white-mild;
 
-    background-color: rgb(48, 192, 48); /* TMP */
+    background-color: $green; /* TMP */
 
     &:after {
         content: "";
@@ -91,20 +91,20 @@ $flash-vignette-button-background-focus-color:       $yellow-dark;
 
         border-style: solid;
         border-width: 0 0 6px 16px;
-        border-color: transparent transparent transparent rgb(24, 96, 24); /* TMP */
+        border-color: transparent transparent transparent $green-darker; /* TMP */
     }
 }
 
 .twitter-vignette {
     color: $white-mild;
 
-    background-color: $twitter-background-color;
+    background-color: $twitter-color;
 }
 .box-vignette-left.twitter-vignette:after {
-    border-color: transparent $twitter-background-color-dark transparent transparent;
+    border-color: transparent $twitter-color-dark transparent transparent;
 }
 .box-vignette-right.twitter-vignette:after {
-    border-color: transparent transparent transparent $twitter-background-color-dark;
+    border-color: transparent transparent transparent $twitter-color-dark;
 }
 /* !Box vignettes */
 

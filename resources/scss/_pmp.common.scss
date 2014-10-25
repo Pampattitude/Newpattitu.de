@@ -1,21 +1,26 @@
 @import '_pmp.generic';
 
-$pmp-page-box-text-color:       $black-mild;
-$pmp-page-box-background-color: $white-mild;
+$pmp-page-box-text-color:               $black-mild;
+$pmp-page-box-background-color:         $white-mild;
 
-$alert-success-text-color:      $white-mild;
-$alert-success-background-color:        rgb(64, 192, 64);
-$alert-debug-text-color:        $white-mild;
-$alert-debug-background-color:          rgb(64, 64, 192);
-$alert-warning-text-color:      $white-mild;
-$alert-warning-background-color:        rgb(192, 192, 64);
-$alert-error-text-color:        $white-mild;
-$alert-error-background-color:  rgb(192, 64, 64);
+$alert-success-text-color:              $white-mild;
+$alert-success-background-color:        $green;
 
-$error-404-color:               rgb(200, 32, 32);
-$error-500-color:               rgb(144, 144, 144);
+$alert-debug-text-color:                $white-mild;
+$alert-debug-background-color:          $blue;
 
-$page-box-margin-v:             2rem;
+$alert-warning-text-color:              $white-mild;
+$alert-warning-background-color:        $orange;
+
+$alert-error-text-color:                $white-mild;
+$alert-error-background-color:          $red;
+
+$alert-remove-button-background-color:  rgba($black, 0.2);
+
+$error-404-color:                       $red;
+$error-500-color:                       $grey;
+
+$page-box-margin-v:                     2rem;
 
 /* Alerts */
 .pmp-alerts {
@@ -74,7 +79,7 @@ $page-box-margin-v:             2rem;
 
             margin: 0 0 0 0.5em;
 
-            background-color: rgba(0, 0, 0, 0.2); /* TMP */
+            background-color: $alert-remove-button-background-color; /* TMP */
         }
     }
 }
