@@ -82,19 +82,15 @@ exports.save = function(req, res, callback) {
     if (!req.body.caption ||
         32 > req.body.caption.length)
         return callback({code: 400, message: 'Caption too short or missing'});
-//    if (!req.body.text ||
-//        32 > req.body.text.length)
-//        return callback({code: 400, message: 'Text too short or missing'});
     if (!req.body.tags ||
         2 > req.body.tags.length)
         return callback({code: 400, message: 'Too few or no tags'});
     if (!req.body.type)
         return callback({code: 400, message: 'Missing article type'});
 
-    var findOptions = {};
-    if (req.body._id)
-        findOptions._id = req.body._id;
-
+    var findOptions = {
+        _id: req.body._id
+    };
     var updateOptions = {
         title: req.body.title,
         technicalName: req.body.technicalName,
