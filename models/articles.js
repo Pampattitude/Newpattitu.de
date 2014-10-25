@@ -23,6 +23,14 @@ var schema = new mongoose.Schema({
     featured: {type: Boolean, default: false},
 
     views: {type: Number, default: 0},
+    shares: {
+        type: {
+            facebook: {type: Number},
+            twitter: {type: Number},
+        },
+        default: {facebook: 0, twitter: 0},
+    },
+
     activated: {type: Boolean, default: false, index: true},
     created: {type: Date, default: Date.now},
     lastUpdated: {type: Date, default: Date.now},

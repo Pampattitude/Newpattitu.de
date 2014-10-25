@@ -1,5 +1,5 @@
 <!-- Article -->
-<article class="pmp-page-content-box">
+<article class="pmp-page-content-box" ng-controller="articleController">
   <h2 class="box-vignette-left news-vignette" ng-show="'news' == globals.article.type">News</h2>
   <h2 class="box-vignette-left life-vignette" ng-show="'life' == globals.article.type">Personal</h2>
   <h2 class="box-vignette-left project-vignette" ng-show="'project' == globals.article.type">Project</h2>
@@ -37,6 +37,43 @@
         <a class="pmp-article-tag" ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" ng-bind="tag"></a>
       </div>
     </div>
+
+    <!-- Social -->
+    <div class="pmp-article-social">
+      <!-- Twitter -->
+      <form method="GET" action="https://twitter.com/share" target="_blank">
+        <input type="hidden" name="text" value="Check it out!" />
+        <input type="hidden" name="hashtags" value="{{globals.article.tags.join(',')}}" />
+
+        <button class="button button-twitter button-labeled" ng-click="incShare('twitter')">
+          <span class="button-label"><span class="icon icon-twitter"></span></span>
+
+          <span ng-hide="0 == globals.article.shares.twitter"
+                ng-bind="globals.article.shares.twitter">
+          </span>
+          <span ng-show="0 == globals.article.shares.twitter">
+            Tweet
+          </span>
+        </button>
+      </form>
+      <!-- !Twitter -->
+
+      <!-- Facebook -->
+      <form method="GET" action="http://www.facebook.com/sharer.php" target="_blank">
+        <button class="button button-facebook button-labeled" ng-click="incShare('facebook')">
+          <span class="button-label"><span class="icon icon-facebook"></span></span>
+
+          <span ng-hide="0 == globals.article.shares.facebook"
+                ng-bind="globals.article.shares.facebook">
+          </span>
+          <span ng-show="0 == globals.article.shares.facebook">
+            Share
+          </span>
+        </button>
+      </form>
+      <!-- !Facebook -->
+    </div>
+    <!-- !Social -->
   </div>
 </article>
 <!-- !Article -->

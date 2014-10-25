@@ -4,7 +4,7 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
     // Big hack here:
     // globals are defined by EJS. When it renders the page, it prints "var global = ..."
     // with '...' being the full res.locals object
-    $scope.globals = globals;
+    $rootScope.globals = $scope.globals = globals;
     $scope.refresh = function() {
         if (!$scope.$$phase)
             $scope.$apply();
@@ -124,6 +124,20 @@ frontApp.directive('pollTwitter', function() {
     };
 });
 /* !Twitter */
+
+/* Article controller */
+frontApp.controller('articleController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    $scope.incShare = function(network) {
+        var addShareUrl = '/ajax/article/' + $rootScope.globals.article.technicalName + '/' + network + '/incShare';
+        $http.post(addShareUrl, {}).then(function(response) {
+            ++$rootScope.globals.article.shares[network];
+        }, function(response) {
+            // No error
+            $scope.addAlert('debug', 'Could not increment share count because: "' + JSON.stringify(response.data) + '"');
+        });
+    };
+}]);
+/* !Article controller */
 
 frontApp.controller('articleCommentsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
     $scope.postComment = function() {

@@ -50,3 +50,21 @@ exports.postComment = function(req, res, callback) {
         });
     });
 };
+
+exports.incrementShare = function(req, res, callback) {
+    var findOptions = {
+        technicalName: req.params.articleTechnicalName,
+    };
+    var updateOptions = {
+        $inc: {
+        },
+    };
+    updateOptions.$inc['shares.' + req.params.network] = 1;
+
+    return mongoose.model('Article').findOneAndUpdate(findOptions, updateOptions, function(err, modifiedArticle) {
+        if (err) return callback({code: 500, message: err});
+        if (!modifiedArticle) return callback({code: 404, message: 'Article not found'});
+
+        return callback();
+    });
+};

@@ -230,9 +230,7 @@ body {
 /* Articles */
 .pmp-article {
     @extend .pmp-page-content-box-content;
-}
 
-.pmp-article {
     .pmp-article-title {
         margin-top: 0.6em auto;
 
@@ -326,6 +324,12 @@ body {
                     color: rgba(0, 0, 0, 0.8);
                 }
             }
+        }
+    }
+
+    .pmp-article-social {
+        form {
+            display: inline-block;
         }
     }
 }

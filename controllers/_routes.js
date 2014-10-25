@@ -52,6 +52,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/ajax/article/:articleTechnicalName/getComments', bindAjax(ajax.article.getComments));
     router.post('/ajax/article/:articleTechnicalName/comment', bindAjax(ajax.article.postComment));
+    router.post('/ajax/article/:articleTechnicalName/:network/incShare', bindAjax(ajax.article.incrementShare));
     router.get ('/ajax/twitter/getLatest', bindAjax(ajax.twitter.getLatest));
 
     router.get ('/*', bindPage(controllers.error.page404));
