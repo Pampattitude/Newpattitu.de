@@ -3,25 +3,25 @@
 <!-- !Mobile search box -->
 
 <!-- Article -->
-<article class="pmp-page-content-box first-desktop" ng-class="{last: $last}" ng-repeat="article in globals.articleList">
-  <h2 class="box-vignette-left news-vignette" ng-show="'news' == article.type">News</h2>
-  <h2 class="box-vignette-left life-vignette" ng-show="'life' == article.type">Personal</h2>
-  <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
-  <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == article.type">Tutorial</h2>
-  <h2 class="box-vignette-left flash-vignette" ng-show="'flash' == article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
+<article class="pmp-page-content-box first-desktop" data-ng-class="{last: $last}" data-ng-repeat="article in globals.articleList">
+  <h2 class="box-vignette-left news-vignette" data-ng-show="'news' == article.type">News</h2>
+  <h2 class="box-vignette-left life-vignette" data-ng-show="'life' == article.type">Personal</h2>
+  <h2 class="box-vignette-left project-vignette" data-ng-show="'project' == article.type">Project</h2>
+  <h2 class="box-vignette-left tutorial-vignette" data-ng-show="'tutorial' == article.type">Tutorial</h2>
+  <h2 class="box-vignette-left flash-vignette" data-ng-show="'flash' == article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
 
-  <h2 class="box-vignette-left date-vignette" ng-bind="article.created | date: 'yyyy-MM-dd'"></h2>
+  <h2 class="box-vignette-left date-vignette" data-ng-bind="article.created | date: 'yyyy-MM-dd'"></h2>
 
-  <h2 class="box-vignette-right relevance-vignette" ng-bind="article.points | number: 0"></h2>
+  <h2 class="box-vignette-right relevance-vignette" data-ng-bind="article.points | number: 0"></h2>
 
   <div class="pmp-search-article">
-    <h1 class="pmp-search-article-title"><a href="/article/{{article.technicalName}}" ng-bind-html="article.title | trust"></a></h1>
+    <h1 class="pmp-search-article-title"><a href="/article/{{article.technicalName}}" data-ng-bind-html="article.title | trust"></a></h1>
 
-    <div class="pmp-search-article-caption pmp-bb-generated" ng-bind-html="article.caption | trust">
+    <div class="pmp-search-article-caption pmp-bb-generated" data-ng-bind-html="article.caption | trust">
     </div>
 
     <div class="pmp-search-article-more">
-      <div class="pmp-search-article-access" ng-hide="'flash' == article.type">
+      <div class="pmp-search-article-access" data-ng-hide="'flash' == article.type">
         <a class="button button-labeled-inverse button-info" href="/article/{{article.technicalName}}">
           Read blog post
           <div class="button-label"><span class="icon icon-arrow-right"></span></div>
@@ -31,7 +31,7 @@
       <div class="pmp-search-article-tags">
         <a class="pmp-search-article-tag-group" href="/search?search={{article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
 
-        <a class="pmp-search-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag">
+        <a class="pmp-search-article-tag" data-ng-repeat="tag in article.tags" href="/search?search={{tag}}" data-ng-bind="tag">
         </a>
       </div>
     </div>
@@ -40,7 +40,7 @@
 <!-- !Article -->
 
 <!-- If no result -->
-<div class="pmp-page-content-box first-desktop last" ng-hide="0 < globals.articleList.length">
+<div class="pmp-page-content-box first-desktop last" data-ng-hide="0 < globals.articleList.length">
   <div class="pmp-search-not-found">
     <p class="pmp-search-not-found-main-text">
       No article found for search &quot;<span class="">{{globals.searchString}}</span>&quot;.

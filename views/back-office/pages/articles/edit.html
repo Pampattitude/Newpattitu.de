@@ -1,35 +1,35 @@
-<div class="pmp-article-edit pmp-has-toolbar" ng-controller="editArticleController">
+<div class="pmp-article-edit pmp-has-toolbar" data-ng-controller="editArticleController">
   <!-- Article -->
   <div class="pmp-article">
     <div class="pmp-article-content">
-      <div class="pmp-article-type" ng-init="article.type = article.type || 'news'">
+      <div class="pmp-article-type" data-ng-init="article.type = article.type || 'news'">
         <button type="button" class="vignette-button news-vignette"
-                ng-click="article.type = 'news'"
-                ng-class="{'inactive': 'news' != article.type}">
+                data-ng-click="article.type = 'news'"
+                data-ng-class="{'inactive': 'news' != article.type}">
           News
         </button>
 
         <button type="button" class="vignette-button life-vignette"
-                ng-click="article.type = 'life'"
-                ng-class="{'inactive': 'life' != article.type}">
+                data-ng-click="article.type = 'life'"
+                data-ng-class="{'inactive': 'life' != article.type}">
           Life
         </button>
 
         <button type="button" class="vignette-button project-vignette"
-                ng-click="article.type = 'project'"
-                ng-class="{'inactive': 'project' != article.type}">
+                data-ng-click="article.type = 'project'"
+                data-ng-class="{'inactive': 'project' != article.type}">
           Project
         </button>
 
         <button type="button" class="vignette-button tutorial-vignette"
-                ng-click="article.type = 'tutorial'"
-                ng-class="{'inactive': 'tutorial' != article.type}">
+                data-ng-click="article.type = 'tutorial'"
+                data-ng-class="{'inactive': 'tutorial' != article.type}">
           Tutorial
         </button>
 
         <button type="button" class="vignette-button flash-vignette"
-                ng-click="article.type = 'flash'"
-                ng-class="{'inactive': 'flash' != article.type}">
+                data-ng-click="article.type = 'flash'"
+                data-ng-class="{'inactive': 'flash' != article.type}">
           Flash
         </button>
       </div>
@@ -38,8 +38,8 @@
         <div class="cell-2 cell-mobile-4">
           <div class="pmp-article-title">
             <input class="control"
-                   ng-model="article.title"
-                   ng-init="article.title = article.title || ''"
+                   data-ng-model="article.title"
+                   data-ng-init="article.title = article.title || ''"
                    update-technical-name
                    placeholder="Title..." />
           </div>
@@ -48,8 +48,8 @@
         <div class="cell-2 cell-mobile-4">
           <div class="pmp-article-technical-name">
             <input class="control"
-                   ng-model="article.technicalName"
-                   ng-init="article.technicalName = article.technicalName || ''"
+                   data-ng-model="article.technicalName"
+                   data-ng-init="article.technicalName = article.technicalName || ''"
                    placeholder="Technical name..."
                    disabled />
           </div>
@@ -58,33 +58,33 @@
 
       <div class="pmp-article-caption">
         <textarea class="pmp-bb-textarea control"
-                  ng-model="article.caption"
-                  ng-init="article.caption = article.caption || ''"
+                  data-ng-model="article.caption"
+                  data-ng-init="article.caption = article.caption || ''"
                   placeholder="Caption..."
                   data-resizable rows="8"
                   bbcode-it-up></textarea>
       </div>
 
-      <div class="pmp-article-text" ng-hide="'flash' == article.type">
+      <div class="pmp-article-text" data-ng-hide="'flash' == article.type">
         <textarea class="pmp-bb-textarea control"
-                  ng-model="article.text"
-                  ng-init="article.text = article.text || ''"
+                  data-ng-model="article.text"
+                  data-ng-init="article.text = article.text || ''"
                   placeholder="Text..."
                   data-resizable rows="8"
                   bbcode-it-up></textarea>
       </div>
 
       <div class="pmp-article-tags">
-        <span class="pmp-article-tag" ng-repeat="tag in article.tags">
-          <span ng-bind="tag"></span>
-          <button type="button" class="button button-remove-tag" ng-click="article.tags.splice($index, 1)">
+        <span class="pmp-article-tag" data-ng-repeat="tag in article.tags">
+          <span data-ng-bind="tag"></span>
+          <button type="button" class="button button-remove-tag" data-ng-click="article.tags.splice($index, 1)">
             <span class="icon icon-close"></span>
           </button>
         </span>
 
         <input class="control control-inline"
-               ng-model="newTag"
-               ng-init="newTag = newTag || ''"
+               data-ng-model="newTag"
+               data-ng-init="newTag = newTag || ''"
                placeholder="New tag..." control-tags />
         </div>
     </div>
@@ -93,54 +93,54 @@
 
   <!-- Toolbar -->
   <div class="pmp-toolbar grid-6 grid-mobile-3">
-    <div class="cell-1 cell-mobile-2" ng-show="true == articleExists">
+    <div class="cell-1 cell-mobile-2" data-ng-show="true == articleExists">
       <div class="hidden-mobile">
-        <button type="button" class="button button-error button-labeled" ng-click="deleteArticle()">
+        <button type="button" class="button button-error button-labeled" data-ng-click="deleteArticle()">
           <span class="button-label"><span class="icon icon-remove"></span></span>
           Delete
         </button>
       </div>
 
       <div class="hidden-desktop">
-        <button type="button" class="button button-error" ng-click="deleteArticle()">
+        <button type="button" class="button button-error" data-ng-click="deleteArticle()">
           <span class="icon icon-remove"></span>
         </button>
       </div>
     </div>
 
     <!-- Padd -->
-    <div class="cell-1 hidden-mobile" ng-hide="true == articleExists">
+    <div class="cell-1 hidden-mobile" data-ng-hide="true == articleExists">
       <!-- If article does not exist yet, padd to replace delete button -->
     </div>
     <div class="cell-3 hidden-mobile">
     </div>
     <!-- !Padd -->
 
-    <div class="cell-1" ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
+    <div class="cell-1" data-ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
       <div class="hidden-mobile">
-        <button type="button" class="button button-info button-labeled" ng-click="previewArticle()">
+        <button type="button" class="button button-info button-labeled" data-ng-click="previewArticle()">
           <span class="button-label"><span class="icon icon-eye"></span></span>
           Preview
         </button>
       </div>
 
       <div class="hidden-desktop">
-        <button type="button" class="button button-info" ng-click="previewArticle()">
+        <button type="button" class="button button-info" data-ng-click="previewArticle()">
           <span class="icon icon-eye"></span>
         </button>
       </div>
     </div>
 
-    <div class="cell-1" ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
+    <div class="cell-1" data-ng-class="{'cell-mobile-2': true == articleExists, 'cell-mobile-3': false == articleExists}">
       <div class="hidden-mobile">
-        <button type="button" class="button button-success button-labeled" ng-click="saveArticle()">
+        <button type="button" class="button button-success button-labeled" data-ng-click="saveArticle()">
           <span class="button-label"><span class="icon icon-disk"></span></span>
           Save
         </button>
       </div>
 
       <div class="hidden-desktop">
-        <button type="button" class="button button-success" ng-click="saveArticle()">
+        <button type="button" class="button button-success" data-ng-click="saveArticle()">
           <span class="icon icon-disk"></span>
         </button>
       </div>

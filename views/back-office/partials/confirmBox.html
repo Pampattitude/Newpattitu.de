@@ -4,29 +4,29 @@
 <!-- !Page hider -->
 
 <!-- Confirm box -->
-<div class="pmp-confirm-box-container" ng-show="confirmBoxOpened">
+<div class="pmp-confirm-box-container" data-ng-show="confirmBoxOpened">
   <div class="pmp-confirm-box" id="confirm-box">
-    <button class="button button-error pmp-confirm-box-close" ng-click="confirmBox.refuseCallback()">
+    <button class="button button-error pmp-confirm-box-close" data-ng-click="confirmBox.refuseCallback()">
       <span class="icon icon-close"></span>
     </button>
 
     <div class="pmp-confirm-box-content">
-      <h2 class="pmp-confirm-box-title" ng-show="confirmBox.title.length" ng-bind="confirmBox.title"></h2>
+      <h2 class="pmp-confirm-box-title" data-ng-show="confirmBox.title.length" data-ng-bind="confirmBox.title"></h2>
 
-      <div class="pmp-confirm-box-text" ng-bind-html="confirmBox.text | trust"></div>
+      <div class="pmp-confirm-box-text" data-ng-bind-html="confirmBox.text | trust"></div>
     </div>
 
     <div class="pmp-confirm-box-actions">
       <button class="button button-error button-labeled pmp-confirm-box-refuse-button"
-              ng-click="confirmBox.refuseCallback()">
+              data-ng-click="confirmBox.refuseCallback()">
         <div class="button-label"><span class="icon icon-close"></span></div>
-        <span ng-bind="confirmBox.refuseText"></span>
+        <span data-ng-bind="confirmBox.refuseText"></span>
       </button>
 
       <button class="button button-success button-labeled pmp-confirm-box-accept-button"
-              ng-click="confirmBox.acceptCallback()">
+              data-ng-click="confirmBox.acceptCallback()">
         <div class="button-label"><span class="icon icon-checkmark"></span></div>
-        <span ng-bind="confirmBox.acceptText"></span>
+        <span data-ng-bind="confirmBox.acceptText"></span>
       </button>
     </div>
   </div>

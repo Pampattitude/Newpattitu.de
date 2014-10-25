@@ -8,7 +8,7 @@
 
 <div class="pmp-page-menu">
   <!-- User -->
-  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideAboutMe">
+  <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideAboutMe">
     <h3 class="box-vignette-right"><span class="icon icon-user"></span></h3>
 
     <div class="pmp-about-me">
@@ -23,16 +23,16 @@
   <!-- !User -->
 
   <!-- Search -->
-  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideSearch">
+  <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideSearch">
     <h3 class="box-vignette-right"><span class="icon icon-search"></span></h3>
 
     <div class="pmp-search">
       <form method="GET" action="/search">
         <div class="control-group">
           <input class="control" type="text" name="search"
-                 ng-model="searchString"
-                 ng-init="searchString = searchString || ''"
-                 ng-class="{'has-data': 0 != searchString.length}"
+                 data-ng-model="searchString"
+                 data-ng-init="searchString = searchString || ''"
+                 data-ng-class="{'has-data': 0 != searchString.length}"
                  maxlength="64"
                  placeholder="Search..." />
 
@@ -46,7 +46,7 @@
   <!-- !Search -->
 
   <!-- Social -->
-  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideSocial">
+  <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideSocial">
     <h3 class="box-vignette-right"><span class="icon icon-share"></span></h3>
 
     <div class="pmp-social">
@@ -87,16 +87,16 @@
   <!-- !Social -->
 
   <!-- Twitter -->
-  <div class="pmp-page-menu-box" ng-hide="globals.pageMenu.hideTwitter">
+  <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideTwitter">
     <h3 class="box-vignette-right twitter-vignette"><span class="icon icon-twitter"></span></h3>
 
     <div class="pmp-twitter" poll-twitter>
       <div class="clearfix">
-        <div class="pmp-twitter-post" ng-repeat="post in twitterPosts">
+        <div class="pmp-twitter-post" data-ng-repeat="post in twitterPosts">
           <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
 
           <p class="pmp-twitter-post-text">
-            <span ng-bind-html="post.text | trust"></span>
+            <span data-ng-bind-html="post.text | trust"></span>
 
             <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
               <span class="icon icon-newtab"></span>

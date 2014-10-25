@@ -1,4 +1,4 @@
-<div class="pmp-page-content-box" ng-controller="reportController">
+<div class="pmp-page-content-box" data-ng-controller="reportController">
   <h2 class="box-vignette-left">Leave a report</h2>
 
   <div class="pmp-report">
@@ -14,19 +14,19 @@
 
     <div class="pmp-report-content">
       <input class="control" type="text"
-             ng-model="report.name"
-             ng-class="{'has-data': reportName.length}"
+             data-ng-model="report.name"
+             data-ng-class="{'has-data': reportName.length}"
              maxlength="64"
              placeholder="Name..." />
 
       <textarea class="control"
-                ng-model="report.text"
-                ng-class="{'has-data': reportText.length}"
+                data-ng-model="report.text"
+                data-ng-class="{'has-data': reportText.length}"
                 rows="4" maxlength="1024"
                 data-resizable
                 placeholder="What happened?"></textarea>
 
-      <button class="button button-success button-labeled pmp-submit-report" type="button" ng-click="sendReport()">
+      <button class="button button-success button-labeled pmp-submit-report" type="button" data-ng-click="sendReport()">
         <span class="button-label"><span class="icon icon-checkmark"></span></span>
         Submit
       </button>

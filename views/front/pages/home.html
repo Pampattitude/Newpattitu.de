@@ -3,27 +3,27 @@
 <!-- !Mobile search box -->
 
 <!-- Article -->
-<article class="pmp-page-content-box first-desktop" ng-repeat="article in globals.articleList">
-  <h2 class="box-vignette-left news-vignette" ng-show="'news' == article.type">News</h2>
-  <h2 class="box-vignette-left life-vignette" ng-show="'life' == article.type">Personal</h2>
-  <h2 class="box-vignette-left project-vignette" ng-show="'project' == article.type">Project</h2>
-  <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == article.type">Tutorial</h2>
-  <h2 class="box-vignette-left flash-vignette" ng-show="'flash' == article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
+<article class="pmp-page-content-box first-desktop" data-ng-repeat="article in globals.articleList">
+  <h2 class="box-vignette-left news-vignette" data-ng-show="'news' == article.type">News</h2>
+  <h2 class="box-vignette-left life-vignette" data-ng-show="'life' == article.type">Personal</h2>
+  <h2 class="box-vignette-left project-vignette" data-ng-show="'project' == article.type">Project</h2>
+  <h2 class="box-vignette-left tutorial-vignette" data-ng-show="'tutorial' == article.type">Tutorial</h2>
+  <h2 class="box-vignette-left flash-vignette" data-ng-show="'flash' == article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
 
-  <h2 class="box-vignette-left date-vignette" ng-bind="article.created | date: 'yyyy-MM-dd'"></h2>
+  <h2 class="box-vignette-left date-vignette" data-ng-bind="article.created | date: 'yyyy-MM-dd'"></h2>
 
-  <h2 class="box-vignette-right featured-vignette" ng-show="true == article.featured">
+  <h2 class="box-vignette-right featured-vignette" data-ng-show="true == article.featured">
     <span class="icon icon-star3"></span>
   </h2>
 
   <div class="pmp-article">
-    <h1 class="pmp-article-title"><a href="/article/{{article.technicalName}}" ng-bind-html="article.title | trust"></a></h1>
+    <h1 class="pmp-article-title"><a href="/article/{{article.technicalName}}" data-ng-bind-html="article.title | trust"></a></h1>
 
-    <div class="pmp-article-caption pmp-bb-generated" ng-bind-html="article.caption | trust">
+    <div class="pmp-article-caption pmp-bb-generated" data-ng-bind-html="article.caption | trust">
     </div>
 
     <div class="pmp-article-more">
-      <div class="pmp-article-access" ng-hide="'flash' == article.type">
+      <div class="pmp-article-access" data-ng-hide="'flash' == article.type">
         <a class="button button-labeled-inverse button-info" href="/article/{{article.technicalName}}">
           Read blog post
           <div class="button-label"><span class="icon icon-arrow-right"></span></div>
@@ -33,7 +33,7 @@
       <div class="pmp-article-tags">
         <a class="pmp-article-tag-group" href="/search?search={{article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
 
-        <a class="pmp-article-tag" ng-repeat="tag in article.tags" href="/search?search={{tag}}" ng-bind="tag">
+        <a class="pmp-article-tag" data-ng-repeat="tag in article.tags" href="/search?search={{tag}}" data-ng-bind="tag">
         </a>
       </div>
     </div>

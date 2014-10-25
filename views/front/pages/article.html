@@ -1,41 +1,41 @@
 <!-- Article -->
-<article class="pmp-page-content-box" ng-controller="articleController">
-  <h2 class="box-vignette-left news-vignette" ng-show="'news' == globals.article.type">News</h2>
-  <h2 class="box-vignette-left life-vignette" ng-show="'life' == globals.article.type">Personal</h2>
-  <h2 class="box-vignette-left project-vignette" ng-show="'project' == globals.article.type">Project</h2>
-  <h2 class="box-vignette-left tutorial-vignette" ng-show="'tutorial' == globals.article.type">Tutorial</h2>
-  <h2 class="box-vignette-left flash-vignette" ng-show="'flash' == globals.article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
+<article class="pmp-page-content-box" data-ng-controller="articleController">
+  <h2 class="box-vignette-left news-vignette" data-ng-show="'news' == globals.article.type">News</h2>
+  <h2 class="box-vignette-left life-vignette" data-ng-show="'life' == globals.article.type">Personal</h2>
+  <h2 class="box-vignette-left project-vignette" data-ng-show="'project' == globals.article.type">Project</h2>
+  <h2 class="box-vignette-left tutorial-vignette" data-ng-show="'tutorial' == globals.article.type">Tutorial</h2>
+  <h2 class="box-vignette-left flash-vignette" data-ng-show="'flash' == globals.article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
 
-  <h2 class="box-vignette-left date-vignette" ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></h2>
+  <h2 class="box-vignette-left date-vignette" data-ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></h2>
 
-  <h2 class="box-vignette-right featured-vignette" ng-show="true == globals.article.featured">
+  <h2 class="box-vignette-right featured-vignette" data-ng-show="true == globals.article.featured">
     <span class="icon icon-star3"></span>
   </h2>
 
   <div class="pmp-article">
-    <h1 class="pmp-article-title"><a href="/article/{{globals.article.technicalName}}" ng-bind-html="globals.article.title | trust"></a></h1>
+    <h1 class="pmp-article-title"><a href="/article/{{globals.article.technicalName}}" data-ng-bind-html="globals.article.title | trust"></a></h1>
 
     <div class="pmp-article-caption-before"
-         ng-show="true == globals.isPreview">Caption</div>
+         data-ng-show="true == globals.isPreview">Caption</div>
     <div class="pmp-article-caption pmp-bb-generated"
-         ng-show="true == globals.isPreview"
-         ng-bind-html="globals.article.caption | trust">
+         data-ng-show="true == globals.isPreview"
+         data-ng-bind-html="globals.article.caption | trust">
     </div>
     <div class="pmp-article-caption-after"
-         ng-show="true == globals.isPreview">Caption</div>
+         data-ng-show="true == globals.isPreview">Caption</div>
 
     <div class="pmp-article-text-before"
-         ng-show="true == globals.isPreview">Text</div>
-    <div class="pmp-article-text pmp-bb-generated" ng-bind-html="globals.article.text | trust">
+         data-ng-show="true == globals.isPreview">Text</div>
+    <div class="pmp-article-text pmp-bb-generated" data-ng-bind-html="globals.article.text | trust">
     </div>
     <div class="pmp-article-text-after"
-         ng-show="true == globals.isPreview">Text</div>
+         data-ng-show="true == globals.isPreview">Text</div>
 
     <div class="pmp-article-more">
       <div class="pmp-article-tags">
         <a class="pmp-article-tag-group" href="/search?search={{globals.article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
 
-        <a class="pmp-article-tag" ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" ng-bind="tag"></a>
+        <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
       </div>
     </div>
 
@@ -46,13 +46,13 @@
         <input type="hidden" name="text" value="Check it out!" />
         <input type="hidden" name="hashtags" value="{{globals.article.tags.join(',')}}" />
 
-        <button class="button button-twitter button-labeled" ng-click="incShare('twitter')">
+        <button class="button button-twitter button-labeled" data-ng-click="incShare('twitter')">
           <span class="button-label"><span class="icon icon-twitter"></span></span>
 
-          <span ng-hide="0 == globals.article.shares.twitter">
-            Tweeted <b><span ng-bind="globals.article.shares.twitter"></span></b> times
+          <span data-ng-hide="0 == globals.article.shares.twitter">
+            Tweeted <b><span data-ng-bind="globals.article.shares.twitter"></span></b> times
           </span>
-          <span ng-show="0 == globals.article.shares.twitter">
+          <span data-ng-show="0 == globals.article.shares.twitter">
             Tweet!
           </span>
         </button>
@@ -65,50 +65,50 @@
 <!-- !Article -->
 
 <!-- Comment -->
-<div class="pmp-page-content-box" id="pmp-comments" ng-controller="articleCommentsController" ng-hide="true == globals.deactivateComments">
+<div class="pmp-page-content-box" id="pmp-comments" data-ng-controller="articleCommentsController" data-ng-hide="true == globals.deactivateComments">
   <h2 class="box-vignette-left">Comments</h2>
 
   <div class="pmp-comments">
-    <div class="pmp-comment clearfix" ng-repeat="comment in globals.commentList">
-      <div class="pmp-comment-author" ng-class="{'pmp-comment-author-user': undefined != comment.user}">
-        <span ng-hide="undefined != comment.user" ng-bind="comment.author"></span>
-        <span ng-show="undefined != comment.user">
-          <span ng-show="comment.user.username == comment.author">{{comment.user.username}}</span>
-          <span ng-hide="comment.user.username == comment.author">{{comment.user.username}} as {{comment.author}}</span>
+    <div class="pmp-comment clearfix" data-ng-repeat="comment in globals.commentList">
+      <div class="pmp-comment-author" data-ng-class="{'pmp-comment-author-user': undefined != comment.user}">
+        <span data-ng-hide="undefined != comment.user" data-ng-bind="comment.author"></span>
+        <span data-ng-show="undefined != comment.user">
+          <span data-ng-show="comment.user.username == comment.author">{{comment.user.username}}</span>
+          <span data-ng-hide="comment.user.username == comment.author">{{comment.user.username}} as {{comment.author}}</span>
         </span>
       </div>
       <div class="pmp-comment-date">
-        <span class="pmp-comment-date-date" ng-bind="comment.created | date: 'yyyy-MM-dd'"></span>,
-        <b><span class="pmp-comment-date-date" ng-bind="comment.created | date: 'hh:mm'"></span></b>
+        <span class="pmp-comment-date-date" data-ng-bind="comment.created | date: 'yyyy-MM-dd'"></span>,
+        <b><span class="pmp-comment-date-date" data-ng-bind="comment.created | date: 'hh:mm'"></span></b>
       </div>
 
       <div class="pmp-comment-text"
-           ng-bind="comment.text"
-           ng-hide="'hidden' == comment.status">
+           data-ng-bind="comment.text"
+           data-ng-hide="'hidden' == comment.status">
       </div>
       <div class="pmp-comment-text pmp-comment-hidden"
-           ng-show="'hidden' == comment.status">
+           data-ng-show="'hidden' == comment.status">
         Comment hidden (probably because it was spam or obvious trolling). Don't do that.
       </div>
     </div>
 
     <!-- Add comment -->
-    <div class="pmp-add-comment" ng-hide="true == newCommentPosted">
+    <div class="pmp-add-comment" data-ng-hide="true == newCommentPosted">
       <input class="control" type="text" name="author"
-             ng-model="newComment.author"
-             ng-init="newComment.author = globals.user.username || newComment.author || ''"
-             ng-class="{'has-data': 0 != newComment.author.length}"
+             data-ng-model="newComment.author"
+             data-ng-init="newComment.author = globals.user.username || newComment.author || ''"
+             data-ng-class="{'has-data': 0 != newComment.author.length}"
              placeholder="Name..." />
 
       <textarea class="control" type="text" name="text"
-                ng-model="newComment.text"
-                ng-init="newComment.text = newComment.text || ''"
-                ng-class="{'has-data': 0 != newComment.text.length}"
+                data-ng-model="newComment.text"
+                data-ng-init="newComment.text = newComment.text || ''"
+                data-ng-class="{'has-data': 0 != newComment.text.length}"
                 data-resizable rows="3"
-                placeholder="Comment.."></textarea>
+                placeholder="Comment..."></textarea>
 
       <div class="pmp-add-comment-button">
-        <button class="button button-labeled button-success" type="button" ng-click="postComment()">
+        <button class="button button-labeled button-success" type="button" data-ng-click="postComment()">
           <div class="button-label"><span class="icon icon-checkmark"></span></div>
           Submit
         </button>
@@ -117,10 +117,10 @@
     <!-- !Add comment -->
 
     <!-- Thanks for comment -->
-    <div class="pmp-comment-thanks" ng-show="true == newCommentPosted">
+    <div class="pmp-comment-thanks" data-ng-show="true == newCommentPosted">
       Thanks for the comment!
       <br />
-      <span class="pmp-comment-reenable" ng-click="newCommentPosted = false">Want to add another comment?</span>
+      <span class="pmp-comment-reenable" data-ng-click="newCommentPosted = false">Want to add another comment?</span>
     </div>
     <!-- !Thanks for comment -->
   </div>

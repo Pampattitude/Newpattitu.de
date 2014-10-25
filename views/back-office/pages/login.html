@@ -2,18 +2,18 @@
   <div class="pmp-login">
     <form>
       <input class="control" type="text" name="username"
-             ng-model="loginData.username"
-             ng-init="loginData.username = loginData.username || ''"
-             ng-class="{'has-data': loginData.username.length}"
+             data-ng-model="loginData.username"
+             data-ng-init="loginData.username = loginData.username || ''"
+             data-ng-class="{'has-data': loginData.username.length}"
              placeholder="Username..." />
 
       <input class="control" type="password" name="password"
-             ng-model="loginData.password"
-             ng-init="loginData.password = loginData.password || ''"
-             ng-class="{'has-data': loginData.password.length}"
+             data-ng-model="loginData.password"
+             data-ng-init="loginData.password = loginData.password || ''"
+             data-ng-class="{'has-data': loginData.password.length}"
              placeholder="Password..."/>
 
-      <button class="button button-info pmp-login-button" ng-click="login()">
+      <button class="button button-info pmp-login-button" data-ng-click="login()">
         <span class="icon icon-checkmark"></span>
       </button>
     </form>

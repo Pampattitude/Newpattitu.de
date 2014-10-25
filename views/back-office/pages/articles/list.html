@@ -12,29 +12,29 @@
     <!-- !Create article -->
   </div>
 
-  <div class="cell-3 cell-mobile-6" ng-repeat="article in globals.articleList">
+  <div class="cell-3 cell-mobile-6" data-ng-repeat="article in globals.articleList">
     <!-- Article -->
     <div class="pmp-article">
-      <h2 class="box-vignette-right featured-vignette" ng-show="true == article.featured">
+      <h2 class="box-vignette-right featured-vignette" data-ng-show="true == article.featured">
         <span class="icon icon-star3"></span>
       </h2>
 
       <div class="pmp-article-content">
         <div class="pmp-article-date">
-          <span ng-bind="article.created | date: 'yyyy-MM-dd hh:mm'"></span>
+          <span data-ng-bind="article.created | date: 'yyyy-MM-dd hh:mm'"></span>
         </div>
 
-        <h3 class="pmp-article-title" ng-bind="article.title"></h3>
+        <h3 class="pmp-article-title" data-ng-bind="article.title"></h3>
       </div>
 
       <!-- Article actions -->
       <div class="pmp-article-actions grid-3">
         <div class="cell-1">
-          <button type="button" class="button button-activate" ng-click="deactivateArticle(article)" ng-show="article.activated">
+          <button type="button" class="button button-activate" data-ng-click="deactivateArticle(article)" data-ng-show="article.activated">
             <span class="icon icon-checkmark-circle"></span>
           </button>
 
-          <button type="button" class="button button-deactivate" ng-click="activateArticle(article)" ng-hide="article.activated">
+          <button type="button" class="button button-deactivate" data-ng-click="activateArticle(article)" data-ng-hide="article.activated">
             <span class="icon icon-blocked"></span>
           </button>
         </div>

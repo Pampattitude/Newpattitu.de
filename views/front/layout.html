@@ -33,9 +33,9 @@
     <link rel="stylesheet" href="/css/pmp.css" />
   </head>
 
-  <body ng-app="frontApp">
+  <body data-ng-app="frontApp">
     <!-- General app controller -->
-    <div ng-controller="generalController">
+    <div data-ng-controller="generalController">
       <!-- Header -->
       <% include partials/header.html %>
       <!-- !Header -->
@@ -51,7 +51,7 @@
       <!-- Body -->
       <main class="pmp-body">
         <div class="grid-3">
-          <div class="cell-2 cell-mobile-3" ng-class="{'cell-3': globals.hidePageMenu}">
+          <div class="cell-2 cell-mobile-3" data-ng-class="{'cell-3': globals.hidePageMenu}">
             <!-- Page content -->
             <div class="pmp-page-content">
               <% include page %>
@@ -59,7 +59,7 @@
             <!-- !Page content -->
           </div>
 
-          <div class="cell-1 hidden-mobile" ng-class="{'hidden-desktop': globals.hidePageMenu}">
+          <div class="cell-1 hidden-mobile" data-ng-class="{'hidden-desktop': globals.hidePageMenu}">
             <!-- Page menu -->
             <% include partials/pageMenu.html %>
             <!-- Page menu -->
