@@ -10,6 +10,10 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
             $scope.$apply();
     };
 
+    $scope.range = function(nb) {
+        return new Array(nb);
+    };
+
     /* Alerts */
     $scope.alertList = [];
     $scope.alertIdx_ = 0;

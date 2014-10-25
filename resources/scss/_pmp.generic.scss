@@ -116,6 +116,9 @@ $button-default-background-color:               $grey-light;
 $button-default-hover-background-color:         $grey-lighter;
 $button-default-focus-background-color:         $grey-darker;
 
+$button-deactivated-text-color:                 $white-mild;
+$button-deactivated-background-color:           $grey;
+
 $button-success-text-color:                     $white-mild;
 $button-success-background-color:               $green;
 $button-success-hover-background-color:         $green-light;
@@ -298,6 +301,13 @@ a {
             background-color: $button-default-focus-background-color;
             border-color: $button-default-focus-background-color;
         }
+    }
+
+    &.button-deactivated {
+        cursor: normal;
+
+        background-color: $button-deactivated-background-color;
+        border-color: $button-deactivated-background-color;
     }
 
     &.button-success {

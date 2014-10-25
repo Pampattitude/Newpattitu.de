@@ -33,8 +33,8 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
 
-    router.get ('/blog', bindPage(controllers.home.page));
-    router.get ('/home', function(req, res) { return res.redirect('/blog'); });
+    router.get ('/blog/:pageNumber?', bindPage(controllers.home.page));
+    router.get ('/home/:pageNumber?', function(req, res) { return res.redirect('/blog' + (req.params.pageNumber ? '/' + req.params.pageNumber : '')); });
     router.get ('/', function(req, res) { return res.redirect('/blog'); });
 
     router.get ('/article/:articleTechnicalName', bindPage(controllers.article.page));

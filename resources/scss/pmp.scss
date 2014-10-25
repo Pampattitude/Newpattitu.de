@@ -697,6 +697,41 @@ body {
     }
 }
 /* !Report */
+
+/* Page control */
+.pmp-page-control {
+    text-align: center;
+
+    .button {
+        color: $white-mild;
+
+        background-color: $blue;
+        border-color: $blue;
+
+        &:hover {
+            background-color: $blue-light;
+            border-color: $blue-light;
+        }
+        &:active {
+            background-color: $blue-dark;
+            border-color: $blue-dark;
+        }
+
+        &.button-selected {
+            color: $blue;
+            font-weight: bold;
+
+            background-color: $white-mild;
+            border-color: $white-mild;
+        };
+
+        &.button-deactivated {
+            background-color: desaturate($blue, 20%);
+            border-color: desaturate($blue, 20%);
+        };
+    }
+}
+/* !Page control */
 /* !Page content */
 
 /* Right menu */
