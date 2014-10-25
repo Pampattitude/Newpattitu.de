@@ -26,6 +26,12 @@
                 ng-class="{'inactive': 'tutorial' != article.type}">
           Tutorial
         </button>
+
+        <button type="button" class="vignette-button flash-vignette"
+                ng-click="article.type = 'flash'"
+                ng-class="{'inactive': 'flash' != article.type}">
+          Flash
+        </button>
       </div>
 
       <div class="pmp-article-title-and-technical-name grid-4">

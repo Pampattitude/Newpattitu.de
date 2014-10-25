@@ -3,8 +3,8 @@
 $date-vignette-background-color:        rgb(128, 128, 160);
 $date-vignette-background-dark-color:   rgb(72, 72, 96);
 
-$featured-vignette-background-color:        rgb(208, 208, 32);
-$featured-vignette-background-dark-color:   rgb(144, 144, 16);
+$featured-vignette-background-color:        $yellow;
+$featured-vignette-background-dark-color:   $yellow-dark;
 
 $news-vignette-background-color:        rgb(32, 32, 32);
 $news-vignette-background-dark-color:   rgb(8, 8, 8);
@@ -21,10 +21,15 @@ $project-vignette-background-dark-color:        rgb(8, 81, 163);
 $project-vignette-button-background-hover-color:        rgb(48, 128, 220);
 $project-vignette-button-background-focus-color:        rgb(24, 72, 172);
 
-$tutorial-vignette-background-color:    rgb(64, 128, 64);
-$tutorial-vignette-background-dark-color:       rgb(32, 72, 32);
-$tutorial-vignette-button-background-hover-color:       rgb(96, 160, 96);
-$tutorial-vignette-button-background-focus-color:       rgb(40, 96, 40);
+$tutorial-vignette-background-color:    $green;
+$tutorial-vignette-background-dark-color:       $green-darker;
+$tutorial-vignette-button-background-hover-color:       $green-light;
+$tutorial-vignette-button-background-focus-color:       $green-dark;
+
+$flash-vignette-background-color:    $yellow;
+$flash-vignette-background-dark-color:       $yellow-darker;
+$flash-vignette-button-background-hover-color:       $yellow-light;
+$flash-vignette-button-background-focus-color:       $yellow-dark;
 
 
 /* Box vignettes */
@@ -178,6 +183,22 @@ $tutorial-vignette-button-background-focus-color:       rgb(40, 96, 40);
     }
     &.vignette-button:active {
         background-color: $tutorial-vignette-button-background-focus-color;
+    }
+}
+
+.flash-vignette {
+    @extend .article-type-vignette;
+    background-color: $flash-vignette-background-color;
+
+    &:after {
+        border-color: transparent $flash-vignette-background-dark-color transparent transparent;
+    }
+
+    &.vignette-button:hover {
+        background-color: $flash-vignette-button-background-hover-color;
+    }
+    &.vignette-button:active {
+        background-color: $flash-vignette-button-background-focus-color;
     }
 }
 

@@ -18,7 +18,7 @@ var schema = new mongoose.Schema({
     compressedText: {type: String, required: true},
     tags: {type: [String], index: true},
 
-    type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'other'], default: 'other'},
+    type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'flash'], default: 'news'},
 
     featured: {type: Boolean, default: false},
 
