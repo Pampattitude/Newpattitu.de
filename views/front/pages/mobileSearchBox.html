@@ -1,0 +1,19 @@
+<!-- Search -->
+<div class="pmp-page-content-box hidden-desktop">
+  <div class="pmp-search-input-box">
+    <form method="GET" action="/search">
+      <div class="control-group">
+        <input class="control" type="text" name="search"
+               ng-model="searchString"
+               ng-init="searchString = searchString || ''"
+               ng-class="{'has-data': 0 != searchString.length}"
+               placeholder="Search..." />
+
+        <button class="button button-success control-button" type="submit">
+          <span class="icon icon-search"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- !Search -->
