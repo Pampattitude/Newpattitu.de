@@ -5,9 +5,9 @@
    Twitter: @Pampattitude
 
 /* THANKS */
-   Design: 9eme Art
-   Site: http://www.9emeart.fr/
-   Twitter: @9emeArt
+   Design: MinBlog by Unik Pixel
+   Site: http://unikpixel.com/
+   Twitter: @UnikPixel
 
    Icons: Icomoon
    Site: http://icomoon.io/
@@ -28,4 +28,4 @@
 /* SITE */
    Language: English
    Doctype: HTML5
-   IDE: emacs, Notepad++
+   IDE: emacs
