@@ -97,7 +97,14 @@
         <b><span class="pmp-comment-date-date" ng-bind="comment.created | date: 'hh:mm'"></span></b>
       </div>
 
-      <div class="pmp-comment-text" ng-bind="comment.text"></div>
+      <div class="pmp-comment-text"
+           ng-bind="comment.text"
+           ng-hide="'hidden' == comment.status">
+      </div>
+      <div class="pmp-comment-text pmp-comment-hidden"
+           ng-show="'hidden' == comment.status">
+        Comment hidden (probably because it was spam or obvious trolling). Don't do that.
+      </div>
     </div>
 
     <!-- Add comment -->

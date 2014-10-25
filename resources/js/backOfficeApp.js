@@ -319,6 +319,41 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     };
 }]);
 
+backOfficeApp.controller('commentsModerationController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    $scope.changeCommentStatus = function(comment, newStatus) {
+        var changeCommentStatusUrl = '/back-office/article/' + comment.article + '/comment/' + comment._id + '/setStatus';
+        return $http.post(changeCommentStatusUrl, {status: newStatus}).then(function(response) {
+            $scope.addAlert('success', 'Comment status changed!');
+            comment.status = newStatus;
+            $scope.refresh();
+        }, function(response) {
+            $scope.addAlert('error', 'Could not update comment status because: ' + response.data.message);
+        });
+    };
+
+    $scope.deleteComment = function(comment) {
+        var confirmBox = {
+            title: 'Delete comment?',
+            text: 'Do you really want to delete this comment? This operation is not reversible.',
+            acceptCallback: function() {
+                $scope.closeConfirmBox();
+                var url = '/back-office/article/' + comment.article + '/comment/' + comment._id + '/delete';
+                $http.post(url, {}).then(function(response) {
+                    $scope.addAlert('success', 'Comment deleted!');
+                    $scope.globals.commentList = $scope.globals.commentList.filter(function(elem) {
+                        return comment._id != elem._id;
+                    });
+                    $scope.refresh();
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not delete comment because: ' + response.data.message);
+                });
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
+    };
+}]);
+
 backOfficeApp.controller('reportsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
     $scope.changeReportStatus = function(report, newStatus) {
         var changeReportStatusUrl = '/back-office/report/' + report._id + '/setStatus';

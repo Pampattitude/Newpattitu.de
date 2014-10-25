@@ -40,6 +40,20 @@ exports.editPage = function(req, res, callback) {
     });
 };
 
+exports.commentModerationPage = function(req, res, callback) {
+    res.locals.title = 'Comments moderation';
+
+    res.locals.page = 'pages/articles/comments.html';
+    res.locals.activeTopMenu = 'articles';
+
+    return mongoose.model('Comment').find({article: req.params.articleId}).sort({created: 1}).exec(function(err, comments) {
+        if (err) return callback(err);
+
+        res.locals.commentList = comments;
+        return callback();
+    });
+};
+
 exports.activate = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {activated: true}}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
@@ -125,4 +139,24 @@ exports.generateTechnicalName = function(req, res, callback) {
         .toLowerCase();
 
     return callback(null, technicalName);
+};
+
+exports.setCommentStatus = function(req, res, callback) {
+    if (!req.body.status)
+        return callback({code: 400, message: 'Missing status'});
+
+    return mongoose.model('Comment').findOneAndUpdate({_id: req.params.commentId}, {$set: {status: req.body.status}}, function(err) {
+        if (err) return callback({code: 500, message: err});
+
+        return callback();
+    });
+};
+
+exports.removeComment = function(req, res, callback) {
+    return mongoose.model('Comment').findOneAndRemove({_id: req.params.commentId}, {$set: {status: req.body.status}}, function(err, removed) {
+        if (err) return callback({code: 500, message: err});
+        else if (!removed) return callback({code: 404, message: 'Comment not found'})
+
+        return callback();
+    });
 };

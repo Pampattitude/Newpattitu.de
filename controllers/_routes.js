@@ -91,6 +91,9 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.post('/article/:articleId/save', middleware.isLoggedIn, bindAjax(controllers.articles.save));
     router.post('/article/:articleId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.remove));
     router.get ('/article/generateTechnicalName', middleware.isLoggedIn, bindAjax(controllers.articles.generateTechnicalName));
+    router.get ('/article/:articleId/comments', middleware.isLoggedIn, bindPage(controllers.articles.commentModerationPage));
+    router.post('/article/:articleId/comment/:commentId/setStatus', middleware.isLoggedIn, bindAjax(controllers.articles.setCommentStatus));
+    router.post('/article/:articleId/comment/:commentId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.removeComment));
 
     router.get ('/reports/', middleware.isLoggedIn, bindPage(controllers.reports.page));
     router.post('/report/:reportId/setStatus', middleware.isLoggedIn, bindAjax(controllers.reports.setStatus));

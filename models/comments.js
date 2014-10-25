@@ -13,6 +13,8 @@ var schema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     text: {type: String},
 
+    status: {type: String, enum: ['visible', 'hidden'], default: 'visible'},
+
     created: {type: Date, default: Date.now},
 });
 

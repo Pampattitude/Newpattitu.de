@@ -10,7 +10,7 @@ exports.getComments = function(req, res, callback) {
         if (err) return callback(err);
         if (!article) return callback(null, '/404');
 
-        return mongoose.model('Comment').find({article: article._id}).sort({created: 1}).exec(function(err, comments) {
+        return mongoose.model('Comment').find({article: article._id}).sort({created: 1}).populate('user').exec(function(err, comments) {
             if (err) return callback(err);
 
             return callback(null, {

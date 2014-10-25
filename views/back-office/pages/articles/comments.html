@@ -1,0 +1,48 @@
+<div class="pmp-comments" ng-controller="commentsModerationController">
+  <div class="cell-12 cell-mobile-12"
+       ng-repeat="comment in globals.commentList">
+    <div class="pmp-comment">
+      <div class="pmp-comment-content-container">
+        <div class="pmp-comment-content">
+          <div class="pmp-comment-author">
+            By <span class="pmp-comment-author-name"
+                     ng-bind="comment.author"></span>
+          </div>
+
+          <div class="pmp-comment-date"
+               ng-bind="comment.created | date: 'yyyy-MM-dd'"></div>
+
+          <div class="pmp-comment-text"
+               ng-bind="comment.text">
+          </div>
+        </div>
+      </div>
+
+      <!-- Comment actions -->
+      <div class="pmp-comment-actions grid-3">
+        <div class="cell-1">
+          <button type="button" class="button button-visible"
+                  ng-class="{active: 'visible' == comment.status}"
+                  ng-click="changeCommentStatus(comment, 'visible')">
+            <span class="icon icon-eye"></span>
+          </button>
+        </div>
+
+        <div class="cell-1">
+          <button type="button" class="button button-hidden"
+                  ng-class="{active: 'hidden' == comment.status}"
+                  ng-click="changeCommentStatus(comment, 'hidden')">
+            <span class="icon icon-eye-blocked"></span>
+          </button>
+        </div>
+
+        <div class="cell-1">
+          <button type="button" class="button button-error" ng-click="deleteComment(comment)">
+            <span class="icon icon-remove"></span>
+          </button>
+        </div>
+      </div>
+      <!-- !Comment actions -->
+    </div>
+  </div>
+</div>

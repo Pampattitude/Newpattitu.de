@@ -419,6 +419,16 @@ body {
                 border-color: transparent transparent transparent $comment-date-background-darker-color;
             }
         }
+
+        .pmp-comment-text {
+            &.pmp-comment-hidden {
+                color: rgba(32, 32, 32, 0.5);
+                font-size: 0.75em;
+                text-align: center;
+
+                margin: 0.4em 0.8em;
+            }
+        }
     }
 
     .pmp-add-comment {
