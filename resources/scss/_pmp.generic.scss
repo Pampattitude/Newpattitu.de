@@ -59,11 +59,11 @@ $purple-lighter:                adjust-color($purple, $lightness: 20%);
 $purple-dark:                   adjust-color($purple, $lightness: -10%);
 $purple-darker:                 adjust-color($purple, $lightness: -20%);
 
-$pantone:                       rgb(128, 128, 160);
-$pantone-light:                 adjust-color($pantone, $lightness: 10%);
-$pantone-lighter:               adjust-color($pantone, $lightness: 20%);
-$pantone-dark:                  adjust-color($pantone, $lightness: -10%);
-$pantone-darker:                adjust-color($pantone, $lightness: -20%);
+$teal:                          rgb(32, 160, 160);
+$teal-light:                    adjust-color($teal, $lightness: 10%);
+$teal-lighter:                  adjust-color($teal, $lightness: 20%);
+$teal-dark:                     adjust-color($teal, $lightness: -10%);
+$teal-darker:                   adjust-color($teal, $lightness: -20%);
 
 
 $facebook-color:                rgb(59, 89, 152);
