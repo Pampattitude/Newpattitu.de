@@ -1,4 +1,5 @@
 <div class="pmp-comments" data-ng-controller="commentsModerationController">
+  <!-- Comment -->
   <div class="cell-12 cell-mobile-12"
        data-ng-repeat="comment in globals.commentList">
     <div class="pmp-comment">
@@ -44,5 +45,12 @@
       </div>
       <!-- !Comment actions -->
     </div>
+  </div>
+  <!-- !Comment -->
+
+  <div class="pmp-no-comment cell-12" data-ng-show="0 == globals.commentList.length">
+    <p>
+      No comment yet.
+    </p>
   </div>
 </div>
