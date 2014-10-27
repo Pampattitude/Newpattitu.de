@@ -16,6 +16,13 @@
    Background image: Waseem Dahman
    Site: http://www.transparenttextures.com/
 
+   Text edition: markItUp!
+   Site: http://markitup.jaysalvat.com/home/
+   Twitter: @markitupeditor
+
+   Konami code: George Mandis
+   Site: http://konami-js.googlecode.com/
+
    Graphics & human support: Eve Charmant
    Twitter: @eve2046
 
