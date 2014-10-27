@@ -17,7 +17,16 @@
   </h2>
 
   <div class="pmp-article">
-    <h1 class="pmp-article-title"><a href="/article/{{article.technicalName}}" data-ng-bind-html="article.title | trust"></a></h1>
+    <h1 class="pmp-article-title">
+      <a href="/article/{{article.technicalName}}"
+         data-ng-bind-html="article.title | trust"
+         data-ng-hide="'flash' == article.type">
+      </a>
+      <span href="/article/{{article.technicalName}}"
+         data-ng-bind-html="article.title | trust"
+         data-ng-show="'flash' == article.type">
+      </span>
+    </h1>
 
     <div class="pmp-article-caption pmp-bb-generated" data-ng-bind-html="article.caption | trust">
     </div>
