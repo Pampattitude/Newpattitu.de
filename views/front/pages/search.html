@@ -52,3 +52,37 @@
   </div>
 </div>
 <!-- !If no result -->
+
+<!-- Page -->
+<div class="pmp-page-control">
+  <div ng-hide="1 >= globals.totalPageCount">
+    <!-- Should be inactive if at page 1 -->
+    <a class="button" href="/search/{{globals.actualPageIndex}}?search={{globals.searchString}}"
+       ng-hide="0 == globals.actualPageIndex">
+      <span class="icon icon-previous"></span>
+    </a>
+    <span class="button button-deactivated"
+          ng-show="0 == globals.actualPageIndex">
+      <span class="icon icon-previous"></span>
+    </span>
+
+    <span ng-repeat="i in range(globals.totalPageCount) track by $index">
+      <a class="button" href="/search/{{$index+1}}?search={{globals.searchString}}"
+         ng-show="globals.actualPageIndex != $index">
+        {{$index+1}}
+      </a>
+      <span class="button button-selected" ng-hide="globals.actualPageIndex != $index">{{$index+1}}</span>
+    </span>
+
+    <!-- Should be inactive if at max page -->
+    <a class="button" href="/search/{{globals.actualPageIndex + 2}}?search={{globals.searchString}}"
+       ng-hide="globals.totalPageCount - 1 == globals.actualPageIndex">
+      <span class="icon icon-next"></span>
+    </a>
+    <span class="button button-deactivated"
+          ng-show="globals.totalPageCount - 1 == globals.actualPageIndex">
+      <span class="icon icon-next"></span>
+    </span>
+  </div>
+</div>
+<!-- !Page -->

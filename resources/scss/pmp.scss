@@ -726,8 +726,8 @@ body {
         };
 
         &.button-deactivated {
-            background-color: desaturate($blue, 20%);
-            border-color: desaturate($blue, 20%);
+            background-color: adjust-color($blue, $saturation: -15%, $lightness: 15%);
+            border-color: adjust-color($blue, $saturation: -15%, $lightness: 15%);
         };
     }
 }

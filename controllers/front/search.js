@@ -13,13 +13,19 @@ exports.page = function(req, res, callback) {
     res.locals.page = 'pages/search.html';
     res.locals.activeTopMenu = 'blog';
 
+    res.locals.actualPageIndex = (req.params.pageNumber && 0 < req.params.pageNumber) ? req.params.pageNumber - 1 : 0;
+
+    if (!req.query.search)
+        req.query.search = '';
     if (constants.searchStringMaxLength < req.query.search.length)
         req.query.search = req.query.search.substring(0, constants.searchStringMaxLength);
 
     return search_(req.query.search || '', function(err, articles) {
         if (err) return callback(err);
 
-        res.locals.articleList = articles;
+        res.locals.totalPageCount = Math.ceil(articles.length / constants.frontSearchPageArticleCount);
+        res.locals.articleList = articles.slice(res.locals.actualPageIndex * constants.frontSearchPageArticleCount,
+                                                res.locals.actualPageIndex * constants.frontSearchPageArticleCount + constants.frontSearchPageArticleCount);
 
         res.locals.searchString = req.query.search;
 

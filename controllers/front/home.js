@@ -15,10 +15,11 @@ exports.page = function(req, res, callback) {
 
     return async.series([
         function(serieCallback) {
-            return mongoose.model('Article').count(function(err, articleCount) {
+            return mongoose.model('Article').count({activated: true}, function(err, articleCount) {
                 if (err) return serieCallback(err);
 
                 res.locals.totalPageCount = Math.ceil(articleCount / constants.frontHomePageArticleCount);
+
                 return serieCallback();
             });
         },
@@ -38,11 +39,17 @@ exports.page = function(req, res, callback) {
         function(serieCallback) { // Get article list
             var articleCountToSkip = res.locals.actualPageIndex * constants.frontHomePageArticleCount; // Page count starts at 1 for the user
 
-            return mongoose.model('Article').find({featured: false, activated: true}).sort({created: -1}).skip(articleCountToSkip).limit(constants.frontHomePageArticleCount).exec(function(err, articles) {
+            return mongoose.model('Article').find({activated: true}).sort({created: -1}).skip(articleCountToSkip).limit(constants.frontHomePageArticleCount).exec(function(err, articles) {
                 if (err)
                     return callback(err);
 
                 res.locals.articleList = articles;
+
+                res.locals.articleList = res.locals.articleList.filter(function(elem) {
+                    if (elem.featured)
+                        return false;
+                    return true;
+                });
 
                 if (res.locals.featuredArticle)
                     res.locals.articleList.unshift(res.locals.featuredArticle);

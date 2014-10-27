@@ -41,7 +41,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.post('/article/:articleTechnicalName/comment', bindPost(controllers.article.postComment));
     router.get ('/article/preview/:articleTechnicalName', middleware.isLoggedInBackOffice, bindPage(controllers.article.previewPage));
 
-    router.get ('/search', bindPage(controllers.search.page));
+    router.get ('/search/:pageNumber?', bindPage(controllers.search.page));
 
     router.get ('/about', bindPage(controllers.about.page));
 
