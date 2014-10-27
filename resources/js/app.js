@@ -52,6 +52,8 @@ frontApp.controller('generalController', ['$scope', '$rootScope', function($scop
         $scope.refresh();
     };
 
+    // Take the globals alertList (i.e., alerts filled by the server) and
+    // insert them in actual alert list
     if ($scope.globals.alertList) {
         for (var i = 0 ; $scope.globals.alertList.length > i ; ++i) {
             var alert = $scope.globals.alertList[i];

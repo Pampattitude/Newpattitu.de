@@ -436,6 +436,7 @@ backOfficeApp.controller('reportsController', ['$scope', '$rootScope', '$http', 
     };
 }]);
 
+/* BBCode text box */
 backOfficeApp.factory('bbcodeitupSettings', [
     function() {
         var markset = [
@@ -496,3 +497,4 @@ backOfficeApp.directive('bbcodeItUp', ['bbcodeitupSettings', function(markitupSe
         }
     };
 }]);
+/* !BBCode text box */
