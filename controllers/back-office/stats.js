@@ -7,6 +7,7 @@ var currentWeekNumber = require('current-week-number');
 var constants = require('../../lib/constants');
 var utils = require('../../lib/utils');
 
+// Get page
 exports.page = function(req, res, callback) {
     res.locals.title = 'Statistics';
 
@@ -16,6 +17,7 @@ exports.page = function(req, res, callback) {
     return callback();
 };
 
+// Get general stats, i.e. article creation with respect to creation date
 exports.articleGeneralStats = function(req, res, callback) {
     var minDate = new Date();
     minDate.setHours(0); minDate.setMinutes(0); minDate.setSeconds(0); minDate.setMilliseconds(0);
@@ -43,6 +45,7 @@ exports.articleGeneralStats = function(req, res, callback) {
     });
 };
 
+// Get general stats, i.e. comment creation with respect to creation date
 exports.commentGeneralStats = function(req, res, callback) {
     var minDate = new Date();
     minDate.setHours(0); minDate.setMinutes(0); minDate.setSeconds(0); minDate.setMilliseconds(0);

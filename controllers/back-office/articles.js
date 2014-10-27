@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var constants = require('../../lib/constants');
 var utils = require('../../lib/utils');
 
+// Get page
 exports.page = function(req, res, callback) {
     res.locals.title = 'Articles';
 
@@ -20,6 +21,7 @@ exports.page = function(req, res, callback) {
     });
 };
 
+// Get edition page
 exports.editPage = function(req, res, callback) {
     res.locals.page = 'pages/articles/edit.html';
     res.locals.activeTopMenu = 'articles';
@@ -40,6 +42,7 @@ exports.editPage = function(req, res, callback) {
     });
 };
 
+// Get comment moderation page
 exports.commentModerationPage = function(req, res, callback) {
     res.locals.title = 'Comments moderation';
 
@@ -54,6 +57,7 @@ exports.commentModerationPage = function(req, res, callback) {
     });
 };
 
+// Activate the article, i.e. make it visible in front
 exports.activate = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {activated: true}}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
@@ -63,6 +67,7 @@ exports.activate = function(req, res, callback) {
     });
 };
 
+// Deactivate the article, i.e. make it invisible in front
 exports.deactivate = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {activated: false}}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
@@ -72,6 +77,7 @@ exports.deactivate = function(req, res, callback) {
     });
 };
 
+// Save article; constraints should be made a bit better
 exports.save = function(req, res, callback) {
     if (!req.body.title ||
         4 > req.body.title.length)
@@ -116,6 +122,7 @@ exports.save = function(req, res, callback) {
     });
 };
 
+// Get featured article
 exports.getFeatured = function(req, res, callback) {
     return mongoose.model('Article').findOne({featured: true}, function(err, featuredArticle) {
         if (err) return callback({code: 500, message: err});
@@ -124,6 +131,7 @@ exports.getFeatured = function(req, res, callback) {
     });
 };
 
+// Set article as featured, de-featuring the previously featured article
 exports.setFeatured = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate({featured: true}, {$set: {featured: false}}, function(err) {
         if (err) return callback({code: 500, message: err});
@@ -135,6 +143,7 @@ exports.setFeatured = function(req, res, callback) {
     });
 };
 
+// Delete the article altogether
 exports.remove = function(req, res, callback) {
     return mongoose.model('Article').findOneAndRemove({_id: req.params.articleId}, function(err, deletedArticle) {
         if (err) return callback({code: 500, message: err});
@@ -144,6 +153,8 @@ exports.remove = function(req, res, callback) {
     });
 };
 
+// Generate a technical name; should probably check in DB if technical name already exists
+// but the article currently in edition can also be in DB
 exports.generateTechnicalName = function(req, res, callback) {
     if (!req.query.title ||
        4 > req.query.title.length)
@@ -156,6 +167,7 @@ exports.generateTechnicalName = function(req, res, callback) {
     return callback(null, technicalName);
 };
 
+// Change comment visibility
 exports.setCommentStatus = function(req, res, callback) {
     if (!req.body.status)
         return callback({code: 400, message: 'Missing status'});
@@ -167,6 +179,7 @@ exports.setCommentStatus = function(req, res, callback) {
     });
 };
 
+// Delete comment altogether
 exports.removeComment = function(req, res, callback) {
     return mongoose.model('Comment').findOneAndRemove({_id: req.params.commentId}, {$set: {status: req.body.status}}, function(err, removed) {
         if (err) return callback({code: 500, message: err});

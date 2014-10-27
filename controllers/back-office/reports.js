@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 
+// Get page
 exports.page = function(req, res, callback) {
     res.locals.title = 'Reports';
 
@@ -17,6 +18,7 @@ exports.page = function(req, res, callback) {
     });
 };
 
+// Change the status of the report
 exports.setStatus = function(req, res, callback) {
     if (!req.body.status)
         return callback({code: 400, message: 'Missing status'});
@@ -28,6 +30,7 @@ exports.setStatus = function(req, res, callback) {
     });
 };
 
+// Remove the report altogether (will be entirely removed from DB)
 exports.remove = function(req, res, callback) {
     return mongoose.model('Report').findOneAndRemove({_id: req.params.reportId}, {$set: {status: req.body.status}}, function(err, removed) {
         if (err) return callback({code: 500, message: err});
