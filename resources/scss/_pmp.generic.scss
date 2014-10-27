@@ -139,6 +139,11 @@ $button-error-background-color:                 $red;
 $button-error-hover-background-color:           $red-light;
 $button-error-focus-background-color:           $red-dark;
 
+$button-star-text-color:                        $white-mild;
+$button-star-background-color:                  $yellow;
+$button-star-hover-background-color:            $yellow-light;
+$button-star-focus-background-color:            $yellow-dark;
+
 $button-github-background-color:                $github-color;
 $button-github-hover-background-color:          $github-color-light;
 $button-github-focus-background-color:          $github-color-dark;
@@ -367,6 +372,21 @@ a {
         &:active {
             background-color: $button-error-focus-background-color;
             border-color: $button-error-focus-background-color;
+        }
+    }
+
+    &.button-star {
+        background-color: $button-star-background-color;
+        border-color: $button-star-background-color;
+
+        &:hover {
+            background-color: $button-star-hover-background-color;
+            border-color: $button-star-hover-background-color;
+        }
+
+        &:active {
+            background-color: $button-star-focus-background-color;
+            border-color: $button-star-focus-background-color;
         }
     }
 

@@ -86,11 +86,18 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
 
     router.get ('/articles', middleware.isLoggedIn, bindPage(controllers.articles.page));
     router.get ('/article/:articleId?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));
+
+    router.get ('/article/getFeatured', middleware.isLoggedIn, bindAjax(controllers.articles.getFeatured));
+    router.post('/article/:articleId/setFeatured', middleware.isLoggedIn, bindAjax(controllers.articles.setFeatured));
+
     router.post('/article/:articleId/activate', middleware.isLoggedIn, bindAjax(controllers.articles.activate));
     router.post('/article/:articleId/deactivate', middleware.isLoggedIn, bindAjax(controllers.articles.deactivate));
+
     router.post('/article/:articleId/save', middleware.isLoggedIn, bindAjax(controllers.articles.save));
     router.post('/article/:articleId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.remove));
+
     router.get ('/article/generateTechnicalName', middleware.isLoggedIn, bindAjax(controllers.articles.generateTechnicalName));
+
     router.get ('/article/:articleId/comments', middleware.isLoggedIn, bindPage(controllers.articles.commentModerationPage));
     router.post('/article/:articleId/comment/:commentId/setStatus', middleware.isLoggedIn, bindAjax(controllers.articles.setCommentStatus));
     router.post('/article/:articleId/comment/:commentId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.removeComment));

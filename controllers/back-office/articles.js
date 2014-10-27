@@ -116,6 +116,25 @@ exports.save = function(req, res, callback) {
     });
 };
 
+exports.getFeatured = function(req, res, callback) {
+    return mongoose.model('Article').findOne({featured: true}, function(err, featuredArticle) {
+        if (err) return callback({code: 500, message: err});
+
+        return callback(null, featuredArticle);
+    });
+};
+
+exports.setFeatured = function(req, res, callback) {
+    return mongoose.model('Article').findOneAndUpdate({featured: true}, {$set: {featured: false}}, function(err) {
+        if (err) return callback({code: 500, message: err});
+
+        return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {featured: true}}, function(err) {
+            if (err) return callback({code: 500, message: err});
+            return callback();
+        });
+    });
+};
+
 exports.remove = function(req, res, callback) {
     return mongoose.model('Article').findOneAndRemove({_id: req.params.articleId}, function(err, deletedArticle) {
         if (err) return callback({code: 500, message: err});
