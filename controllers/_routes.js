@@ -55,6 +55,14 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.post('/ajax/article/:articleTechnicalName/:network/incShare', bindAjax(ajax.article.incrementShare));
     router.get ('/ajax/twitter/getLatest', bindAjax(ajax.twitter.getLatest));
 
+    router.get ('/footballPhysics', bindPage(function(req, res, callback) {
+        res.locals.title = 'Football Physics';
+        res.locals.page = 'pages/footballPhysics.html';
+        res.locals.hidePageMenu = true;
+
+        return callback();
+    }));
+
     router.get ('/*', bindPage(controllers.error.page404));
     router.use (function(err, req, res, next) {
         printer.error(err);
