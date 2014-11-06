@@ -23,6 +23,24 @@ $menu-item-exit-background-focus-color: $red-dark;
 
 $page-toolbar-background-color:         $main-menu-background-color;
 
+$page-toolbar-item-background-color:            transparent;
+$page-toolbar-item-background-hover-color:      rgba($white-mild, 0.1);
+
+$page-toolbar-notification-list-text-color:             $black-mild;
+$page-toolbar-notification-list-background-color:       $white-milderer;
+
+$page-toolbar-notification-list-item-border-color:      rgba($black-mild, 0.1);
+
+$page-toolbar-sticker-default-text-color:               $white;
+$page-toolbar-sticker-default-background-color:         $grey-lighter;
+$page-toolbar-sticker-default-border-color:             $grey;
+$page-toolbar-sticker-important-text-color:             $white;
+$page-toolbar-sticker-important-background-color:       $orange;
+$page-toolbar-sticker-important-border-color:           $orange-darker;
+$page-toolbar-sticker-critical-text-color:              $white;
+$page-toolbar-sticker-critical-background-color:        $red;
+$page-toolbar-sticker-critical-border-color:            $red-darker;
+
 $tag-text-color:                        $white-mild;
 $tag-background-color:                  $green;
 $tag-background-hover-color:            $green-light;
@@ -297,39 +315,11 @@ body {
 
 /* Page content */
 .pmp-page-content {
-    .pmp-has-toolbar {
-        margin-top: 2em;
+    margin-top: 2.4em;
 
-        @media only screen and (max-width: 991px) {
-            margin-top: 0;
-            margin-bottom: 2.4em;
-        }
-    }
-
-    .pmp-toolbar {
-        @extend .frontest;
-
-        width: 100%;
-        position: fixed;
-        top: 0;
-        right: 0;
-
-        font-size: 1.2em;
-
-        background-color: $page-toolbar-background-color;
-
-        @media only screen and (min-width: 992px) {
-            width: 80%;
-        }
-        @media only screen and (max-width: 991px) {
-            top: initial;
-            bottom: 0;
-        }
-
-        [class*="cell-"] .button {
-            width: 100%;
-            display: block;
-        }
+    @media only screen and (max-width: 991px) {
+        margin-top: 0;
+        margin-bottom: 2.4em;
     }
 
     .pmp-page-content-box {
@@ -370,6 +360,156 @@ body {
         }
     }
 }
+
+/* Toolbar */
+.pmp-toolbar {
+    @extend .frontest;
+
+    width: 100%;
+    height: 2em;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    font-size: 1.2em;
+    text-align: center;
+
+    background-color: $page-toolbar-background-color;
+
+    @media only screen and (min-width: 992px) {
+        width: 80%;
+    }
+    @media only screen and (max-width: 991px) {
+        top: initial;
+        bottom: 0;
+    }
+
+    .notification {
+        color: $white;
+        font-size: 0.8em;
+
+        .notification-button {
+            cursor: pointer;
+
+            padding: 0;
+
+            background-color: $page-toolbar-item-background-color;
+
+            &:hover {
+                background-color: $page-toolbar-item-background-hover-color;
+            }
+        }
+
+        a {
+            color: $white;
+        }
+    }
+
+    .sticker {
+        @extend .inline-block;
+
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-right: 0.2em;
+        padding: 0.25em 0.6em;
+
+        color: $page-toolbar-sticker-default-text-color;
+        font-size: 0.9em;
+        font-weight: bold;
+
+        background-color: $page-toolbar-sticker-default-background-color;
+        border-bottom: 0.15em solid $page-toolbar-sticker-default-border-color;
+        border-radius: 5em;
+
+        &.sticker-important {
+            color: $page-toolbar-sticker-important-text-color;
+
+            background-color: $page-toolbar-sticker-important-background-color;
+            border-color: $page-toolbar-sticker-important-border-color;
+        }
+
+        &.sticker-critical {
+            color: $page-toolbar-sticker-critical-text-color;
+
+            background-color: $page-toolbar-sticker-critical-background-color;
+            border-color: $page-toolbar-sticker-critical-border-color;
+        }
+    }
+
+    .button {
+        width: 100%;
+        display: block;
+    }
+}
+
+.notification-comment-list {
+    @extend .block;
+    @extend .frontest;
+
+    max-height: 18em;
+    min-width: 24em;
+    position: absolute;
+    top: 2.4em;
+    left: 0;
+    overflow: auto;
+    opacity: 0;
+
+    margin: 0;
+    padding: 0.2em 0.4em;
+
+    color: $page-toolbar-notification-list-text-color;
+    text-align: left;
+
+    list-style-type: none;
+
+    background-color: $page-toolbar-notification-list-background-color;
+    box-shadow: 0.1em 0.1em 0.1em rgba($black, 0.2);
+
+    transition: opacity 200ms;
+
+    &.active {
+        opacity: 1;
+
+        > li {
+            opacity: 1;
+        }
+    }
+
+    > li {
+        @extend .clearfix;
+
+        opacity: 0;
+
+        margin-bottom: 0.4em;
+        padding-bottom: 0.4em;
+
+        font-size: 0.9em;
+
+        border-bottom: 1px solid $page-toolbar-notification-list-item-border-color;
+
+        transition: opacity 200ms;
+
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+
+            border-color: transparent;
+        }
+
+        .notification-author {
+            float: left;
+
+            font-size: 0.8em;
+        }
+
+        .notification-date {
+            float: right;
+
+            font-size: 0.8em;
+        }
+    }
+}
+/* !Toolbar */
 
 /* Articles */
 .pmp-articles {

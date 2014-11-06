@@ -12,6 +12,7 @@ exports.page = function(req, res, callback) {
     res.locals.title = 'Statistics';
 
     res.locals.page = 'pages/stats.html';
+    res.locals.toolbar = 'toolbar/default.html';
     res.locals.activeTopMenu = 'stats';
 
     return callback();

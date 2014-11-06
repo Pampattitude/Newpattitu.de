@@ -7,14 +7,21 @@ exports.page = function(req, res, callback) {
     res.locals.title = 'Reports';
 
     res.locals.page = 'pages/reports.html'
+    res.locals.toolbar = 'toolbar/default.html';
     res.locals.activeTopMenu = 'reports';
 
-    return mongoose.model('Report').find().sort({created: 1}).exec(function(err, reports) {
+    // Mark all as not new anymore
+    // Not ideal because executed after notifications middleware
+    return mongoose.model('Report').update({}, {$set: {'new': false}}, {multi: true}, function(err) {
         if (err) return callback(err);
 
-        res.locals.reportList = reports;
+        return mongoose.model('Report').find().sort({created: 1}).exec(function(err, reports) {
+            if (err) return callback(err);
 
-        return callback();
+            res.locals.reportList = reports;
+
+            return callback();
+        });
     });
 };
 

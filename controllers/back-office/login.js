@@ -9,6 +9,7 @@ exports.page = function(req, res, callback) {
     res.locals.title = 'Login';
 
     res.locals.page = 'pages/login.html';
+    res.locals.toolbar = 'toolbar/default.html';
 
     return callback();
 };

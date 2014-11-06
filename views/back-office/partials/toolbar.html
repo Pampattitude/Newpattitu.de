@@ -1,0 +1,48 @@
+<div class="pmp-toolbar">
+  <div class="grid-16">
+    <!-- Comment notifications -->
+    <div class="notification cell-2 hidden-mobile">
+      <div class="button notification-button"
+           ng-click="tmpCommentListActive=!tmpCommentListActive">
+        <span class="sticker"
+              ng-class="{'sticker-important': 0 < newComments.length, 'sticker-critical': 5 < newComments.length}"
+              ng-bind="newComments.length">
+        </span>
+        comment<span ng-show="1 != newComments.length">s</span>
+      </div>
+    </div>
+    <!-- !Comment notifications -->
+
+    <!-- Report notifications -->
+    <div class="notification cell-2 hidden-mobile">
+      <a class="button notification-button" href="/back-office/reports">
+        <span class="sticker"
+              ng-class="{'sticker-important': 0 < newReports.length, 'sticker-critical': 5 < newReports.length}"
+              ng-bind="newReports.length">
+        </span> report<span ng-show="1 != newReports.length">s</span>
+      </a>
+    </div>
+    <!-- !Report notifications -->
+
+    <!-- Padd -->
+    <div class="cell-2 hidden-mobile">
+    </div>
+    <!-- !Padd -->
+
+    <!-- Custom toolbar -->
+    <% include toolbar %>
+    <!-- !Custom toolbar -->
+  </div>
+</div>
+
+<ul class="notification-comment-list hidden-mobile" ng-class="{'active': tmpCommentListActive}">
+  <li ng-repeat="comment in newComments | limitTo: 5">
+    <div class="notification-title">
+      <a href="/back-office/article/{{comment.article._id}}/comments">
+        "{{comment.article.title}}"
+      </a>
+    </div>
+    <div class="notification-author">{{comment.author}}</div>
+    <div class="notification-date">{{comment.created | date: 'yyyy-MM-dd'}}</div>
+  </li>
+</ul>

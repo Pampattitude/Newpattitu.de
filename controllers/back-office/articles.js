@@ -11,6 +11,7 @@ exports.page = function(req, res, callback) {
     res.locals.title = 'Articles';
 
     res.locals.page = 'pages/articles/list.html';
+    res.locals.toolbar = 'toolbar/default.html';
     res.locals.activeTopMenu = 'articles';
 
     return mongoose.model('Article').find().sort({created: -1}).exec(function(err, articles) {
@@ -24,6 +25,7 @@ exports.page = function(req, res, callback) {
 // Get edition page
 exports.editPage = function(req, res, callback) {
     res.locals.page = 'pages/articles/edit.html';
+    res.locals.toolbar = 'toolbar/articles/edit.html';
     res.locals.activeTopMenu = 'articles';
 
     if (!req.params.articleId) {
@@ -47,13 +49,18 @@ exports.commentModerationPage = function(req, res, callback) {
     res.locals.title = 'Comments moderation';
 
     res.locals.page = 'pages/articles/comments.html';
+    res.locals.toolbar = 'toolbar/default.html';
     res.locals.activeTopMenu = 'articles';
+
+    return mongoose.model('Comment').update({article: req.params.articleId}, {$set: {'new': false}}, {multi: true}, function(err) {
+        if (err) return callback(err);
 
     return mongoose.model('Comment').find({article: req.params.articleId}).sort({created: 1}).exec(function(err, comments) {
         if (err) return callback(err);
 
         res.locals.commentList = comments;
         return callback();
+    });
     });
 };
 

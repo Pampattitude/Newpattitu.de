@@ -110,17 +110,12 @@ frontApp.directive('pollTwitter', function() {
 
                     return doneCallback(null, data);
                 }).error(function(data) {
-                    $scope.addAlert('error', 'Could not retrieve tweets from Twitter');
-
                     return doneCallback(err);
                 });
             };
 
             var loop = function() {
                 return pollTwitter(function(err, data) {
-                    if (err)
-                        return ;
-
                     return setTimeout(loop, 10000 /* ms, so 10s */);
                 });
             };

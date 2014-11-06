@@ -174,6 +174,58 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
         return $rootScope.openConfirmBox(confirmBox);
     };
     /* !Articles */
+
+    /* Notifications */
+    /* Comments */
+    $scope.newComments = [];
+    $scope.getNewComments = function(callback) {
+        var getNewCommentsUrl = '/back-office/notifications/comments/new';
+        return $http.get(getNewCommentsUrl, {}).then(function(response) {
+            $scope.newComments = response.data;
+            return callback();
+        }, function(response) {
+            console.log(response);
+            return callback(new Error(response.data.message));
+        });
+    };
+
+    var cronGetNewComments = function() {
+        return $scope.getNewComments(function(err) {
+            if (err) {
+                $scope.addAlert('error', 'An error occured while getting comment notifications: ' + err);
+                return ;
+            }
+            return setTimeout(cronGetNewComments, 15 * 1000);
+        });
+    };
+    cronGetNewComments();
+    /* !Comments */
+
+    /* Reports */
+    $scope.newReports = [];
+    $scope.getNewReports = function(callback) {
+        var getNewReportsUrl = '/back-office/notifications/reports/new';
+        return $http.get(getNewReportsUrl, {}).then(function(response) {
+            $scope.newReports = response.data;
+            return callback();
+        }, function(response) {
+            console.log(response);
+            return callback(new Error(response.data.message));
+        });
+    };
+
+    var cronGetNewReports = function() {
+        return $scope.getNewReports(function(err) {
+            if (err) {
+                $scope.addAlert('error', 'An error occured while getting report notifications: ' + err);
+                return ;
+            }
+            return setTimeout(cronGetNewReports, 15 * 1000);
+        });
+    };
+    cronGetNewReports();
+    /* !Reports */
+    /* !Notifications */
 }]);
 
 /* Filter for trusted HTML. Usage: ng-bind-html="var | trust" */
