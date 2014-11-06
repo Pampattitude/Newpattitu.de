@@ -1,7 +1,7 @@
 <div class="pmp-toolbar">
   <div class="grid-16">
     <!-- Comment notifications -->
-    <div class="notification cell-2 hidden-mobile">
+    <div class="notification cell-2 hidden-mobile" ng-show="true == globals.logged">
       <div class="button notification-button"
            ng-click="tmpCommentListActive=!tmpCommentListActive">
         <span class="sticker"
@@ -14,7 +14,7 @@
     <!-- !Comment notifications -->
 
     <!-- Report notifications -->
-    <div class="notification cell-2 hidden-mobile">
+    <div class="notification cell-2 hidden-mobile" ng-show="true == globals.logged">
       <a class="button notification-button" href="/back-office/reports">
         <span class="sticker"
               ng-class="{'sticker-important': 0 < newReports.length, 'sticker-critical': 5 < newReports.length}"
