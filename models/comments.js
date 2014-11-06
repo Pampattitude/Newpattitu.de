@@ -16,6 +16,7 @@ var schema = new mongoose.Schema({
     status: {type: String, enum: ['visible', 'hidden'], default: 'visible'},
 
     created: {type: Date, default: Date.now},
+    'new': {type: Boolean, default: true},
 });
 
 exports.model = mongoose.model('Comment', schema, 'comments');

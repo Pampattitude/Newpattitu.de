@@ -13,6 +13,7 @@ var schema = new mongoose.Schema({
     status: {type: String, enum: ['open', 'treated', 'closed'], default: 'open'},
 
     created: {type: Date, default: Date.now},
+    'new': {type: Boolean, default: true},
 });
 
 exports.model = mongoose.model('Report', schema, 'reports');
