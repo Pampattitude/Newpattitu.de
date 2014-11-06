@@ -45,4 +45,12 @@
     <div class="notification-author">{{comment.author}}</div>
     <div class="notification-date">{{comment.created | date: 'yyyy-MM-dd'}}</div>
   </li>
+
+  <!-- No comment -->
+  <li ng-show="0==newComments.length">
+    <div class="notification-no-comment">
+      No new comments to show!
+    </div>
+  </li>
+  <!-- !No comment -->
 </ul>

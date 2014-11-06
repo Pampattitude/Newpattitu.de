@@ -446,8 +446,8 @@ body {
     @extend .block;
     @extend .frontest;
 
-    max-height: 18em;
-    min-width: 24em;
+    max-height: 16em;
+    min-width: 18em;
     position: absolute;
     top: 2.4em;
     left: 0;
@@ -507,6 +507,10 @@ body {
 
             font-size: 0.8em;
         }
+    }
+
+    .notification-no-comment {
+        padding: 0.2em 0.4em;
     }
 }
 /* !Toolbar */
