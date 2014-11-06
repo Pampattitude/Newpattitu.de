@@ -88,31 +88,31 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.post('/login', bindAjax(controllers.login.ajaxLogin));
     router.post('/logout', bindAjax(controllers.login.ajaxLogout));
 
-    router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
-    router.get ('/stats/articles/general', middleware.isLoggedIn, bindAjax(controllers.stats.articleGeneralStats));
-    router.get ('/stats/comments/general', middleware.isLoggedIn, bindAjax(controllers.stats.commentGeneralStats));
+    router.get ('/stats', middleware.isLoggedIn, middleware.getNotifications, bindPage(controllers.stats.page));
+    router.get ('/stats/articles/general', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.stats.articleGeneralStats));
+    router.get ('/stats/comments/general', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.stats.commentGeneralStats));
 
-    router.get ('/articles', middleware.isLoggedIn, bindPage(controllers.articles.page));
-    router.get ('/article/:articleId?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));
+    router.get ('/articles', middleware.isLoggedIn, middleware.getNotifications, bindPage(controllers.articles.page));
+    router.get ('/article/:articleId?/edit', middleware.isLoggedIn, middleware.getNotifications, bindPage(controllers.articles.editPage));
 
-    router.get ('/article/getFeatured', middleware.isLoggedIn, bindAjax(controllers.articles.getFeatured));
-    router.post('/article/:articleId/setFeatured', middleware.isLoggedIn, bindAjax(controllers.articles.setFeatured));
+    router.get ('/article/getFeatured', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.getFeatured));
+    router.post('/article/:articleId/setFeatured', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.setFeatured));
 
-    router.post('/article/:articleId/activate', middleware.isLoggedIn, bindAjax(controllers.articles.activate));
-    router.post('/article/:articleId/deactivate', middleware.isLoggedIn, bindAjax(controllers.articles.deactivate));
+    router.post('/article/:articleId/activate', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.activate));
+    router.post('/article/:articleId/deactivate', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.deactivate));
 
-    router.post('/article/:articleId/save', middleware.isLoggedIn, bindAjax(controllers.articles.save));
-    router.post('/article/:articleId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.remove));
+    router.post('/article/:articleId/save', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.save));
+    router.post('/article/:articleId/delete', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.remove));
 
-    router.get ('/article/generateTechnicalName', middleware.isLoggedIn, bindAjax(controllers.articles.generateTechnicalName));
+    router.get ('/article/generateTechnicalName', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.generateTechnicalName));
 
-    router.get ('/article/:articleId/comments', middleware.isLoggedIn, bindPage(controllers.articles.commentModerationPage));
-    router.post('/article/:articleId/comment/:commentId/setStatus', middleware.isLoggedIn, bindAjax(controllers.articles.setCommentStatus));
-    router.post('/article/:articleId/comment/:commentId/delete', middleware.isLoggedIn, bindAjax(controllers.articles.removeComment));
+    router.get ('/article/:articleId/comments', middleware.isLoggedIn, middleware.getNotifications, bindPage(controllers.articles.commentModerationPage));
+    router.post('/article/:articleId/comment/:commentId/setStatus', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.setCommentStatus));
+    router.post('/article/:articleId/comment/:commentId/delete', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.articles.removeComment));
 
-    router.get ('/reports/', middleware.isLoggedIn, bindPage(controllers.reports.page));
-    router.post('/report/:reportId/setStatus', middleware.isLoggedIn, bindAjax(controllers.reports.setStatus));
-    router.post('/report/:reportId/delete', middleware.isLoggedIn, bindAjax(controllers.reports.remove));
+    router.get ('/reports/', middleware.isLoggedIn, middleware.getNotifications, bindPage(controllers.reports.page));
+    router.post('/report/:reportId/setStatus', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.reports.setStatus));
+    router.post('/report/:reportId/delete', middleware.isLoggedIn, middleware.getNotifications, bindAjax(controllers.reports.remove));
 
     router.get ('/', middleware.isLoggedIn, function(req, res) { return res.redirect('/back-office/stats'); });
 
