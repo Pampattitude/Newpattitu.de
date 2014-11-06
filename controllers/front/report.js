@@ -15,10 +15,14 @@ exports.send = function(req, res, callback) {
     if (!req.body.name ||
         4 > req.body.name.length)
         return callback({code: 400, message: 'Name too small or missing'});
+    else if (32 < req.body.name.length)
+        return callback({code: 400, message: 'Name too small or missing'});
 
     if (!req.body.text ||
         4 > req.body.text.length)
         return callback({code: 400, message: 'Report text too small or missing'});
+    else if (1024 < req.body.text.length)
+        return callback({code: 400, message: 'Report text too long'});
 
     var report = new (mongoose.model('Report'))({
         author: req.body.name,

@@ -24,10 +24,14 @@ exports.postComment = function(req, res, callback) {
     if (!req.body.author ||
         2 >= req.body.author.length)
         return callback(null, {code: 400, message: 'Name too short'});
+    else if (32 < req.body.author.length)
+        return callback(null, {code: 400, message: 'Name too long'});
 
     if (!req.body.text ||
         10 >= req.body.text.length)
         return callback(null, {code: 400, message: 'Comment content too short'});
+    else if (4096 < req.body.text.length)
+        return callback(null, {code: 400, message: 'Comment content too long'});
 
     return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName}, function(err, article) {
         if (err) return callback(err);

@@ -98,6 +98,7 @@
              data-ng-model="newComment.author"
              data-ng-init="newComment.author = globals.user.username || newComment.author || ''"
              data-ng-class="{'has-data': 0 != newComment.author.length}"
+             maxlength="32"
              placeholder="Name..." />
 
       <textarea class="control" type="text" name="text"
@@ -105,6 +106,7 @@
                 data-ng-init="newComment.text = newComment.text || ''"
                 data-ng-class="{'has-data': 0 != newComment.text.length}"
                 data-resizable rows="3"
+                maxlength="4096"
                 placeholder="Comment..."></textarea>
 
       <div class="pmp-add-comment-button">
