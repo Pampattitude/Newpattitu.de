@@ -2,6 +2,8 @@
 
 var mongoose = require('mongoose');
 
+var printer = require('../../lib/printer');
+
 exports.page = function(req, res, callback) {
     res.locals.title = 'Report';
 
@@ -27,7 +29,7 @@ exports.send = function(req, res, callback) {
     var report = new (mongoose.model('Report'))({
         author: req.body.name,
         text: req.body.text,
-        status: 'new',
+        status: 'open',
     });
 
     return report.save(function(err) {
