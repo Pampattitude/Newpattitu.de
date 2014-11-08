@@ -34,4 +34,74 @@
     </div>
   </div>
   <!-- !Comments - General -->
+
+  <!-- Page views - General -->
+  <div class="cell-6 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Page views</h2>
+
+      <div class="pmp-stat-content">
+        <areachart class="chart chart-small chart-mobile-big"
+                   xkey="'time'"
+                   ykeys="['count']"
+                   labels="['Page views']"
+                   data="generalPageViewStatistics"
+                   resize="true">
+        </areachart>
+      </div>
+    </div>
+  </div>
+  <!-- !Page views - General -->
+
+  <!-- Page views - Route -->
+  <div class="cell-6 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Page</h2>
+
+      <div class="pmp-stat-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Views</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="stat in pageViewPageStatistics">
+              <td ng-bind="stat.page"></td>
+              <td ng-bind="stat.count"></td>
+            </tr>
+          </tbody>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- !Page views - Route -->
+
+  <!-- Page views - Referrer -->
+  <div class="cell-6 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Origin</h2>
+
+      <div class="pmp-stat-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Referrer</th>
+              <th>Views</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="stat in pageViewReferrerStatistics">
+              <td ng-bind="stat.referrer"></td>
+              <td ng-bind="stat.count"></td>
+            </tr>
+          </tbody>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- !Page views - Referrer -->
 </div>

@@ -24,6 +24,45 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     };
     $scope.getGeneralCommentStatistics();
     /* !Comment */
+
+    /* Page views - general */
+    $scope.getGeneralPageViewStatistics = function() {
+        var generalPageViewStatisticsUrl = '/back-office/stats/pageViews/general';
+        $http.get(generalPageViewStatisticsUrl, {}).then(function(response) {
+            if (response.data.generalPageViewStatistics)
+                $scope.generalPageViewStatistics = response.data.generalPageViewStatistics;
+        }, function(response) {
+            $scope.addAlert('error', 'Could not get general page view statistics because: ' + response.data.message);
+        });
+    };
+    $scope.getGeneralPageViewStatistics();
+    /* !Page views - general */
+
+    /* Page views */
+    $scope.getPageViewRouteStatistics = function() {
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/routes';
+        $http.get(pageViewStatisticsUrl, {}).then(function(response) {
+            if (response.data.pageViewRouteStatistics)
+                $scope.pageViewRouteStatistics = response.data.pageViewRouteStatistics;
+        }, function(response) {
+            $scope.addAlert('error', 'Could not get page view route statistics because: ' + response.data.message);
+        });
+    };
+    $scope.getPageViewRouteStatistics();
+    /* !Page views */
+
+    /* Referrer */
+    $scope.getPageViewReferrerStatistics = function() {
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/referrer';
+        $http.get(pageViewStatisticsUrl, {}).then(function(response) {
+            if (response.data.pageViewReferrerStatistics)
+                $scope.pageViewReferrerStatistics = response.data.pageViewReferrerStatistics;
+        }, function(response) {
+            $scope.addAlert('error', 'Could not get referrer statistics because: ' + response.data.message);
+        });
+    };
+    $scope.getPageViewReferrerStatistics();
+    /* !Referrer */
 }]);
 
 backOfficeApp.directive('linechart', function($parse) {
