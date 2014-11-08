@@ -4,6 +4,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
+var stattitude = require('../../lib/stattitude');
 
 exports.getComments = function(req, res, callback) {
     return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName}, function(err, article) {
@@ -50,6 +51,7 @@ exports.postComment = function(req, res, callback) {
         return comment.save(function(err) {
             if (err) return callback(err);
 
+            stattitude.post('comment', {});
             return callback(null);
         });
     });

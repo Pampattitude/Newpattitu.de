@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var currentWeekNumber = require('current-week-number');
 
 var constants = require('../../lib/constants');
+var stattitude = require('../../lib/stattitude');
+var printer = require('../../lib/printer');
 var utils = require('../../lib/utils');
 
 // Get page
@@ -18,58 +20,255 @@ exports.page = function(req, res, callback) {
     return callback();
 };
 
-// Get general stats, i.e. article creation with respect to creation date
 exports.articleGeneralStats = function(req, res, callback) {
-    var minDate = new Date();
-    minDate.setHours(0); minDate.setMinutes(0); minDate.setSeconds(0); minDate.setMilliseconds(0);
-    minDate.setMonth(minDate.getMonth() - constants.statsMonthsBefore);
+    var now = new Date();
+    var baseDate = new Date();
+    baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
+    var dates = [];
+    var dateStrings = [];
 
-    return mongoose.model('Article').find({created: {$gte: minDate}}).sort({created: 1}).exec(function(err, articles) {
+    for (var i = 0 ; now > baseDate ; ++i) {
+        dates.push({
+            grain: 'week',
+            week: currentWeekNumber(baseDate.toString()) - 1,
+            year: baseDate.getFullYear(),
+        });
+        dateStrings.push(new Date(baseDate));
+
+        baseDate.setDate(baseDate.getDate() + 7);
+    }
+
+    var stats = [];
+
+    var dateStringIdx = 0;
+    return async.eachSeries(dates, function(date, dateCallback) {
+        return stattitude.get('Article', date, function(err, results) {
+            if (err) return dateCallback(err);
+
+            var count = 0;
+            results.forEach(function(stat) {
+                count += stat.count;
+            });
+
+            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
+            stats.push({
+                time: formattedDate,
+                count: count,
+            });
+
+            ++dateStringIdx;
+
+            return dateCallback();
+        });
+    }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        var articleList = [];
-        articles.forEach(function(article) {
-            var formattedDate = 'W ' + currentWeekNumber(article.created) + ' - ' + article.created.getFullYear();
-
-            for (var i = 0 ; articleList.length > i ; ++i) {
-                if (formattedDate == articleList[i].time) {
-                    ++articleList[i].count;
-                    return ;
-                }
-            }
-
-            articleList.push({time: formattedDate, count: 1});
-            return ;
+        return callback(null, {
+            generalArticleStatistics: stats,
         });
-
-        return callback(null, {generalArticleStatistics: articleList});
     });
 };
 
-// Get general stats, i.e. comment creation with respect to creation date
 exports.commentGeneralStats = function(req, res, callback) {
-    var minDate = new Date();
-    minDate.setHours(0); minDate.setMinutes(0); minDate.setSeconds(0); minDate.setMilliseconds(0);
-    minDate.setMonth(minDate.getMonth() - constants.statsMonthsBefore);
+    var now = new Date();
+    var baseDate = new Date();
+    baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
+    var dates = [];
+    var dateStrings = [];
 
-    return mongoose.model('Comment').find({created: {$gte: minDate}}).sort({created: 1}).exec(function(err, comments) {
+    for (var i = 0 ; now > baseDate ; ++i) {
+        dates.push({
+            grain: 'week',
+            week: currentWeekNumber(baseDate.toString()) - 1,
+            year: baseDate.getFullYear(),
+        });
+        dateStrings.push(new Date(baseDate));
+
+        baseDate.setDate(baseDate.getDate() + 7);
+    }
+
+    var stats = [];
+
+    var dateStringIdx = 0;
+    return async.eachSeries(dates, function(date, dateCallback) {
+        return stattitude.get('Comment', date, function(err, results) {
+            if (err) return dateCallback(err);
+
+            var count = 0;
+            results.forEach(function(stat) {
+                count += stat.count;
+            });
+
+            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
+            stats.push({
+                time: formattedDate,
+                count: count,
+            });
+
+            ++dateStringIdx;
+
+            return dateCallback();
+        });
+    }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        var commentList = [];
-        comments.forEach(function(comment) {
-            var formattedDate = 'W ' + currentWeekNumber(comment.created) + ' - ' + comment.created.getFullYear();
+        return callback(null, {
+            generalCommentStatistics: stats,
+        });
+    });
+};
 
-            for (var i = 0 ; commentList.length > i ; ++i) {
-                if (formattedDate == commentList[i].time) {
-                    ++commentList[i].count;
-                    return ;
-                }
-            }
+exports.pageViewGeneralStats = function(req, res, callback) {
+    var now = new Date();
+    var baseDate = new Date();
+    baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
+    var dates = [];
+    var dateStrings = [];
 
-            commentList.push({time: formattedDate, count: 1});
-            return ;
+    for (var i = 0 ; now > baseDate ; ++i) {
+        dates.push({
+            grain: 'week',
+            week: currentWeekNumber(baseDate.toString()) - 1,
+            year: baseDate.getFullYear(),
+        });
+        dateStrings.push(new Date(baseDate));
+
+        baseDate.setDate(baseDate.getDate() + 7);
+    }
+
+    var stats = [];
+
+    var dateStringIdx = 0;
+    return async.eachSeries(dates, function(date, dateCallback) {
+        return stattitude.get('pageView', date, function(err, results) {
+            if (err) return dateCallback(err);
+
+            var count = 0;
+            results.forEach(function(stat) {
+                count += stat.count;
+            });
+
+            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
+            stats.push({
+                time: formattedDate,
+                count: count,
+            });
+
+            ++dateStringIdx;
+
+            return dateCallback();
+        });
+    }, function(err) {
+        if (err) return callback({code: 500, message: err});
+
+        return callback(null, {
+            generalPageViewStatistics: stats,
+        });
+    });
+};
+
+exports.pageViewRouteStats = function(req, res, callback) {
+    var baseDate = new Date();
+    baseDate.setDate(baseDate.getDate() - 13);
+    var dates = [];
+
+    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
+        dates.push({
+            grain: 'day',
+            day: baseDate.getDate(),
+            month: baseDate.getMonth() + 1,
+            year: baseDate.getFullYear(),
         });
 
-        return callback(null, {generalCommentStatistics: commentList});
+        baseDate.setDate(baseDate.getDate() + 1);
+    }
+
+    var stats = [];
+
+    return async.eachSeries(dates, function(date, dateCallback) {
+        return stattitude.get('pageView', date, function(err, results) {
+            if (err) return dateCallback(err);
+
+            results.forEach(function(stat) {
+                var found = false;
+                for (var i = 0 ; !found && stats.length > i ; ++i) {
+                    if (stat.page == stats[i].page) {
+                        stats[i].count += stat.count;
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    stats.push({
+                        page: stat.page,
+                        count: stat.count,
+                    });
+                }
+            });
+
+            return dateCallback();
+        });
+    }, function(err) {
+        if (err) return callback({code: 500, message: err});
+
+        stats = stats.sort(function(stat1, stat2) {
+            return stat2.count - stat1.count;
+        });
+        return callback(null, {
+            pageViewRouteStatistics: stats,
+        });
+    });
+};
+
+exports.pageViewReferrerStats = function(req, res, callback) {
+    var baseDate = new Date();
+    baseDate.setDate(baseDate.getDate() - 13);
+    var dates = [];
+
+    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
+        dates.push({
+            grain: 'day',
+            day: baseDate.getDate(),
+            month: baseDate.getMonth() + 1,
+            year: baseDate.getFullYear(),
+        });
+
+        baseDate.setDate(baseDate.getDate() + 1);
+    }
+
+    var stats = [];
+
+    return async.eachSeries(dates, function(date, dateCallback) {
+        return stattitude.get('pageView', date, function(err, results) {
+            if (err) return dateCallback(err);
+
+            results.forEach(function(stat) {
+                var found = false;
+                for (var i = 0 ; !found && stats.length > i ; ++i) {
+                    if (stat.referrer == stats[i].referrer) {
+                        stats[i].count += stat.count;
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    stats.push({
+                        referrer: stat.referrer,
+                        count: stat.count,
+                    });
+                }
+            });
+
+            return dateCallback();
+        });
+    }, function(err) {
+        if (err) return callback({code: 500, message: err});
+
+        stats = stats.sort(function(stat1, stat2) {
+            return stat2.count - stat1.count;
+        });
+        return callback(null, {
+            pageViewReferrerStatistics: stats,
+        });
     });
 };

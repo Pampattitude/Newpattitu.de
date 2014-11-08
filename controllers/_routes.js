@@ -29,6 +29,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     };
 
     var middleware = require('./middleware/front.js');
+    router.use (middleware.postPageViewStat);
 
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
@@ -92,6 +93,9 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
     router.get ('/stats/articles/general', middleware.isLoggedIn, bindAjax(controllers.stats.articleGeneralStats));
     router.get ('/stats/comments/general', middleware.isLoggedIn, bindAjax(controllers.stats.commentGeneralStats));
+    router.get ('/stats/pageViews/general', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewGeneralStats));
+    router.get ('/stats/pageViews/routes', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewRouteStats));
+    router.get ('/stats/pageViews/referrer', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewReferrerStats));
 
     router.get ('/articles', middleware.isLoggedIn, bindPage(controllers.articles.page));
     router.get ('/article/:articleId?/edit', middleware.isLoggedIn, bindPage(controllers.articles.editPage));

@@ -4,6 +4,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
+var stattitude = require('../../lib/stattitude');
 var utils = require('../../lib/utils');
 
 // Get page
@@ -125,6 +126,7 @@ exports.save = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate(findOptions, {$set: updateOptions, $setOnInsert: onInsertOptions}, {upsert: true}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
 
+        stattitude.post('articleEdit', {}); // Do not wait for reply
         return callback();
     });
 };
