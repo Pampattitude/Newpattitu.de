@@ -20,55 +20,6 @@ exports.page = function(req, res, callback) {
     return callback();
 };
 
-exports.articleGeneralStats = function(req, res, callback) {
-    var now = new Date();
-    var baseDate = new Date();
-    baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
-    var dates = [];
-    var dateStrings = [];
-
-    for (var i = 0 ; now > baseDate ; ++i) {
-        dates.push({
-            grain: 'week',
-            week: currentWeekNumber(baseDate.toString()) - 1,
-            year: baseDate.getFullYear(),
-        });
-        dateStrings.push(new Date(baseDate));
-
-        baseDate.setDate(baseDate.getDate() + 7);
-    }
-
-    var stats = [];
-
-    var dateStringIdx = 0;
-    return async.eachSeries(dates, function(date, dateCallback) {
-        return stattitude.get('Article', date, function(err, results) {
-            if (err) return dateCallback(err);
-
-            var count = 0;
-            results.forEach(function(stat) {
-                count += stat.count;
-            });
-
-            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
-            stats.push({
-                time: formattedDate,
-                count: count,
-            });
-
-            ++dateStringIdx;
-
-            return dateCallback();
-        });
-    }, function(err) {
-        if (err) return callback({code: 500, message: err});
-
-        return callback(null, {
-            generalArticleStatistics: stats,
-        });
-    });
-};
-
 exports.commentGeneralStats = function(req, res, callback) {
     var now = new Date();
     var baseDate = new Date();
@@ -91,7 +42,7 @@ exports.commentGeneralStats = function(req, res, callback) {
 
     var dateStringIdx = 0;
     return async.eachSeries(dates, function(date, dateCallback) {
-        return stattitude.get('Comment', date, function(err, results) {
+        return stattitude.get('comment', date, function(err, results) {
             if (err) return dateCallback(err);
 
             var count = 0;

@@ -91,7 +91,6 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.post('/logout', bindAjax(controllers.login.ajaxLogout));
 
     router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
-    router.get ('/stats/articles/general', middleware.isLoggedIn, bindAjax(controllers.stats.articleGeneralStats));
     router.get ('/stats/comments/general', middleware.isLoggedIn, bindAjax(controllers.stats.commentGeneralStats));
     router.get ('/stats/pageViews/general', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewGeneralStats));
     router.get ('/stats/pageViews/routes', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewRouteStats));

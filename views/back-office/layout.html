@@ -59,7 +59,7 @@
           <!-- !Main menu -->
         </div>
 
-        <div class="cell-4 cell-mobile-5">
+        <div class="cell-4 cell-mobile-5" <% if ('undefined' !== typeof pageAndToolbarNgController) { %>data-ng-controller="<%= pageAndToolbarNgController %>"<% } %>>
           <!-- Toolbar -->
           <% include partials/toolbar.html %>
           <!-- !Toolbar -->

@@ -4,7 +4,6 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
-var stattitude = require('../../lib/stattitude');
 var utils = require('../../lib/utils');
 
 // Get page
@@ -27,6 +26,7 @@ exports.page = function(req, res, callback) {
 exports.editPage = function(req, res, callback) {
     res.locals.page = 'pages/articles/edit.html';
     res.locals.toolbar = 'toolbar/articles/edit.html';
+    res.locals.pageAndToolbarNgController = 'editArticleController';
     res.locals.activeTopMenu = 'articles';
 
     if (!req.params.articleId) {
@@ -126,7 +126,6 @@ exports.save = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate(findOptions, {$set: updateOptions, $setOnInsert: onInsertOptions}, {upsert: true}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
 
-        stattitude.post('articleEdit', {}); // Do not wait for reply
         return callback();
     });
 };

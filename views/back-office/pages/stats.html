@@ -1,21 +1,21 @@
 <div class="pmp-stats grid-12" data-ng-controller="statisticsController">
-  <!-- Articles - General -->
-  <div class="cell-12">
+  <!-- Page views - General -->
+  <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Articles over time</h2>
+      <h2 class="pmp-stat-title">Page views</h2>
 
       <div class="pmp-stat-content">
-        <areachart class="chart chart-big"
+        <areachart class="chart chart-small chart-mobile-big"
                    xkey="'time'"
                    ykeys="['count']"
-                   labels="['Article count']"
-                   data="generalArticleStatistics"
+                   labels="['Page views']"
+                   data="generalPageViewStatistics"
                    resize="true">
         </areachart>
       </div>
     </div>
   </div>
-  <!-- !Articles - General -->
+  <!-- !Page views - General -->
 
   <!-- Comments - General -->
   <div class="cell-6 cell-mobile-12">
@@ -35,24 +35,6 @@
   </div>
   <!-- !Comments - General -->
 
-  <!-- Page views - General -->
-  <div class="cell-6 cell-mobile-12">
-    <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Page views</h2>
-
-      <div class="pmp-stat-content">
-        <areachart class="chart chart-small chart-mobile-big"
-                   xkey="'time'"
-                   ykeys="['count']"
-                   labels="['Page views']"
-                   data="generalPageViewStatistics"
-                   resize="true">
-        </areachart>
-      </div>
-    </div>
-  </div>
-  <!-- !Page views - General -->
-
   <!-- Page views - Route -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
@@ -68,12 +50,12 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="stat in pageViewPageStatistics">
+            <tr ng-repeat="stat in pageViewRouteStatistics">
               <td ng-bind="stat.page"></td>
               <td ng-bind="stat.count"></td>
             </tr>
           </tbody>
-        </ul>
+        </table>
       </div>
     </div>
   </div>
@@ -99,7 +81,7 @@
               <td ng-bind="stat.count"></td>
             </tr>
           </tbody>
-        </ul>
+        </table>
       </div>
     </div>
   </div>

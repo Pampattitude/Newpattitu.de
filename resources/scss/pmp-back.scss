@@ -1031,7 +1031,7 @@ body {
         }
 
         .pmp-stat-content {
-            padding-top: 1em;
+            padding: 1em 1em 0.6em 1em;
 
             .chart {
                 overflow: hidden;
@@ -1055,7 +1055,37 @@ body {
                         @media only screen and (max-width: 991px) { max-height: 9em; }
                     }
                 }
-             }
+            }
+
+            table {
+                width: 100%;
+
+                text-align: left;
+
+                td, th {
+                    padding: 0.2em 0.6em;
+                }
+
+                thead {
+                    tr {
+                        border-bottom: 1px solid rgba($black, 0.2);
+
+                        th:nth-child(2) {
+                            text-align: right;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr:nth-child(odd) {
+                        background-color: rgba($black, 0.05);
+                    }
+
+                    td:nth-child(2) {
+                        text-align: right;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,17 +1,4 @@
 backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
-    /* Article */
-    $scope.getGeneralArticleStatistics = function() {
-        var generalArticleStatisticsUrl = '/back-office/stats/articles/general';
-        $http.get(generalArticleStatisticsUrl, {}).then(function(response) {
-            if (response.data.generalArticleStatistics)
-                $scope.generalArticleStatistics = response.data.generalArticleStatistics;
-        }, function(response) {
-            $scope.addAlert('error', 'Could not get general article statistics because: ' + response.data.message);
-        });
-    };
-    $scope.getGeneralArticleStatistics();
-    /* !Article */
-
     /* Comment */
     $scope.getGeneralCommentStatistics = function() {
         var generalCommentStatisticsUrl = '/back-office/stats/comments/general';
