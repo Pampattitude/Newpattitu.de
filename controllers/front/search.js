@@ -127,8 +127,8 @@ var search_ = function(queryString, callback) {
                 finalArticleList.push({
                     title: article.title,
                     technicalName: article.technicalName,
-                    caption: article.caption,
-                    text: article.text,
+                    caption: article.compressedCaption,
+                    text: article.compressedText,
                     tags: article.tags,
                     type: article.type,
                     created: article.created,
