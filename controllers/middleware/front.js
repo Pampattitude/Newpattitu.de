@@ -7,13 +7,15 @@ var stattitude = require('../../lib/stattitude');
 exports.postPageViewStat = function(req, res, next) {
     if (/^\/ajax\//.test(req.url || ''))
         return next(); // Skip /ajax/* URLs like Twitter get
+    else if (/^\/article\/preview\//.test(req.url || ''))
+        return next(); // Skip /article/preview/* URLs because they're from me
 
     var pageUrl = req.url || '/';
 
     var referrer = req.headers.referer || req.headers.Referer ||
         req.headers.referrer || req.headers.Referrer;
     if (referrer)
-        referrer = url.parse(referrer || '').host;
+        referrer = url.parse(referrer || '').hostname;
 
     stattitude.post('pageView', {
         page: pageUrl,

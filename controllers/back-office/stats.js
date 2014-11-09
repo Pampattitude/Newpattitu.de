@@ -79,7 +79,7 @@ exports.pageViewGeneralStats = function(req, res, callback) {
     for (var i = 0 ; now > baseDate ; ++i) {
         dates.push({
             grain: 'week',
-            week: currentWeekNumber(baseDate.toString()) - 1,
+            week: currentWeekNumber(baseDate.toString()),
             year: baseDate.getFullYear(),
         });
         dateStrings.push(new Date(baseDate));
@@ -194,6 +194,9 @@ exports.pageViewReferrerStats = function(req, res, callback) {
             if (err) return dateCallback(err);
 
             results.forEach(function(stat) {
+                if (!stat.referrer)
+                    return ; // Do not count empty referrer
+
                 var found = false;
                 for (var i = 0 ; !found && stats.length > i ; ++i) {
                     if (stat.referrer == stats[i].referrer) {
