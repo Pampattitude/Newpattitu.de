@@ -38,7 +38,7 @@
   <!-- Page views - Route -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Page</h2>
+      <h2 class="pmp-stat-title">Top 10 page views</h2>
 
       <div class="pmp-stat-content">
         <table>
@@ -50,7 +50,7 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="stat in pageViewRouteStatistics">
+            <tr ng-repeat="stat in pageViewRouteStatistics | limitTo: 10">
               <td ng-bind="stat.page"></td>
               <td ng-bind="stat.count"></td>
             </tr>
@@ -64,7 +64,7 @@
   <!-- Page views - Referrer -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Origin</h2>
+      <h2 class="pmp-stat-title">Top 10 origin</h2>
 
       <div class="pmp-stat-content">
         <table>
@@ -76,7 +76,7 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="stat in pageViewReferrerStatistics">
+            <tr ng-repeat="stat in pageViewReferrerStatistics | limitTo: 10">
               <td ng-bind="stat.referrer"></td>
               <td ng-bind="stat.count"></td>
             </tr>
