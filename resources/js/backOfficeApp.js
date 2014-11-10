@@ -236,6 +236,10 @@ backOfficeApp.filter('trust', ['$sce', function($sce) {
 }]);
 
 backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    var htmlDecode = function(value) {
+        return $('<div/>').html(value).text();
+    };
+
     $rootScope.article = $scope.article = globals.article || {
         title: '',
         technicalName: '',
@@ -245,6 +249,9 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
         type: null,
     };
     $scope.articleExists = undefined != globals.article;
+
+    $scope.article.caption = htmlDecode($scope.article.caption);
+    $scope.article.text = htmlDecode($scope.article.text);
 
     $scope.saveArticle_ = function(callback) {
         var url = '/back-office/article/' + $scope.article._id + '/save';
@@ -512,7 +519,7 @@ backOfficeApp.factory('bbcodeitupSettings', [
             { separator: '', className: 'pmp-bb-separator pmp-bb-separator-mobile' },
 
             { name: '',                 openWith: '[quote]', closeWith: '[/quote]',             className: 'pmp-bb-control pmp-bb-quote'},
-            { name: '',                 openWith: '[code]', closeWith: '[/code]',               className: 'pmp-bb-control pmp-bb-code'},
+            { name: '',                 openWith: '[code]\n', closeWith: '[/code]',               className: 'pmp-bb-control pmp-bb-code'},
             { name: '',                 openWith: '[comment]', closeWith: '[/comment]',         className: 'pmp-bb-control pmp-bb-comment'},
             { name: '',                 openWith: '[tldr]', closeWith: '[/tldr]',               className: 'pmp-bb-control pmp-bb-tldr'},
         ];

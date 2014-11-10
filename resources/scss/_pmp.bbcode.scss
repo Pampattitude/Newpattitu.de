@@ -1,5 +1,12 @@
 @import 'icomoon';
 
+$lang-keyword-text-color:               rgb(85, 255, 255);
+$lang-literal-text-color:               rgb(255, 0, 255);
+$lang-string-text-color:                rgb(0, 170, 0);
+$lang-number-text-color:                rgb(255, 85, 0);
+$lang-comment-text-color:               rgb(220, 220, 220);
+$lang-comment-text-opacity:             0.8;
+
 /* Back-office BBCode editor */
 .pmp-bb {
     width: 100%;
@@ -170,11 +177,14 @@
 .pmp-bb-generated {
     text-align: left;
 
+    .no-text-indent { text-indent: 0; }
+
     .big-margin   { margin: 1em auto; }
     .small-margin { margin: 0.6em auto; }
 
     h1 {
         @extend .big-margin;
+        @extend .no-text-indent;
 
         display: block;
 
@@ -183,6 +193,7 @@
 
     h2 {
         @extend .big-margin;
+        @extend .no-text-indent;
 
         display: block;
 
@@ -220,6 +231,7 @@
 
     img {
         @extend .small-margin;
+        @extend .no-text-indent;
 
         max-width: 100%;
         max-height: 60vh;
@@ -230,6 +242,7 @@
 
     blockquote {
         @extend .small-margin;
+        @extend .no-text-indent;
 
         display: block;
 
@@ -253,7 +266,7 @@
 
     pre.code {
         @extend .small-margin;
-
+        @extend .no-text-indent;
         display: block;
 
         padding: 0.4em 0.8em;
@@ -265,8 +278,9 @@
         background-color: rgb(24, 8, 32); /* TMP */
     }
 
-    pre.inline-code {
+    span.inline-code {
         @extend .small-margin;
+        @extend .no-text-indent;
 
         display: inline-block;
 
@@ -281,6 +295,35 @@
         background-color: rgb(24, 8, 32); /* TMP */
     }
 
+    .code,
+    .inline-code {
+        /* Syntactic coloration */
+        .lang-keyword {
+            color: $lang-keyword-text-color;
+            font-weight: bold;
+        }
+
+        .lang-literal {
+            color: $lang-literal-text-color;
+            font-weight: bold;
+        }
+
+        .lang-string {
+            color: $lang-string-text-color;
+        }
+
+        .lang-number {
+            color: $lang-number-text-color;
+        }
+
+        .lang-comment {
+            opacity: $lang-comment-text-opacity;
+
+            color: $lang-comment-text-color;
+        }
+        /* !Syntactic coloration */
+    }
+
     span.comment {
         opacity: 0.75;
 
@@ -290,6 +333,7 @@
     p.tldr {
         @extend .clearfix;
         @extend .big-margin;
+        @extend .no-text-indent;
 
         display: block;
 

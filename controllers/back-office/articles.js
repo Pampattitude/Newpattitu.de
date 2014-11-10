@@ -102,15 +102,18 @@ exports.save = function(req, res, callback) {
     if (!req.body.type)
         return callback({code: 400, message: 'Missing article type'});
 
+    var caption = utils.sanitizeBbCode(req.body.caption);
+    var text = utils.sanitizeBbCode(req.body.text);
+
     var findOptions = {
         _id: req.body._id || {$exists: false},
     };
     var updateOptions = {
         title: req.body.title,
         technicalName: req.body.technicalName,
-        caption: utils.sanitizeBbCode(req.body.caption),
+        caption: caption,
         compressedCaption: utils.bbCodeToHtml(req.body.caption),
-        text: utils.sanitizeBbCode(req.body.text),
+        text: text,
         compressedText: utils.bbCodeToHtml(req.body.text),
         tags: req.body.tags,
         type: req.body.type,
