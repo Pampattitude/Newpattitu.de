@@ -494,7 +494,7 @@ backOfficeApp.factory('bbcodeitupSettings', [
         var markset = [
             { name: '',                 openWith: '[title]', closeWith: '[/title]',             className: 'pmp-bb-control pmp-bb-title' },
             { name: '',                 openWith: '[subtitle]', closeWith: '[/subtitle]',       className: 'pmp-bb-control pmp-bb-subtitle' },
-            { name: '',                 openWith: '[p]\n', closeWith: '\n[/p]',                 className: 'pmp-bb-control pmp-bb-paragraph' },
+            { name: '',                 openWith: '[p]\n', closeWith: '[/p]',                 className: 'pmp-bb-control pmp-bb-paragraph' },
 
             { separator: '', className: 'pmp-bb-separator' },
 
