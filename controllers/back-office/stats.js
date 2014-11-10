@@ -30,7 +30,7 @@ exports.commentGeneralStats = function(req, res, callback) {
     for (var i = 0 ; now > baseDate ; ++i) {
         dates.push({
             grain: 'week',
-            week: currentWeekNumber(baseDate.toString()) - 1,
+            week: currentWeekNumber(baseDate.toString()),
             year: baseDate.getFullYear(),
         });
         dateStrings.push(new Date(baseDate));
