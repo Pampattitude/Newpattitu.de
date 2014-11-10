@@ -108,9 +108,9 @@ exports.save = function(req, res, callback) {
     var updateOptions = {
         title: req.body.title,
         technicalName: req.body.technicalName,
-        caption: req.body.caption,
+        caption: utils.sanitizeBbCode(req.body.caption),
         compressedCaption: utils.bbCodeToHtml(req.body.caption),
-        text: req.body.text,
+        text: utils.sanitizeBbCode(req.body.text),
         compressedText: utils.bbCodeToHtml(req.body.text),
         tags: req.body.tags,
         type: req.body.type,
