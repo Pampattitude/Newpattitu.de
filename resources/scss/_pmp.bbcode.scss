@@ -186,7 +186,7 @@
 
         display: block;
 
-        margin-left: 1em;
+        margin-left: 0.8em;
 
         color: $black-milder;
         font-size: 1.2em;
@@ -198,6 +198,8 @@
         display: block;
 
         padding: 0;
+
+        text-indent: 2em;
     }
 
     b {
@@ -264,7 +266,9 @@
     }
 
     span.comment {
-        color: rgba(32, 32, 32, 0.5);
+        opacity: 0.75;
+
+        font-size: 0.9em;
     }
 
     p.tldr {
