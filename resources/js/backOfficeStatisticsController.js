@@ -1,54 +1,90 @@
 backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
     /* Comment */
-    $scope.getGeneralCommentStatistics = function() {
+    $scope.getGeneralCommentStatistics = function(callback) {
         var generalCommentStatisticsUrl = '/back-office/stats/comments/general';
-        $http.get(generalCommentStatisticsUrl, {}).then(function(response) {
+        return $http.get(generalCommentStatisticsUrl, {}).then(function(response) {
             if (response.data.generalCommentStatistics)
                 $scope.generalCommentStatistics = response.data.generalCommentStatistics;
+            return callback();
         }, function(response) {
-            $scope.addAlert('error', 'Could not get general comment statistics because: ' + response.data.message);
+            return callback(response.data.message);
         });
     };
-    $scope.getGeneralCommentStatistics();
+    $scope.getGeneralCommentStatisticsLoop = function() {
+        return $scope.getGeneralCommentStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get general comment statistics because: ' + err);
+
+            return setTimeout($scope.getGeneralCommentStatisticsLoop, 10 * 1000); // Get stats every 10 seconds
+        });
+    };
+    $scope.getGeneralCommentStatisticsLoop();
     /* !Comment */
 
     /* Page views - general */
-    $scope.getGeneralPageViewStatistics = function() {
+    $scope.getGeneralPageViewStatistics = function(callback) {
         var generalPageViewStatisticsUrl = '/back-office/stats/pageViews/general';
-        $http.get(generalPageViewStatisticsUrl, {}).then(function(response) {
+        return $http.get(generalPageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.generalPageViewStatistics)
                 $scope.generalPageViewStatistics = response.data.generalPageViewStatistics;
+            return callback();
         }, function(response) {
-            $scope.addAlert('error', 'Could not get general page view statistics because: ' + response.data.message);
+            return callback(response.data.message);
         });
     };
-    $scope.getGeneralPageViewStatistics();
+    $scope.getGeneralPageViewStatisticsLoop = function() {
+        return $scope.getGeneralPageViewStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get general page view statistics because: ' + err);
+
+            return setTimeout($scope.getGeneralPageViewStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getGeneralPageViewStatisticsLoop();
     /* !Page views - general */
 
     /* Page views */
-    $scope.getPageViewRouteStatistics = function() {
+    $scope.getPageViewRouteStatistics = function(callback) {
         var pageViewStatisticsUrl = '/back-office/stats/pageViews/routes';
-        $http.get(pageViewStatisticsUrl, {}).then(function(response) {
+        return $http.get(pageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.pageViewRouteStatistics)
                 $scope.pageViewRouteStatistics = response.data.pageViewRouteStatistics;
+            return callback();
         }, function(response) {
-            $scope.addAlert('error', 'Could not get page view route statistics because: ' + response.data.message);
+            return callback(response.data.message);
         });
     };
-    $scope.getPageViewRouteStatistics();
+    $scope.getPageViewRouteStatisticsLoop = function() {
+        return $scope.getPageViewRouteStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get page view route statistics because: ' + err);
+
+            return setTimeout($scope.getPageViewRouteStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getPageViewRouteStatisticsLoop();
     /* !Page views */
 
     /* Referrer */
-    $scope.getPageViewReferrerStatistics = function() {
+    $scope.getPageViewReferrerStatistics = function(callback) {
         var pageViewStatisticsUrl = '/back-office/stats/pageViews/referrer';
         $http.get(pageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.pageViewReferrerStatistics)
                 $scope.pageViewReferrerStatistics = response.data.pageViewReferrerStatistics;
+            return callback();
         }, function(response) {
-            $scope.addAlert('error', 'Could not get referrer statistics because: ' + response.data.message);
+            return callback(response.data.message);
         });
     };
-    $scope.getPageViewReferrerStatistics();
+    $scope.getPageViewReferrerStatisticsLoop = function() {
+        return $scope.getPageViewReferrerStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get referrer statistics because: ' + err);
+
+            return setTimeout($scope.getPageViewReferrerStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getPageViewReferrerStatisticsLoop();
     /* !Referrer */
 }]);
 
