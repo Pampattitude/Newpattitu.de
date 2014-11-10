@@ -2,7 +2,21 @@
 
 var url = require('url');
 
+var printer = require('../../lib/printer');
 var stattitude = require('../../lib/stattitude');
+
+exports.defend = function(req, res, next) {
+    var referrer = req.headers.referer || req.headers.Referer ||
+        req.headers.referrer || req.headers.Referrer;
+    if (referrer)
+        referrer = url.parse(referrer || '').hostname;
+
+    if (/^ift.tt/.test(referrer)) {
+        printer.warn('Got a request via ift.tt, sent it to oblivion');
+        return res.status(403).send('Go to hell, you\'re messing with my stats.');
+    }
+    return next();
+};
 
 exports.postPageViewStat = function(req, res, next) {
     if (/^\/ajax\//.test(req.url || ''))

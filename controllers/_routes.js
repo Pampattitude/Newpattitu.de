@@ -29,6 +29,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     };
 
     var middleware = require('./middleware/front.js');
+    router.use (middleware.defend);
     router.use (middleware.postPageViewStat);
 
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
