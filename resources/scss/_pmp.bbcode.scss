@@ -7,6 +7,10 @@ $lang-number-text-color:                rgb(255, 85, 0);
 $lang-comment-text-color:               rgb(220, 220, 220);
 $lang-comment-text-opacity:             0.8;
 
+$lang-title-text-color:                 rgb(85, 85, 255);
+$lang-attribute-text-color:             rgb(170, 85, 0);
+$lang-value-text-color:                 rgb(0, 170, 0);
+
 /* Back-office BBCode editor */
 .pmp-bb {
     width: 100%;
@@ -278,7 +282,7 @@ $lang-comment-text-opacity:             0.8;
         background-color: rgb(24, 8, 32); /* TMP */
     }
 
-    span.inline-code {
+    pre.inline-code {
         @extend .small-margin;
         @extend .no-text-indent;
 
@@ -298,28 +302,48 @@ $lang-comment-text-opacity:             0.8;
     .code,
     .inline-code {
         /* Syntactic coloration */
-        .lang-keyword {
-            color: $lang-keyword-text-color;
-            font-weight: bold;
+        &.code-js {
+            .lang-keyword {
+                color: $lang-keyword-text-color;
+                font-weight: bold;
+            }
+
+            .lang-literal {
+                color: $lang-literal-text-color;
+                font-weight: bold;
+            }
+
+            .lang-string {
+                color: $lang-string-text-color;
+            }
+
+            .lang-number {
+                color: $lang-number-text-color;
+            }
+
+            .lang-comment {
+                opacity: $lang-comment-text-opacity;
+
+                color: $lang-comment-text-color;
+            }
         }
 
-        .lang-literal {
-            color: $lang-literal-text-color;
-            font-weight: bold;
-        }
+        &.code-html,
+        &.code-xml {
+            .lang-tag {
+                .lang-title {
+                    color: $lang-title-text-color;
+                    font-weight: bold;
+                }
 
-        .lang-string {
-            color: $lang-string-text-color;
-        }
+                .lang-attribute {
+                    color: $lang-attribute-text-color;
+                }
 
-        .lang-number {
-            color: $lang-number-text-color;
-        }
-
-        .lang-comment {
-            opacity: $lang-comment-text-opacity;
-
-            color: $lang-comment-text-color;
+                .lang-value {
+                    color: $lang-value-text-color;
+                }
+            }
         }
         /* !Syntactic coloration */
     }
