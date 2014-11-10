@@ -265,6 +265,22 @@
         background-color: rgb(24, 8, 32); /* TMP */
     }
 
+    pre.inline-code {
+        @extend .small-margin;
+
+        display: inline-block;
+
+        margin: 0;
+        padding: 0.1em 0.2em;
+        vertical-align: text-bottom;
+
+        color: $white-mild;
+        font-size: 0.8em;
+        font-family: monospace;
+
+        background-color: rgb(24, 8, 32); /* TMP */
+    }
+
     span.comment {
         opacity: 0.75;
 
