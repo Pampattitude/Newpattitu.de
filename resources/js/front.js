@@ -22,6 +22,7 @@ $.getScript('/js/_textareaResize.js');
                 return ;
 
             if (/^\/([^\/]|$)/.test($(elem).attr('href')) ||
+                /^#/.test($(elem).attr('href')) || // Anchors
                 (new RegExp('(http:)?\/\/' + host)).test($(elem).attr('href'))) { // Internal
                 $(elem).addClass('internal-link');
                 return ;
