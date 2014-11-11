@@ -356,10 +356,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             text: 'Do you really want to save the article "' + $scope.article.title + '"?',
             acceptCallback: function() {
                 $scope.closeConfirmBox();
-                $scope.saveArticle_(function(err) {
-                    if (err) return ;
-                    window.location = '/back-office/articles';
-                });
+                $scope.saveArticle_(function() {});
             },
         };
 
