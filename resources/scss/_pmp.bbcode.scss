@@ -237,9 +237,12 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     img {
         @extend .small-margin;
         @extend .no-text-indent;
+        @extend .block;
 
-        max-width: 100%;
-        max-height: 60vh;
+        max-width: 90%;
+        max-height: 40vh;
+
+        margin: auto;
     }
 
     a {
