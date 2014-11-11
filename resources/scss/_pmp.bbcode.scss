@@ -201,9 +201,9 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
         display: block;
 
-        margin-left: 0.8em;
+        margin-left: 0.4em;
 
-        color: $black-milder;
+        color: $black-milderer;
         font-size: 1.2em;
     }
 
@@ -214,7 +214,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
         padding: 0;
 
-        text-indent: 2em;
+        text-indent: 1em;
+        text-indent: 1em each-line;
     }
 
     b {
@@ -288,7 +289,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
         display: inline-block;
 
-        margin: 0;
+        margin: -0.1em 0;
         padding: 0.1em 0.2em;
         vertical-align: text-bottom;
 
@@ -302,6 +303,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     .code,
     .inline-code {
         /* Syntactic coloration */
+        &.code-cpp,
         &.code-js {
             .lang-keyword {
                 color: $lang-keyword-text-color;
@@ -310,7 +312,6 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
             .lang-literal {
                 color: $lang-literal-text-color;
-                font-weight: bold;
             }
 
             .lang-string {
