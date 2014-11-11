@@ -26,6 +26,8 @@ exports.postUniqueSessionStat = function(req, res, next) {
         return next(); // Skip /ajax/* URLs like Twitter get
     else if (/^\/article\/preview\//.test(req.url || ''))
         return next(); // Skip /article/preview/* URLs because they're from me
+    else if (/^\/robots.txt/.test(req.url || ''))
+        return next(); // Skip /robots.txt because it means it's a spider
 
     var pageUrl = req.url || '/';
 
