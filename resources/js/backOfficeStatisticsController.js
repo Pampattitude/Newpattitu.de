@@ -21,6 +21,72 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralCommentStatisticsLoop();
     /* !Comment */
 
+    /* Unique sessions - general */
+    $scope.getGeneralUniqueSessionStatistics = function(callback) {
+        var generalUniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/general';
+        return $http.get(generalUniqueSessionStatisticsUrl, {}).then(function(response) {
+            if (response.data.generalUniqueSessionStatistics)
+                $scope.generalUniqueSessionStatistics = response.data.generalUniqueSessionStatistics;
+            return callback();
+        }, function(response) {
+            return callback(response.data.message);
+        });
+    };
+    $scope.getGeneralUniqueSessionStatisticsLoop = function() {
+        return $scope.getGeneralUniqueSessionStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get general unique session statistics because: ' + err);
+
+            return setTimeout($scope.getGeneralUniqueSessionStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getGeneralUniqueSessionStatisticsLoop();
+    /* !Unique sessions - general */
+
+    /* Unique sessions - page view */
+    $scope.getUniqueSessionRouteStatistics = function(callback) {
+        var uniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/routes';
+        return $http.get(uniqueSessionStatisticsUrl, {}).then(function(response) {
+            if (response.data.uniqueSessionRouteStatistics)
+                $scope.uniqueSessionRouteStatistics = response.data.uniqueSessionRouteStatistics;
+            return callback();
+        }, function(response) {
+            return callback(response.data.message);
+        });
+    };
+    $scope.getUniqueSessionRouteStatisticsLoop = function() {
+        return $scope.getUniqueSessionRouteStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get unique session route statistics because: ' + err);
+
+            return setTimeout($scope.getUniqueSessionRouteStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getUniqueSessionRouteStatisticsLoop();
+    /* !Unique sessions - page view */
+
+    /* Referrer */
+    $scope.getUniqueSessionReferrerStatistics = function(callback) {
+        var uniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/referrer';
+        $http.get(uniqueSessionStatisticsUrl, {}).then(function(response) {
+            if (response.data.uniqueSessionReferrerStatistics)
+                $scope.uniqueSessionReferrerStatistics = response.data.uniqueSessionReferrerStatistics;
+            return callback();
+        }, function(response) {
+            return callback(response.data.message);
+        });
+    };
+    $scope.getUniqueSessionReferrerStatisticsLoop = function() {
+        return $scope.getUniqueSessionReferrerStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get unique sessionreferrer statistics because: ' + err);
+
+            return setTimeout($scope.getUniqueSessionReferrerStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getUniqueSessionReferrerStatisticsLoop();
+    /* !Referrer */
+
     /* Page views - general */
     $scope.getGeneralPageViewStatistics = function(callback) {
         var generalPageViewStatisticsUrl = '/back-office/stats/pageViews/general';

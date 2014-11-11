@@ -94,6 +94,9 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
 
     router.get ('/stats', middleware.isLoggedIn, bindPage(controllers.stats.page));
     router.get ('/stats/comments/general', middleware.isLoggedIn, bindAjax(controllers.stats.commentGeneralStats));
+    router.get ('/stats/uniqueSessions/general', middleware.isLoggedIn, bindAjax(controllers.stats.uniqueSessionGeneralStats));
+    router.get ('/stats/uniqueSessions/routes', middleware.isLoggedIn, bindAjax(controllers.stats.uniqueSessionRouteStats));
+    router.get ('/stats/uniqueSessions/referrer', middleware.isLoggedIn, bindAjax(controllers.stats.uniqueSessionReferrerStats));
     router.get ('/stats/pageViews/general', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewGeneralStats));
     router.get ('/stats/pageViews/routes', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewRouteStats));
     router.get ('/stats/pageViews/referrer', middleware.isLoggedIn, bindAjax(controllers.stats.pageViewReferrerStats));

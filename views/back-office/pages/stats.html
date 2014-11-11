@@ -1,4 +1,22 @@
 <div class="pmp-stats grid-12" data-ng-controller="statisticsController">
+  <!-- Unique sessions - General -->
+  <div class="cell-12 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Unique sessions</h2>
+
+      <div class="pmp-stat-content">
+        <areachart class="chart chart-small chart-mobile-big"
+                   xkey="'time'"
+                   ykeys="['count']"
+                   labels="['Unique sessions']"
+                   data="generalUniqueSessionStatistics"
+                   resize="true">
+        </areachart>
+      </div>
+    </div>
+  </div>
+  <!-- !Unique sessions - General -->
+
   <!-- Page views - General -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
@@ -35,6 +53,32 @@
   </div>
   <!-- !Comments - General -->
 
+  <!-- Unique sessions - Route -->
+  <div class="cell-6 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Top 10 unique page views</h2>
+
+      <div class="pmp-stat-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>#</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="stat in uniqueSessionRouteStatistics | limitTo: 10">
+              <td ng-bind="stat.page"></td>
+              <td ng-bind="stat.count"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- !Unique sessions - Route -->
+
   <!-- Page views - Route -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
@@ -60,6 +104,32 @@
     </div>
   </div>
   <!-- !Page views - Route -->
+
+  <!-- Unique sessions - Referrer -->
+  <div class="cell-6 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Top 10 unique origin</h2>
+
+      <div class="pmp-stat-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Referrer</th>
+              <th>#</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="stat in uniqueSessionReferrerStatistics | limitTo: 10">
+              <td ng-bind="stat.referrer"></td>
+              <td ng-bind="stat.count"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- !Unique sessions - Referrer -->
 
   <!-- Page views - Referrer -->
   <div class="cell-6 cell-mobile-12">

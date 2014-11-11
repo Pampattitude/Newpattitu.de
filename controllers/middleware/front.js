@@ -19,7 +19,7 @@ exports.defend = function(req, res, next) {
 };
 
 exports.postUniqueSessionStat = function(req, res, next) {
-    if (!req.cookies['connect.sid']) // Means session cookie has already been set, i.e. not a new user
+    if (req.cookies['connect.sid']) // Means session cookie has already been set, i.e. not a new user
         return next();
 
     if (/^\/ajax\//.test(req.url || ''))
