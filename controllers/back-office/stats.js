@@ -2,7 +2,6 @@
 
 var async = require('async');
 var mongoose = require('mongoose');
-var currentWeekNumber = require('current-week-number');
 
 var constants = require('../../lib/constants');
 var stattitude = require('../../lib/stattitude');
@@ -20,100 +19,116 @@ exports.page = function(req, res, callback) {
     return callback();
 };
 
-exports.commentGeneralStats = function(req, res, callback) {
+var getMongoDBWeekArray_ = function(callback) {
     var now = new Date();
     var baseDate = new Date();
     baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
     var dates = [];
     var dateStrings = [];
 
-    for (var i = 0 ; now > baseDate ; ++i) {
-        dates.push({
-            grain: 'week',
-            week: currentWeekNumber(baseDate.toString()),
-            year: baseDate.getFullYear(),
-        });
-        dateStrings.push(new Date(baseDate));
-
-        baseDate.setDate(baseDate.getDate() + 7);
-    }
-
-    var stats = [];
-
-    var dateStringIdx = 0;
-    return async.eachSeries(dates, function(date, dateCallback) {
-        return stattitude.get('comment', date, function(err, results) {
+    return async.whilst(function() { return now > baseDate; }, function(dateCallback) {
+        return mongoose.model('User').aggregate([
+            { $limit: 1 },
+            { $project: { weekNumber: {$week: baseDate} } },
+            { $group: { _id: '$weekNumber' } },
+        ], function(err, results) {
             if (err) return dateCallback(err);
 
-            var count = 0;
-            results.forEach(function(stat) {
-                count += stat.count;
+            var weekNumber = results[0]._id;
+            dates.push({
+                grain: 'week',
+                week: weekNumber,
+                year: baseDate.getFullYear(),
             });
+            dateStrings.push('W ' + weekNumber + ' - ' + baseDate.getFullYear());
 
-            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
-            stats.push({
-                time: formattedDate,
-                count: count,
-            });
-
-            ++dateStringIdx;
-
-            return dateCallback();
+            baseDate.setDate(baseDate.getDate() + 7);
+            return dateCallback(null);
         });
     }, function(err) {
-        if (err) return callback({code: 500, message: err});
+        if (err) return callback(err);
 
         return callback(null, {
-            generalCommentStatistics: stats,
+            dates: dates,
+            strings: dateStrings,
+        });
+    });
+};
+
+exports.commentGeneralStats = function(req, res, callback) {
+    return getMongoDBWeekArray_(function(err, dateResults) {
+        if (err) return callback(err);
+
+        var dates = dateResults.dates;
+        var dateStrings = dateResults.strings;
+
+        var stats = [];
+
+        var dateStringIdx = 0;
+        return async.eachSeries(dates, function(date, dateCallback) {
+            return stattitude.get('comment', date, function(err, results) {
+                if (err) return dateCallback(err);
+
+                var count = 0;
+                results.forEach(function(stat) {
+                    count += stat.count;
+                });
+
+                var formattedDate = dateStrings[dateStringIdx];
+                stats.push({
+                    time: formattedDate,
+                    count: count,
+                });
+
+                ++dateStringIdx;
+
+                return dateCallback();
+            });
+        }, function(err) {
+            if (err) return callback({code: 500, message: err});
+
+            return callback(null, {
+                generalCommentStatistics: stats,
+            });
         });
     });
 };
 
 exports.pageViewGeneralStats = function(req, res, callback) {
-    var now = new Date();
-    var baseDate = new Date();
-    baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
-    var dates = [];
-    var dateStrings = [];
+    return getMongoDBWeekArray_(function(err, dateResults) {
+        if (err) return callback(err);
 
-    for (var i = 0 ; now > baseDate ; ++i) {
-        dates.push({
-            grain: 'week',
-            week: currentWeekNumber(baseDate.toString()),
-            year: baseDate.getFullYear(),
-        });
-        dateStrings.push(new Date(baseDate));
+        var dates = dateResults.dates;
+        var dateStrings = dateResults.strings;
 
-        baseDate.setDate(baseDate.getDate() + 7);
-    }
+        var stats = [];
 
-    var stats = [];
+        var dateStringIdx = 0;
+        return async.eachSeries(dates, function(date, dateCallback) {
+            return stattitude.get('pageView', date, function(err, results) {
+                if (err) return dateCallback(err);
 
-    var dateStringIdx = 0;
-    return async.eachSeries(dates, function(date, dateCallback) {
-        return stattitude.get('pageView', date, function(err, results) {
-            if (err) return dateCallback(err);
+                var count = 0;
+                results.forEach(function(stat) {
+                    count += stat.count;
+                });
 
-            var count = 0;
-            results.forEach(function(stat) {
-                count += stat.count;
+                var formattedDate = dateStrings[dateStringIdx];
+                stats.push({
+                    time: formattedDate,
+                    count: count,
+                });
+
+                ++dateStringIdx;
+
+                return dateCallback();
             });
+        }, function(err) {
+            if (err) return callback({code: 500, message: err});
 
-            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
-            stats.push({
-                time: formattedDate,
-                count: count,
+            return callback(null, {
+                generalPageViewStatistics: stats,
             });
-
-            ++dateStringIdx;
-
-            return dateCallback();
-        });
-    }, function(err) {
-        if (err) return callback({code: 500, message: err});
-
-        return callback(null, {
-            generalPageViewStatistics: stats,
         });
     });
 };
@@ -228,50 +243,40 @@ exports.pageViewReferrerStats = function(req, res, callback) {
 };
 
 exports.uniqueSessionGeneralStats = function(req, res, callback) {
-    var now = new Date();
-    var baseDate = new Date();
-    baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
-    var dates = [];
-    var dateStrings = [];
+    return getMongoDBWeekArray_(function(err, dateResults) {
+        if (err) return callback(err);
 
-    for (var i = 0 ; now > baseDate ; ++i) {
-        dates.push({
-            grain: 'week',
-            week: currentWeekNumber(baseDate.toString()),
-            year: baseDate.getFullYear(),
-        });
-        dateStrings.push(new Date(baseDate));
+        var dates = dateResults.dates;
+        var dateStrings = dateResults.strings;
 
-        baseDate.setDate(baseDate.getDate() + 7);
-    }
+        var stats = [];
 
-    var stats = [];
+        var dateStringIdx = 0;
+        return async.eachSeries(dates, function(date, dateCallback) {
+            return stattitude.get('uniqueSession', date, function(err, results) {
+                if (err) return dateCallback(err);
 
-    var dateStringIdx = 0;
-    return async.eachSeries(dates, function(date, dateCallback) {
-        return stattitude.get('uniqueSession', date, function(err, results) {
-            if (err) return dateCallback(err);
+                var count = 0;
+                results.forEach(function(stat) {
+                    count += stat.count;
+                });
 
-            var count = 0;
-            results.forEach(function(stat) {
-                count += stat.count;
+                var formattedDate = dateStrings[dateStringIdx];
+                stats.push({
+                    time: formattedDate,
+                    count: count,
+                });
+
+                ++dateStringIdx;
+
+                return dateCallback();
             });
+        }, function(err) {
+            if (err) return callback({code: 500, message: err});
 
-            var formattedDate = 'W ' + currentWeekNumber(dateStrings[dateStringIdx].toString()) + ' - ' + dateStrings[dateStringIdx].getFullYear();
-            stats.push({
-                time: formattedDate,
-                count: count,
+            return callback(null, {
+                generalUniqueSessionStatistics: stats,
             });
-
-            ++dateStringIdx;
-
-            return dateCallback();
-        });
-    }, function(err) {
-        if (err) return callback({code: 500, message: err});
-
-        return callback(null, {
-            generalUniqueSessionStatistics: stats,
         });
     });
 };
