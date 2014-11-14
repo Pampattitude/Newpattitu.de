@@ -129,7 +129,9 @@ exports.save = function(req, res, callback) {
     return mongoose.model('Article').findOneAndUpdate(findOptions, {$set: updateOptions, $setOnInsert: onInsertOptions}, {upsert: true}, function(err, updatedArticle) {
         if (err) return callback({code: 500, message: err});
 
-        return callback();
+        return callback(null, {
+            articleId: updatedArticle._id,
+        });
     });
 };
 
