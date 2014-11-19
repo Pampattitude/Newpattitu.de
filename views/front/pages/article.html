@@ -27,7 +27,8 @@
     <div class="pmp-article-text-before"
          data-ng-show="true == globals.isPreview">Text</div>
     <div class="pmp-article-text pmp-bb-generated"
-         data-ng-bind-html="globals.article.text | trust">
+         data-ng-bind-html="globals.article.text | trust"
+         data-compile="globals.article.text">
     </div>
     <div class="pmp-article-text-after"
          data-ng-show="true == globals.isPreview">Text</div>

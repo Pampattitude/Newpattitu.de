@@ -137,7 +137,98 @@ frontApp.controller('articleController', ['$scope', '$rootScope', '$http', funct
             $scope.addAlert('debug', 'Could not increment share count because: "' + JSON.stringify(response.data) + '"');
         });
     };
+}]).directive('unityPlayer', function() {
+/* Unity3D Web Player */
+    return {
+        restrict: 'A',
+        link: function($scope, $elem, $attrs) {
+            $(document).ready(function() {
+                $($elem[0]).css('display', 'table');
+                $($elem[0]).css('margin', 'auto');
+
+                $($elem[0]).append('<div class="missing"><a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!"><img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" /></a></div><div class="broken"><a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install."><img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" /></a></div>');
+
+                // Add Unity player object only if script not yet included
+                $.getScript('//webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js').done(function() {
+                    var width = $($elem[0]).parent().width() * 9 / 10; // Max 9/10th of the parent block
+                    if (960 < width)
+                        width = 960; // px
+                    else if (0 == width)
+                        width: 960; // px
+
+                    var config = {
+                        width: width,
+                        height: width * 9 / 16, // 16/9 visual configuration
+                        params: { enableDebugging:"0" }
+                    };
+
+                    var u = new UnityObject2(config);
+
+                    $(function() {
+                        var $missingScreen = $($elem[0]).find(".missing");
+                        var $brokenScreen = $($elem[0]).find(".broken");
+                        $missingScreen.hide();
+                        $brokenScreen.hide();
+
+                        u.observeProgress(function (progress) {
+                            switch(progress.pluginStatus) {
+                            case "broken":
+                                $brokenScreen.find("a").click(function (e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    u.installPlugin();
+                                    return false;
+                                });
+                                $brokenScreen.show();
+                                break;
+                            case "missing":
+                                $missingScreen.find("a").click(function (e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    u.installPlugin();
+                                    return false;
+                                });
+                                $missingScreen.show();
+                                break;
+                            case "installed":
+                                $missingScreen.remove();
+                                break;
+                            case "first":
+                                break;
+                            }
+                        });
+
+                        u.initPlugin($($elem[0])[0], $attrs.unity3dPlayer);
+                    });
+                }).fail(function(err) {
+                    $scope.addAlert('error', 'Could not get Unity3D Web Player');
+                });
+            });
+        },
+    };
+}).directive('compile', ['$compile', function ($compile) {
+    return function($scope, $elem, $attrs) {
+        $scope.$watch(
+            function($scope) {
+                // watch the 'compile' expression for changes
+                return $scope.$eval($attrs.compile);
+            },
+            function(value) {
+                // when the 'compile' expression changes
+                // assign it into the current DOM
+                $elem.html(value);
+
+                // compile the new DOM and link it to the current
+                // $scope.
+                // NOTE: we only compile .childNodes so that
+                // we don't get into infinite loop compiling ourselves
+                $compile($elem.contents())($scope);
+            }
+        );
+    };
 }]);
+/* !Unity3D Web Player */
+
 /* !Article controller */
 
 frontApp.controller('articleCommentsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
@@ -190,71 +281,3 @@ frontApp.controller('reportController', ['$scope', '$rootScope', '$http', functi
         });
     };
 }]);
-
-frontApp.directive('unity3dPlayer', function() {
-    return {
-        restrict: 'A',
-        link: function($scope, $elem, $attrs) {
-            $(document).ready(function() {
-                $($elem[0]).css('display', 'table');
-                $($elem[0]).css('margin', 'auto');
-
-                $($elem[0]).append('<div class="missing"><a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!"><img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" /></a></div><div class="broken"><a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install."><img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" /></a></div>');
-
-                // Add Unity player object only if script not yet included
-                $.getScript('//webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js').done(function() {
-                    var width = $($elem[0]).parent().width() * 4 / 5; // Max 4/5th of the parent block
-                    if (960 < width)
-                        width = 960; // px
-                    else if (0 == width)
-                        width: 960; // px
-
-                    var config = {
-                        width: width,
-                        height: width * 9 / 16, // 16/9 visual configuration
-                        params: { enableDebugging:"0" }
-                    };
-
-                    var u = new UnityObject2(config);
-
-                    $(function() {
-                        var $missingScreen = $($elem[0]).find(".missing");
-                        var $brokenScreen = $($elem[0]).find(".broken");
-                        $missingScreen.hide();
-                        $brokenScreen.hide();
-
-                        u.observeProgress(function (progress) {
-                            switch(progress.pluginStatus) {
-                            case "broken":
-                                $brokenScreen.find("a").click(function (e) {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    u.installPlugin();
-                                    return false;
-                                });
-                                $brokenScreen.show();
-                                break;
-                            case "missing":
-                                $missingScreen.find("a").click(function (e) {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    u.installPlugin();
-                                    return false;
-                                });
-                                $missingScreen.show();
-                                break;
-                            case "installed":
-                                $missingScreen.remove();
-                                break;
-                            case "first":
-                                break;
-                            }
-                        });
-
-                        u.initPlugin($($elem[0])[0], $attrs.unity3dPlayer);
-                    });
-                });
-            });
-        },
-    };
-});
