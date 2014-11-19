@@ -159,21 +159,21 @@ frontApp.controller('articleController', ['$scope', '$rootScope', '$http', funct
                     var config = {
                         width: width,
                         height: width * 9 / 16, // 16/9 visual configuration
-                        params: { enableDebugging:"0" }
+                        params: { enableDebugging:'0' }
                     };
 
                     var u = new UnityObject2(config);
 
                     $(function() {
-                        var $missingScreen = $($elem[0]).find(".missing");
-                        var $brokenScreen = $($elem[0]).find(".broken");
+                        var $missingScreen = $($elem[0]).find('.missing');
+                        var $brokenScreen = $($elem[0]).find('.broken');
                         $missingScreen.hide();
                         $brokenScreen.hide();
 
                         u.observeProgress(function (progress) {
                             switch(progress.pluginStatus) {
-                            case "broken":
-                                $brokenScreen.find("a").click(function (e) {
+                            case 'broken':
+                                $brokenScreen.find('a').click(function (e) {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     u.installPlugin();
@@ -181,8 +181,8 @@ frontApp.controller('articleController', ['$scope', '$rootScope', '$http', funct
                                 });
                                 $brokenScreen.show();
                                 break;
-                            case "missing":
-                                $missingScreen.find("a").click(function (e) {
+                            case 'missing':
+                                $missingScreen.find('a').click(function (e) {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     u.installPlugin();
@@ -190,15 +190,14 @@ frontApp.controller('articleController', ['$scope', '$rootScope', '$http', funct
                                 });
                                 $missingScreen.show();
                                 break;
-                            case "installed":
+                            case 'installed':
                                 $missingScreen.remove();
                                 break;
-                            case "first":
+                            case 'first':
                                 break;
                             }
                         });
-
-                        u.initPlugin($($elem[0])[0], $attrs.unity3dPlayer);
+                        u.initPlugin($($elem[0])[0], 'http://pampattitu.de/misc/TipsoccerLight.unity3d');
                     });
                 }).fail(function(err) {
                     $scope.addAlert('error', 'Could not get Unity3D Web Player');
