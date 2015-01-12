@@ -40,28 +40,6 @@
         <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
       </div>
     </div>
-
-    <!-- Social -->
-    <div class="pmp-article-social">
-      <!-- Twitter -->
-      <form method="GET" action="https://twitter.com/share" target="_blank">
-        <input type="hidden" name="text" value="Check it out!" />
-        <input type="hidden" name="hashtags" value="{{globals.article.tags.join(',')}}" />
-
-        <button class="button button-twitter button-labeled" data-ng-click="incShare('twitter')">
-          <span class="button-label"><span class="icon icon-twitter"></span></span>
-
-          <span data-ng-hide="0 == globals.article.shares.twitter">
-            Tweeted <b><span data-ng-bind="globals.article.shares.twitter"></span></b> times
-          </span>
-          <span data-ng-show="0 == globals.article.shares.twitter">
-            Tweet!
-          </span>
-        </button>
-      </form>
-      <!-- !Twitter -->
-    </div>
-    <!-- !Social -->
   </div>
 </article>
 <!-- !Article -->

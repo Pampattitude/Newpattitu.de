@@ -208,14 +208,11 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     }
 
     p {
-        @extend .small-margin;
-
-        display: block;
+        @extend .big-margin;
 
         padding: 0;
 
-        text-indent: 1em;
-        text-indent: 1em each-line;
+        line-height: 1.3em;
     }
 
     b {

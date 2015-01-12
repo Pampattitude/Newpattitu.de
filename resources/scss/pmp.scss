@@ -242,6 +242,10 @@ body {
         text-align: left;
     }
 
+    .pmp-article-text {
+        line-height: 1.3em;
+    }
+
     .pmp-article-caption-before,
     .pmp-article-caption-after,
     .pmp-article-text-before,
@@ -258,7 +262,7 @@ body {
     .pmp-article-more {
         @extend .clearfix;
 
-        margin-top: 1em;
+        margin-top: 2em;
 
         .pmp-article-access {
             @extend .inline-block;
@@ -319,12 +323,6 @@ body {
                     color: rgba(0, 0, 0, 0.8);
                 }
             }
-        }
-    }
-
-    .pmp-article-social {
-        form {
-            display: inline-block;
         }
     }
 }
