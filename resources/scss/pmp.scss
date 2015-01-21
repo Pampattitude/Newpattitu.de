@@ -70,12 +70,15 @@ body {
 /* Header */
 .pmp-header {
     @extend .fronter;
+    @extend .harder-shadow;
 
     width: 100%;
 
-    padding: 0.4em 0.8em;
+    padding: 0.4em 0.6em;
 
     background-color: $header-background-color;
+    background: url('http://i.imgur.com/SvStiJG.png');
+    background-position: center;
 
     /* Header logo */
     .pmp-header-logo {
@@ -88,7 +91,7 @@ body {
         margin: auto;
 
         > * {
-            display:inline-block;
+            display: inline-block;
             padding: 0 1.5em;
         }
 
@@ -120,24 +123,26 @@ body {
 
         padding: 0;
 
-        color: $white-mild;
-        font-size: 1.5em;
+        font-size: 1.8em;
         text-align: center;
 
         > * {
             @extend .inline-block;
-            @extend .hard-text-shadow;
+            @extend .harder-text-shadow;
 
             transition: color 200ms, text-shadow 200ms;
         }
 
-        a {
-            color: $white-milder;
+        h2 {
+            margin: 0.75em;
 
-            &:hover {
-                @extend .harder-text-shadow;
-
+            a {
                 color: $white-mild;
+                font-variant: small-caps;
+
+                &:hover {
+                    color: $green;
+                }
             }
         }
     }

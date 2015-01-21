@@ -244,19 +244,19 @@ a {
 
 /* Shadows */
 .hard-shadow {
-    box-shadow: 0 0 4px $hard-shadow-color;
+    box-shadow: 0 0 4px $hard-shadow-color, 0 0 4px $hard-shadow-color;
 }
 .harder-shadow {
-    box-shadow: 0 0 6px $harder-shadow-color;
+    box-shadow: 0 0 6px $harder-shadow-color, 0 0 6px $harder-shadow-color, 0 0 6px $harder-shadow-color;
 }
 .soft-shadow {
     box-shadow: 0 0 2px $soft-shadow-color;
 }
 .hard-text-shadow {
-    text-shadow: 0 0 4px $hard-shadow-color;
+    text-shadow: 0 0 4px $hard-shadow-color, 0 0 4px $hard-shadow-color;
 }
 .harder-text-shadow {
-    text-shadow: 0 0 8px $hard-shadow-color;
+    text-shadow: 0 0 8px $hard-shadow-color, 0 0 8px $hard-shadow-color, 0 0 8px $hard-shadow-color;
 }
 .soft-text-shadow {
     text-shadow: 0 0 2px $soft-shadow-color;
