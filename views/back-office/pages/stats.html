@@ -1,6 +1,6 @@
 <div class="pmp-stats grid-12" data-ng-controller="statisticsController">
   <!-- Unique sessions - General -->
-  <div class="cell-12 cell-mobile-12">
+  <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
       <h2 class="pmp-stat-title">Unique sessions</h2>
 
@@ -34,24 +34,6 @@
     </div>
   </div>
   <!-- !Page views - General -->
-
-  <!-- Comments - General -->
-  <div class="cell-6 cell-mobile-12">
-    <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Comments</h2>
-
-      <div class="pmp-stat-content">
-        <areachart class="chart chart-small chart-mobile-big"
-                   xkey="'time'"
-                   ykeys="['count']"
-                   labels="['Comment count']"
-                   data="generalCommentStatistics"
-                   resize="true">
-        </areachart>
-      </div>
-    </div>
-  </div>
-  <!-- !Comments - General -->
 
   <!-- Unique sessions - Route -->
   <div class="cell-6 cell-mobile-12">
@@ -156,4 +138,22 @@
     </div>
   </div>
   <!-- !Page views - Referrer -->
+
+  <!-- Comments - General -->
+  <div class="cell-12 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Comments</h2>
+
+      <div class="pmp-stat-content">
+        <areachart class="chart chart-small chart-mobile-big"
+                   xkey="'time'"
+                   ykeys="['count']"
+                   labels="['Comment count']"
+                   data="generalCommentStatistics"
+                   resize="true">
+        </areachart>
+      </div>
+    </div>
+  </div>
+  <!-- !Comments - General -->
 </div>
