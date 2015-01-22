@@ -53,7 +53,7 @@ body {
 }
 @media only screen and (min-width: 992px) {
     body {
-        margin-top: 3em;
+/*        margin-top: 3em;*/
     }
 }
 @media only screen and (max-width: 991px) {
@@ -77,8 +77,11 @@ body {
     padding: 0.4em 0.6em;
 
     background-color: $header-background-color;
-    background: url('http://i.imgur.com/SvStiJG.png');
-    background-position: center;
+
+    @media only screen and (min-width: 992px) {
+        background: url('http://i.imgur.com/SvStiJG.png');
+        background-position: center;
+    }
 
     /* Header logo */
     .pmp-header-logo {
@@ -154,21 +157,23 @@ body {
     @extend .frontest;
 
     width: 100%;
-    position: fixed;
 
     background-color: $white-mild;
     box-shadow: 0 -0.2em 0 rgba(0, 0, 0, 0.2) inset;
 }
 @media only screen and (min-width: 992px) {
-    .pmp-nav { top: 0; }
+/*    .pmp-nav { top: 0; }*/
 }
 @media only screen and (max-width: 991px) {
-    .pmp-nav { bottom: 0; }
+    .pmp-nav {
+        position: fixed;
+        bottom: 0;
+    }
 }
 
 .pmp-nav {
     .pmp-nav-elems {
-        max-width: 768px;
+        max-width: 1136px;
 
         margin: auto;
 
