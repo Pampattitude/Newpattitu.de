@@ -78,11 +78,6 @@ body {
 
     background-color: $header-background-color;
 
-    @media only screen and (min-width: 992px) {
-        background: url('http://i.imgur.com/SvStiJG.png');
-        background-position: center;
-    }
-
     /* Header logo */
     .pmp-header-logo {
         @extend .frontest;
@@ -99,7 +94,7 @@ body {
         }
 
         img {
-            height: 7em;
+            height: 5em;
 
             background-color: $header-image-background-color;
             background-image: url('http://i.imgur.com/zPa8kDl.png');
