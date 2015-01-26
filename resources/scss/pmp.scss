@@ -849,6 +849,25 @@ body {
                     }
 
                     .pmp-twitter-post-link {
+                        font-size: 0.9em;
+                    }
+                }
+
+                .pmp-twitter-post-counts {
+                    margin-top: 0.4em;
+                    margin-bottom: 1.4em;
+
+                    font-size: 0.9em;
+
+                    &:after {
+                        clear: both;
+                    }
+
+                    .pmp-twitter-favorite {
+                        float: left;
+                    }
+
+                    .pmp-twitter-retweet {
                         float: right;
                     }
                 }
