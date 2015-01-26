@@ -157,7 +157,6 @@ body {
     box-shadow: 0 -0.2em 0 rgba(0, 0, 0, 0.2) inset;
 }
 @media only screen and (min-width: 992px) {
-/*    .pmp-nav { top: 0; }*/
 }
 @media only screen and (max-width: 991px) {
     .pmp-nav {
@@ -168,7 +167,7 @@ body {
 
 .pmp-nav {
     .pmp-nav-elems {
-        max-width: 1136px;
+        max-width: 1104px;
 
         margin: auto;
 
