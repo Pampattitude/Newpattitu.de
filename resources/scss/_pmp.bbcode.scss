@@ -5,7 +5,7 @@ $lang-literal-text-color:               rgb(255, 0, 255);
 $lang-string-text-color:                rgb(0, 170, 0);
 $lang-number-text-color:                rgb(255, 85, 0);
 $lang-comment-text-color:               rgb(220, 220, 220);
-$lang-comment-text-opacity:             0.8;
+$lang-comment-text-opacity:             0.9;
 
 $lang-title-text-color:                 rgb(85, 85, 255);
 $lang-attribute-text-color:             rgb(170, 85, 0);
@@ -352,7 +352,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     span.comment {
         opacity: 0.75;
 
-        font-size: 0.9em;
+        &:before { content: '/* '; }
+        &:after  { content: ' */'; }
     }
 
     p.tldr {
