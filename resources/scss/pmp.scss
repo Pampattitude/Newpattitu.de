@@ -150,6 +150,7 @@ body {
 /* Top navigation menu */
 .pmp-nav {
     @extend .frontest;
+    @extend .hard-shadow;
 
     width: 100%;
 

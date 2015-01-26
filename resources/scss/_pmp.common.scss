@@ -131,7 +131,7 @@ $page-box-margin-v:                     2rem;
 /* Boxes */
 .pmp-page-box {
     @extend .front;
-    @extend .soft-shadow;
+    @extend .hard-shadow;
     @extend .elem-list;
 
     width: 100%;
