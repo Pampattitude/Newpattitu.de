@@ -19,6 +19,7 @@ exports.page = function(req, res, callback) {
     return callback();
 };
 
+// Should probably be cached because actually does something like 90 requests on Mongo per call
 var getMongoDBWeekArray_ = function(callback) {
     var now = new Date();
     var baseDate = new Date();
@@ -26,7 +27,7 @@ var getMongoDBWeekArray_ = function(callback) {
     var dates = [];
     var dateStrings = [];
 
-    return async.whilst(function() { return now > baseDate; }, function(dateCallback) {
+    return async.whilst(function() { return now >= baseDate; }, function(dateCallback) {
         return mongoose.model('User').aggregate([
             { $limit: 1 },
             { $project: { weekNumber: {$week: baseDate} } },
@@ -35,14 +36,27 @@ var getMongoDBWeekArray_ = function(callback) {
             if (err) return dateCallback(err);
 
             var weekNumber = results[0]._id;
-            dates.push({
-                grain: 'week',
-                week: weekNumber,
-                year: baseDate.getFullYear(),
-            });
-            dateStrings.push('W ' + weekNumber + ' - ' + baseDate.getFullYear());
 
-            baseDate.setDate(baseDate.getDate() + 7);
+            // We check for existing in array then do date + 1day because Mong has had the dumb idea to have a #53 and #0 week numbers -_-
+            var found = false;
+            for (var i = 0 ; dates.length > i ; ++i) {
+                if (weekNumber == dates[i].week && baseDate.getFullYear() == dates[i].year) {
+                    found = true;
+                    break ;
+                }
+            }
+
+            // If week not added yet, add it
+            if (!found) {
+                dates.push({
+                    grain: 'week',
+                    week: weekNumber,
+                    year: baseDate.getFullYear(),
+                });
+                dateStrings.push('W ' + weekNumber + ' - ' + baseDate.getFullYear());
+            }
+
+            baseDate.setDate(baseDate.getDate() + 1);
             return dateCallback(null);
         });
     }, function(err) {
