@@ -1,6 +1,7 @@
 'use strict';
 
 var url = require('url');
+var useragent = require('useragent');
 
 var printer = require('../../lib/printer');
 var stattitude = require('../../lib/stattitude');
@@ -36,9 +37,16 @@ exports.postUniqueSessionStat = function(req, res, next) {
     if (referrer)
         referrer = url.parse(referrer || '').hostname;
 
+    var userAgent = req.headers['user-agent'] || '';
+    var parsedUserAgent = useragent.parse(userAgent);
+
     stattitude.post('uniqueSession', {
         page: pageUrl,
-        referrer: referrer
+        referrer: referrer,
+        browser: parsedUserAgent.family,
+        device: parsedUserAgent.device.family,
+        os: parsedUserAgent.os.family,
+        isBot: /^bot$/i.test(parsedUserAgent.family) || /^bot$/i.test(parsedUserAgent.device.family) || /^bot$/i.test(parsedUserAgent.os.family),
     }); // Do not wait for reply
     return next();
 };
@@ -57,11 +65,15 @@ exports.postPageViewStat = function(req, res, next) {
         referrer = url.parse(referrer || '').hostname;
 
     var userAgent = req.headers['user-agent'] || '';
+    var parsedUserAgent = useragent.parse(userAgent);
 
     stattitude.post('pageView', {
         page: pageUrl,
         referrer: referrer,
-        userAgent: userAgent,
+        browser: parsedUserAgent.family,
+        device: parsedUserAgent.device.family,
+        os: parsedUserAgent.os.family,
+        isBot: /^bot$/i.test(parsedUserAgent.family) || /^bot$/i.test(parsedUserAgent.device.family) || /^bot$/i.test(parsedUserAgent.os.family),
     }); // Do not wait for reply
     return next();
 };
