@@ -56,9 +56,12 @@ exports.postPageViewStat = function(req, res, next) {
     if (referrer)
         referrer = url.parse(referrer || '').hostname;
 
+    var userAgent = req.headers['user-agent'] || '';
+
     stattitude.post('pageView', {
         page: pageUrl,
-        referrer: referrer
+        referrer: referrer,
+        userAgent: userAgent,
     }); // Do not wait for reply
     return next();
 };

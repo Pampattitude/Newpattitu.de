@@ -152,6 +152,28 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     };
     $scope.getPageViewReferrerStatisticsLoop();
     /* !Referrer */
+
+    /* User agent */
+    $scope.getPageViewUserAgentStatistics = function(callback) {
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/userAgent';
+        $http.get(pageViewStatisticsUrl, {}).then(function(response) {
+            if (response.data.pageViewUserAgentStatistics)
+                $scope.pageViewUserAgentStatistics = response.data.pageViewUserAgentStatistics;
+            return callback();
+        }, function(response) {
+            return callback(response.data.message);
+        });
+    };
+    $scope.getPageViewUserAgentStatisticsLoop = function() {
+        return $scope.getPageViewUserAgentStatistics(function(err) {
+            if (err)
+                return $scope.addAlert('error', 'Could not get user agent statistics because: ' + err);
+
+            return setTimeout($scope.getPageViewUserAgentStatisticsLoop, 10 * 1000);
+        });
+    };
+    $scope.getPageViewUserAgentStatisticsLoop();
+    /* !User agent */
 }]);
 
 backOfficeApp.directive('linechart', function($parse) {

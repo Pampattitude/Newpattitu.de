@@ -139,6 +139,32 @@
   </div>
   <!-- !Page views - Referrer -->
 
+  <!-- Page views - User agent -->
+  <div class="cell-12 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Top 10 user agents</h2>
+
+      <div class="pmp-stat-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>#</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="stat in pageViewUserAgentStatistics | limitTo: 10">
+              <td ng-bind="stat.userAgent"></td>
+              <td ng-bind="stat.count"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- !Page views - User agent -->
+
   <!-- Comments - General -->
   <div class="cell-12 cell-mobile-12">
     <div class="pmp-stat">
