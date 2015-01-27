@@ -46,7 +46,7 @@ exports.postUniqueSessionStat = function(req, res, next) {
         browser: parsedUserAgent.family,
         device: parsedUserAgent.device.family,
         os: parsedUserAgent.os.family,
-        isBot: /^bot$/i.test(parsedUserAgent.family) || /^bot$/i.test(parsedUserAgent.device.family) || /^bot$/i.test(parsedUserAgent.os.family),
+        isBot: /^spider$/i.test(parsedUserAgent.device.family) || /^other$/i.test(parsedUserAgent.device.family) || /^other$/i.test(parsedUserAgent.os.family),
     }); // Do not wait for reply
     return next();
 };
@@ -73,7 +73,7 @@ exports.postPageViewStat = function(req, res, next) {
         browser: parsedUserAgent.family,
         device: parsedUserAgent.device.family,
         os: parsedUserAgent.os.family,
-        isBot: /^bot$/i.test(parsedUserAgent.family) || /^bot$/i.test(parsedUserAgent.device.family) || /^bot$/i.test(parsedUserAgent.os.family),
+        isBot: /^spider$/i.test(parsedUserAgent.device.family) || /^other$/i.test(parsedUserAgent.device.family) || /^other$/i.test(parsedUserAgent.os.family),
     }); // Do not wait for reply
     return next();
 };
