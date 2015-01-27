@@ -69,6 +69,50 @@ var getMongoDBWeekArray_ = function(callback) {
     });
 };
 
+// Get stats from the past X days and aggregate them
+var generateDayStatArray_ = function(dayCount) {
+    dayCount = dayCount || 14;
+
+    var baseDate = new Date();
+    baseDate.setDate(baseDate.getDate() - (dayCount - 1));
+    var dates = [];
+
+    for (var i = 0 ; dayCount > i ; ++i) {
+        dates.push({
+            grain: 'day',
+            day: baseDate.getDate(),
+            month: baseDate.getMonth() + 1,
+            year: baseDate.getFullYear(),
+        });
+
+        baseDate.setDate(baseDate.getDate() + 1);
+    }
+
+    return dates;
+};
+
+// Return function to aggregate results of Stattitu.de querying
+var getForEachStatFunction_ = function(stats, field) {
+    return function(stat) {
+        if (!stat[field])
+            return ; // Do not compute empty results
+
+        var found = false;
+        for (var i = 0 ; !found && stats.length > i ; ++i) {
+            if (stat[field] == stats[i][field]) {
+                stats[i].count += stat.count;
+                found = true;
+            }
+        }
+
+        if (!found) {
+            var result = { count: stat.count };
+            result[field] = stat[field];
+            stats.push(result);
+        }
+    };
+};
+
 exports.commentGeneralStats = function(req, res, callback) {
     return getMongoDBWeekArray_(function(err, dateResults) {
         if (err) return callback(err);
@@ -84,9 +128,7 @@ exports.commentGeneralStats = function(req, res, callback) {
                 if (err) return dateCallback(err);
 
                 var count = 0;
-                results.forEach(function(stat) {
-                    count += stat.count;
-                });
+                results.forEach(function(stat) { count += stat.count; });
 
                 var formattedDate = dateStrings[dateStringIdx];
                 stats.push({
@@ -101,9 +143,7 @@ exports.commentGeneralStats = function(req, res, callback) {
         }, function(err) {
             if (err) return callback({code: 500, message: err});
 
-            return callback(null, {
-                generalCommentStatistics: stats,
-            });
+            return callback(null, { generalCommentStatistics: stats });
         });
     });
 };
@@ -123,9 +163,7 @@ exports.pageViewGeneralStats = function(req, res, callback) {
                 if (err) return dateCallback(err);
 
                 var count = 0;
-                results.forEach(function(stat) {
-                    count += stat.count;
-                });
+                results.forEach(function(stat) { count += stat.count; });
 
                 var formattedDate = dateStrings[dateStringIdx];
                 stats.push({
@@ -140,231 +178,80 @@ exports.pageViewGeneralStats = function(req, res, callback) {
         }, function(err) {
             if (err) return callback({code: 500, message: err});
 
-            return callback(null, {
-                generalPageViewStatistics: stats,
-            });
+            return callback(null, { generalPageViewStatistics: stats });
         });
     });
 };
 
 exports.pageViewRouteStats = function(req, res, callback) {
-    var baseDate = new Date();
-    baseDate.setDate(baseDate.getDate() - 13);
-    var dates = [];
-
-    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
-        dates.push({
-            grain: 'day',
-            day: baseDate.getDate(),
-            month: baseDate.getMonth() + 1,
-            year: baseDate.getFullYear(),
-        });
-
-        baseDate.setDate(baseDate.getDate() + 1);
-    }
-
+    var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-
-            results.forEach(function(stat) {
-                var found = false;
-                for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.page == stats[i].page) {
-                        stats[i].count += stat.count;
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    stats.push({
-                        page: stat.page,
-                        count: stat.count,
-                    });
-                }
-            });
-
+            results.forEach(getForEachStatFunction_(stats, 'page'));
             return dateCallback();
         });
     }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        stats = stats.sort(function(stat1, stat2) {
-            return stat2.count - stat1.count;
-        });
-        return callback(null, {
-            pageViewRouteStatistics: stats,
-        });
+        stats = stats.sort(function(stat1, stat2) { return stat2.count - stat1.count; });
+        return callback(null, { pageViewRouteStatistics: stats  });
     });
 };
 
 exports.pageViewReferrerStats = function(req, res, callback) {
-    var baseDate = new Date();
-    baseDate.setDate(baseDate.getDate() - 13);
-    var dates = [];
-
-    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
-        dates.push({
-            grain: 'day',
-            day: baseDate.getDate(),
-            month: baseDate.getMonth() + 1,
-            year: baseDate.getFullYear(),
-        });
-
-        baseDate.setDate(baseDate.getDate() + 1);
-    }
-
+    var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-
-            results.forEach(function(stat) {
-                if (!stat.referrer)
-                    return ; // Do not count empty referrer
-
-                var found = false;
-                for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.referrer == stats[i].referrer) {
-                        stats[i].count += stat.count;
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    stats.push({
-                        referrer: stat.referrer,
-                        count: stat.count,
-                    });
-                }
-            });
-
+            results.forEach(getForEachStatFunction_(stats, 'referrer'));
             return dateCallback();
         });
     }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        stats = stats.sort(function(stat1, stat2) {
-            return stat2.count - stat1.count;
-        });
-        return callback(null, {
-            pageViewReferrerStatistics: stats,
-        });
+        stats = stats.sort(function(stat1, stat2) { return stat2.count - stat1.count; });
+        return callback(null, { pageViewReferrerStatistics: stats });
     });
 };
 
 exports.pageViewBrowserStats = function(req, res, callback) {
-    var baseDate = new Date();
-    baseDate.setDate(baseDate.getDate() - 13);
-    var dates = [];
-
-    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
-        dates.push({
-            grain: 'day',
-            day: baseDate.getDate(),
-            month: baseDate.getMonth() + 1,
-            year: baseDate.getFullYear(),
-        });
-
-        baseDate.setDate(baseDate.getDate() + 1);
-    }
-
+    var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-
-            results.forEach(function(stat) {
-                if (!stat.browser)
-                    return ; // Do not count empty browser
-
-                var found = false;
-                for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.browser == stats[i].browser) {
-                        stats[i].count += stat.count;
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    stats.push({
-                        browser: stat.browser,
-                        count: stat.count,
-                    });
-                }
-            });
-
+            results.forEach(getForEachStatFunction_(stats, 'browser'));
             return dateCallback();
         });
     }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        stats = stats.sort(function(stat1, stat2) {
-            return stat2.count - stat1.count;
-        });
-        return callback(null, {
-            pageViewBrowserStatistics: stats,
-        });
+        stats = stats.sort(function(stat1, stat2) { return stat2.count - stat1.count; });
+        return callback(null, { pageViewBrowserStatistics: stats });
     });
 };
 
 exports.pageViewDeviceStats = function(req, res, callback) {
-    var baseDate = new Date();
-    baseDate.setDate(baseDate.getDate() - 13);
-    var dates = [];
-
-    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
-        dates.push({
-            grain: 'day',
-            day: baseDate.getDate(),
-            month: baseDate.getMonth() + 1,
-            year: baseDate.getFullYear(),
-        });
-
-        baseDate.setDate(baseDate.getDate() + 1);
-    }
-
+    var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-
-            results.forEach(function(stat) {
-                if (!stat.device)
-                    return ; // Do not count empty device
-
-                var found = false;
-                for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.device == stats[i].device) {
-                        stats[i].count += stat.count;
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    stats.push({
-                        device: stat.device,
-                        count: stat.count,
-                    });
-                }
-            });
-
+            results.forEach(getForEachStatFunction_(stats, 'device'));
             return dateCallback();
         });
     }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        stats = stats.sort(function(stat1, stat2) {
-            return stat2.count - stat1.count;
-        });
-        return callback(null, {
-            pageViewDeviceStatistics: stats,
-        });
+        stats = stats.sort(function(stat1, stat2) { return stat2.count - stat1.count; });
+        return callback(null, { pageViewDeviceStatistics: stats });
     });
 };
 
@@ -383,9 +270,7 @@ exports.uniqueSessionGeneralStats = function(req, res, callback) {
                 if (err) return dateCallback(err);
 
                 var count = 0;
-                results.forEach(function(stat) {
-                    count += stat.count;
-                });
+                results.forEach(function(stat) { count += stat.count; });
 
                 var formattedDate = dateStrings[dateStringIdx];
                 stats.push({
@@ -400,118 +285,43 @@ exports.uniqueSessionGeneralStats = function(req, res, callback) {
         }, function(err) {
             if (err) return callback({code: 500, message: err});
 
-            return callback(null, {
-                generalUniqueSessionStatistics: stats,
-            });
+            return callback(null, { generalUniqueSessionStatistics: stats });
         });
     });
 };
 
 exports.uniqueSessionRouteStats = function(req, res, callback) {
-    var baseDate = new Date();
-    baseDate.setDate(baseDate.getDate() - 13);
-    var dates = [];
-
-    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
-        dates.push({
-            grain: 'day',
-            day: baseDate.getDate(),
-            month: baseDate.getMonth() + 1,
-            year: baseDate.getFullYear(),
-        });
-
-        baseDate.setDate(baseDate.getDate() + 1);
-    }
-
+    var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('uniqueSession', date, function(err, results) {
             if (err) return dateCallback(err);
-
-            results.forEach(function(stat) {
-                var found = false;
-                for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.page == stats[i].page) {
-                        stats[i].count += stat.count;
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    stats.push({
-                        page: stat.page,
-                        count: stat.count,
-                    });
-                }
-            });
-
+            results.forEach(getForEachStatFunction_(stats, 'page'));
             return dateCallback();
         });
     }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        stats = stats.sort(function(stat1, stat2) {
-            return stat2.count - stat1.count;
-        });
-        return callback(null, {
-            uniqueSessionRouteStatistics: stats,
-        });
+        stats = stats.sort(function(stat1, stat2) { return stat2.count - stat1.count; });
+        return callback(null, { uniqueSessionRouteStatistics: stats });
     });
 };
 
 exports.uniqueSessionReferrerStats = function(req, res, callback) {
-    var baseDate = new Date();
-    baseDate.setDate(baseDate.getDate() - 13);
-    var dates = [];
-
-    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
-        dates.push({
-            grain: 'day',
-            day: baseDate.getDate(),
-            month: baseDate.getMonth() + 1,
-            year: baseDate.getFullYear(),
-        });
-
-        baseDate.setDate(baseDate.getDate() + 1);
-    }
-
+    var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('uniqueSession', date, function(err, results) {
             if (err) return dateCallback(err);
-
-            results.forEach(function(stat) {
-                if (!stat.referrer)
-                    return ; // Do not count empty referrer
-
-                var found = false;
-                for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.referrer == stats[i].referrer) {
-                        stats[i].count += stat.count;
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    stats.push({
-                        referrer: stat.referrer,
-                        count: stat.count,
-                    });
-                }
-            });
-
+            results.forEach(getForEachStatFunction_(stats, 'referrer'));
             return dateCallback();
         });
     }, function(err) {
         if (err) return callback({code: 500, message: err});
 
-        stats = stats.sort(function(stat1, stat2) {
-            return stat2.count - stat1.count;
-        });
-        return callback(null, {
-            uniqueSessionReferrerStatistics: stats,
-        });
+        stats = stats.sort(function(stat1, stat2) { return stat2.count - stat1.count; });
+        return callback(null, { uniqueSessionReferrerStatistics: stats });
     });
 };
