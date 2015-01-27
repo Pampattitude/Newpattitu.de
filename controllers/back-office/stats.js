@@ -325,3 +325,36 @@ exports.uniqueSessionReferrerStats = function(req, res, callback) {
         return callback(null, { uniqueSessionReferrerStatistics: stats });
     });
 };
+
+exports.uniqueSessionAllStats = function(req, res, callback) {
+    return stattitude.get('uniqueSession', {grain: 'all'}, function(err, results) {
+        if (err)
+            return callback(err);
+
+        var count = 0;
+        results.forEach(function(elem) { count += elem.count; });
+        return callback(null, { count: count });
+    });
+};
+
+exports.pageViewAllStats = function(req, res, callback) {
+    return stattitude.get('pageView', {grain: 'all'}, function(err, results) {
+        if (err)
+            return callback(err);
+
+        var count = 0;
+        results.forEach(function(elem) { count += elem.count; });
+        return callback(null, { count: count });
+    });
+};
+
+exports.commentAllStats = function(req, res, callback) {
+    return stattitude.get('comment', {grain: 'all'}, function(err, results) {
+        if (err)
+            return callback(err);
+
+        var count = 0;
+        results.forEach(function(elem) { count += elem.count; });
+        return callback(null, { count: count });
+    });
+};
