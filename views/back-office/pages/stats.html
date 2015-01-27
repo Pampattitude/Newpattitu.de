@@ -2,7 +2,7 @@
   <!-- Unique sessions - General -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Unique sessions</h2>
+      <h2 class="pmp-stat-title">Sessions</h2>
 
       <div class="pmp-stat-content">
         <areachart class="chart chart-small chart-mobile-big"
@@ -38,7 +38,7 @@
   <!-- Unique sessions - Route -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Top 10 unique page views</h2>
+      <h2 class="pmp-stat-title">Top 10 landing pages</h2>
 
       <div class="pmp-stat-content">
         <table>
@@ -90,7 +90,7 @@
   <!-- Unique sessions - Referrer -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Top 10 unique origin</h2>
+      <h2 class="pmp-stat-title">Top 10 session origins</h2>
 
       <div class="pmp-stat-content">
         <table>
@@ -116,7 +116,7 @@
   <!-- Page views - Referrer -->
   <div class="cell-6 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Top 10 origin</h2>
+      <h2 class="pmp-stat-title">Top 10 origins</h2>
 
       <div class="pmp-stat-content">
         <table>
@@ -139,10 +139,10 @@
   </div>
   <!-- !Page views - Referrer -->
 
-  <!-- Page views - User agent -->
+  <!-- Page views - Browsers -->
   <div class="cell-12 cell-mobile-12">
     <div class="pmp-stat">
-      <h2 class="pmp-stat-title">Top 10 user agents</h2>
+      <h2 class="pmp-stat-title">Top 10 browsers</h2>
 
       <div class="pmp-stat-content">
         <table>
@@ -154,8 +154,8 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="stat in pageViewUserAgentStatistics | limitTo: 10">
-              <td ng-bind="stat.userAgent"></td>
+            <tr ng-repeat="stat in pageViewBrowserStatistics | limitTo: 10">
+              <td ng-bind="stat.browser"></td>
               <td ng-bind="stat.count"></td>
             </tr>
           </tbody>
@@ -163,7 +163,33 @@
       </div>
     </div>
   </div>
-  <!-- !Page views - User agent -->
+  <!-- !Page views - Browsers -->
+
+  <!-- Page views - Devices -->
+  <div class="cell-12 cell-mobile-12">
+    <div class="pmp-stat">
+      <h2 class="pmp-stat-title">Top 10 devices</h2>
+
+      <div class="pmp-stat-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>#</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="stat in pageViewDeviceStatistics | limitTo: 10">
+              <td ng-bind="stat.device"></td>
+              <td ng-bind="stat.count"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- !Page views - Devices -->
 
   <!-- Comments - General -->
   <div class="cell-12 cell-mobile-12">

@@ -256,7 +256,7 @@ exports.pageViewReferrerStats = function(req, res, callback) {
     });
 };
 
-exports.pageViewUserAgentStats = function(req, res, callback) {
+exports.pageViewBrowserStats = function(req, res, callback) {
     var baseDate = new Date();
     baseDate.setDate(baseDate.getDate() - 13);
     var dates = [];
@@ -279,12 +279,12 @@ exports.pageViewUserAgentStats = function(req, res, callback) {
             if (err) return dateCallback(err);
 
             results.forEach(function(stat) {
-                if (!stat.userAgent)
-                    return ; // Do not count empty userAgent
+                if (!stat.browser)
+                    return ; // Do not count empty browser
 
                 var found = false;
                 for (var i = 0 ; !found && stats.length > i ; ++i) {
-                    if (stat.userAgent == stats[i].userAgent) {
+                    if (stat.browser == stats[i].browser) {
                         stats[i].count += stat.count;
                         found = true;
                     }
@@ -292,7 +292,7 @@ exports.pageViewUserAgentStats = function(req, res, callback) {
 
                 if (!found) {
                     stats.push({
-                        userAgent: stat.userAgent,
+                        browser: stat.browser,
                         count: stat.count,
                     });
                 }
@@ -307,7 +307,63 @@ exports.pageViewUserAgentStats = function(req, res, callback) {
             return stat2.count - stat1.count;
         });
         return callback(null, {
-            pageViewUserAgentStatistics: stats,
+            pageViewBrowserStatistics: stats,
+        });
+    });
+};
+
+exports.pageViewDeviceStats = function(req, res, callback) {
+    var baseDate = new Date();
+    baseDate.setDate(baseDate.getDate() - 13);
+    var dates = [];
+
+    for (var i = 0 ; 14 > i ; ++i) { // Get stats from the past 14 days and aggregate them
+        dates.push({
+            grain: 'day',
+            day: baseDate.getDate(),
+            month: baseDate.getMonth() + 1,
+            year: baseDate.getFullYear(),
+        });
+
+        baseDate.setDate(baseDate.getDate() + 1);
+    }
+
+    var stats = [];
+
+    return async.eachSeries(dates, function(date, dateCallback) {
+        return stattitude.get('pageView', date, function(err, results) {
+            if (err) return dateCallback(err);
+
+            results.forEach(function(stat) {
+                if (!stat.device)
+                    return ; // Do not count empty device
+
+                var found = false;
+                for (var i = 0 ; !found && stats.length > i ; ++i) {
+                    if (stat.device == stats[i].device) {
+                        stats[i].count += stat.count;
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    stats.push({
+                        device: stat.device,
+                        count: stat.count,
+                    });
+                }
+            });
+
+            return dateCallback();
+        });
+    }, function(err) {
+        if (err) return callback({code: 500, message: err});
+
+        stats = stats.sort(function(stat1, stat2) {
+            return stat2.count - stat1.count;
+        });
+        return callback(null, {
+            pageViewDeviceStatistics: stats,
         });
     });
 };
