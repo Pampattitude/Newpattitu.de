@@ -19,12 +19,15 @@ var requireDir          = require('require-dir');
 var constants           = require('./lib/constants');
 var printer             = require('./lib/printer');
 
+if (cluster.isMaster)
+    global.processId = 'Master';
+else
+    global.processId = 'Worker #' + cluster.worker.id;
+
 var main = function() {
     printer.info('Started application in ' + process.env.NODE_ENV + ' mode');
 
     if (cluster.isMaster) {
-        global.processId = 'Master';
-
         var clusterPerCpu   = ('production' === process.env.NODE_ENV ? 4 : 1);
         var clusterCount    = parseInt(require('os').cpus().length * clusterPerCpu);
 
@@ -82,8 +85,6 @@ var main = function() {
         });
     }
     else {
-        global.processId = 'Worker #' + cluster.worker.id;
-
         mongoose.connect(constants.databaseUri);
         mongoose.connection.on('error', function (err) {
             printer.error('Could not open DB connection: ' + err);
