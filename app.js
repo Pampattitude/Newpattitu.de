@@ -70,10 +70,8 @@ var main = function() {
                     return serieCallback();
                 },
                 // Launch daemons
-                function(serieCallback) {
-                    // TODO (Pampa): implement daemons
-                    return serieCallback();
-                },
+                // MUST BE LAST, BECAUSE INFINITE LOOP
+                require('./tools/daemons'),
 	    ], function(err) {
                 if (err) {
                     printer.error(err);
