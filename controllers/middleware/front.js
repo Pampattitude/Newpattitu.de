@@ -5,12 +5,13 @@ var useragent = require('useragent');
 
 var printer = require('../../lib/printer');
 var stattitude = require('../../lib/stattitude');
+var utils = require('../../lib/utils');
 
 exports.defend = function(req, res, next) {
     var referrer = req.headers.referer || req.headers.Referer ||
         req.headers.referrer || req.headers.Referrer;
     if (referrer)
-        referrer = url.parse(referrer || '').hostname;
+        referrer = utils.getDomain(referrer);
 
     if (/^ift.tt/.test(referrer)) {
         printer.warn('Got a request via ift.tt, sent it to oblivion');
@@ -35,7 +36,7 @@ exports.postUniqueSessionStat = function(req, res, next) {
     var referrer = req.headers.referer || req.headers.Referer ||
         req.headers.referrer || req.headers.Referrer;
     if (referrer)
-        referrer = url.parse(referrer || '').hostname;
+        referrer = utils.getDomain(referrer);
 
     var userAgent = req.headers['user-agent'] || '';
     var parsedUserAgent = useragent.parse(userAgent);
@@ -62,7 +63,7 @@ exports.postPageViewStat = function(req, res, next) {
     var referrer = req.headers.referer || req.headers.Referer ||
         req.headers.referrer || req.headers.Referrer;
     if (referrer)
-        referrer = url.parse(referrer || '').hostname;
+        referrer = utils.getDomain(referrer);
 
     var userAgent = req.headers['user-agent'] || '';
     var parsedUserAgent = useragent.parse(userAgent);
