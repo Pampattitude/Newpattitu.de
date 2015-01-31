@@ -28,11 +28,14 @@ var main = function() {
     printer.info('Started application in ' + process.env.NODE_ENV + ' mode');
 
     if (cluster.isMaster) {
-        var clusterPerCpu   = ('production' === process.env.NODE_ENV ? 4 : 1);
+        var clusterPerCpu   = ('production' === process.env.NODE_ENV ? 2 : 1);
         var clusterCount    = parseInt(require('os').cpus().length * clusterPerCpu);
 
         cluster.on('fork', function(worker) {
             printer.info('Worker #' + worker.id + ' created');
+        });
+        cluster.on('online', function(worker) {
+            printer.info('Worker #' + worker.id + ' connected');
         });
         cluster.on('exit', function (worker) {
             printer.warn('Worker #' + worker.id + ' died, forking a new one');
