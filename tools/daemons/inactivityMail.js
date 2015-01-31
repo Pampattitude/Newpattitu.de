@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var printer = require('../../lib/printer');
 
 var minInactivityTime = 7; //days
 var minNotificationRetryTime = 1; //days
