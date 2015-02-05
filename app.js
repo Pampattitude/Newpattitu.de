@@ -178,4 +178,4 @@ var runServer = function() {
     });
 };
 
-return main();
+main();

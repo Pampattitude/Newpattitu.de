@@ -15,7 +15,7 @@ mongoose.connection.on('error', function (err) {
     return process.exit(1);
 });
 
-return mongoose.connection.once('open', function () {
+mongoose.connection.once('open', function () {
     printer.info('Connected to DB "' + constants.databaseUri + '"');
     requireDir(__dirname + '/../../models/');
     printer.info('Models sync\'ed');
