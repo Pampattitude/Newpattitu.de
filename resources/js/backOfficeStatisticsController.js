@@ -13,7 +13,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralCommentStatisticsLoop = function() {
         return $scope.getGeneralCommentStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get general comment statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get general comment statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getGeneralCommentStatisticsLoop, 10 * 1000); // Get stats every 10 seconds
         });
@@ -35,7 +35,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralUniqueSessionStatisticsLoop = function() {
         return $scope.getGeneralUniqueSessionStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get general unique session statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get general unique session statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getGeneralUniqueSessionStatisticsLoop, 10 * 1000);
         });
@@ -57,7 +57,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getUniqueSessionRouteStatisticsLoop = function() {
         return $scope.getUniqueSessionRouteStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get unique session route statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get unique session route statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getUniqueSessionRouteStatisticsLoop, 10 * 1000);
         });
@@ -79,7 +79,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getUniqueSessionReferrerStatisticsLoop = function() {
         return $scope.getUniqueSessionReferrerStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get unique sessionreferrer statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get unique sessionreferrer statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getUniqueSessionReferrerStatisticsLoop, 10 * 1000);
         });
@@ -101,7 +101,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getGeneralPageViewStatisticsLoop = function() {
         return $scope.getGeneralPageViewStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get general page view statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get general page view statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getGeneralPageViewStatisticsLoop, 10 * 1000);
         });
@@ -123,7 +123,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getPageViewRouteStatisticsLoop = function() {
         return $scope.getPageViewRouteStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get page view route statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get page view route statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getPageViewRouteStatisticsLoop, 10 * 1000);
         });
@@ -145,7 +145,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getPageViewReferrerStatisticsLoop = function() {
         return $scope.getPageViewReferrerStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get referrer statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get referrer statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getPageViewReferrerStatisticsLoop, 10 * 1000);
         });
@@ -167,7 +167,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getPageViewBrowserStatisticsLoop = function() {
         return $scope.getPageViewBrowserStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get user agent statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get user agent statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getPageViewBrowserStatisticsLoop, 10 * 1000);
         });
@@ -189,7 +189,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
     $scope.getPageViewDeviceStatisticsLoop = function() {
         return $scope.getPageViewDeviceStatistics(function(err) {
             if (err)
-                return $scope.addAlert('error', 'Could not get user agent statistics because: ' + err);
+                return $scope.addAlert('error', 'Could not get user agent statistics because: ' + JSON.stringify(err));
 
             return setTimeout($scope.getPageViewDeviceStatisticsLoop, 10 * 1000);
         });
