@@ -1,52 +1,85 @@
 <!-- Article -->
-<article class="pmp-page-content-box" data-ng-controller="articleController">
-  <h2 class="box-vignette-left news-vignette" data-ng-show="'news' == globals.article.type">News</h2>
-  <h2 class="box-vignette-left life-vignette" data-ng-show="'life' == globals.article.type">Personal</h2>
-  <h2 class="box-vignette-left project-vignette" data-ng-show="'project' == globals.article.type">Project</h2>
-  <h2 class="box-vignette-left tutorial-vignette" data-ng-show="'tutorial' == globals.article.type">Tutorial</h2>
-  <h2 class="box-vignette-left flash-vignette" data-ng-show="'flash' == globals.article.type"><span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash</h2>
+<div class="pmp-page-content-box" data-ng-controller="articleController">
+  <article class="pmp-article">
+    <h3 class="pmp-box-type pmp-box-type-news" data-ng-show="'news' == globals.article.type">
+      News
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-personal" data-ng-show="'life' == globals.article.type">
+      Personal
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-project" data-ng-show="'project' == globals.article.type">
+      Project
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-tutorial" data-ng-show="'tutorial' == globals.article.type">
+      Tutorial
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-flash" data-ng-show="'flash' == globals.article.type">
+      <span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash
+    </h3>
 
-  <h2 class="box-vignette-left date-vignette" data-ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></h2>
+    <hr class="pmp-break" />
 
-  <h2 class="box-vignette-right featured-vignette" data-ng-show="true == globals.article.featured">
-    <span class="icon icon-star3"></span>
-  </h2>
+    <div class="pmp-article-content">
+      <h1 class="pmp-article-title">
+        <span data-ng-bind-html="globals.article.title | trust">
+        </span>
 
-  <div class="pmp-article">
-    <h1 class="pmp-article-title"><a href="/article/{{globals.article.technicalName}}" data-ng-bind-html="globals.article.title | trust"></a></h1>
+        <div class="pmp-article-date">
+          <span data-ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></span>
+        </div>
+      </h1>
 
-    <div class="pmp-article-caption-before"
-         data-ng-show="true == globals.isPreview">Caption</div>
-    <div class="pmp-article-caption pmp-bb-generated"
-         data-ng-show="true == globals.isPreview"
-         data-ng-bind-html="globals.article.caption | trust">
-    </div>
-    <div class="pmp-article-caption-after"
-         data-ng-show="true == globals.isPreview">Caption</div>
+      <hr class="pmp-break" />
 
-    <div class="pmp-article-text-before"
-         data-ng-show="true == globals.isPreview">Text</div>
-    <div class="pmp-article-text pmp-bb-generated"
-         data-ng-bind-html="globals.article.text | trust"
-         data-compile="globals.article.text">
-    </div>
-    <div class="pmp-article-text-after"
-         data-ng-show="true == globals.isPreview">Text</div>
-
-    <div class="pmp-article-more">
       <div class="pmp-article-tags">
-        <a class="pmp-article-tag-group" href="/search?search={{globals.article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
+        <div class="pmp-article-tag-icon">
+          <span class="icon icon-tags"></span>
+        </div>
 
-        <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+        <div class="pmp-article-tag-list">
+          <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+        </div>
+      </div>
+
+      <hr class="pmp-break" />
+
+      <div class="pmp-article-caption-before"
+           data-ng-show="true == globals.isPreview">Caption</div>
+      <div class="pmp-article-caption pmp-bb-generated"
+           data-ng-show="true == globals.isPreview"
+           data-ng-bind-html="globals.article.caption | trust">
+      </div>
+      <div class="pmp-article-caption-after"
+           data-ng-show="true == globals.isPreview">Caption</div>
+
+      <div class="pmp-article-text-before"
+           data-ng-show="true == globals.isPreview">Text</div>
+      <div class="pmp-article-text pmp-bb-generated"
+           data-ng-bind-html="globals.article.text | trust"
+           data-compile="globals.article.text">
+      </div>
+      <div class="pmp-article-text-after"
+           data-ng-show="true == globals.isPreview">Text</div>
+
+      <div class="pmp-article-more">
+        <div class="pmp-article-tags">
+          <a class="pmp-article-tag-group" href="/search?search={{globals.article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
+
+          <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+        </div>
       </div>
     </div>
-  </div>
-</article>
+  </article>
+</div>
 <!-- !Article -->
 
 <!-- Comment -->
 <div class="pmp-page-content-box" id="pmp-comments" data-ng-controller="articleCommentsController" data-ng-hide="true == globals.deactivateComments">
-  <h2 class="box-vignette-left">Comments</h2>
+  <h3 class="pmp-box-type">
+    Comments
+  </h3>
+
+  <hr class="pmp-break">
 
   <div class="pmp-comments">
     <div class="pmp-comment clearfix" data-ng-repeat="comment in globals.commentList">

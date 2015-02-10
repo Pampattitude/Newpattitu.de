@@ -29,7 +29,7 @@ $green-lighter:                 adjust-color($green, $lightness: 20%);
 $green-dark:                    adjust-color($green, $lightness: -10%);
 $green-darker:                  adjust-color($green, $lightness: -20%);
 
-$blue:                          rgb(80, 80, 152);
+$blue:                          rgb(32, 80, 152);
 $blue-light:                    adjust-color($blue, $lightness: 10%);
 $blue-lighter:                  adjust-color($blue, $lightness: 20%);
 $blue-dark:                     adjust-color($blue, $lightness: -10%);
@@ -615,5 +615,10 @@ textarea.control {
 .elem-list {
     &:first-child { margin-top: 0; }
     &:last-child { margin-bottom: 0; }
+}
+
+/* Remove all padding */
+.no-padding {
+    padding: 0 !important;
 }
 /* !Common classes */

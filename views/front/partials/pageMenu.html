@@ -9,7 +9,9 @@
 <div class="pmp-page-menu">
   <!-- User -->
   <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideAboutMe">
-    <h3 class="box-vignette-right"><span class="icon icon-user"></span></h3>
+    <h3 class="pmp-box-type pmp-box-type-about"><span class="icon icon-user"></span></h3>
+
+    <hr class="pmp-break">
 
     <div class="pmp-about-me">
       <a class="pmp-me-face" href="/about"><img src="http://i.imgur.com/dkjkMuK.png" alt="" /></a>
@@ -24,7 +26,9 @@
 
   <!-- Search -->
   <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideSearch">
-    <h3 class="box-vignette-right"><span class="icon icon-search"></span></h3>
+    <h3 class="pmp-box-type pmp-box-type-search"><span class="icon icon-search"></span></h3>
+
+    <hr class="pmp-break">
 
     <div class="pmp-search">
       <form method="GET" action="/search">
@@ -34,7 +38,7 @@
                  data-ng-init="searchString = searchString || ''"
                  data-ng-class="{'has-data': 0 != searchString.length}"
                  maxlength="64"
-                 placeholder="Search..." />
+                 placeholder="Search the blog..." />
 
           <button class="button button-info control-button" type="submit">
             <span class="icon icon-search"></span>
@@ -47,7 +51,9 @@
 
   <!-- Social -->
   <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideSocial">
-    <h3 class="box-vignette-right"><span class="icon icon-share"></span></h3>
+    <h3 class="pmp-box-type pmp-box-type-social"><span class="icon icon-share"></span></h3>
+
+    <hr class="pmp-break">
 
     <div class="pmp-social">
       <a class="button button-github no-parse"
@@ -88,7 +94,9 @@
 
   <!-- Twitter -->
   <div class="pmp-page-menu-box" data-ng-hide="globals.pageMenu.hideTwitter">
-    <h3 class="box-vignette-right twitter-vignette"><span class="icon icon-twitter"></span></h3>
+    <h3 class="pmp-box-type pmp-box-type-twitter"><span class="icon icon-twitter"></span></h3>
+
+    <hr class="pmp-break">
 
     <div class="pmp-twitter" poll-twitter>
       <div class="clearfix">

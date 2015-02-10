@@ -8,7 +8,7 @@ var constants = require('../../lib/constants');
 exports.page = function(req, res, callback) {
     res.locals.title = 'Blog';
 
-    res.locals.page = 'pages/home.html';
+    res.locals.page = 'pages/blog.html';
     res.locals.activeTopMenu = 'blog';
 
     // First, we get the actual page index
@@ -21,7 +21,7 @@ exports.page = function(req, res, callback) {
                 if (err) return serieCallback(err);
 
                 // We get the total page count to display
-                res.locals.totalPageCount = Math.ceil(articleCount / constants.frontHomePageArticleCount);
+                res.locals.totalPageCount = Math.ceil(articleCount / constants.frontBlogPageArticleCount);
 
                 return serieCallback();
             });
@@ -41,9 +41,9 @@ exports.page = function(req, res, callback) {
             });
         },
         function(serieCallback) { // Get article list
-            var articleCountToSkip = res.locals.actualPageIndex * constants.frontHomePageArticleCount; // Page count starts at 1 for the user
+            var articleCountToSkip = res.locals.actualPageIndex * constants.frontBlogPageArticleCount; // Page count starts at 1 for the user
 
-            return mongoose.model('Article').find({activated: true}).sort({created: -1}).skip(articleCountToSkip).limit(constants.frontHomePageArticleCount).exec(function(err, articles) {
+            return mongoose.model('Article').find({activated: true}).sort({created: -1}).skip(articleCountToSkip).limit(constants.frontBlogPageArticleCount).exec(function(err, articles) {
                 if (err)
                     return callback(err);
 

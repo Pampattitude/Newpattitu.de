@@ -1,14 +1,3 @@
-<!-- If no result -->
-<div class="pmp-page-content-box" data-ng-hide="0 === globals.articleList.length">
-  <div class="pmp-search-found">
-    <p>
-      <span class="hidden-mobile">Showing results for search &quot;<span>{{globals.searchString}}</span>&quot;</span>
-      <span class="hidden-desktop">Results for search &quot;<span>{{globals.searchString}}</span>&quot;</span>
-    </p>
-  </div>
-</div>
-<!-- !If no result -->
-
 <!-- Article -->
 <div class="pmp-page-content-box first-desktop" data-ng-repeat="article in globals.articleList">
   <h3 class="pmp-box-type pmp-box-type-news" data-ng-show="'news' == article.type">
@@ -68,25 +57,11 @@
 </div>
 <!-- !Article -->
 
-<!-- If no result -->
-<div class="pmp-page-content-box first-desktop last" data-ng-hide="0 < globals.articleList.length">
-  <div class="pmp-search-not-found">
-    <p class="pmp-search-not-found-main-text">
-      No article found for search &quot;<span class="">{{globals.searchString}}</span>&quot;.
-    </p>
-
-    <p>
-      Perhaps you should not have searched for such a refined theme.
-    </p>
-  </div>
-</div>
-<!-- !If no result -->
-
 <!-- Page -->
 <div class="pmp-page-control">
   <div ng-hide="1 >= globals.totalPageCount">
     <!-- Should be inactive if at page 1 -->
-    <a class="button" href="/search/{{globals.actualPageIndex}}?search={{globals.searchString}}"
+    <a class="button" href="/blog/{{globals.actualPageIndex}}"
        ng-hide="0 == globals.actualPageIndex">
       <span class="icon icon-previous"></span>
     </a>
@@ -96,7 +71,7 @@
     </span>
 
     <span ng-repeat="i in range(globals.totalPageCount) track by $index">
-      <a class="button" href="/search/{{$index+1}}?search={{globals.searchString}}"
+      <a class="button" href="/blog/{{$index+1}}"
          ng-show="globals.actualPageIndex != $index">
         {{$index+1}}
       </a>
@@ -104,7 +79,7 @@
     </span>
 
     <!-- Should be inactive if at max page -->
-    <a class="button" href="/search/{{globals.actualPageIndex + 2}}?search={{globals.searchString}}"
+    <a class="button" href="/blog/{{globals.actualPageIndex + 2}}"
        ng-hide="globals.totalPageCount - 1 == globals.actualPageIndex">
       <span class="icon icon-next"></span>
     </a>

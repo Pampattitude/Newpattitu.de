@@ -21,8 +21,9 @@ exports.defineFrontRoutes = function(serverApp, router) {
     var controllers = {
         about:          require('./front/about'),
         article:        require('./front/article'),
+        blog:           require('./front/blog'),
         error:          require('./front/error'),
-        home:           require('./front/home'),
+        projects:       require('./front/projects'),
         report:         require('./front/report'),
         rss:            require('./front/rss'),
         search:         require('./front/search'),
@@ -36,15 +37,17 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
 
-    router.get ('/blog/:pageNumber?', bindPage(controllers.home.page));
-    router.get ('/home/:pageNumber?', function(req, res) { return res.redirect('/blog' + (req.params.pageNumber ? '/' + req.params.pageNumber : '')); });
     router.get ('/', function(req, res) { return res.redirect('/blog'); });
+
+    router.get ('/blog/:pageNumber?', bindPage(controllers.blog.page));
 
     router.get ('/article/:articleTechnicalName', bindPage(controllers.article.page));
     router.post('/article/:articleTechnicalName/comment', bindPost(controllers.article.postComment));
     router.get ('/article/preview/:articleTechnicalName', middleware.isLoggedInBackOffice, bindPage(controllers.article.previewPage));
 
     router.get ('/search/:pageNumber?', bindPage(controllers.search.page));
+
+    router.get ('/projects', bindPage(controllers.projects.page));
 
     router.get ('/about', bindPage(controllers.about.page));
 

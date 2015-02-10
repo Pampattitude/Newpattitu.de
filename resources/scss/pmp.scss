@@ -3,6 +3,7 @@
 @import '_pmp.vignette';
 @import '_pmp.grid';
 @import '_pmp.bbcode';
+@import '_pmp.front.article';
 
 $body-text-color:                               $white-mild;
 $body-background-color:                         $black-mild;
@@ -44,17 +45,13 @@ body {
     padding: 0;
 
     color: $body-text-color;
-    font-family: 'Lato', sans-serif;
+    font-family: 'PT Sans', 'Lato', sans-serif;
     font-size: 16px;
+    line-height: 1.45em;
 
     background-color: $body-background-color;
     background-image: $body-background-image;
     background-attachment: fixed;
-}
-@media only screen and (min-width: 992px) {
-    body {
-/*        margin-top: 3em;*/
-    }
 }
 @media only screen and (max-width: 991px) {
     body {
@@ -77,6 +74,10 @@ body {
     padding: 0.4em 0.6em;
 
     background-color: $header-background-color;
+
+    @media only screen and (max-width: 991px) {
+        box-shadow: 0;
+    }
 
     /* Header logo */
     .pmp-header-logo {
@@ -132,7 +133,8 @@ body {
         }
 
         h2 {
-            margin: 0.75em;
+            margin: 0.4em;
+            font-size: 1.2em;
 
             a {
                 color: $white-mild;
@@ -168,7 +170,7 @@ body {
 
 .pmp-nav {
     .pmp-nav-elems {
-        max-width: 1104px;
+        max-width: 1136px;
 
         margin: auto;
 
@@ -186,12 +188,12 @@ body {
             &.active,
             &:hover {
                 color: $white-mild;
-                background-color: rgba(32, 128, 32, 0.6);
+                background-color: rgba($green, 0.75);
             }
 
             &:active,
             &:focus {
-                background-color: rgba(0, 0, 0, 0.3);
+                background-color: rgba($green-dark, 0.75);
             }
 
             .button-text {
@@ -227,240 +229,7 @@ body {
     [class*="cell-"] { padding: 0 1em; }
 }
 
-/* Articles */
-.pmp-article {
-    @extend .pmp-page-content-box-content;
-
-    .pmp-article-title {
-        margin-top: 0.6em auto;
-
-        font-size: 1.8em;
-        text-align: center;
-
-        @media only screen and (max-width: 991px) {
-            font-size: 1.5em;
-        }
-    }
-
-    .pmp-article-caption {
-        color: $black-mild;
-        text-align: left;
-    }
-
-    .pmp-article-text {
-        line-height: 1.3em;
-    }
-
-    .pmp-article-caption-before,
-    .pmp-article-caption-after,
-    .pmp-article-text-before,
-    .pmp-article-text-after {
-        color: rgba(32, 32, 32, 0.33);
-        font-size: 0.8em;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
-        &:before, &:after { content: ' --- '; }
-    }
-
-    .pmp-article-caption-after { margin-bottom: 1.5em; }
-    .pmp-article-text-before { margin-top: 1.5em; }
-
-    .pmp-article-more {
-        @extend .clearfix;
-
-        margin-top: 2em;
-
-        .pmp-article-access {
-            @extend .inline-block;
-            float: right;
-
-            .icon {
-                font-size: 0.7em;
-            }
-        }
-
-        .pmp-article-tags {
-            @extend .inline-block;
-
-            float: left;
-
-            font-size: 0.8em;
-
-            .pmp-article-tag-group {
-                @extend .inline-block;
-
-                margin: auto 0.2em;
-                padding: 0.3em 0.4em;
-
-                color: $tag-group-text-color;
-                font-size: 1em;
-
-                background-color: $tag-group-background-color;
-                border-radius: 10em;
-
-                transition: background-color 200ms, border-radius 200ms;
-
-                &:hover {
-                    background-color: $tag-group-background-hover-color;
-                    border-radius: 0.5em;
-                }
-                &:active,
-                &:focus {
-                    background-color: $tag-group-background-focus-color;
-                }
-            }
-
-            .pmp-article-tag {
-                @extend .inline-block;
-
-                margin: auto 0.2em;
-                padding: auto 0.2em;
-
-                color: rgba(0, 0, 0, 0.4);
-                text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
-
-                transition: color 200ms;
-
-                &:hover {
-                    color: rgba(0, 0, 0, 0.6);
-                }
-                &:active,
-                &:focus {
-                    color: rgba(0, 0, 0, 0.8);
-                }
-            }
-        }
-    }
-}
-
-/* Article comments */
-.pmp-comments {
-    @extend .pmp-page-content-box-content;
-
-    text-align: left;
-
-    .pmp-comment {
-        margin-bottom: 1.2em;
-        padding: 0.6em 1.2em;
-
-        color: $comment-text-color;
-
-        background-color: $comment-background-color;
-        border: 1px solid $comment-border-color;
-
-        &:first-child { margin-top: 1em; }
-        &:last-child { margin-bottom: 0; }
-
-        .pmp-comment-author {
-            position: absolute;
-            top: -1em;
-            left: -1em;
-
-            margin: 0;
-            padding: 0.3em 0.6em;
-
-            color: $comment-author-text-color;
-            font-size: 0.9em;
-
-            background-color: $comment-author-background-color;
-
-            &:after {
-                content: "";
-
-                display: block;
-                width: 0;
-                height: 0;
-                position: absolute;
-                bottom: -6px;
-                left: 0;
-                z-index: -1;
-
-                border-style: solid;
-                border-width: 0 16px 6px 0;
-                border-color: transparent $comment-author-background-darker-color transparent transparent;
-            }
-
-            &.pmp-comment-author-user {
-                background-color: $comment-logged-author-background-color;
-
-                &:after {
-                    border-color: transparent $comment-logged-author-background-darker-color transparent transparent;
-                }
-            }
-        }
-
-        .pmp-comment-date {
-            position: absolute;
-            top: -1em;
-            right: -1em;
-
-            margin: 0;
-            padding: 0.3em 0.6em;
-
-            color: $comment-date-text-color;
-            font-size: 0.7em;
-
-            background-color: $comment-date-background-color;
-
-            &:after {
-                content: "";
-
-                display: block;
-                width: 0;
-                height: 0;
-                position: absolute;
-                bottom: -6px;
-                right: 0;
-                z-index: -1;
-
-                border-style: solid;
-                border-width: 0 0 6px 16px;
-                border-color: transparent transparent transparent $comment-date-background-darker-color;
-            }
-        }
-
-        .pmp-comment-text {
-            &.pmp-comment-hidden {
-                color: rgba(32, 32, 32, 0.5);
-                font-size: 0.75em;
-                text-align: center;
-
-                margin: 0.4em 0.8em;
-            }
-        }
-    }
-
-    .pmp-add-comment {
-        .control {
-            margin-top: 0.2em;
-            margin-bottom: 0.4em;
-        }
-
-        .pmp-add-comment-button {
-            text-align: right;
-        }
-    }
-
-    .pmp-comment-thanks {
-        font-size: 1.3em;
-        text-align: center;
-
-        .pmp-comment-reenable {
-            @extend a;
-
-            cursor: pointer;
-
-            font-size: 0.6em;
-        }
-    }
-}
-/* !Article comments */
-/* !Articles */
-
 /* Search */
-.pmp-search-input-box {
-    padding: 0.6em 1.2em;
-}
-
 .relevance-vignette {
     font-size: 0.9em;
 }
@@ -603,7 +372,7 @@ body {
     font-size: 1.5em;
 
     .pmp-about-pampa {
-        color: rgb(24, 96, 24);/* TMP */
+        color: $green-dark;
     }
 }
 
@@ -753,7 +522,7 @@ body {
             @extend .pmp-page-menu-box-content;
 
             .pmp-me-face {
-                @extend .inline-block;
+                @extend .block;
                 overflow: hidden;
 
                 margin: auto;
@@ -774,8 +543,10 @@ body {
             }
 
             .pmp-me-name {
+                margin: 0 0.8em 0.4em 0.8em;
+
                 .pmp-me-pampa {
-                    color: rgb(24, 96, 24);/* TMP */
+                    color: $green-dark;
                 }
             }
 
