@@ -614,7 +614,6 @@ body {
             @extend .pmp-page-content-box-content;
 
             .pmp-article-title-and-technical-name,
-            .pmp-article-caption,
             .pmp-article-text {
                 margin-bottom: 1em;
             }
@@ -646,13 +645,11 @@ body {
 
             }
 
-            .pmp-article-caption,
             .pmp-article-text {
                 textarea {
                     font-size: 0.9em;
                 }
 
-                .pmp-article-caption-actions,
                 .pmp-article-text-actions {
                     font-size: 0.9em;
 

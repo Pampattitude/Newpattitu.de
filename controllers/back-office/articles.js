@@ -93,16 +93,12 @@ exports.save = function(req, res, callback) {
     if (!req.body.technicalName ||
         4 > req.body.technicalName.length)
         return callback({code: 400, message: 'Technical name too short or missing'});
-    if (!req.body.caption ||
-        32 > req.body.caption.length)
-        return callback({code: 400, message: 'Caption too short or missing'});
     if (!req.body.tags ||
         2 > req.body.tags.length)
         return callback({code: 400, message: 'Too few or no tags'});
     if (!req.body.type)
         return callback({code: 400, message: 'Missing article type'});
 
-    var caption = utils.sanitizeBbCode(req.body.caption);
     var text = utils.sanitizeBbCode(req.body.text);
 
     var findOptions = {
@@ -111,8 +107,6 @@ exports.save = function(req, res, callback) {
     var updateOptions = {
         title: req.body.title,
         technicalName: req.body.technicalName,
-        caption: caption,
-        compressedCaption: utils.bbCodeToHtml(req.body.caption),
         text: text,
         compressedText: utils.bbCodeToHtml(req.body.text),
         tags: req.body.tags,

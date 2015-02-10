@@ -63,9 +63,6 @@ exports.page = function(req, res, callback) {
 
                 // Finally, do not expose non-compressed text (for size)
                 res.locals.articleList.forEach(function(elem) {
-                    elem.caption = elem.compressedCaption;
-                    delete elem.compressedCaption;
-
                     elem.text = elem.compressedText;
                     delete elem.compressedText;
                 });

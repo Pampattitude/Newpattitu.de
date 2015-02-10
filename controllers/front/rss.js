@@ -31,7 +31,7 @@ exports.get = function(req, res, callback) {
                 rss += '      <title>' + utils.dtrim(utils.stripHtml(elem.title)) + '</title>\n';
                 if ('flash' != elem.type) // Do not add link if article with no link
                     rss += '      <link>' + constants.serverHostAccess + '/article/' + elem.technicalName + '</link>\n';
-                rss += '      <description>' + utils.dtrim(utils.stripHtml(elem.compressedCaption)).replace(/&NewLine;/g, '') + '</description>\n';
+                rss += '      <description>' + utils.dtrim(utils.stripHtml(elem.compressedText)).replace(/&NewLine;/g, '') + '</description>\n';
                 rss += '      <guid isPermaLink="false">article/' + elem.technicalName + '</guid>\n';
                 rss += '      <pubDate>' + elem.created.toUTCString() + '</pubDate>\n';
                 rss += '    </item>\n';

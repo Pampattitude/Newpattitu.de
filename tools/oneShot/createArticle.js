@@ -38,7 +38,6 @@ mongoose.connection.once('open', function () {
     return async.series([
         function(callback) {
             var title = 'Hello, World!';
-            var caption = '<p>So I heard every blog needs a first post. Well, this is my attempt at it.</p>';
             var text = '<p>Hey there!</p>\
 <p>This is my first second time writing a blog post, so I might come off a little nervous. That’s because I am.</p>\
 <p>For those who don’t know me, hi! My name is Guillaume “Pampa” Delahodde and I’m a developer. I love C++, enjoy doodling with Node.js and HTML5 and hate – and I mean it – CSS.</p>\
@@ -53,7 +52,6 @@ If you no liky, you no stay here.</p>';
                 title: title,
                 technicalName: title.split(' ').join('_').replace(/[^a-zA-Z\-_ ]/g, ''),
 
-                caption: caption,
                 text: text,
                 tags: getUnique(title.replace(/[^a-zA-Z\-_ ]/g, '').split(' ')),
 
@@ -77,14 +75,12 @@ If you no liky, you no stay here.</p>';
 
             return async.whilst(function() { return generateArticleCount--; }, function(whilstCallback) {
                 var title = loremIpsum({count: parseInt(5 + Math.random() * 3, 10), units: 'words', format: 'plain'});
-                var caption = loremIpsum({count: parseInt(2 + Math.random(), 10), units: 'paragraphs', format: 'html'});
                 var text = loremIpsum({count: parseInt(8 + Math.random() * 4, 10), units: 'paragraphs', format: 'html'});
 
                 var article = new (mongoose.model('Article'))({
                     title: title + ' #' + i,
                     technicalName: title.split(' ').join('_') + i,
 
-                    caption: caption,
                     text: text,
                     tags: getUnique(title.split(' ')),
 

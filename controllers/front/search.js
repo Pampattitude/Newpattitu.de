@@ -43,8 +43,6 @@ exports.page = function(req, res, callback) {
 var search_ = function(queryString, callback) {
     var pointsForTitle =                6;
     var pointsForPreciseTitle =         pointsForTitle * 5;
-    var pointsForCaption =              2;
-    var pointsForPreciseCaption =       pointsForCaption * 5;
     var pointsForText =                 1;
     var pointsForPreciseText =          pointsForText * 5;
     var pointsForTag =                  15;
@@ -62,7 +60,6 @@ var search_ = function(queryString, callback) {
             article.points = 0;
             article.pointDetail = {
                 title: 0,
-                caption: 0,
                 text: 0,
                 tags: 0,
                 views: 0,
@@ -92,23 +89,17 @@ var search_ = function(queryString, callback) {
 
             var tagSearch = new RegExp(tagGroupRegex, 'i');
             var titleMatch = article.title.match(tagSearch);
-            var captionMatch = article.caption.match(tagSearch);
             var textMatch = article.text.match(tagSearch);
             article.points += (titleMatch ? titleMatch.length - 1 : 0) * pointsForTitle;
             article.pointDetail.title += (titleMatch ? titleMatch.length - 1 : 0) * pointsForTitle;
-            article.points += (captionMatch ? captionMatch.length - 1 : 0) * pointsForCaption;
-            article.pointDetail.caption += (captionMatch ? captionMatch.length - 1 : 0) * pointsForCaption;
             article.points += (textMatch ? textMatch.length - 1 : 0) * pointsForText;
             article.pointDetail.text = (textMatch ? textMatch.length - 1 : 0) * pointsForText;
 
             var tagPreciseSearch = new RegExp('\\b' + tagGroupRegex + '\\b', 'i');
             var titlePreciseMatch = article.title.match(tagPreciseSearch);
-            var captionPreciseMatch = article.caption.match(tagPreciseSearch);
             var textPreciseMatch = article.text.match(tagPreciseSearch);
             article.points += (titlePreciseMatch ? titlePreciseMatch.length - 1 : 0) * pointsForPreciseTitle;
             article.pointDetail.title += (titlePreciseMatch ? titlePreciseMatch.length - 1 : 0) * pointsForPreciseTitle;
-            article.points += (captionPreciseMatch ? captionPreciseMatch.length - 1 : 0) * pointsForPreciseCaption;
-            article.pointDetail.caption += (captionPreciseMatch ? captionPreciseMatch.length - 1 : 0) * pointsForPreciseCaption;
             article.points += (textPreciseMatch ? textPreciseMatch.length - 1 : 0) * pointsForPreciseText;
             article.pointDetail.text += (textPreciseMatch ? textPreciseMatch.length - 1 : 0) * pointsForPreciseText;
 
@@ -127,7 +118,6 @@ var search_ = function(queryString, callback) {
                 finalArticleList.push({
                     title: article.title,
                     technicalName: article.technicalName,
-                    caption: article.compressedCaption,
                     text: article.compressedText,
                     tags: article.tags,
                     type: article.type,

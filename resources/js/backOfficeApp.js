@@ -243,14 +243,12 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     $rootScope.article = $scope.article = globals.article || {
         title: '',
         technicalName: '',
-        caption: '',
         text: '',
         tags: [],
         type: null,
     };
     $scope.articleExists = undefined != globals.article;
 
-    $scope.article.caption = htmlDecode($scope.article.caption);
     $scope.article.text = htmlDecode($scope.article.text);
 
     $scope.saveArticle_ = function(callback) {
@@ -366,26 +364,6 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
 
         return $rootScope.openConfirmBox(confirmBox);
     };
-    /*
-    $scope.autoSave = function() {
-        if ($scope.article &&
-            $scope.article.title && $scope.article.title.length &&
-            $scope.article.technicalName && $scope.article.technicalName.length &&
-            $scope.article.caption && $scope.article.caption.length &&
-            $scope.article.text && $scope.article.text.length &&
-            $scope.article.tags && $scope.article.tags.length) {
-            return $scope.saveArticle_(function(err) {
-                if (err) return ;
-                return setTimeout($scope.autoSave, 60000);
-            });
-        }
-        else {
-            return setTimeout($scope.autoSave, 30000);
-        }
-    };
-
-    setTimeout($scope.autoSave, 30000);
-    */
     /* !Article */
 }]).directive('controlTags', function() {
     return {

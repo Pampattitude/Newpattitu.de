@@ -20,9 +20,6 @@ exports.page = function(req, res, callback) {
         return article.save(function(err) {
             if (err) return callback(err);
 
-            res.locals.article.caption = res.locals.article.compressedCaption;
-            delete res.locals.article.compressedCaption;
-
             res.locals.article.text = res.locals.article.compressedText;
             delete res.locals.article.compressedText;
 
@@ -54,9 +51,6 @@ exports.previewPage = function(req, res, callback) {
         res.locals.title = article.title + ' - Preview';
         return article.save(function(err) {
             if (err) return callback(err);
-
-            res.locals.article.caption = res.locals.article.compressedCaption;
-            delete res.locals.article.compressedCaption;
 
             res.locals.article.text = res.locals.article.compressedText;
             delete res.locals.article.compressedText;

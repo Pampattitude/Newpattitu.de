@@ -12,8 +12,6 @@ var schema = new mongoose.Schema({
     title: {type: String, required: true},
     technicalName: {type: String, required: true, unique: true, index: true},
 
-    caption: {type: String, required: true},
-    compressedCaption: {type: String, required: true},
     text: {type: String},
     compressedText: {type: String},
     tags: {type: [String], index: true},
