@@ -23,13 +23,8 @@
     <div class="pmp-article-content">
       <h1 class="pmp-article-title">
         <a href="/article/{{article.technicalName}}"
-           data-ng-bind-html="article.title | trust"
-           data-ng-hide="'flash' == article.type">
+           data-ng-bind-html="article.title | trust">
         </a>
-        <span href="/article/{{article.technicalName}}"
-              data-ng-bind-html="article.title | trust"
-              data-ng-show="'flash' == article.type">
-        </span>
 
         <div class="pmp-article-date">
           <span data-ng-bind="article.created | date: 'yyyy-MM-dd'"></span>

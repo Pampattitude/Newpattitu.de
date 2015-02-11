@@ -51,14 +51,6 @@
       </div>
       <div class="pmp-article-text-after"
            data-ng-show="true == globals.isPreview">Text</div>
-
-      <div class="pmp-article-more">
-        <div class="pmp-article-tags">
-          <a class="pmp-article-tag-group" href="/search?search={{globals.article.tags.join(' ')}}"><span class="icon icon-tags"></span></a>
-
-          <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
-        </div>
-      </div>
     </div>
   </article>
 </div>
