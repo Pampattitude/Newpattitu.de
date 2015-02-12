@@ -715,36 +715,9 @@ body {
             }
 
             .pmp-article-legend {
-                max-height: 10em;
-                overflow-y: auto;
-
-                margin-top: 1em;
+                text-align: right;
 
                 background-color: #EEE;
-
-                table {
-                    width: 100%;
-
-                    color: #444;
-                    font-size: 0.8em;
-                    text-align: left;
-
-                    tr {
-                        &:nth-child(odd) {
-                            background-color: rgba(0, 0, 0, 0.05);
-                        }
-
-                        td {
-                            padding: 0.6em;
-                            padding-top: 0.3em;
-                            padding-bottom: 0.3em;
-
-                            .article-leg-tag {
-                                font-weight: bold;
-                            }
-                        }
-                    }
-                }
             }
         }
     }
