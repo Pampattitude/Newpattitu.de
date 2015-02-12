@@ -249,7 +249,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     };
     $scope.articleExists = undefined != globals.article;
 
-    $scope.article.text = htmlDecode($scope.article.text);
+    $scope.article.text = $scope.article.text;
 
     $scope.saveArticle_ = function(callback) {
         var url = '/back-office/article/' + $scope.article._id + '/save';
@@ -474,39 +474,63 @@ backOfficeApp.controller('reportsController', ['$scope', '$rootScope', '$http', 
     };
 }]);
 
-/* BBCode text box */
-backOfficeApp.factory('bbcodeitupSettings', [
+/* Markdown text box */
+backOfficeApp.factory('markdownitupSettings', [
     function() {
         var markset = [
-            { name: '',                 openWith: '[title]', closeWith: '[/title]',             className: 'pmp-bb-control pmp-bb-title' },
-            { name: '',                 openWith: '[subtitle]', closeWith: '[/subtitle]',       className: 'pmp-bb-control pmp-bb-subtitle' },
-            { name: '',                 openWith: '[p]\n', closeWith: '[/p]',                 className: 'pmp-bb-control pmp-bb-paragraph' },
+            { name: '',
+              closeWith: function(data) {
+                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                  return (hasNewLine ? '' : '\n') + (Array(data.selection.length + (hasNewLine ? 0 : 1)).join('=')) + (hasNewLine ? '\n' : '');
+              },
+              className: 'pmp-md-control pmp-md-title',
+            },
+            { name: '',
+              closeWith: function(data) {
+                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                  return (hasNewLine ? '' : '\n') + (Array(data.selection.length + (hasNewLine ? 0 : 1)).join('-')) + (hasNewLine ? '\n' : '');
+              },
+              className: 'pmp-md-control pmp-md-subtitle',
+            },
 
-            { separator: '', className: 'pmp-bb-separator' },
+            { separator: '', className: 'pmp-md-separator' },
 
-            { name: '', key: 'B',       openWith: '[b]', closeWith: '[/b]',                     className: 'pmp-bb-control pmp-bb-bold' },
-            { name: '', key: 'I',       openWith: '[i]', closeWith: '[/i]',                     className: 'pmp-bb-control pmp-bb-italic' },
-            { name: '', key: 'S',       openWith: '[s]', closeWith: '[/s]',                     className: 'pmp-bb-control pmp-bb-strikethrough' },
-            { name: '', key: 'U',       openWith: '[u]', closeWith: '[/u]',                     className: 'pmp-bb-control pmp-bb-underline' },
+            { name: '', key: 'B',       multiline: true, openWith: '**', closeWith: '**',                     className: 'pmp-md-control pmp-md-bold' },
+            { name: '', key: 'I',       multiline: true, openWith: '_', closeWith: '_',                     className: 'pmp-md-control pmp-md-italic' },
+            { name: '', key: 'S',       multiline: true, openWith: '~~', closeWith: '~~',                     className: 'pmp-md-control pmp-md-strikethrough' },
+            { name: '', key: 'U',       multiline: true, openWith: '<u>', closeWith: '</u>',                     className: 'pmp-md-control pmp-md-underline' },
 
-            { separator: '', className: 'pmp-bb-separator pmp-bb-separator-desktop' },
+            { separator: '', className: 'pmp-md-separator pmp-md-separator-desktop' },
 
-            { name: '', key: 'P',       replaceWith: '[img][![URL:]!][/img]',                   className: 'pmp-bb-control pmp-bb-picture' },
-            { name: '', key: 'L',       replaceWith: '[url=[![URL:]!]][![Link name:]!][/url]',  className: 'pmp-bb-control pmp-bb-link' },
+            { name: '', key: 'P',       replaceWith: '![[![Title:]!]]([![URL:]!] "")',                   className: 'pmp-md-control pmp-md-picture' },
+            { name: '',       replaceWith: '<img class="img-small" alt="[![Title:]!]" src="[![URL:]!]" />',                   className: 'pmp-md-control pmp-md-picture-small' },
+            { name: '', key: 'L',       replaceWith: '[[![Link name:]!]]([![URL:]!])',  className: 'pmp-md-control pmp-md-link' },
 
-            { separator: '', className: 'pmp-bb-separator' },
-            { separator: '', className: 'pmp-bb-separator pmp-bb-separator-mobile' },
+            { separator: '', className: 'pmp-md-separator' },
+            { separator: '', className: 'pmp-md-separator pmp-md-separator-mobile' },
 
-            { name: '',                 openWith: '[quote]', closeWith: '[/quote]',             className: 'pmp-bb-control pmp-bb-quote'},
-            { name: '',                 openWith: '[code]\n', closeWith: '[/code]',               className: 'pmp-bb-control pmp-bb-code'},
-            { name: '',                 openWith: '[comment]', closeWith: '[/comment]',         className: 'pmp-bb-control pmp-bb-comment'},
-            { name: '',                 openWith: '[tldr]', closeWith: '[/tldr]',               className: 'pmp-bb-control pmp-bb-tldr'},
+            { name: '', key: 'Q',                 openWith: '> ', multiline: true, className: 'pmp-md-control pmp-md-quote'},
+            { name: '',
+              openWith: '```\n',
+              closeWith: function(data) {
+                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                  return (hasNewLine ? '' : '\n') + ('```') + (hasNewLine ? '\n' : '');
+              },
+              className: 'pmp-md-control pmp-md-code',
+            },
+            { name: '',                 openWith: '<span class="comment">', closeWith: '</span>',         className: 'pmp-md-control pmp-md-comment'},
+            { name: '',                 openWith: '<p class="tldr">', closeWith: '</p>',               className: 'pmp-md-control pmp-md-tldr'},
+
+            { name: '', key: '',       openWith: '<div class="align-left">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-left' },
+            { name: '', key: '',       openWith: '<div class="align-center">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-center' },
+            { name: '', key: '',       openWith: '<div class="align-right">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-right' },
+            { name: '', key: '',       openWith: '<div class="align-justify">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-justify' },
         ];
 
         var factory = {
             create: function(callback) {
                 return {
-                    nameSpace: 'pmp-bb',
+                    nameSpace: 'pmp-md',
                     afterInsert: callback,
                     previewParserPath: '',
                     markupSet: markset,
@@ -518,7 +542,7 @@ backOfficeApp.factory('bbcodeitupSettings', [
     }
 ]);
 
-backOfficeApp.directive('bbcodeItUp', ['bbcodeitupSettings', function(markitupSettings) {
+backOfficeApp.directive('markdownItUp', ['markdownitupSettings', function(markitupSettings) {
     return {
         restrict: 'A',
         scope: {
@@ -535,4 +559,4 @@ backOfficeApp.directive('bbcodeItUp', ['bbcodeitupSettings', function(markitupSe
         }
     };
 }]);
-/* !BBCode text box */
+/* !Markdown text box */

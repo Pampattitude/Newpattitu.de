@@ -43,14 +43,17 @@
 
       <hr class="pmp-break" />
 
-      <div class="pmp-article-text-before"
-           data-ng-show="true == globals.isPreview">Text</div>
-      <div class="pmp-article-text pmp-bb-generated"
+      <div data-ng-show="true == globals.isPreview">
+        <h3 class="pmp-box-type pmp-box-type-inverse" data-ng-show="'news' == globals.article.type">
+          <center>Preview</center>
+        </h3>
+        <hr class="pmp-break" />
+      </div>
+
+      <div class="pmp-article-text pmp-md-generated"
            data-ng-bind-html="globals.article.text | trust"
            data-compile="globals.article.text">
       </div>
-      <div class="pmp-article-text-after"
-           data-ng-show="true == globals.isPreview">Text</div>
     </div>
   </article>
 </div>

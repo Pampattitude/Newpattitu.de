@@ -4,6 +4,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
+var markdown = require('../../lib/markdown');
 var utils = require('../../lib/utils');
 
 // Get page
@@ -99,16 +100,14 @@ exports.save = function(req, res, callback) {
     if (!req.body.type)
         return callback({code: 400, message: 'Missing article type'});
 
-    var text = utils.sanitizeBbCode(req.body.text);
-
     var findOptions = {
         _id: req.body._id || {$exists: false},
     };
     var updateOptions = {
         title: req.body.title,
         technicalName: req.body.technicalName,
-        text: text,
-        compressedText: utils.bbCodeToHtml(req.body.text),
+        text: req.body.text,
+        compressedText: markdown(req.body.text),
         tags: req.body.tags,
         type: req.body.type,
         lastUpdated: new Date(),

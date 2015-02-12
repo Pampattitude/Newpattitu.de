@@ -2,7 +2,7 @@
 @import '_pmp.common';
 @import '_pmp.vignette';
 @import '_pmp.grid';
-@import '_pmp.bbcode';
+@import '_pmp.markdown';
 
 $body-text-color:                       $black-mild;
 $body-background-color:                 $white-mild;
@@ -622,6 +622,7 @@ body {
                 .pmp-article-title {
                     margin-right: 0.2em;
 
+                    font-family: monospace;
                     font-size: 1.2em;
 
                     @media only screen and (max-width: 991px) {
@@ -637,6 +638,7 @@ body {
                     }
 
                     input {
+                        font-family: monospace;
                         padding-top: 0.5em;
                         padding-bottom: 0.5em;
                     }
@@ -647,6 +649,7 @@ body {
 
             .pmp-article-text {
                 textarea {
+                    font-family: monospace;
                     font-size: 0.9em;
                 }
 

@@ -11,11 +11,11 @@ $lang-title-text-color:                 rgb(85, 85, 255);
 $lang-attribute-text-color:             rgb(170, 85, 0);
 $lang-value-text-color:                 rgb(0, 170, 0);
 
-/* Back-office BBCode editor */
-.pmp-bb {
+/* Back-office Markdown editor */
+.pmp-md {
     width: 100%;
 
-    .pmp-bb-controls {
+    .pmp-md-controls {
         @extend .clearfix;
 
         width: 100%;
@@ -30,8 +30,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         background-color: $white-milder;
         border-bottom: 3px solid rgb(160, 160, 160);
 
-        .pmp-bb-control,
-        .pmp-bb-separator {
+        .pmp-md-control,
+        .pmp-md-separator {
             width: 6.25%;
             min-height: 1px;
             height: 2.2rem; /* We use rem because text size is not the same between buttons */
@@ -49,7 +49,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
             }
         }
 
-        .pmp-bb-control {
+        .pmp-md-control {
             transition: background-color 200ms;
 
             &:hover {
@@ -58,7 +58,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
             }
             &:active { background-color: $white-milderer; }
 
-            &.pmp-bb-title {
+            &.pmp-md-title {
                 @extend .icon;
 
                 padding: 0.5em 0.6em;
@@ -71,7 +71,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
                 }
             }
 
-            &.pmp-bb-subtitle {
+            &.pmp-md-subtitle {
                 @extend .icon;
 
                 padding: 0.5em 0.6em;
@@ -84,7 +84,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
                 }
             }
 
-            &.pmp-bb-paragraph {
+            &.pmp-md-paragraph {
                 @extend .icon;
 
                 padding: 0.4em 0.6em;
@@ -97,54 +97,61 @@ $lang-value-text-color:                 rgb(0, 170, 0);
             }
 
 
-            &.pmp-bb-bold {
+            &.pmp-md-bold {
                 @extend .icon;
                 @extend .icon-bold;
             }
 
-            &.pmp-bb-italic {
+            &.pmp-md-italic {
                 @extend .icon;
                 @extend .icon-italic;
             }
 
-            &.pmp-bb-strikethrough {
+            &.pmp-md-strikethrough {
                 @extend .icon;
                 @extend .icon-strikethrough;
             }
 
-            &.pmp-bb-underline {
+            &.pmp-md-underline {
                 @extend .icon;
                 @extend .icon-underline;
             }
 
-
-            &.pmp-bb-picture {
+            &.pmp-md-picture {
                 @extend .icon;
                 @extend .icon-image;
             }
 
-            &.pmp-bb-link {
+            &.pmp-md-picture-small {
+                @extend .icon;
+                @extend .icon-image;
+
+                font-size: 0.8em;
+                padding: 1em 0 0 0;
+            }
+
+            &.pmp-md-link {
                 @extend .icon;
                 @extend .icon-link;
             }
 
 
-            &.pmp-bb-quote {
+            &.pmp-md-quote {
                 @extend .icon;
                 @extend .icon-quotes-left;
             }
 
-            &.pmp-bb-code {
+            &.pmp-md-code {
                 @extend .icon;
                 @extend .icon-code;
             }
 
-            &.pmp-bb-comment {
+            &.pmp-md-comment {
                 @extend .icon;
                 @extend .icon-bubbles4;
             }
 
-            &.pmp-bb-tldr {
+            &.pmp-md-tldr {
                 @extend .icon;
 
                 &:before {
@@ -152,10 +159,30 @@ $lang-value-text-color:                 rgb(0, 170, 0);
                     font-weight: bold;
                 }
             }
+
+            &.pmp-md-align-left {
+                @extend .icon;
+                @extend .icon-paragraph-left;
+            }
+
+            &.pmp-md-align-center {
+                @extend .icon;
+                @extend .icon-paragraph-center;
+            }
+
+            &.pmp-md-align-right {
+                @extend .icon;
+                @extend .icon-paragraph-right;
+            }
+
+            &.pmp-md-align-justify {
+                @extend .icon;
+                @extend .icon-paragraph-justify;
+            }
         }
 
         @media only screen and (max-width: 991px) {
-            .pmp-bb-separator-desktop {
+            .pmp-md-separator-desktop {
                 width: 0;
                 display: none;
                 margin: 0;
@@ -163,7 +190,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         }
 
         @media only screen and (min-width: 992px) {
-            .pmp-bb-separator-mobile {
+            .pmp-md-separator-mobile {
                 width: 0;
                 display: none;
                 margin: 0;
@@ -172,13 +199,13 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     }
 
     .markItUpHeader ul { /* List of control buttons */
-        @extend .pmp-bb-controls;
+        @extend .pmp-md-controls;
     }
 }
-/* !Back-office BBCode editor */
+/* !Back-office Markdown editor */
 
-/* Generated text from BBCode */
-.pmp-bb-generated {
+/* Generated text from Markdown */
+.pmp-md-generated {
     text-align: left;
 
     .no-text-indent { text-indent: 0; }
@@ -234,12 +261,20 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     img {
         @extend .small-margin;
         @extend .no-text-indent;
-        @extend .block;
+        @extend .inline-block;
 
         max-width: 90%;
         max-height: 40vh;
 
-        margin: auto;
+        border: 8px solid $white;
+        @extend .hard-shadow;
+
+        &.img-small {
+            max-width: 33%;
+            max-height: 15vh;
+
+            border: 4px solid $white;
+        }
     }
 
     a {
@@ -269,10 +304,13 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         }
     }
 
-    pre.code {
+    code.md-code {
+        @extend .block;
         @extend .small-margin;
         @extend .no-text-indent;
-        display: block;
+
+        width: 100%;
+        overflow: auto;
 
         padding: 0.4em 0.8em;
 
@@ -283,11 +321,11 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         background-color: rgb(24, 8, 32); /* TMP */
     }
 
-    pre.inline-code {
+    code.md-codespan {
         @extend .small-margin;
         @extend .no-text-indent;
 
-        display: inline-block;
+        display: inline;
 
         margin: -0.1em 0;
         padding: 0.1em 0.2em;
@@ -300,11 +338,12 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         background-color: rgb(24, 8, 32); /* TMP */
     }
 
-    .code,
-    .inline-code {
+    .md-code,
+    .md-codespan {
         /* Syntactic coloration */
-        &.code-cpp,
-        &.code-js {
+        &.md-code-lang-cpp,
+        &.md-code-lang-js,
+        &.md-code-lang-javascript {
             .lang-keyword {
                 color: $lang-keyword-text-color;
                 font-weight: bold;
@@ -329,8 +368,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
             }
         }
 
-        &.code-html,
-        &.code-xml {
+        &.md-code-lang-html,
+        &.md-code-lang-xml {
             .lang-tag {
                 .lang-title {
                     color: $lang-title-text-color;
@@ -382,5 +421,29 @@ $lang-value-text-color:                 rgb(0, 170, 0);
             font-weight: bold;
         }
     }
+
+    div.align-left {
+        text-align: left;
+    }
+
+    div.align-center {
+        text-align: center;
+    }
+
+    div.align-right {
+        text-align: right;
+    }
+
+    div.align-justify {
+        text-align: justify;
+    }
+
+    div.float-left {
+        float: left;
+    }
+
+    div.float-right {
+        float: right;
+    }
 }
-/* !Generated text from BBCode */
+/* !Generated text from Markdown */

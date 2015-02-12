@@ -24,6 +24,9 @@ $box-search-background-color:   $green;
 $box-social-text-color:         $white-mild;
 $box-social-background-color:   $orange;
 
+$box-inverse-text-color:        $white-mild;
+$box-inverse-background-color:  $black-milder;
+
 $article-border-color:          $black-milder;
 
 $tag-icon-text-color:           $white-mild;
@@ -88,6 +91,11 @@ $tag-background-active-color:   $blue-dark;
         &.pmp-box-type-twitter {
             color:                  $white-mild;
             background-color:       $twitter-color;
+        }
+
+        &.pmp-box-type-inverse {
+            color:                  $box-inverse-text-color;
+            background-color:       $box-inverse-background-color;
         }
     }
 
