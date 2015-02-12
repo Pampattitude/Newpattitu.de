@@ -215,23 +215,33 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
     .no-text-indent { text-indent: 0; }
 
-    .big-margin   { margin: 1em auto; }
-    .small-margin { margin: 0.6em auto; }
+    .big-margin   { margin: 0.8em auto; }
+    .small-margin { margin: 0.4em auto; }
+
+    *:first-child {
+        margin-top: 0 !important;
+    }
+
+    *:last-child {
+        margin-bottom: 0 !important;
+    }
 
     h1 {
-        @extend .big-margin;
+        @extend .small-margin;
         @extend .no-text-indent;
 
         display: block;
+        clear: both; /* For floaty elements */
 
         font-size: 1.4em;
     }
 
     h2 {
-        @extend .big-margin;
+        @extend .small-margin;
         @extend .no-text-indent;
 
         display: block;
+        clear: both; /* For floaty elements */
 
         margin-left: 0.4em;
 
@@ -265,17 +275,13 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     }
 
     img {
-        @extend .small-margin;
         @extend .no-text-indent;
         @extend .inline-block;
 
-        max-width: 90%;
-        max-height: 40vh;
+        max-width: 60em;
 
         &.img-small {
-            max-width: 33%;
-            max-height: 15vh;
-
+            max-width: 10em;
         }
     }
 
@@ -426,8 +432,9 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
     div.frame {
         @extend .hard-shadow;
+        @extend .inline-block;
 
-        margin: 0.4em 0;
+        margin: 0;
         padding: 0.6em;
 
         background-color: $white;
@@ -450,11 +457,19 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     }
 
     div.float-left {
+        @extend .front;
+
         float: left;
+
+        margin: 0 0.6em 0 0;
     }
 
     div.float-right {
+        @extend .front;
+
         float: right;
+
+        margin: 0 0 0 0.6em;
     }
 }
 /* !Generated text from Markdown */
