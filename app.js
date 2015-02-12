@@ -129,7 +129,7 @@ var runServer = function() {
             },
         }));
     else
-        serverApp.use(require('morgan')('combined', {
+        serverApp.use(require('morgan')('dev', {
             stream: {
                 write: function(str) { return printer.info(str.replace(/[\r\n]+/g, '')); },
                 skip: function(req, res) { return 400 >= res.statusCode; },
