@@ -502,6 +502,14 @@ backOfficeApp.factory('markdownitupSettings', [
 
             { separator: '', className: 'pmp-md-separator pmp-md-separator-desktop' },
 
+            { name: '',
+              openWith: '<div class="frame">\n',
+              closeWith: function(data) {
+                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                  return (hasNewLine ? '' : '\n') + ('</div>') + (hasNewLine ? '\n' : '');
+              },
+              className: 'pmp-md-control pmp-md-frame',
+            },
             { name: '', key: 'P',       replaceWith: '![[![Title:]!]]([![URL:]!] "")',                   className: 'pmp-md-control pmp-md-picture' },
             { name: '',       replaceWith: '<img class="img-small" alt="[![Title:]!]" src="[![URL:]!]" />',                   className: 'pmp-md-control pmp-md-picture-small' },
             { name: '', key: 'L',       replaceWith: '[[![Link name:]!]]([![URL:]!])',  className: 'pmp-md-control pmp-md-link' },
