@@ -278,7 +278,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         @extend .no-text-indent;
         @extend .inline-block;
 
-        max-width: 60em;
+        /*max-width: 60em;*/
+        max-width: 100%;
 
         &.img-small {
             max-width: 10em;
@@ -470,6 +471,38 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         float: right;
 
         margin: 0 0 0 0.6em;
+    }
+
+    ul, ol {
+        padding: 0 2em;
+    }
+    ul {
+        list-style-type: none;
+
+        > li {
+            &:before {
+                @extend .icon;
+                @extend .icon-radio-unchecked;
+
+                padding-right: 1.2em;
+
+                font-size: 0.4em;
+                font-weight: bold;
+            }
+        }
+    }
+    ol {
+        list-style-position: inside;
+    }
+
+    hr {
+        height: 0.2em;
+
+        margin:                                 0;
+        padding:                                0;
+
+        background-color:                       $black-milder;
+        border:                                 0;
     }
 }
 /* !Generated text from Markdown */
