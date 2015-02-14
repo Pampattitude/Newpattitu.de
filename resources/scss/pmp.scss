@@ -5,14 +5,17 @@
 @import '_pmp.markdown';
 @import '_pmp.front.article';
 
-$body-text-color:                               $white-mild;
-$body-background-color:                         $black-mild;
+$body-text-color:                               $black-mild;
+$body-background-color:                         $white-milderer;
 $body-background-image:                         url('http://i.imgur.com/7XmZFgC.png');
 
-$header-background-color:                       rgba($black, 0.85);
+$header-background-color:                       $black-milder;
+$header-background-image:                       url('http://i.imgur.com/iEwoMxj.png');
 $header-image-background-color:                 $white-mild;
 
-$footer-background-color:                       rgba($black, 0.85);
+$footer-text-color:                             $white-mild;
+$footer-background-color:                       $black-milder;
+$footer-background-image:                       url('http://i.imgur.com/iEwoMxj.png');
 
 $twitter-user-color:                            $orange;
 $twitter-hashtag-color:                         $blue;
@@ -74,6 +77,7 @@ body {
     padding: 0.4em 0.6em;
 
     background-color: $header-background-color;
+    background-image: $header-background-image;
 
     @media only screen and (max-width: 991px) {
         box-shadow: 0;
@@ -652,14 +656,16 @@ body {
     width: 100%;
 
     margin-top: 2rem;
-    padding: 0.8em 0.8em;
+    padding: 0.4em 0.8em;
 
+    color: $footer-text-color;
     text-align: center;
 
     background-color: $footer-background-color;
+    background-image: $footer-background-image;
 
     .pmp-footer-report {
-        margin-top: 0.2em;
+        margin-top: -0.2em;
 
         font-size: 0.75em;
     }

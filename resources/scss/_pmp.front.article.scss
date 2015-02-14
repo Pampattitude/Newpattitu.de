@@ -29,6 +29,8 @@ $box-inverse-background-color:  $black-milder;
 
 $article-border-color:          $black-milder;
 
+$article-title-image:           url('http://i.imgur.com/EeRiLZ8.png');
+
 $tag-icon-text-color:           $white-mild;
 $tag-icon-background-color:     $article-border-color;
 
@@ -117,7 +119,7 @@ $tag-background-active-color:   $blue-dark;
                 text-align:             center;
                 line-height:            1em;
 
-                background-image:       url('http://i.imgur.com/EeRiLZ8.png');
+                background-image:       $article-title-image;
 
                 .pmp-article-date {
                     font-size:          0.4em;
