@@ -20,26 +20,28 @@
     <hr class="pmp-break" />
 
     <div class="pmp-article-content">
-      <h1 class="pmp-article-title">
-        <span data-ng-bind-html="globals.article.title | trust">
-        </span>
+      <header>
+        <h1 class="pmp-article-title">
+          <span data-ng-bind-html="globals.article.title | trust">
+          </span>
 
-        <div class="pmp-article-date">
-          <span data-ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></span>
+          <div class="pmp-article-date">
+            <span data-ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></span>
+          </div>
+        </h1>
+
+        <hr class="pmp-break" />
+
+        <div class="pmp-article-tags">
+          <div class="pmp-article-tag-icon">
+            <span class="icon icon-tags"></span>
+          </div>
+
+          <div class="pmp-article-tag-list">
+            <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+          </div>
         </div>
-      </h1>
-
-      <hr class="pmp-break" />
-
-      <div class="pmp-article-tags">
-        <div class="pmp-article-tag-icon">
-          <span class="icon icon-tags"></span>
-        </div>
-
-        <div class="pmp-article-tag-list">
-          <a class="pmp-article-tag" data-ng-repeat="tag in globals.article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
-        </div>
-      </div>
+      </header>
 
       <hr class="pmp-break" />
 
@@ -50,14 +52,72 @@
         <hr class="pmp-break" />
       </div>
 
-      <div class="pmp-article-text pmp-md-generated"
+      <main class="pmp-article-text pmp-md-generated"
            data-ng-bind-html="globals.article.text | trust"
            data-compile="globals.article.text">
-      </div>
+      </main>
     </div>
   </article>
 </div>
 <!-- !Article -->
+
+<!-- See also -->
+<div class="pmp-page-content-box" id="seeAlso"
+     data-ng-hide="0 == globals.relatedArticles.length">
+  <div class="pmp-see-also">
+    <h3 class="pmp-box-type">
+      Continue reading
+    </h3>
+
+    <div class="pmp-related-article-list">
+      <div class="grid-2">
+        <div class="cell-1 cell-mobile-2"
+             data-ng-repeat="relatedArticle in globals.relatedArticles">
+          <a class="pmp-box-type pmp-box-type-news"
+             href="/article/{{relatedArticle.technicalName}}"
+             data-ng-show="'news' == relatedArticle.type">
+            News:
+            <span class="pmp-article-title"
+                  data-ng-bind-html="relatedArticle.title | trust"></span>
+          </a>
+
+          <a class="pmp-box-type pmp-box-type-personal"
+             href="/article/{{relatedArticle.technicalName}}"
+             data-ng-show="'life' == relatedArticle.type">
+            Personal:
+            <span class="pmp-article-title"
+                  data-ng-bind-html="relatedArticle.title | trust"></span>
+          </a>
+
+          <a class="pmp-box-type pmp-box-type-project"
+             href="/article/{{relatedArticle.technicalName}}"
+             data-ng-show="'project' == relatedArticle.type">
+            Project:
+            <span class="pmp-article-title"
+                  data-ng-bind-html="relatedArticle.title | trust"></span>
+          </a>
+
+          <a class="pmp-box-type pmp-box-type-tutorial"
+             href="/article/{{relatedArticle.technicalName}}"
+             data-ng-show="'tutorial' == relatedArticle.type">
+            Tutorial:
+            <span class="pmp-article-title"
+                  data-ng-bind-html="relatedArticle.title | trust"></span>
+          </a>
+
+          <a class="pmp-box-type pmp-box-type-flash"
+             href="/article/{{relatedArticle.technicalName}}"
+             data-ng-show="'flash' == relatedArticle.type">
+            <span class="icon icon-lightning"></span>&nbsp;&nbsp;Flash:
+            <span class="pmp-article-title"
+                  data-ng-bind-html="relatedArticle.title | trust"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- !See also -->
 
 <!-- Comment -->
 <div class="pmp-page-content-box" id="comments" data-ng-controller="articleCommentsController" data-ng-hide="true == globals.deactivateComments">

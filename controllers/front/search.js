@@ -40,7 +40,7 @@ exports.page = function(req, res, callback) {
     });
 };
 
-var search_ = function(queryString, callback) {
+var search_ = exports.search = function(queryString, callback) {
     var pointsForTitle =                6;
     var pointsForPreciseTitle =         pointsForTitle * 5;
     var pointsForText =                 1;

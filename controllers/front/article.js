@@ -32,7 +32,24 @@ exports.page = function(req, res, callback) {
                 if (req.session.user)
                     res.locals.user = req.session.user;
 
-                return callback();
+                return require('./search').search(article.tags.join(' '), function(err, related) {
+                    if (err)
+                        return callback(err);
+
+                    res.locals.relatedArticles = [];
+                    for (var i = 0 ; constants.frontRelatedArticleCount > res.locals.relatedArticles.length && related.length > i ; ++i) {
+                        if (res.locals.article.technicalName == related[i].technicalName)
+                            continue ;
+
+                        res.locals.relatedArticles.push({
+                            type: related[i].type,
+                            title: related[i].title,
+                            technicalName: related[i].technicalName,
+                        });
+                    }
+
+                    return callback();
+                });
             });
         });
     });
