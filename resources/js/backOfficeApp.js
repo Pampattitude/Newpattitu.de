@@ -393,7 +393,7 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
                 if (!$scope.article.title.length)
                     return ;
 
-                var generateTechnicalNameUrl = '/back-office/article/generateTechnicalName?title=' + $scope.article.title;
+                var generateTechnicalNameUrl = '/back-office/article/generateTechnicalName?id=' + ($scope.article._id || '') + '&title=' + $scope.article.title;
                 return $http.get(generateTechnicalNameUrl, {}).then(function(response) {
                     $scope.article.technicalName = response.data;
                 }, function(response) {

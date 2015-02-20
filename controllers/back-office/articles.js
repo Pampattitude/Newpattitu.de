@@ -167,10 +167,22 @@ exports.generateTechnicalName = function(req, res, callback) {
         return callback({code: 400, message: 'Title too short or missing'});
 
     var technicalName = req.query.title.replace(/ /g, '_')
-        .replace(/[^A-Za-z0-9\-_]/g, '')
-        .toLowerCase();
+        .toLowerCase()
+        .replace(/[^a-z0-9\-_]/g, '');
 
-    return callback(null, technicalName);
+    var findOptions = {
+        _id: {
+            $ne: req.query.id || null,
+        },
+        technicalName: technicalName,
+    };
+
+    return mongoose.model('Article').findOne(findOptions, function(err, article) {
+        if (err) return callback({code: 500, message: err});
+        if (article) return callback({code: 409, message: 'Technical name ' + technicalName + ' already exists'});
+
+        return callback(null, technicalName);
+    });
 };
 
 // Change comment visibility
