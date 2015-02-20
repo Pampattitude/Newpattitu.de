@@ -478,61 +478,270 @@ backOfficeApp.controller('reportsController', ['$scope', '$rootScope', '$http', 
 backOfficeApp.factory('markdownitupSettings', [
     function() {
         var markset = [
-            { name: '',
-              closeWith: function(data) {
-                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
-                  return (hasNewLine ? '' : '\n') + (Array(data.selection.length + (hasNewLine ? 0 : 1)).join('=')) + (hasNewLine ? '\n' : '');
-              },
-              className: 'pmp-md-control pmp-md-title',
+            /* Title */
+            {
+                name: '',
+                closeWith: function(data) {
+                    var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                    return (hasNewLine ? '' : '\n') + (Array(data.selection.length + (hasNewLine ? 0 : 1)).join('=')) + (hasNewLine ? '\n' : '');
+                },
+                className: 'pmp-md-control pmp-md-title',
             },
-            { name: '',
-              closeWith: function(data) {
-                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
-                  return (hasNewLine ? '' : '\n') + (Array(data.selection.length + (hasNewLine ? 0 : 1)).join('-')) + (hasNewLine ? '\n' : '');
-              },
-              className: 'pmp-md-control pmp-md-subtitle',
+            /* !Title */
+            /* Subtitle */
+            {
+                name: '',
+                closeWith: function(data) {
+                    var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                    return (hasNewLine ? '' : '\n') + (Array(data.selection.length + (hasNewLine ? 0 : 1)).join('-')) + (hasNewLine ? '\n' : '');
+                },
+                className: 'pmp-md-control pmp-md-subtitle',
             },
+            /* !Subtitle */
 
             { separator: '', className: 'pmp-md-separator' },
 
-            { name: '', key: 'B',       multiline: true, openWith: '**', closeWith: '**',                     className: 'pmp-md-control pmp-md-bold' },
-            { name: '', key: 'I',       multiline: true, openWith: '_', closeWith: '_',                     className: 'pmp-md-control pmp-md-italic' },
-            { name: '', key: 'S',       multiline: true, openWith: '~~', closeWith: '~~',                     className: 'pmp-md-control pmp-md-strikethrough' },
-            { name: '', key: 'U',       multiline: true, openWith: '<u>', closeWith: '</u>',                     className: 'pmp-md-control pmp-md-underline' },
+            /* Bold */
+            {
+                name: '',
+                key: 'B',
+                multiline: true,
+                openWith: '**',
+                closeWith: '**',
+                className: 'pmp-md-control pmp-md-bold',
+            },
+            /* !Bold */
+            /* Italic */
+            { name: '',
+              key: 'I',
+              multiline: true,
+              openWith: '_',
+              closeWith: '_',
+              className: 'pmp-md-control pmp-md-italic',
+            },
+            /* !Italic */
+            /* Strikethrough */
+            {
+                name: '',
+                key: 'S',
+                multiline: true,
+                openWith: '~~',
+                closeWith: '~~',
+                className: 'pmp-md-control pmp-md-strikethrough',
+            },
+            /* !Strikethrough */
+            /* Underline */
+            {
+                name: '',
+                key: 'U',
+                multiline: true,
+                openWith: '<u>',
+                closeWith: '</u>',
+                className: 'pmp-md-control pmp-md-underline',
+            },
+            /* !Underline */
 
             { separator: '', className: 'pmp-md-separator pmp-md-separator-desktop' },
 
-            { name: '',
-              openWith: '<div class="frame">\n',
-              closeWith: function(data) {
-                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
-                  return (hasNewLine ? '' : '\n') + ('</div>') + (hasNewLine ? '\n' : '');
-              },
-              className: 'pmp-md-control pmp-md-frame',
+            /* Frame */
+            {
+                name: '',
+                openWith: '<div class="frame">\n',
+                closeWith: function(data) {
+                    var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                    return (hasNewLine ? '' : '\n') + ('</div>') + (hasNewLine ? '\n' : '');
+                },
+                className: 'pmp-md-control pmp-md-frame',
             },
-            { name: '', key: 'P',       replaceWith: '![[![Title:]!]]([![URL:]!] "")',                   className: 'pmp-md-control pmp-md-picture' },
-            { name: '',       replaceWith: '<img class="img-small" alt="[![Title:]!]" src="[![URL:]!]" />',                   className: 'pmp-md-control pmp-md-picture-small' },
-            { name: '', key: 'L',       replaceWith: '[[![Link name:]!]]([![URL:]!])',  className: 'pmp-md-control pmp-md-link' },
+            /* !Frame */
+            /* Picture */
+            {
+                name: '',
+                key: 'P',
+                replaceWith: '![[![Title:]!]]([![URL:]!] "")',
+                className: 'pmp-md-control pmp-md-picture',
+            },
+            /* !Picture */
+            /* Small picture */
+            { name: '',
+              replaceWith: '<img class="img-small" alt="[![Title:]!]" src="[![URL:]!]" />',
+              className: 'pmp-md-control pmp-md-picture-small',
+            },
+            /* !Small picture */
+            /* Link */
+            { 
+                name: '',
+                key: 'L',
+                replaceWith: '[[![Link name:]!]]([![URL:]!])',
+                className: 'pmp-md-control pmp-md-link',
+            },
+            /* !Link */
 
             { separator: '', className: 'pmp-md-separator' },
             { separator: '', className: 'pmp-md-separator pmp-md-separator-mobile' },
 
-            { name: '', key: 'Q',                 openWith: '> ', multiline: true, className: 'pmp-md-control pmp-md-quote'},
-            { name: '',
-              openWith: '```\n',
-              closeWith: function(data) {
-                  var hasNewLine = '\n' === data.selection[data.selection.length - 1];
-                  return (hasNewLine ? '' : '\n') + ('```') + (hasNewLine ? '\n' : '');
-              },
-              className: 'pmp-md-control pmp-md-code',
+            /* Blockquote */
+            {
+                name: '',
+                key: 'Q',
+                openWith: '> ',
+                multiline: true,
+                className: 'pmp-md-control pmp-md-quote',
             },
-            { name: '',                 openWith: '<span class="comment">', closeWith: '</span>',         className: 'pmp-md-control pmp-md-comment'},
-            { name: '',                 openWith: '<p class="tldr">', closeWith: '</p>',               className: 'pmp-md-control pmp-md-tldr'},
+            /* !Blockquote */
+            /* Code block */
+            {
+                name: '',
+                openWith: '```\n',
+                closeWith: function(data) {
+                    var hasNewLine = '\n' === data.selection[data.selection.length - 1];
+                    return (hasNewLine ? '' : '\n') + ('```') + (hasNewLine ? '\n' : '');
+                },
+                className: 'pmp-md-control pmp-md-code',
+            },
+            /* !Code block */
+            /* Comment */
+            {
+                name: '',
+                openWith: '<span class="comment">',
+                closeWith: '</span>',
+                className: 'pmp-md-control pmp-md-comment',
+            },
+            /* !Comment */
+            /* tl;dr */
+            {
+                name: '',
+                openWith: '<p class="tldr">',
+                closeWith: '</p>',
+                className: 'pmp-md-control pmp-md-tldr',
+            },
+            /* !tl;dr */
 
-            { name: '', key: '',       openWith: '<div class="align-left">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-left' },
-            { name: '', key: '',       openWith: '<div class="align-center">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-center' },
-            { name: '', key: '',       openWith: '<div class="align-right">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-right' },
-            { name: '', key: '',       openWith: '<div class="align-justify">', closeWith: '</div>',                     className: 'pmp-md-control pmp-md-align-justify' },
+            /* Align left */
+            {
+                name: '',
+                key: '',
+                openWith: '<div class="align-left">',
+                closeWith: '</div>',
+                className: 'pmp-md-control pmp-md-align-left',
+            },
+            /* !Align left */
+            /* Align center */
+            {
+                name: '',
+                key: '',
+                openWith: '<div class="align-center">',
+                closeWith: '</div>',
+                className: 'pmp-md-control pmp-md-align-center',
+            },
+            /* !Align center */
+            /* Align right */
+            {
+                name: '',
+                key: '',
+                openWith: '<div class="align-right">',
+                closeWith: '</div>',
+                className: 'pmp-md-control pmp-md-align-right',
+            },
+            /* !Align right */
+            /* Align justify */
+            {
+                name: '',
+                key: '',
+                openWith: '<div class="align-justify">',
+                closeWith: '</div>',
+                className: 'pmp-md-control pmp-md-align-justify',
+            },
+            /* !Align justify */
+
+            /* Smileys */
+            {
+                name: '',
+                key: '',
+                dropMenu: [
+                    {
+                        replaceWith: '<span class="smiley smiley-happy"></span>',
+                        className: 'smiley smiley-happy',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-sad"></span>',
+                        className: 'smiley smiley-sad',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-neutral"></span>',
+                        className: 'smiley smiley-neutral',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-happy2"></span>',
+                        className: 'smiley smiley-happy2',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-neutral2"></span>',
+                        className: 'smiley smiley-neutral2',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-happy3"></span>',
+                        className: 'smiley smiley-happy3',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-teasing"></span>',
+                        className: 'smiley smiley-teasing',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-devil"></span>',
+                        className: 'smiley smiley-devil',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-angry"></span>',
+                        className: 'smiley smiley-angry',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-happy3"></span>',
+                        className: 'smiley smiley-happy3',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-sick"></span>',
+                        className: 'smiley smiley-sick',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-angry2"></span>',
+                        className: 'smiley smiley-angry2',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-sad2"></span>',
+                        className: 'smiley smiley-sad2',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-happy5"></span>',
+                        className: 'smiley smiley-happy5',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-cool"></span>',
+                        className: 'smiley smiley-cool',
+                    },
+
+                    {
+                        replaceWith: '<span class="smiley smiley-cool2"></span>',
+                        className: 'smiley smiley-cool2',
+                    },
+                ],
+                className: 'pmp-md-control pmp-md-smiley',
+            },
+            /* !Smileys */
         ];
 
         var factory = {

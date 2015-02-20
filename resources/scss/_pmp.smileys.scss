@@ -1,0 +1,29 @@
+$smiley-image:          url('http://i.imgur.com/jmiCtj6.png');
+$smiley-size:           24px;
+
+.smiley {
+    width: $smiley-size;
+    height: $smiley-size;
+    display: inline-block;
+
+    background-image: $smiley-image;
+    background-repeat: no-repeat;
+
+    &.smiley-happy      { background-position: (-$smiley-size * 0) (-$smiley-size * 0); }
+    &.smiley-sad        { background-position: (-$smiley-size * 1) (-$smiley-size * 0); }
+    &.smiley-neutral    { background-position: (-$smiley-size * 2) (-$smiley-size * 0); }
+    &.smiley-wink       { background-position: (-$smiley-size * 3) (-$smiley-size * 0); }
+    &.smiley-happy2     { background-position: (-$smiley-size * 4) (-$smiley-size * 0); }
+    &.smiley-neutral2   { background-position: (-$smiley-size * 0) (-$smiley-size * 1); }
+    &.smiley-happy3     { background-position: (-$smiley-size * 1) (-$smiley-size * 1); }
+    &.smiley-teasing    { background-position: (-$smiley-size * 2) (-$smiley-size * 1); }
+    &.smiley-devil      { background-position: (-$smiley-size * 3) (-$smiley-size * 1); }
+    &.smiley-angry      { background-position: (-$smiley-size * 4) (-$smiley-size * 1); }
+    &.smiley-happy4     { background-position: (-$smiley-size * 0) (-$smiley-size * 2); }
+    &.smiley-sick       { background-position: (-$smiley-size * 1) (-$smiley-size * 2); }
+    &.smiley-angry2     { background-position: (-$smiley-size * 2) (-$smiley-size * 2); }
+    &.smiley-sad2       { background-position: (-$smiley-size * 3) (-$smiley-size * 2); }
+    &.smiley-happy5     { background-position: (-$smiley-size * 4) (-$smiley-size * 2); }
+    &.smiley-cool       { background-position: (-$smiley-size * 0) (-$smiley-size * 3); }
+    &.smiley-cool2      { background-position: (-$smiley-size * 1) (-$smiley-size * 3); }
+}

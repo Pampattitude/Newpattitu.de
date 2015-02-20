@@ -1,4 +1,5 @@
 @import 'icomoon';
+@import '_pmp.smileys';
 
 $lang-keyword-text-color:               rgb(85, 255, 255);
 $lang-literal-text-color:               rgb(255, 0, 255);
@@ -183,6 +184,17 @@ $lang-value-text-color:                 rgb(0, 170, 0);
             &.pmp-md-align-justify {
                 @extend .icon;
                 @extend .icon-paragraph-justify;
+            }
+
+            &.pmp-md-smiley {
+                &:before {
+                    @extend .icon;
+                    @extend .icon-smiley;
+                }
+
+                * {
+                    @extend .front;
+                }
             }
         }
 
