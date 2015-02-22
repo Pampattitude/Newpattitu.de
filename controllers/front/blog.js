@@ -45,7 +45,7 @@ exports.page = function(req, res, callback) {
 
             return mongoose.model('Article').find({activated: true}).sort({created: -1}).skip(articleCountToSkip).limit(constants.frontBlogPageArticleCount).exec(function(err, articles) {
                 if (err)
-                    return callback(err);
+                    return serieCallback(err);
 
                 res.locals.articleList = articles;
 
@@ -67,7 +67,7 @@ exports.page = function(req, res, callback) {
                     delete elem.compressedText;
                 });
 
-                return callback();
+                return serieCallback();
             });
         },
     ], callback);
