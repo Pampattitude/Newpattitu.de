@@ -230,6 +230,10 @@ $lang-value-text-color:                 rgb(0, 170, 0);
     .big-margin   { margin: 0.8em auto; }
     .small-margin { margin: 0.4em auto; }
 
+    * {
+        line-height: 1.3em;
+    }
+
     *:first-child {
         margin-top: 0 !important;
     }
@@ -256,8 +260,7 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         display: block;
         clear: both; /* For floaty elements */
 
-        font-size: 1.3em;
-        font-variant: small-caps;
+        font-size: 1.2em;
     }
 
     p {
@@ -265,8 +268,6 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
         margin: 0.4em 0;
         padding: 0;
-
-        line-height: 1.3em;
     }
 
     b {
@@ -287,14 +288,10 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
     img {
         @extend .no-text-indent;
-        @extend .inline-block;
+        @extend .block;
 
         /*max-width: 60em;*/
         max-width: 100%;
-
-        &.img-small {
-            max-width: 10em;
-        }
     }
 
     a {
@@ -433,14 +430,22 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         }
     }
 
-    div.frame {
+    div.frame { 
+        @extend .block;
         @extend .hard-shadow;
-        @extend .inline-block;
 
-        margin: 0;
+        margin: auto;
         padding: 0.6em;
 
         background-color: $white;
+
+        &.frame-small {
+            max-width: 33%;
+
+            @media only screen and (max-width: 991px) {
+                max-width: 100%;
+            }
+        }
     }
 
     div.align-left {
