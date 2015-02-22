@@ -245,7 +245,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         display: block;
         clear: both; /* For floaty elements */
 
-        font-size: 1.4em;
+        font-size: 1.6em;
+        font-variant: small-caps;
     }
 
     h2 {
@@ -255,10 +256,8 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         display: block;
         clear: both; /* For floaty elements */
 
-        margin-left: 0.4em;
-
-        color: $black-milderer;
-        font-size: 1.2em;
+        font-size: 1.3em;
+        font-variant: small-caps;
     }
 
     p {
@@ -307,22 +306,13 @@ $lang-value-text-color:                 rgb(0, 170, 0);
 
         display: block;
 
-        margin-right: 1.5em;
+        margin-left: 1em;
         padding: 0.2em 0.4em;
 
         font-size: 0.9em;
-        quotes: "\201C""\201D""\2018""\2019";
 
-        &:before {
-            content: open-quote;
-
-            line-height: 0.1em;
-            margin-right: 0.1em;
-            vertical-align: -0.4em;
-
-            color: rgba(32, 32, 32, 0.5);
-            font-size: 2.4em;
-        }
+        background-color: $white-milder;
+        border-left: 0.3em solid $grey-light;
     }
 
     code.md-code {
