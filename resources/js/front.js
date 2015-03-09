@@ -28,7 +28,22 @@ $.getScript('/js/_textareaResize.js');
                 return ;
             }
 
-            $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-link"></span></span>');
+            if (/:\/\/[^\/]+youtube/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-youtube"></span></span>');
+            else if (/:\/\/[^\/]+google/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-google"></span></span>');
+            else if (/:\/\/[^\/]+github/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-github"></span></span>');
+            else if (/:\/\/[^\/]+reddit/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-reddit"></span></span>');
+            else if (/:\/\/[^\/]+stackoverflow/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-stackoverflow"></span></span>');
+            else if (/:\/\/[^\/]+twitter/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-twitter"></span></span>');
+            else if (/:\/\/[^\/]+facebook/.test($(elem).attr('href')))
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-facebook"></span></span>');
+            else
+                $(elem).addClass('external-link').attr('target', '_blank').append(' <span class="external-icon"><span class="icon icon-link"></span></span>');
         });
         /* !External links */
 
