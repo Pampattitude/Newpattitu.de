@@ -1,5 +1,3 @@
-$.getScript('/js/_textareaResize.js');
-
 (function() {
     $(document).ready(function() {
         /* Remove mobile nav on input focus */
