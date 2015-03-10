@@ -396,10 +396,11 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         /* !Syntactic coloration */
     }
 
-    span.comment {
+    .comment {
         color: rgb(80, 80, 80);
         /* opacity: 0.75; */
-
+    }
+    span.comment {
         &:before { content: '\2014\20'; }
         &:after  { content: '\20\2014'; }
     }
