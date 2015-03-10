@@ -18,8 +18,9 @@ exports.get = function(req, res, callback) {
 
         var rss = '';
         rss += '<?xml version="1.0"?>\n';
-        rss += '<rss version="2.0">\n';
+        rss += '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n';
         rss += '  <channel>\n';
+        rss += '    <atom:link href="' + constants.serverHostAccess + '/rss" rel="self" type="application/rss+xml" />\n';
         rss += '    <title>Pampattitu.de</title>\n';
         rss += '    <link>' + constants.serverHostAccess + '</link>\n';
         rss += '    <description>Guillaume "Pampa" Delahodde\'s blog</description>\n';
@@ -29,10 +30,9 @@ exports.get = function(req, res, callback) {
             articles.forEach(function(elem) {
                 rss += '    <item>\n';
                 rss += '      <title>' + utils.dtrim(utils.stripHtml(elem.title)) + '</title>\n';
-                if ('flash' != elem.type) // Do not add link if article with no link
-                    rss += '      <link>' + constants.serverHostAccess + '/article/' + elem.technicalName + '</link>\n';
-                rss += '      <description>' + utils.dtrim(utils.stripHtml(elem.compressedText)).replace(/&NewLine;/g, '') + '</description>\n';
-                rss += '      <guid isPermaLink="false">article/' + elem.technicalName + '</guid>\n';
+                rss += '      <link>' + constants.serverHostAccess + '/article/' + elem.technicalName + '</link>\n';
+                rss += '      <description><![CDATA[' + utils.dtrim(/*utils.stripHtml(*/elem.compressedText/*)*/).replace(/&NewLine;/g, '') + ']]></description>\n';
+                rss += '      <guid isPermaLink="true">' + constants.serverHostAccess + '/article/permalink/' + elem._id + '</guid>\n';
                 rss += '      <pubDate>' + elem.created.toUTCString() + '</pubDate>\n';
                 rss += '    </item>\n';
             });

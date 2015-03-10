@@ -43,6 +43,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/article/:articleTechnicalName', bindPage(controllers.article.page));
     router.post('/article/:articleTechnicalName/comment', bindPost(controllers.article.postComment));
+    router.get ('/article/permalink/:articleId', bindPage(controllers.article.permalinkPage));
     router.get ('/article/preview/:articleTechnicalName', middleware.isLoggedInBackOffice, bindPage(controllers.article.previewPage));
 
     router.get ('/search/:pageNumber?', bindPage(controllers.search.page));
