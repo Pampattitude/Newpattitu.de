@@ -661,7 +661,7 @@ backOfficeApp.factory('markdownitupSettings', [
                 dropMenu: [
                     {
                         replaceWith: '<span class="smiley smiley-happy"></span>',
-                        className: 'smiley smiley-happy',
+                        className: 'pmp-md-smiley smiley',
                     },
 
                     {
@@ -705,8 +705,8 @@ backOfficeApp.factory('markdownitupSettings', [
                     },
 
                     {
-                        replaceWith: '<span class="smiley smiley-happy3"></span>',
-                        className: 'smiley smiley-happy3',
+                        replaceWith: '<span class="smiley smiley-happy4"></span>',
+                        className: 'smiley smiley-happy4',
                     },
 
                     {
