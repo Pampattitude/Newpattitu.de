@@ -249,6 +249,9 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         display: block;
         clear: both; /* For floaty elements */
 
+        margin-top: 1.2em;
+        margin-bottom: 0.6em;
+
         font-size: 1.6em;
         font-variant: small-caps;
     }
@@ -260,13 +263,39 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         display: block;
         clear: both; /* For floaty elements */
 
+        margin-top: 1.2em;
+        margin-bottom: 0.6em;
+
         font-size: 1.2em;
+    }
+
+    .md-heading.md-heading-anchor {
+        &:after {
+            @extend .icon;
+
+            opacity: 0;
+
+            vertical-align: super;
+            padding-left: 0.6em;
+
+	    content: '\e6c3'; /* icon-link */
+            color: $grey;
+            font-size: 0.6em;
+        }
+
+        &:hover {
+            &:after {
+                opacity: 1;
+
+                transition: opacity 200ms;
+            }
+        }
     }
 
     p {
         @extend .big-margin;
 
-        margin: 0.4em 0;
+        margin: 1.2em 0;
         padding: 0;
     }
 
@@ -396,13 +425,36 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         /* !Syntactic coloration */
     }
 
-    .comment {
-        color: rgb(80, 80, 80);
-        /* opacity: 0.75; */
-    }
     span.comment {
         &:before { content: '\2014\20'; }
         &:after  { content: '\20\2014'; }
+    }
+    .comment {
+        color: rgb(80, 80, 80);
+
+        &[class*=comment-] {
+            display: block;
+
+            margin: auto 0.8em;
+            padding: 0.3em 0.6em;
+
+            color: rgb(64, 64, 64);
+
+            border-left: 4px solid $grey-lighter;
+            background-color: $white;
+
+            &.comment-info {
+                border-left: 4px solid $green-lighter;
+            }
+
+            &.comment-warn {
+                border-left: 4px solid $orange-lighter;
+            }
+
+            &.comment-error {
+                border-left: 4px solid $red-lighter;
+            }
+        }
     }
 
     p.tldr {
@@ -479,6 +531,11 @@ $lang-value-text-color:                 rgb(0, 170, 0);
         float: right;
 
         margin: 0 0 0 0.6em;
+    }
+
+    .catchphrase {
+        color: $black;
+        font-size: 1.1em;
     }
 
     ul, ol {
