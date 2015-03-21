@@ -24,6 +24,13 @@ exports.get = function(req, res, callback) {
         rss += '    <title>Pampattitu.de</title>\n';
         rss += '    <link>' + constants.serverHostAccess + '</link>\n';
         rss += '    <description>Guillaume "Pampa" Delahodde\'s blog</description>\n';
+        rss += '    <category>Tech, Technology, Programming, Game development</category>\n';
+        rss += '    <image>\n';
+        rss += '      <url>http://i.imgur.com/dkjkMuK.png</url>\n';
+        rss += '      <title>Pampattitu.de</title>\n';
+        rss += '      <link>' + constants.serverHostAccess + '</link>\n';
+        rss += '    </image>\n';
+        rss += '    <pubDate>' + articles[articles.length - 1].lastUpdated.toUTCString() + '</pubDate>\n';
         rss += '    <language>en-us</language>\n';
 
         if (articles) {
@@ -33,7 +40,9 @@ exports.get = function(req, res, callback) {
                 rss += '      <link>' + constants.serverHostAccess + '/article/' + elem.technicalName + '</link>\n';
                 rss += '      <description><![CDATA[' + utils.dtrim(/*utils.stripHtml(*/elem.compressedText/*)*/).replace(/&NewLine;/g, '') + ']]></description>\n';
                 rss += '      <guid isPermaLink="true">' + constants.serverHostAccess + '/article/permalink/' + elem._id + '</guid>\n';
-                rss += '      <pubDate>' + elem.created.toUTCString() + '</pubDate>\n';
+                rss += '      <pubDate>' + elem.lastUpdated.toUTCString() + '</pubDate>\n';
+                rss += '      <comments>' + constants.serverHostAccess + '/article/permalink/' + elem._id + '#comments</comments>\n';
+                rss += '      <enclosure url="http://i.imgur.com/dkjkMuK.png" length="26421" type="image/png" />\n';
                 rss += '    </item>\n';
             });
         }
