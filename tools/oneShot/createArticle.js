@@ -57,7 +57,6 @@ If you no liky, you no stay here.</p>';
 
                 type: 'news',
 
-                featured: true,
                 activated: true,
             });
             

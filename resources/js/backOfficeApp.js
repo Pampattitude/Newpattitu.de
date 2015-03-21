@@ -287,50 +287,6 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
         return $rootScope.openConfirmBox(confirmBox);
     };
 
-    $scope.setFeaturedArticle = function() {
-        var getFeaturedUrl = '/back-office/article/getFeatured';
-
-        return $http.get(getFeaturedUrl, {}).then(function(response) {
-            var setAsFeatured_ = function() {
-                var url = '/back-office/article/' + $scope.article._id + '/setFeatured';
-                $http.post(url, $scope.article).then(function(response) {
-                    $scope.addAlert('success', 'Article set as featured!');
-                }, function(response) {
-                    $scope.addAlert('error', 'Could not set article as featured because: ' + response.data.message);
-                });
-            };
-
-            // If the featured article exists and is different
-            if (response.data && $scope.article._id != response.data._id) {
-                var confirmBox = {
-                    title: 'Set article as featured?',
-                    text: 'Do you really want to set the article "' + $scope.article.title + '" as featured? The featured article right now is "' + response.data.title + '".',
-                    acceptCallback: function() {
-                        $scope.closeConfirmBox();
-                        setAsFeatured_();
-                    },
-                };
-
-                return $rootScope.openConfirmBox(confirmBox);
-            }
-            // Else
-            else {
-                var confirmBox = {
-                    title: 'Set article as featured?',
-                    text: 'Do you really want to set the article "' + $scope.article.title + '" as featured? There is actually no featured article.',
-                    acceptCallback: function() {
-                        $scope.closeConfirmBox();
-                        setAsFeatured_();
-                    },
-                };
-
-                return $rootScope.openConfirmBox(confirmBox);
-            }
-        }, function(response) {
-            $scope.addAlert('error', 'Could not get featured article because: ' + response.data.message);
-        });
-    };
-
     $scope.previewArticle = function() {
         var confirmBox = {
             title: 'Save article?',

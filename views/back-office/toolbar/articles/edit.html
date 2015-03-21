@@ -1,4 +1,5 @@
 <div class="cell-2 hidden-mobile"></div>
+<div class="cell-2 hidden-mobile"></div>
 
 <div class="cell-2 cell-mobile-4" data-ng-show="true == articleExists">
   <div class="hidden-mobile">
@@ -21,20 +22,7 @@
 </div>
 <!-- !Padd -->
 
-<div class="cell-2" data-ng-class="{'cell-mobile-4': true == articleExists, 'hidden-desktop': false == articleExists, 'hidden-mobile': false == articleExists}">
-  <div class="hidden-mobile">
-    <button type="button" class="button button-star button-labeled" data-ng-click="setFeaturedArticle()">
-      <span class="button-label"><span class="icon icon-star"></span></span>
-      Feature
-    </button>
-  </div>
-
-  <div class="hidden-desktop">
-    <button type="button" class="button button-star" data-ng-click="setFeaturedArticle()">
-      <span class="icon icon-star"></span>
-    </button>
-  </div>
-</div>
+<div class="cell-mobile-2 hidden-desktop"></div>
 
 <div class="cell-2" data-ng-class="{'cell-mobile-4': true == articleExists, 'cell-mobile-8': false == articleExists}">
   <div class="hidden-mobile">
@@ -50,6 +38,8 @@
     </button>
   </div>
 </div>
+
+<div class="cell-mobile-2 hidden-desktop"></div>
 
 <div class="cell-2" data-ng-class="{'cell-mobile-4': true == articleExists, 'cell-mobile-8': false == articleExists}">
   <div class="hidden-mobile">

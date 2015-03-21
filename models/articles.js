@@ -18,8 +18,6 @@ var schema = new mongoose.Schema({
 
     type: {type: String, enum: ['news', 'life', 'project', 'tutorial', 'flash'], default: 'news'},
 
-    featured: {type: Boolean, default: false},
-
     views: {type: Number, default: 0},
     shares: {
         type: {

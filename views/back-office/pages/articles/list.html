@@ -15,10 +15,6 @@
   <div class="cell-3 cell-mobile-6" data-ng-repeat="article in globals.articleList">
     <!-- Article -->
     <div class="pmp-article">
-      <h2 class="box-vignette-right featured-vignette" data-ng-show="true == article.featured">
-        <span class="icon icon-star3"></span>
-      </h2>
-
       <div class="pmp-article-content">
         <div class="pmp-article-date">
           <span data-ng-bind="article.created | date: 'yyyy-MM-dd hh:mm'"></span>

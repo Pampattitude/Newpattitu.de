@@ -46,7 +46,6 @@ var search_ = exports.search = function(queryString, callback) {
     var pointsForText =                 1;
     var pointsForPreciseText =          pointsForText * 5;
     var pointsForTag =                  15;
-    var pointsForFeatured =             10; //%
     var pointsForView =                 0.05;
 
     var data = utils.trim(queryString).split(' ');
@@ -63,7 +62,6 @@ var search_ = exports.search = function(queryString, callback) {
                 text: 0,
                 tags: 0,
                 views: 0,
-                featured: 0,
             };
 
             var dataCopy = data.slice(0);
@@ -106,11 +104,6 @@ var search_ = exports.search = function(queryString, callback) {
             if (article.points) {
                 article.points += (article.views * pointsForView || 0);
                 article.pointDetail.views = article.views * pointsForView || 0;
-
-                if (article.featured) {
-                    article.pointDetail.featured = article.points * pointsForFeatured / 100;
-                    article.points += article.points * pointsForFeatured / 100;
-                }
             }
 
             if (article.points) {

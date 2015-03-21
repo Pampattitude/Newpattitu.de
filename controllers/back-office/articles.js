@@ -113,7 +113,6 @@ exports.save = function(req, res, callback) {
         lastUpdated: new Date(),
     };
     var onInsertOptions = {
-        featured: false,
         activated: false,
         views: 0,
         created: new Date(),
@@ -124,27 +123,6 @@ exports.save = function(req, res, callback) {
 
         return callback(null, {
             articleId: updatedArticle._id,
-        });
-    });
-};
-
-// Get featured article
-exports.getFeatured = function(req, res, callback) {
-    return mongoose.model('Article').findOne({featured: true}, function(err, featuredArticle) {
-        if (err) return callback({code: 500, message: err});
-
-        return callback(null, featuredArticle);
-    });
-};
-
-// Set article as featured, de-featuring the previously featured article
-exports.setFeatured = function(req, res, callback) {
-    return mongoose.model('Article').findOneAndUpdate({featured: true}, {$set: {featured: false}}, function(err) {
-        if (err) return callback({code: 500, message: err});
-
-        return mongoose.model('Article').findOneAndUpdate({_id: req.params.articleId}, {$set: {featured: true}}, function(err) {
-            if (err) return callback({code: 500, message: err});
-            return callback();
         });
     });
 };
