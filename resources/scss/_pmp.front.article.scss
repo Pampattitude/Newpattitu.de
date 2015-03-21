@@ -2,18 +2,23 @@
 
 $news-text-color:               $white-mild;
 $news-background-color:         $blue-light;
+$news-background-image:         none; /* url('http://i.imgur.com/njciCqL.png'); */
 
-$personal-text-color:           $black-mild;
+$personal-text-color:           $white-mild;
 $personal-background-color:     $grey-light;
+$personal-background-image:     none; /* url('http://i.imgur.com/XN9Sw6Y.png'); */
 
 $project-text-color:            $white-mild;
 $project-background-color:      $green-light;
+$project-background-image:      none; /* url('http://i.imgur.com/ctMQlav.png'); */
 
 $tutorial-text-color:           $white-mild;
 $tutorial-background-color:     $purple-light;
+$tutorial-background-image:     none; /* url('http://i.imgur.com/CloZnzT.png'); */
 
-$flash-text-color:              $black-mild;
+$flash-text-color:              $white-mild;
 $flash-background-color:        $yellow-light;
+$flash-background-image:        none; /* url('http://i.imgur.com/Wu3qOoi.png'); */
 
 $box-about-text-color:          $white-mild;
 $box-about-background-color:    $blue;
@@ -53,26 +58,31 @@ $tag-background-active-color:   $blue-dark;
         &.pmp-box-type-news {
             color:                  $news-text-color;
             background-color:       $news-background-color;
+            background-image:       $news-background-image;
         }
 
         &.pmp-box-type-personal {
             color:                  $personal-text-color;
             background-color:       $personal-background-color;
+            background-image:       $personal-background-image;
         }
 
         &.pmp-box-type-project {
             color:                  $project-text-color;
             background-color:       $project-background-color;
+            background-image:       $project-background-image;
         }
 
         &.pmp-box-type-tutorial {
             color:                  $tutorial-text-color;
             background-color:       $tutorial-background-color;
+            background-image:       $tutorial-background-image;
         }
 
         &.pmp-box-type-flash {
             color:                  $flash-text-color;
             background-color:       $flash-background-color;
+            background-image:       $flash-background-image;
         }
 
         &.pmp-box-type-about {
