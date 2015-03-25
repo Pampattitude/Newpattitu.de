@@ -30,7 +30,8 @@ exports.get = function(req, res, callback) {
         rss += '      <title>Pampattitu.de</title>\n';
         rss += '      <link>' + constants.serverHostAccess + '</link>\n';
         rss += '    </image>\n';
-        rss += '    <pubDate>' + articles[articles.length - 1].lastUpdated.toUTCString() + '</pubDate>\n';
+        if (articles && articles.length)
+            rss += '    <pubDate>' + articles[0].lastUpdated.toUTCString() + '</pubDate>\n';
         rss += '    <language>en-us</language>\n';
 
         if (articles) {
