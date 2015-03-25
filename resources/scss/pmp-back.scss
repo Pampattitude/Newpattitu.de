@@ -54,7 +54,7 @@ body {
 
     color: $body-text-color;
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
 
     background-color: $body-background-color;
     background-image: $body-background-image;
@@ -63,7 +63,7 @@ body {
     @media only screen and (max-width: 991px) {
         margin-top: 2.6em;
 
-        font-size: 18px;
+        font-size: 19px;
     }
 }
 
