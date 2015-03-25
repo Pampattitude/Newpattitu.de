@@ -62,6 +62,7 @@
 <!-- !Article -->
 
 <!-- See also -->
+<!--
 <div class="pmp-page-content-box" id="seeAlso"
      data-ng-hide="0 == globals.relatedArticles.length">
   <div class="pmp-see-also">
@@ -117,8 +118,8 @@
     </div>
   </div>
 </div>
+-->
 <!-- !See also -->
-
 <!-- Comment -->
 <div class="pmp-page-content-box" id="comments" data-ng-controller="articleCommentsController" data-ng-hide="true == globals.deactivateComments">
   <h3 class="pmp-box-type">
@@ -127,63 +128,18 @@
 
   <hr class="pmp-break">
 
-  <div class="pmp-comments">
-    <div class="pmp-comment clearfix" data-ng-repeat="comment in globals.commentList">
-      <div class="pmp-comment-author" data-ng-class="{'pmp-comment-author-user': undefined != comment.user}">
-        <span data-ng-hide="undefined != comment.user" data-ng-bind="comment.author"></span>
-        <span data-ng-show="undefined != comment.user">
-          <span data-ng-show="comment.user.username == comment.author">{{comment.user.username}}</span>
-          <span data-ng-hide="comment.user.username == comment.author">{{comment.user.username}} as {{comment.author}}</span>
-        </span>
-      </div>
-      <div class="pmp-comment-date">
-        <span class="pmp-comment-date-date" data-ng-bind="comment.created | date: 'yyyy-MM-dd'"></span>,
-        <b><span class="pmp-comment-date-date" data-ng-bind="comment.created | date: 'hh:mm'"></span></b>
-      </div>
+  <div class="pmp-comments" style="text-align: left; padding: 0.6em 1.2em;">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pampattitude';
 
-      <div class="pmp-comment-text"
-           data-ng-bind="comment.text"
-           data-ng-hide="'hidden' == comment.status">
-      </div>
-      <div class="pmp-comment-text pmp-comment-hidden"
-           data-ng-show="'hidden' == comment.status">
-        Comment hidden (probably because it was spam or obvious trolling). Don't do that.
-      </div>
-    </div>
-
-    <!-- Add comment -->
-    <div class="pmp-add-comment" data-ng-hide="true == newCommentPosted">
-      <input class="control" type="text" name="author"
-             data-ng-model="newComment.author"
-             data-ng-init="newComment.author = globals.user.username || newComment.author || ''"
-             data-ng-class="{'has-data': 0 != newComment.author.length}"
-             maxlength="32"
-             placeholder="Name..." />
-
-      <textarea class="control" type="text" name="text"
-                data-ng-model="newComment.text"
-                data-ng-init="newComment.text = newComment.text || ''"
-                data-ng-class="{'has-data': 0 != newComment.text.length}"
-                data-resizable rows="3"
-                maxlength="4096"
-                placeholder="Comment..."></textarea>
-
-      <div class="pmp-add-comment-button">
-        <button class="button button-labeled button-success" type="button" data-ng-click="postComment()">
-          <div class="button-label"><span class="icon icon-checkmark"></span></div>
-          Submit
-        </button>
-      </div>
-    </div>
-    <!-- !Add comment -->
-
-    <!-- Thanks for comment -->
-    <div class="pmp-comment-thanks" data-ng-show="true == newCommentPosted">
-      Thanks for the comment!
-      <br />
-      <span class="pmp-comment-reenable" data-ng-click="newCommentPosted = false">Want to add another comment?</span>
-    </div>
-    <!-- !Thanks for comment -->
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus</a>.</noscript>
   </div>
 </div>
 <!-- !Comment -->
