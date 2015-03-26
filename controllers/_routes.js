@@ -36,6 +36,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/humans.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/humans.txt'); });
     router.get ('/robots.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/robots.txt'); });
+    router.get ('/keybase.txt', function(req, res) { return res.sendFile(constants.viewMiscPath + '/keybase.txt'); });
 
     router.get ('/', function(req, res) { return res.redirect('/blog'); });
 

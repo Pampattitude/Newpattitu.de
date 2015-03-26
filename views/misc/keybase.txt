@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/pampattitude
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://beta.pampattitu.de
+  * I am pampattitude (https://keybase.io/pampattitude) on keybase.
+  * I have a public key with fingerprint 2234 DEDF 642F 376E BD83  C59F D871 B6E6 6399 02A8
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "2234dedf642f376ebd83c59fd871b6e6639902a8",
+            "host": "keybase.io",
+            "key_id": "d871b6e6639902a8",
+            "kid": "01016c89413605ee4f033cad2de52cbc1de54ac990371937acdd617e2198dc6c7d070a",
+            "uid": "c87e469c45334beb4d377381032feb19",
+            "username": "pampattitude"
+        },
+        "service": {
+            "hostname": "beta.pampattitu.de",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1427381710,
+    "expire_in": 157680000,
+    "prev": "2428400396ab19a6fc10685eda14d364dad40529a2743b61656057b9828ef1d1",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMInAnicbZJdSBRRFMd306wMISwJ/CAbKcNWmzsze2dmfUgqzAQRH+xDrPXO3Lvr
+5Lq77s76kZklIaGWtWlPQtCDa5GoSEYJkZGgGIKhaWHUQ0YfJGJkpWbdEaOX7svl
+3vM7/3v+556nUWGmSHNEKFZKnF5+bR4ZyA6Y8rcljFYzigdXMbZqpoSsbg7N7SQ+
+r09z64yN4ThewAQ7oMA5eBESBUu8apUdWBKBAgmEvCyzHJIYC1Ps8RsZVEZBfpKm
+eegdPdg1TG//w5esBljAAqhKsgB4yFoJERwsz6sIc5hYOVVRAd0FpNIsXgQyLyIV
+YwhEwgFZwipURcyKLKJygVU5VRKJAGVVsPK8oBBFwLwo8hJgec5BFCAboJ/43KiU
+UNqLSr1I1zU9gAlTY2FopFxTidEGw80apRAdpf1D0yhrYbw+j+5RPS4aL9Z1r81I
+16u8Bl9BFPuakl3R3Jg2lCaUE59f87gZG6CkqmuGNBA4ozgRsBaGVHo1H7FrBmEV
+ocTSZTxDyo1vEDhJYFlehoiaQNChAhZKVoIRoA6hgBEWWCsnI04UeAUCaKXNFBVZ
+4iTiABgwhrcyt4exCbRM5KSSfs3pRnrAR40/eVwYbjJHmiLWrzNGwhS5acvfQSk8
+sOF39s2WieDYKfnF9fHG0S7yoF3UL1yZbwy4Oh9u7+wvnpvKmR5YTikQ5yva0ucG
+o/d8De5vCZGG+LuPDtXHuQZnFoZyxu4VHd/dFxcRfS5J7XtuS2buT7jqyprSE0em
+wvMzdirmZ01D3bmne+PfVG7MO9vRdnvpU3tuFhu9t3bru/pLvwqupaVe/RyWGzd8
+fl3Mvo7m3FfJo8caxmeZhO6PvT3BlqLDVY1RQ/1LwcyDX2ZnQt+nmqsvZpiOVMbU
+JaW0olTXyzthH27N5zkX/N8aF0M/Jpcy6lsjTr5dPJrJgi5LbbZr83irP9a84/2N
+lamEnprIeW/xSvOJ4ayfzsu7zkz+AV16LX8=
+=aT8B
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/pampattitude
+
+==================================================================
