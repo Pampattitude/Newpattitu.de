@@ -1,5 +1,9 @@
 var frontApp = angular.module('frontApp', []);
 
+frontApp.filter('encodeUri', function() {
+  return window.encodeURIComponent;
+});
+
 frontApp.controller('generalController', ['$scope', '$rootScope', function($scope, $rootScope) {
     // Big hack here:
     // globals are defined by EJS. When it renders the page, it prints "var global = ..."

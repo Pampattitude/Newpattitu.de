@@ -57,6 +57,28 @@
            data-compile="globals.article.text">
       </main>
     </div>
+
+    <div class="pmp-social">
+      <div class="grid-3">
+        <a class="button button-facebook no-parse cell-1"
+           href="http://www.facebook.com/share.php?u={{'http://beta.pampattitu.de/article/' + globals.article.technicalName | encodeUri}}&title={{globals.article.title | encodeUri}}"
+           target="_blank">
+          <span class="icon icon-facebook"></span>&nbsp;&nbsp;Share
+        </a>
+
+        <a class="button button-twitter no-parse cell-1"
+           href="http://twitter.com/intent/tweet?status={{globals.article.title | encodeUri}}+{{'http://beta.pampattitu.de/article/' + globals.article.technicalName | encodeUri}}"
+           target="_blank">
+          <span class="icon icon-twitter"></span>&nbsp;&nbsp;Tweet
+        </a>
+
+        <a class="button button-googleplus no-parse cell-1"
+           href="https://plus.google.com/share?url={{'http://beta.pampattitu.de/article/' + globals.article.technicalName | encodeUri}}"
+           target="_blank">
+          <span class="icon icon-googleplus"></span>&nbsp;&nbsp;Impress
+        </a>
+      </div>
+    </div>
   </article>
 </div>
 <!-- !Article -->

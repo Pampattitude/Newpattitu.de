@@ -78,6 +78,12 @@ $github-color-lighter:          adjust-color($github-color, $lightness: 20%);
 $github-color-dark:             adjust-color($github-color, $lightness: -10%);
 $github-color-darker:           adjust-color($github-color, $lightness: -20%);
 
+$googleplus-color:              rgb(211, 72, 54);
+$googleplus-color-light:        adjust-color($googleplus-color, $lightness: 10%);
+$googleplus-color-lighter:      adjust-color($googleplus-color, $lightness: 20%);
+$googleplus-color-dark:         adjust-color($googleplus-color, $lightness: -10%);
+$googleplus-color-darker:       adjust-color($googleplus-color, $lightness: -20%);
+
 $linkedin-color:                rgb(0, 123, 182);
 $linkedin-color-light:          adjust-color($linkedin-color, $lightness: 10%);
 $linkedin-color-lighter:        adjust-color($linkedin-color, $lightness: 20%);
@@ -155,6 +161,10 @@ $button-facebook-focus-background-color:        $facebook-color-dark;
 $button-twitter-background-color:               $twitter-color;
 $button-twitter-hover-background-color:         $twitter-color-light;
 $button-twitter-focus-background-color:         $twitter-color-dark;
+
+$button-googleplus-background-color:            $googleplus-color;
+$button-googleplus-hover-background-color:      $googleplus-color-light;
+$button-googleplus-focus-background-color:      $googleplus-color-dark;
 
 $button-linkedin-background-color:              $linkedin-color;
 $button-linkedin-hover-background-color:        $linkedin-color-light;
@@ -464,6 +474,19 @@ a {
     &.button-twitter:active {
         background-color: $button-twitter-focus-background-color;
         border-color: $button-twitter-focus-background-color;
+    }
+
+    &.button-googleplus {
+        background-color: $button-googleplus-background-color;
+        border-color: $button-googleplus-background-color;
+    }
+    &.button-googleplus:hover {
+        background-color: $button-googleplus-hover-background-color;
+        border-color: $button-googleplus-hover-background-color;
+    }
+    &.button-googleplus:active {
+        background-color: $button-googleplus-focus-background-color;
+        border-color: $button-googleplus-focus-background-color;
     }
 
     &.button-linkedin {
