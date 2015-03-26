@@ -99,28 +99,26 @@
     <hr class="pmp-break">
 
     <div class="pmp-twitter" poll-twitter>
-      <div class="clearfix">
-        <div class="pmp-twitter-post" data-ng-repeat="post in twitterPosts">
-          <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
+      <div class="pmp-twitter-post" data-ng-repeat="post in twitterPosts">
+        <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
 
-          <p class="pmp-twitter-post-text">
-            <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
-              <span class="icon icon-link"></span>&nbsp;
-            </a>
+        <p class="pmp-twitter-post-text">
+          <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
+            <span class="icon icon-link"></span>&nbsp;
+          </a>
 
-            <span data-ng-bind-html="post.text | trust"></span>
-          </p>
+          <span data-ng-bind-html="post.text | trust"></span>
+        </p>
 
-          <div class="pmp-twitter-post-counts">
-            <div class="pmp-twitter-favorite">
-              <span class="icon icon-star3"></span>
-              <span data-ng-bind="post.favoriteCount"></span>
-            </div>
+        <div class="pmp-twitter-post-counts">
+          <div class="pmp-twitter-favorite">
+            <span class="icon icon-star3"></span>
+            <span data-ng-bind="post.favoriteCount"></span>
+          </div>
 
-            <div class="pmp-twitter-retweet">
-              <span data-ng-bind="post.retweetCount"></span>
-              <span class="icon icon-loop"></span>
-            </div>
+          <div class="pmp-twitter-retweet">
+            <span data-ng-bind="post.retweetCount"></span>
+            <span class="icon icon-loop"></span>
           </div>
         </div>
       </div>

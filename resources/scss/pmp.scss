@@ -575,8 +575,13 @@ body {
         .pmp-twitter {
             @extend .pmp-page-menu-box-content;
 
+            padding: 0.4em 1em 0.8em 1em;
+
             .pmp-twitter-post {
-                padding: 0.75em 0;
+                padding: 0.3em 0;
+
+                font-size: 0.9em;
+                line-height: 1.2em;
 
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* TMP */
                 
@@ -624,7 +629,7 @@ body {
                 }
 
                 .pmp-twitter-post-counts {
-                    margin-top: 0.4em;
+                    margin-top: 0.2em;
                     margin-bottom: 1.4em;
 
                     font-size: 0.9em;
