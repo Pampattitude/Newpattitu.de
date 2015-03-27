@@ -1,6 +1,6 @@
 <!-- Widget grid -->
 <div class="pmp-articles grid-12">
-  <div class="cell-3 cell-mobile-6">
+  <div class="cell-2 cell-mobile-6">
     <!-- Create article -->
     <div class="pmp-article">
       <div class="pmp-article-content pmp-new-article">
@@ -12,7 +12,7 @@
     <!-- !Create article -->
   </div>
 
-  <div class="cell-3 cell-mobile-6" data-ng-repeat="article in globals.articleList">
+  <div class="cell-2 cell-mobile-6" data-ng-repeat="article in globals.articleList">
     <!-- Article -->
     <div class="pmp-article">
       <div class="pmp-article-content">
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Article actions -->
-      <div class="pmp-article-actions grid-3">
+      <div class="pmp-article-actions grid-2">
         <div class="cell-1">
           <button type="button" class="button button-activate" data-ng-click="deactivateArticle(article)" data-ng-show="article.activated">
             <span class="icon icon-checkmark-circle"></span>
@@ -38,12 +38,6 @@
         <div class="cell-1">
           <a class="button button-edit" href="/back-office/article/{{article['_id']}}/edit">
             <span class="icon icon-pencil"></span>
-          </a>
-        </div>
-
-        <div class="cell-1">
-          <a class="button button-moderate" href="/back-office/article/{{article['_id']}}/comments">
-            <span class="icon icon-user"></span><span class="icon icon-flag"></span>
           </a>
         </div>
       </div>

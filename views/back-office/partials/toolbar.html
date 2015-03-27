@@ -2,13 +2,11 @@
   <div class="grid-16">
     <!-- Comment notifications -->
     <div class="notification cell-2 hidden-mobile" ng-show="true == globals.logged">
-      <div class="button notification-button"
-           ng-click="tmpCommentListActive=!tmpCommentListActive">
-        <span class="sticker"
-              ng-class="{'sticker-important': 0 < newComments.length, 'sticker-critical': 5 < newComments.length}"
-              ng-bind="newComments.length">
+      <div class="button notification-button">
+        <span class="sticker">
+          ?
         </span>
-        comment<span ng-show="1 != newComments.length">s</span>
+        <a href="https://disqus.com/by/Pampattitude/" target="_blank">comments</a>
       </div>
     </div>
     <!-- !Comment notifications -->
