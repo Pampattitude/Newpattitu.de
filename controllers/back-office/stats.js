@@ -71,7 +71,7 @@ var getMongoDBWeekArray_ = function(callback) {
 
 // Get stats from the past X days and aggregate them
 var generateDayStatArray_ = function(dayCount) {
-    dayCount = dayCount || 14;
+    dayCount = dayCount || (14 * constants.statsMonthsBefore);
 
     var baseDate = new Date();
     baseDate.setDate(baseDate.getDate() - (dayCount - 1));
@@ -92,8 +92,15 @@ var generateDayStatArray_ = function(dayCount) {
 };
 
 // Return function to aggregate results of Stattitu.de querying
-var getForEachStatFunction_ = function(stats, field) {
+var getForEachStatFunction_ = function(stats, field, includeRobots) {
+    includeRobots = includeRobots || false;
+
     return function(stat) {
+        if (stat.hasOwnProperty('isBot') &&
+            !includeRobots &&
+            true === stat.isBot)
+            return ;
+
         if (!stat[field])
             return ; // Do not compute empty results
 
@@ -149,6 +156,8 @@ exports.commentGeneralStats = function(req, res, callback) {
 };
 
 exports.pageViewGeneralStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     return getMongoDBWeekArray_(function(err, dateResults) {
         if (err) return callback(err);
 
@@ -163,7 +172,11 @@ exports.pageViewGeneralStats = function(req, res, callback) {
                 if (err) return dateCallback(err);
 
                 var count = 0;
-                results.forEach(function(stat) { count += stat.count; });
+                results.forEach(function(elem) {
+                    if (!includeRobots && true === elem.isBot)
+                        return ;
+                    count += elem.count;
+                });
 
                 var formattedDate = dateStrings[dateStringIdx];
                 stats.push({
@@ -184,13 +197,17 @@ exports.pageViewGeneralStats = function(req, res, callback) {
 };
 
 exports.pageViewRouteStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     var dates = generateDayStatArray_();
     var stats = [];
+
+    console.log(dates);
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-            results.forEach(getForEachStatFunction_(stats, 'page'));
+            results.forEach(getForEachStatFunction_(stats, 'page', includeRobots));
             return dateCallback();
         });
     }, function(err) {
@@ -202,13 +219,15 @@ exports.pageViewRouteStats = function(req, res, callback) {
 };
 
 exports.pageViewReferrerStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-            results.forEach(getForEachStatFunction_(stats, 'referrer'));
+            results.forEach(getForEachStatFunction_(stats, 'referrer', includeRobots));
             return dateCallback();
         });
     }, function(err) {
@@ -220,13 +239,15 @@ exports.pageViewReferrerStats = function(req, res, callback) {
 };
 
 exports.pageViewBrowserStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-            results.forEach(getForEachStatFunction_(stats, 'browser'));
+            results.forEach(getForEachStatFunction_(stats, 'browser', includeRobots));
             return dateCallback();
         });
     }, function(err) {
@@ -238,13 +259,15 @@ exports.pageViewBrowserStats = function(req, res, callback) {
 };
 
 exports.pageViewDeviceStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
             if (err) return dateCallback(err);
-            results.forEach(getForEachStatFunction_(stats, 'device'));
+            results.forEach(getForEachStatFunction_(stats, 'device', includeRobots));
             return dateCallback();
         });
     }, function(err) {
@@ -256,6 +279,8 @@ exports.pageViewDeviceStats = function(req, res, callback) {
 };
 
 exports.uniqueSessionGeneralStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     return getMongoDBWeekArray_(function(err, dateResults) {
         if (err) return callback(err);
 
@@ -270,7 +295,11 @@ exports.uniqueSessionGeneralStats = function(req, res, callback) {
                 if (err) return dateCallback(err);
 
                 var count = 0;
-                results.forEach(function(stat) { count += stat.count; });
+                results.forEach(function(elem) {
+                    if (!includeRobots && true === elem.isBot)
+                        return ;
+                    count += elem.count;
+                });
 
                 var formattedDate = dateStrings[dateStringIdx];
                 stats.push({
@@ -291,13 +320,15 @@ exports.uniqueSessionGeneralStats = function(req, res, callback) {
 };
 
 exports.uniqueSessionRouteStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('uniqueSession', date, function(err, results) {
             if (err) return dateCallback(err);
-            results.forEach(getForEachStatFunction_(stats, 'page'));
+            results.forEach(getForEachStatFunction_(stats, 'page', includeRobots));
             return dateCallback();
         });
     }, function(err) {
@@ -309,13 +340,15 @@ exports.uniqueSessionRouteStats = function(req, res, callback) {
 };
 
 exports.uniqueSessionReferrerStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     var dates = generateDayStatArray_();
     var stats = [];
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('uniqueSession', date, function(err, results) {
             if (err) return dateCallback(err);
-            results.forEach(getForEachStatFunction_(stats, 'referrer'));
+            results.forEach(getForEachStatFunction_(stats, 'referrer', includeRobots));
             return dateCallback();
         });
     }, function(err) {
@@ -327,34 +360,55 @@ exports.uniqueSessionReferrerStats = function(req, res, callback) {
 };
 
 exports.uniqueSessionAllStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     return stattitude.get('uniqueSession', {grain: 'all'}, function(err, results) {
         if (err)
             return callback(err);
 
         var count = 0;
-        results.forEach(function(elem) { count += elem.count; });
+        results.forEach(function(elem) {
+            if (!includeRobots && true === elem.isBot)
+                return ;
+            count += elem.count;
+        });
+
         return callback(null, { count: count });
     });
 };
 
 exports.pageViewAllStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     return stattitude.get('pageView', {grain: 'all'}, function(err, results) {
         if (err)
             return callback(err);
 
         var count = 0;
-        results.forEach(function(elem) { count += elem.count; });
+        results.forEach(function(elem) {
+            if (!includeRobots && true === elem.isBot)
+                return ;
+            count += elem.count;
+        });
+
         return callback(null, { count: count });
     });
 };
 
 exports.commentAllStats = function(req, res, callback) {
+    var includeRobots = (req.query.bots ? true : false) || false;
+
     return stattitude.get('comment', {grain: 'all'}, function(err, results) {
         if (err)
             return callback(err);
 
         var count = 0;
-        results.forEach(function(elem) { count += elem.count; });
+        results.forEach(function(elem) {
+            if (!includeRobots && true === elem.isBot)
+                return ;
+            count += elem.count;
+        });
+
         return callback(null, { count: count });
     });
 };
