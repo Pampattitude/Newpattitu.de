@@ -17,12 +17,37 @@ var mongoose            = require('mongoose');
 var requireDir          = require('require-dir');
 
 var constants           = require('./lib/constants');
+var disqus              = require('./lib/disqus');
 var printer             = require('./lib/printer');
 
 if (cluster.isMaster)
     global.processId = 'Master';
 else
     global.processId = 'Worker #' + cluster.worker.id;
+
+var servicesConnect = function(callback) {
+    return async.parallel([
+        function(parallelCallback) {
+            mongoose.connect(constants.databaseUri);
+            requireDir(__dirname + '/models/');
+
+            mongoose.connection.on('error', function(err) {
+                return parallelCallback(err);
+            });
+
+            return mongoose.connection.once('open', function() {
+                return parallelCallback();
+            });
+        },
+
+        function(parallelCallback) {
+            return disqus.connect(function() {
+                // Disqus is lazy initialized, so we call listThreads() to ensure connection
+                return disqus.listThreads(parallelCallback);
+            });
+        },
+    ], callback);
+};
 
 var main = function() {
     printer.info('Started application in ' + process.env.NODE_ENV + ' mode');
@@ -37,7 +62,7 @@ var main = function() {
         cluster.on('online', function(worker) {
             printer.info('Worker #' + worker.id + ' connected');
         });
-        cluster.on('exit', function (worker) {
+        cluster.on('exit', function(worker) {
             printer.warn('Worker #' + worker.id + ' died, forking a new one');
             cluster.fork();
         });
@@ -45,18 +70,14 @@ var main = function() {
         for (var i = 0 ; i < clusterCount ; ++i)
             cluster.fork();
 
-        mongoose.connect(constants.databaseUri);
-        mongoose.connection.on('error', function (err) {
-            printer.error('Could not open DB connection: ' + err);
-            mongoose.connection.close();
-            return process.exit(1);
-        });
+        printer.info('Initializing services...');
+        return servicesConnect(function(err) {
+            if (err) {
+                printer.error('Could not initialize services:', err.stack);
+                return process.exit(1);
+            }
 
-        return mongoose.connection.once('open', function () {
-            printer.info('Connected to DB "' + constants.databaseUri + '"');
-
-            requireDir(__dirname + '/models/');
-            printer.info('Models sync\'ed');
+            printer.info('Services initialized');
 
 	    return async.series([
                 // Drop old sessions if needed
@@ -72,6 +93,7 @@ var main = function() {
 
                     return serieCallback();
                 },
+
                 // Launch daemons
                 // MUST BE LAST, BECAUSE INFINITE LOOP
                 require('./tools/daemons'),
@@ -86,17 +108,15 @@ var main = function() {
         });
     }
     else {
-        mongoose.connect(constants.databaseUri);
-        mongoose.connection.on('error', function (err) {
-            printer.error('Could not open DB connection: ' + err);
-            mongoose.connection.close();
-            return process.exit(1);
-        });
+        printer.info('Initializing services...');
 
-        return mongoose.connection.once('open', function () {
-            printer.info('Connected to DB "' + constants.databaseUri + '"');
-            requireDir(__dirname + '/models/');
-            printer.info('Models sync\'ed');
+        return servicesConnect(function(err) {
+            if (err) {
+                printer.error('Could not connect to services:', err.stack);
+                return process.exit(1);
+            }
+
+            printer.info('Services initialized');
 
             // In case of a worker, run the actual Web server
             return runServer();
