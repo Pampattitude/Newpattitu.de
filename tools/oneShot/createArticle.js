@@ -27,7 +27,7 @@ mongoose.connection.once('open', function () {
 
         var i = 0;
         arr.forEach(function(elem) {
-            if (i == arr.indexOf(elem))
+            if (i === arr.indexOf(elem))
                 ret.push(elem);
             ++i;
         });
@@ -38,15 +38,15 @@ mongoose.connection.once('open', function () {
     return async.series([
         function(callback) {
             var title = 'Hello, World!';
-            var text = '<p>Hey there!</p>\
-<p>This is my first second time writing a blog post, so I might come off a little nervous. That’s because I am.</p>\
-<p>For those who don’t know me, hi! My name is Guillaume “Pampa” Delahodde and I’m a developer. I love C++, enjoy doodling with Node.js and HTML5 and hate – and I mean it – CSS.</p>\
-<p>It’s been a while – maybe a year and a half? – since I wanted to create a blog. I’ve been working, and still am, on a custom system with Node.js / Express.js on the back and HTML5 / CSS3 – and now Angular.js \o/ – on the front (both the old and current codes can be found somewhere on GitHub).<br />\
-But getting things right is hard when you don’t know blogging. Hence the Tumblr WordPress. Dammit, I’ll never get that post right.</p>\
-<p>So hi, I sincerely hope you’ll enjoy what’s here and, if you do, that you’ll like it on my own system, with my own crazy stuff distracting you from reading!</p>\
-<p>Wait, what? People create blogs for them to be read? Damn, I knew it was a bad idea.</p>\
-<p class="tldr">Developer, stuff about what I do and like, trying a blogging platform.<br />\
-If you no liky, you no stay here.</p>';
+            var text = '<p>Hey there!</p>' +
+                '<p>This is my first second time writing a blog post, so I might come off a little nervous. That’s because I am.</p>' +
+                '<p>For those who don’t know me, hi! My name is Guillaume “Pampa” Delahodde and I’m a developer. I love C++, enjoy doodling with Node.js and HTML5 and hate – and I mean it – CSS.</p>' +
+                '<p>It’s been a while – maybe a year and a half? – since I wanted to create a blog. I’ve been working, and still am, on a custom system with Node.js / Express.js on the back and HTML5 / CSS3 – and now Angular.js \o/ – on the front (both the old and current codes can be found somewhere on GitHub).<br />' +
+                'But getting things right is hard when you don’t know blogging. Hence the Tumblr WordPress. Dammit, I’ll never get that post right.</p>' +
+                '<p>So hi, I sincerely hope you’ll enjoy what’s here and, if you do, that you’ll like it on my own system, with my own crazy stuff distracting you from reading!</p>' +
+                '<p>Wait, what? People create blogs for them to be read? Damn, I knew it was a bad idea.</p>' +
+                '<p class="tldr">Developer, stuff about what I do and like, trying a blogging platform.<br />' +
+                'If you no liky, you no stay here.</p>';
 
             var article = new (mongoose.model('Article'))({
                 title: title,

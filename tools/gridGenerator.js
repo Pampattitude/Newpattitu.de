@@ -14,6 +14,9 @@ var modeList = [
 ];
 
 for (var modeIdx in modeList) {
+    if (!modeList.hasOwnProperty(modeIdx))
+        continue ;
+
     var mode = modeList[modeIdx];
 
     console.log(mode.media + ' {');
@@ -26,6 +29,9 @@ for (var modeIdx in modeList) {
     console.log('  }');
 
     for (var gridSizeIdx in gridSizeList) {
+        if (!gridSizeList.hasOwnProperty(gridSizeIdx))
+            continue ;
+
         console.log();
 
         var gridSize = gridSizeList[gridSizeIdx];
@@ -57,5 +63,5 @@ for (var modeIdx in modeList) {
         }
     }
 
-    console.log('}')
+    console.log('}');
 }

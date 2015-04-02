@@ -1,7 +1,6 @@
 'use strict';
 
 var async = require('async');
-var loremIpsum = require('lorem-ipsum');
 var mongoose = require('mongoose');
 var requireDir = require('require-dir');
 
@@ -34,8 +33,8 @@ mongoose.connection.once('open', function () {
     ];
 
     printer.info('Creating ' + reports.length + ' reports...');
-    return async.eachSeries(reports, function(report, reportCallback) {
-        var report = new (mongoose.model('Report'))(report);
+    return async.eachSeries(reports, function(rpt, reportCallback) {
+        var report = new (mongoose.model('Report'))(rpt);
 
         return report.save(reportCallback);
     }, function(err) {

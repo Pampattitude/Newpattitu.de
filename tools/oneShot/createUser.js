@@ -1,7 +1,5 @@
 'use strict';
 
-var async = require('async');
-var loremIpsum = require('lorem-ipsum');
 var mongoose = require('mongoose');
 var requireDir = require('require-dir');
 
