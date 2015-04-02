@@ -1,4 +1,5 @@
 @import '_pmp.generic';
+@import '_pmp.common';
 
 $date-vignette-background-color:                        $teal;
 $date-vignette-background-dark-color:                   $teal-darker;
@@ -6,30 +7,30 @@ $date-vignette-background-dark-color:                   $teal-darker;
 $featured-vignette-background-color:                    $yellow;
 $featured-vignette-background-dark-color:               $yellow-darker;
 
-$news-vignette-background-color:                        $blue;
-$news-vignette-background-dark-color:                   $blue-darker;
-$news-vignette-button-background-hover-color:           $blue-light;
-$news-vignette-button-background-focus-color:           $blue-dark;
+$news-vignette-background-color:                        $news-background-color;
+$news-vignette-background-dark-color:                   adjust-color($news-vignette-background-color, $lightness: -20%);
+$news-vignette-button-background-hover-color:           adjust-color($news-vignette-background-color, $lightness: 10%);
+$news-vignette-button-background-focus-color:           adjust-color($news-vignette-background-color, $lightness: -10%);
 
-$life-vignette-background-color:                        $pink;
-$life-vignette-background-dark-color:                   $pink-darker;
-$life-vignette-button-background-hover-color:           $pink-light;
-$life-vignette-button-background-focus-color:           $pink-dark;
+$life-vignette-background-color:                        $life-background-color;
+$life-vignette-background-dark-color:                   adjust-color($life-vignette-background-color, $lightness: -20%);
+$life-vignette-button-background-hover-color:           adjust-color($life-vignette-background-color, $lightness: 10%);
+$life-vignette-button-background-focus-color:           adjust-color($life-vignette-background-color, $lightness: -10%);
 
-$project-vignette-background-color:                     $purple;
-$project-vignette-background-dark-color:                $purple-darker;
-$project-vignette-button-background-hover-color:        $purple-light;
-$project-vignette-button-background-focus-color:        $purple-dark;
+$project-vignette-background-color:                     $project-background-color;
+$project-vignette-background-dark-color:                adjust-color($project-vignette-background-color, $lightness: -20%);
+$project-vignette-button-background-hover-color:        adjust-color($project-vignette-background-color, $lightness: 10%);
+$project-vignette-button-background-focus-color:        adjust-color($project-vignette-background-color, $lightness: -10%);
 
-$tutorial-vignette-background-color:                    $green;
-$tutorial-vignette-background-dark-color:               $green-darker;
-$tutorial-vignette-button-background-hover-color:       $green-light;
-$tutorial-vignette-button-background-focus-color:       $green-dark;
+$tutorial-vignette-background-color:                    $tutorial-background-color;
+$tutorial-vignette-background-dark-color:               adjust-color($tutorial-vignette-background-color, $lightness: -20%);
+$tutorial-vignette-button-background-hover-color:       adjust-color($tutorial-vignette-background-color, $lightness: 10%);
+$tutorial-vignette-button-background-focus-color:       adjust-color($tutorial-vignette-background-color, $lightness: -10%);
 
-$flash-vignette-background-color:                       $orange;
-$flash-vignette-background-dark-color:                  $orange-darker;
-$flash-vignette-button-background-hover-color:          $orange-light;
-$flash-vignette-button-background-focus-color:          $orange-dark;
+$flash-vignette-background-color:                       $flash-background-color;
+$flash-vignette-background-dark-color:                  adjust-color($flash-vignette-background-color, $lightness: -20%);
+$flash-vignette-button-background-hover-color:          adjust-color($flash-vignette-background-color, $lightness: 10%);
+$flash-vignette-button-background-focus-color:          adjust-color($flash-vignette-background-color, $lightness: -10%);
 
 
 /* Box vignettes */

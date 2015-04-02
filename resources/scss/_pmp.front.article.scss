@@ -1,23 +1,16 @@
 @import '_pmp.generic';
+@import '_pmp.common';
 
-$news-text-color:               $white-mild;
-$news-background-color:         $blue-light;
 $news-background-image:         none; /* url('http://i.imgur.com/njciCqL.png'); */
 
-$personal-text-color:           $white-mild;
-$personal-background-color:     $grey-light;
+$personal-text-color:           $life-text-color; /* Temporary fix */
+$personal-background-color:     $life-background-color; /* Temporary fix */
 $personal-background-image:     none; /* url('http://i.imgur.com/XN9Sw6Y.png'); */
 
-$project-text-color:            $white-mild;
-$project-background-color:      $green-light;
 $project-background-image:      none; /* url('http://i.imgur.com/ctMQlav.png'); */
 
-$tutorial-text-color:           $white-mild;
-$tutorial-background-color:     $purple-light;
 $tutorial-background-image:     none; /* url('http://i.imgur.com/CloZnzT.png'); */
 
-$flash-text-color:              $white-mild;
-$flash-background-color:        $yellow-light;
 $flash-background-image:        none; /* url('http://i.imgur.com/Wu3qOoi.png'); */
 
 $box-about-text-color:          $white-mild;
