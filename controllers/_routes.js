@@ -58,6 +58,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 
     router.get ('/rss', bindGet(controllers.rss.get));
 
+    router.get ('/ajax/article/:articleTechnicalName/getCommentCount', bindAjax(ajax.article.getCommentCount));
     router.get ('/ajax/article/:articleTechnicalName/getComments', bindAjax(ajax.article.getComments));
     router.post('/ajax/article/:articleTechnicalName/comment', bindAjax(ajax.article.postComment));
     router.post('/ajax/article/:articleTechnicalName/:network/incShare', bindAjax(ajax.article.incrementShare));

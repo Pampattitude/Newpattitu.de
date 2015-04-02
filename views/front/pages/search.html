@@ -1,117 +1,126 @@
-<!-- If no result -->
-<div class="pmp-page-content-box" data-ng-hide="0 === globals.articleList.length">
-  <div class="pmp-search-found">
-    <p>
-      <span class="hidden-mobile">Showing results for search &quot;<span>{{globals.searchString}}</span>&quot;</span>
-      <span class="hidden-desktop">Results for search &quot;<span>{{globals.searchString}}</span>&quot;</span>
-    </p>
-  </div>
-</div>
-<!-- !If no result -->
-
-<!-- Article -->
-<div class="pmp-page-content-box first-desktop" data-ng-repeat="article in globals.articleList">
-  <h3 class="pmp-box-type pmp-box-type-news" data-ng-show="'news' == article.type">
-    News
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-personal" data-ng-show="'life' == article.type">
-    Personal
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-project" data-ng-show="'project' == article.type">
-    Project
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-tutorial" data-ng-show="'tutorial' == article.type">
-    Tutorial
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-flash" data-ng-show="'flash' == article.type">
-    Flash
-  </h3>
-
-  <hr class="pmp-break" />
-
-  <article class="pmp-article pmp-article-small">
-
-    <div class="pmp-article-content">
-      <h1 class="pmp-article-title">
-        <a href="/article/{{article.technicalName}}"
-           data-ng-bind-html="article.title | trust"
-           data-ng-hide="'flash' == article.type">
-        </a>
-        <span href="/article/{{article.technicalName}}"
-              data-ng-bind-html="article.title | trust"
-              data-ng-show="'flash' == article.type">
-        </span>
-
-        <div class="pmp-article-date">
-          <span data-ng-bind="article.created | date: 'yyyy-MM-dd'"></span>
-        </div>
-      </h1>
-
-      <hr class="pmp-break" />
-
-      <div class="pmp-article-tags">
-        <div class="pmp-article-tag-icon">
-          <span class="icon icon-tags"></span>
-        </div>
-
-        <div class="pmp-article-tag-list">
-          <a class="pmp-article-tag" data-ng-repeat="tag in article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
-        </div>
-      </div>
-
-      <hr class="pmp-break" />
-
-      <div class="pmp-article-text" data-ng-bind-html="article.text | trust">
-      </div>
+<!-- Search -->
+<div ng-controller="blogController">
+  <!-- If no result -->
+  <div class="pmp-page-content-box" data-ng-hide="0 === globals.articleList.length">
+    <div class="pmp-search-found">
+      <p>
+        <span class="hidden-mobile">Showing results for search &quot;<span>{{globals.searchString}}</span>&quot;</span>
+        <span class="hidden-desktop">Results for search &quot;<span>{{globals.searchString}}</span>&quot;</span>
+      </p>
     </div>
-  </article>
-</div>
-<!-- !Article -->
-
-<!-- If no result -->
-<div class="pmp-page-content-box first-desktop last" data-ng-hide="0 < globals.articleList.length">
-  <div class="pmp-search-not-found">
-    <p class="pmp-search-not-found-main-text">
-      No article found for search &quot;<span class="">{{globals.searchString}}</span>&quot;.
-    </p>
-
-    <p>
-      Perhaps you should not have searched for such a refined theme.
-    </p>
   </div>
-</div>
-<!-- !If no result -->
+  <!-- !If no result -->
 
-<!-- Page -->
-<div class="pmp-page-control">
-  <div ng-hide="1 >= globals.totalPageCount">
-    <!-- Should be inactive if at page 1 -->
-    <a class="button" href="/search/{{globals.actualPageIndex}}?search={{globals.searchString}}"
-       ng-hide="0 == globals.actualPageIndex">
-      <span class="icon icon-previous"></span>
-    </a>
-    <span class="button button-deactivated"
-          ng-show="0 == globals.actualPageIndex">
-      <span class="icon icon-previous"></span>
-    </span>
+  <!-- Article -->
+  <div class="pmp-page-content-box first-desktop" data-ng-repeat="article in globals.articleList">
+    <h3 class="pmp-box-type pmp-box-type-news" data-ng-show="'news' == article.type">
+      News
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-personal" data-ng-show="'life' == article.type">
+      Personal
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-project" data-ng-show="'project' == article.type">
+      Project
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-tutorial" data-ng-show="'tutorial' == article.type">
+      Tutorial
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-flash" data-ng-show="'flash' == article.type">
+      Flash
+    </h3>
 
-    <span ng-repeat="i in range(globals.totalPageCount) track by $index">
-      <a class="button" href="/search/{{$index+1}}?search={{globals.searchString}}"
-         ng-show="globals.actualPageIndex != $index">
-        {{$index+1}}
+    <hr class="pmp-break" />
+
+    <article class="pmp-article pmp-article-small">
+
+      <div class="pmp-article-content">
+        <h1 class="pmp-article-title">
+          <a href="/article/{{article.technicalName}}"
+             data-ng-bind-html="article.title | trust">
+          </a>
+
+          <div class="pmp-article-date">
+            <span data-ng-bind="article.created | date: 'yyyy-MM-dd'"></span>
+          </div>
+        </h1>
+
+        <hr class="pmp-break" />
+
+        <div class="pmp-article-tags">
+          <div class="pmp-article-tag-icon">
+            <span class="icon icon-tags"></span>
+          </div>
+
+          <div class="pmp-article-tag-list">
+            <a class="pmp-article-tag" data-ng-repeat="tag in article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+          </div>
+        </div>
+
+        <hr class="pmp-break" />
+
+        <div class="pmp-article-text pmp-md-generated"
+             data-ng-bind-html="article.text | trust">
+        </div>
+
+        <hr class="pmp-break" />
+
+        <div class="pmp-article-comments">
+          <a href="/article/{{article.technicalName}}#comments">
+            <span class="icon icon-bubbles4"></span>
+            &nbsp;{{article.commentCount}} comments on the article
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+  <!-- !Article -->
+
+  <!-- If no result -->
+  <div class="pmp-page-content-box first-desktop last" data-ng-hide="0 < globals.articleList.length">
+    <div class="pmp-search-not-found">
+      <p class="pmp-search-not-found-main-text">
+        No article found for search &quot;<span class="">{{globals.searchString}}</span>&quot;.
+      </p>
+
+      <p>
+        Perhaps you should not have searched for such a refined theme.
+      </p>
+    </div>
+  </div>
+  <!-- !If no result -->
+
+  <!-- Page -->
+  <div class="pmp-page-control">
+    <div ng-hide="1 >= globals.totalPageCount">
+      <!-- Should be inactive if at page 1 -->
+      <a class="button" href="/search/{{globals.actualPageIndex}}?search={{globals.searchString}}"
+         ng-hide="0 == globals.actualPageIndex">
+        <span class="icon icon-previous"></span>
       </a>
-      <span class="button button-selected" ng-hide="globals.actualPageIndex != $index">{{$index+1}}</span>
-    </span>
+      <span class="button button-deactivated"
+            ng-show="0 == globals.actualPageIndex">
+        <span class="icon icon-previous"></span>
+      </span>
 
-    <!-- Should be inactive if at max page -->
-    <a class="button" href="/search/{{globals.actualPageIndex + 2}}?search={{globals.searchString}}"
-       ng-hide="globals.totalPageCount - 1 == globals.actualPageIndex">
-      <span class="icon icon-next"></span>
-    </a>
-    <span class="button button-deactivated"
-          ng-show="globals.totalPageCount - 1 == globals.actualPageIndex">
-      <span class="icon icon-next"></span>
-    </span>
+      <span ng-repeat="i in range(globals.totalPageCount) track by $index">
+        <a class="button" href="/search/{{$index+1}}?search={{globals.searchString}}"
+           ng-show="globals.actualPageIndex != $index">
+          {{$index+1}}
+        </a>
+        <span class="button button-selected" ng-hide="globals.actualPageIndex != $index">{{$index+1}}</span>
+      </span>
+
+      <!-- Should be inactive if at max page -->
+      <a class="button" href="/search/{{globals.actualPageIndex + 2}}?search={{globals.searchString}}"
+         ng-hide="globals.totalPageCount - 1 == globals.actualPageIndex">
+        <span class="icon icon-next"></span>
+      </a>
+      <span class="button button-deactivated"
+            ng-show="globals.totalPageCount - 1 == globals.actualPageIndex">
+        <span class="icon icon-next"></span>
+      </span>
+    </div>
   </div>
+  <!-- !Page -->
 </div>
-<!-- !Page -->
+<!-- !Search -->

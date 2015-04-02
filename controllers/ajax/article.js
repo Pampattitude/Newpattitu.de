@@ -4,7 +4,26 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
+var disqus = require('../../lib/disqus');
 var stattitude = require('../../lib/stattitude');
+
+exports.getCommentCount = function(req, res, callback) {
+    var threadUrl = constants.serverHostAccess + '/article/' + req.params.articleTechnicalName;
+
+    return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName}, function(err, article) {
+        if (err) return callback(err);
+        if (!article)
+            return callback(null, '/404');
+
+        return disqus.getUrlPosts(threadUrl, function(err, posts) {
+            if (err) return callback(err);
+
+            return callback(null, {
+                commentCount: posts.length,
+            });
+        });
+    });
+};
 
 exports.getComments = function(req, res, callback) {
     return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName}, function(err, article) {

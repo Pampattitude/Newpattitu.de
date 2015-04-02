@@ -1,97 +1,102 @@
-<!-- Article -->
-<div class="pmp-page-content-box first-desktop" data-ng-repeat="article in globals.articleList">
-  <h3 class="pmp-box-type pmp-box-type-news" data-ng-show="'news' == article.type">
-    News
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-personal" data-ng-show="'life' == article.type">
-    Personal
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-project" data-ng-show="'project' == article.type">
-    Project
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-tutorial" data-ng-show="'tutorial' == article.type">
-    Tutorial
-  </h3>
-  <h3 class="pmp-box-type pmp-box-type-flash" data-ng-show="'flash' == article.type">
-    Flash
-  </h3>
+<!-- Blog -->
+<div ng-controller="blogController">
+  <!-- Article -->
+  <div class="pmp-page-content-box first-desktop"
+       data-ng-repeat="article in globals.articleList">
+    <h3 class="pmp-box-type pmp-box-type-news" data-ng-show="'news' == article.type">
+      News
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-personal" data-ng-show="'life' == article.type">
+      Personal
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-project" data-ng-show="'project' == article.type">
+      Project
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-tutorial" data-ng-show="'tutorial' == article.type">
+      Tutorial
+    </h3>
+    <h3 class="pmp-box-type pmp-box-type-flash" data-ng-show="'flash' == article.type">
+      Flash
+    </h3>
 
-  <hr class="pmp-break" />
+    <hr class="pmp-break" />
 
-  <article class="pmp-article pmp-article-small">
+    <article class="pmp-article pmp-article-small">
 
-    <div class="pmp-article-content">
-      <h1 class="pmp-article-title">
-        <a href="/article/{{article.technicalName}}"
-           data-ng-bind-html="article.title | trust">
-        </a>
+      <div class="pmp-article-content">
+        <h1 class="pmp-article-title">
+          <a href="/article/{{article.technicalName}}"
+             data-ng-bind-html="article.title | trust">
+          </a>
 
-        <div class="pmp-article-date">
-          <span data-ng-bind="article.created | date: 'yyyy-MM-dd'"></span>
+          <div class="pmp-article-date">
+            <span data-ng-bind="article.created | date: 'yyyy-MM-dd'"></span>
+          </div>
+        </h1>
+
+        <hr class="pmp-break" />
+
+        <div class="pmp-article-tags">
+          <div class="pmp-article-tag-icon">
+            <span class="icon icon-tags"></span>
+          </div>
+
+          <div class="pmp-article-tag-list">
+            <a class="pmp-article-tag" data-ng-repeat="tag in article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+          </div>
         </div>
-      </h1>
 
-      <hr class="pmp-break" />
+        <hr class="pmp-break" />
 
-      <div class="pmp-article-tags">
-        <div class="pmp-article-tag-icon">
-          <span class="icon icon-tags"></span>
+        <div class="pmp-article-text pmp-md-generated"
+             data-ng-bind-html="article.text | trust">
         </div>
 
-        <div class="pmp-article-tag-list">
-          <a class="pmp-article-tag" data-ng-repeat="tag in article.tags" href="/search?search={{tag}}" data-ng-bind="tag"></a>
+        <hr class="pmp-break" />
+
+        <div class="pmp-article-comments">
+          <a href="/article/{{article.technicalName}}#comments">
+            <span class="icon icon-bubbles4"></span>
+            &nbsp;{{article.commentCount}} comments on the article
+          </a>
         </div>
       </div>
-
-      <hr class="pmp-break" />
-
-      <div class="pmp-article-text pmp-md-generated"
-           data-ng-bind-html="article.text | trust">
-      </div>
-
-      <hr class="pmp-break" />
-
-      <div class="pmp-article-comments">
-        <a href="/article/{{article.technicalName}}#comments">
-          <span class="icon icon-bubbles4"></span>
-          &nbsp;Comment on the article
-        </a>
-      </div>
-    </div>
-  </article>
-</div>
-<!-- !Article -->
-
-<!-- Page -->
-<div class="pmp-page-control">
-  <div ng-hide="1 >= globals.totalPageCount">
-    <!-- Should be inactive if at page 1 -->
-    <a class="button" href="/blog/{{globals.actualPageIndex}}"
-       ng-hide="0 == globals.actualPageIndex">
-      <span class="icon icon-previous"></span>
-    </a>
-    <span class="button button-deactivated"
-          ng-show="0 == globals.actualPageIndex">
-      <span class="icon icon-previous"></span>
-    </span>
-
-    <span ng-repeat="i in range(globals.totalPageCount) track by $index">
-      <a class="button" href="/blog/{{$index+1}}"
-         ng-show="globals.actualPageIndex != $index">
-        {{$index+1}}
-      </a>
-      <span class="button button-selected" ng-hide="globals.actualPageIndex != $index">{{$index+1}}</span>
-    </span>
-
-    <!-- Should be inactive if at max page -->
-    <a class="button" href="/blog/{{globals.actualPageIndex + 2}}"
-       ng-hide="globals.totalPageCount - 1 == globals.actualPageIndex">
-      <span class="icon icon-next"></span>
-    </a>
-    <span class="button button-deactivated"
-          ng-show="globals.totalPageCount - 1 == globals.actualPageIndex">
-      <span class="icon icon-next"></span>
-    </span>
+    </article>
   </div>
+  <!-- !Article -->
+
+  <!-- Page -->
+  <div class="pmp-page-control">
+    <div ng-hide="1 >= globals.totalPageCount">
+      <!-- Should be inactive if at page 1 -->
+      <a class="button" href="/blog/{{globals.actualPageIndex}}"
+         ng-hide="0 == globals.actualPageIndex">
+        <span class="icon icon-previous"></span>
+      </a>
+      <span class="button button-deactivated"
+            ng-show="0 == globals.actualPageIndex">
+        <span class="icon icon-previous"></span>
+      </span>
+
+      <span ng-repeat="i in range(globals.totalPageCount) track by $index">
+        <a class="button" href="/blog/{{$index+1}}"
+           ng-show="globals.actualPageIndex != $index">
+          {{$index+1}}
+        </a>
+        <span class="button button-selected" ng-hide="globals.actualPageIndex != $index">{{$index+1}}</span>
+      </span>
+
+      <!-- Should be inactive if at max page -->
+      <a class="button" href="/blog/{{globals.actualPageIndex + 2}}"
+         ng-hide="globals.totalPageCount - 1 == globals.actualPageIndex">
+        <span class="icon icon-next"></span>
+      </a>
+      <span class="button button-deactivated"
+            ng-show="globals.totalPageCount - 1 == globals.actualPageIndex">
+        <span class="icon icon-next"></span>
+      </span>
+    </div>
+  </div>
+  <!-- !Page -->
 </div>
-<!-- !Page -->
+<!-- !Blog -->

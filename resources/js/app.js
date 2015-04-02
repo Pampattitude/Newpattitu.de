@@ -130,6 +130,29 @@ frontApp.directive('pollTwitter', function() {
 });
 /* !Twitter */
 
+/* Blog controller */
+frontApp.controller('blogController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    var updateArticleCommentCount = function(articleList, articleIdx) {
+        articleIdx = articleIdx || 0;
+
+        if (articleList.length <= articleIdx)
+            return ; // Recursion ended
+
+        var articleUrl = '/ajax/article/' + articleList[articleIdx].technicalName + '/getCommentCount';
+
+        $http.get(articleUrl).then(function(response) {
+            articleList[articleIdx].commentCount = response.data.commentCount;
+            return updateArticleCommentCount(articleList, articleIdx + 1);
+        }, function(response) {
+            // No alert, because a closed thread discussion also returns an error
+            return updateArticleCommentCount(articleList, articleIdx + 1);
+        });
+    };
+
+    updateArticleCommentCount($rootScope.globals.articleList);
+}]);
+/* Blog controller */
+
 /* Article controller */
 frontApp.controller('articleController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
     $scope.incShare = function(network) {
