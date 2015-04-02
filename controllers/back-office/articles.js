@@ -1,11 +1,8 @@
 'use strict';
 
-var async = require('async');
 var mongoose = require('mongoose');
 
-var constants = require('../../lib/constants');
 var markdown = require('../../lib/markdown');
-var utils = require('../../lib/utils');
 
 // Get page
 exports.page = function(req, res, callback) {
@@ -179,7 +176,7 @@ exports.setCommentStatus = function(req, res, callback) {
 exports.removeComment = function(req, res, callback) {
     return mongoose.model('Comment').findOneAndRemove({_id: req.params.commentId}, {$set: {status: req.body.status}}, function(err, removed) {
         if (err) return callback({code: 500, message: err});
-        else if (!removed) return callback({code: 404, message: 'Comment not found'})
+        else if (!removed) return callback({code: 404, message: 'Comment not found'});
 
         return callback();
     });

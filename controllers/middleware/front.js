@@ -1,6 +1,5 @@
 'use strict';
 
-var url = require('url');
 var useragent = require('useragent');
 
 var printer = require('../../lib/printer');

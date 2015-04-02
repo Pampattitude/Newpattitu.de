@@ -65,7 +65,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
     router.get ('/ajax/twitter/getLatest', bindAjax(ajax.twitter.getLatest));
 
     router.get ('/*', bindPage(controllers.error.page404));
-    router.use (function(err, req, res, next) {
+    router.use (function(err, req, res) {
         printer.error(err);
         return bindPage(controllers.error.page500)(req, res);
     });
@@ -130,8 +130,8 @@ exports.defineBackOfficeRoutes = function(serverApp, router) {
     router.get ('/', middleware.isLoggedIn, function(req, res) { return res.redirect('/back-office/stats'); });
 
     router.get ('*', middleware.isLoggedIn, bindPage(controllers.error.page404));
-    router.use (function(err, req, res, next) {
-        res.locals.logged = (undefined != req.session && undefined != req.session.user);
+    router.use (function(err, req, res) {
+        res.locals.logged = (undefined !== req.session && undefined !== req.session.user);
 
         printer.error(err);
         return bindPage(controllers.error.page500)(req, res);

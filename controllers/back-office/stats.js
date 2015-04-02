@@ -5,8 +5,6 @@ var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
 var stattitude = require('../../lib/stattitude');
-var printer = require('../../lib/printer');
-var utils = require('../../lib/utils');
 
 // Get page
 exports.page = function(req, res, callback) {
@@ -40,7 +38,7 @@ var getMongoDBWeekArray_ = function(callback) {
             // We check for existing in array then do date + 1day because Mong has had the dumb idea to have a #53 and #0 week numbers -_-
             var found = false;
             for (var i = 0 ; dates.length > i ; ++i) {
-                if (weekNumber == dates[i].week && baseDate.getFullYear() == dates[i].year) {
+                if (weekNumber === dates[i].week && baseDate.getFullYear() === dates[i].year) {
                     found = true;
                     break ;
                 }
@@ -106,7 +104,7 @@ var getForEachStatFunction_ = function(stats, field, includeRobots) {
 
         var found = false;
         for (var i = 0 ; !found && stats.length > i ; ++i) {
-            if (stat[field] == stats[i][field]) {
+            if (stat[field] === stats[i][field]) {
                 stats[i].count += stat.count;
                 found = true;
             }

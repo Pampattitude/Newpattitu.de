@@ -1,6 +1,5 @@
 'use strict';
 
-var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
@@ -49,7 +48,7 @@ exports.get = function(req, res, callback) {
         }
 
         rss += '  </channel>\n';
-        rss += '</rss>\n'
+        rss += '</rss>\n';
 
         res.set('Content-Type', 'application/rss+xml');
         return callback(null, rss);

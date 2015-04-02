@@ -1,9 +1,7 @@
 'use strict';
 
-var async = require('async');
 var mongoose = require('mongoose');
 
-var constants = require('../../lib/constants');
 var disqus = require('../../lib/disqus');
 var stattitude = require('../../lib/stattitude');
 

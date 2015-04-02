@@ -1,6 +1,5 @@
 'use strict';
 
-var async = require('async');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
@@ -38,7 +37,7 @@ exports.page = function(req, res, callback) {
 
                     res.locals.relatedArticles = [];
                     for (var i = 0 ; constants.frontRelatedArticleCount > res.locals.relatedArticles.length && related.length > i ; ++i) {
-                        if (res.locals.article.technicalName == related[i].technicalName)
+                        if (res.locals.article.technicalName === related[i].technicalName)
                             continue ;
 
                         res.locals.relatedArticles.push({
@@ -88,7 +87,7 @@ exports.permalinkPage = function(req, res, callback) {
 
                     res.locals.relatedArticles = [];
                     for (var i = 0 ; constants.frontRelatedArticleCount > res.locals.relatedArticles.length && related.length > i ; ++i) {
-                        if (res.locals.article.technicalName == related[i].technicalName)
+                        if (res.locals.article.technicalName === related[i].technicalName)
                             continue ;
 
                         res.locals.relatedArticles.push({

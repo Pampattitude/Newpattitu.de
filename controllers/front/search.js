@@ -7,39 +7,6 @@ var constants = require('../../lib/constants');
 var printer = require('../../lib/printer');
 var utils = require('../../lib/utils');
 
-exports.page = function(req, res, callback) {
-    res.locals.title = 'Search';
-
-    res.locals.page = 'pages/search.html';
-    res.locals.activeTopMenu = 'blog';
-
-    // First, we get the actual page index
-    // /!\ 0 means first page, 1 means second page; in front, 1 means first page and 2 means second page
-    res.locals.actualPageIndex = (req.params.pageNumber && 0 < req.params.pageNumber) ? req.params.pageNumber - 1 : 0;
-
-    if (!req.query.search)
-        req.query.search = '';
-    if (constants.searchStringMaxLength < req.query.search.length)
-        req.query.search = req.query.search.substring(0, constants.searchStringMaxLength);
-
-    // Do FULL search every time (should be optimized in the future)
-    return search_(req.query.search || '', function(err, articles) {
-        if (err) return callback(err);
-
-        res.locals.totalPageCount = Math.ceil(articles.length / constants.frontSearchPageArticleCount);
-
-        // Keep only a selected number of articles; this is done because
-        // the front would have performance issues if there were too many
-        // results
-        res.locals.articleList = articles.slice(res.locals.actualPageIndex * constants.frontSearchPageArticleCount,
-                                                res.locals.actualPageIndex * constants.frontSearchPageArticleCount + constants.frontSearchPageArticleCount);
-
-        res.locals.searchString = req.query.search;
-
-        return callback();
-    });
-};
-
 var search_ = exports.search = function(queryString, callback) {
     var pointsForTitle =                6;
     var pointsForPreciseTitle =         pointsForTitle * 5;
@@ -128,5 +95,38 @@ var search_ = exports.search = function(queryString, callback) {
 
             return callback(null, finalArticleList);
         });
+    });
+};
+
+exports.page = function(req, res, callback) {
+    res.locals.title = 'Search';
+
+    res.locals.page = 'pages/search.html';
+    res.locals.activeTopMenu = 'blog';
+
+    // First, we get the actual page index
+    // /!\ 0 means first page, 1 means second page; in front, 1 means first page and 2 means second page
+    res.locals.actualPageIndex = (req.params.pageNumber && 0 < req.params.pageNumber) ? req.params.pageNumber - 1 : 0;
+
+    if (!req.query.search)
+        req.query.search = '';
+    if (constants.searchStringMaxLength < req.query.search.length)
+        req.query.search = req.query.search.substring(0, constants.searchStringMaxLength);
+
+    // Do FULL search every time (should be optimized in the future)
+    return search_(req.query.search || '', function(err, articles) {
+        if (err) return callback(err);
+
+        res.locals.totalPageCount = Math.ceil(articles.length / constants.frontSearchPageArticleCount);
+
+        // Keep only a selected number of articles; this is done because
+        // the front would have performance issues if there were too many
+        // results
+        res.locals.articleList = articles.slice(res.locals.actualPageIndex * constants.frontSearchPageArticleCount,
+                                                res.locals.actualPageIndex * constants.frontSearchPageArticleCount + constants.frontSearchPageArticleCount);
+
+        res.locals.searchString = req.query.search;
+
+        return callback();
     });
 };
