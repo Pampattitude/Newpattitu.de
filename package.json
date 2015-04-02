@@ -40,6 +40,7 @@
     "require-dir": "^0.1.0",
     "twitter": "^0.2.12",
     "useragent": "~2.1.5",
-    "winston": "^0.8.1"
+    "winston": "^0.8.1",
+    "disqus-node": "~0.12.0"
   }
 }
