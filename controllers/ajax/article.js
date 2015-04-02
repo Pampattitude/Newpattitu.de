@@ -8,14 +8,12 @@ var disqus = require('../../lib/disqus');
 var stattitude = require('../../lib/stattitude');
 
 exports.getCommentCount = function(req, res, callback) {
-    var threadUrl = constants.serverHostAccess + '/article/' + req.params.articleTechnicalName;
-
     return mongoose.model('Article').findOne({technicalName: req.params.articleTechnicalName}, function(err, article) {
         if (err) return callback(err);
         if (!article)
             return callback(null, '/404');
 
-        return disqus.getUrlPosts(threadUrl, function(err, posts) {
+        return disqus.getUrlPosts(article.getUrl(), function(err, posts) {
             if (err) return callback(err);
 
             return callback(null, {

@@ -22,8 +22,9 @@
     <div class="pmp-article-content">
       <header>
         <h1 class="pmp-article-title">
-          <span data-ng-bind-html="globals.article.title | trust">
-          </span>
+          <a href="/article/{{globals.article.technicalName}}"
+             data-ng-bind-html="globals.article.title | trust">
+          </a>
 
           <div class="pmp-article-date">
             <span data-ng-bind="globals.article.created | date: 'yyyy-MM-dd'"></span>

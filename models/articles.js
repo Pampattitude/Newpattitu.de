@@ -2,6 +2,8 @@
 
 var mongoose = require('mongoose');
 
+var constants = require('../lib/constants');
+
 var schemaOptions = {
     autoIndex: true,
 };
@@ -31,5 +33,12 @@ var schema = new mongoose.Schema({
     created: {type: Date, default: Date.now},
     lastUpdated: {type: Date, default: Date.now},
 });
+
+schema.methods.getUrl = function() {
+    return constants.serverHostAccess + '/article/' + this.technicalName;
+};
+schema.methods.getPermaUrl = function() {
+    return constants.serverHostAccess + '/article/permalink/' + this._id;
+};
 
 exports.model = mongoose.model('Article', schema, 'articles');
