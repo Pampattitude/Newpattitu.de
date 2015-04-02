@@ -98,31 +98,10 @@
 
     <hr class="pmp-break">
 
-    <div class="pmp-twitter" poll-twitter>
-      <div class="pmp-twitter-post" data-ng-repeat="post in twitterPosts">
-        <div class="pmp-twitter-post-date">{{post.created | date: 'yyyy-MM-dd'}}</div>
-
-        <p class="pmp-twitter-post-text">
-          <a class="pmp-twitter-post-link" href="{{post.url}}" target="_blank">
-            <span class="icon icon-link"></span>&nbsp;
-          </a>
-
-          <span data-ng-bind-html="post.text | trust"></span>
-        </p>
-
-        <div class="pmp-twitter-post-counts">
-          <div class="pmp-twitter-favorite">
-            <span class="icon icon-star3"></span>
-            <span data-ng-bind="post.favoriteCount"></span>
-          </div>
-
-          <div class="pmp-twitter-retweet">
-            <span data-ng-bind="post.retweetCount"></span>
-            <span class="icon icon-loop"></span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <a class="twitter-timeline" href="https://twitter.com/Pampattitude" data-widget-id="583728888695623683">
+      @Pampattitude tweets
+    </a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </div>
   <!-- !Twitter -->
 </div>
