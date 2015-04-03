@@ -254,8 +254,10 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
     $scope.saveArticle_ = function(callback) {
         var url = '/back-office/article/' + $scope.article._id + '/save';
         $http.post(url, $scope.article).then(function(response) {
-            if (response.data.articleId) // Redirect to new article edition page '/back-office/article/:_id/edit'?
+            if (response.data.articleId) { // Redirect to new article edition page '/back-office/article/:_id/edit'?
                 $scope.article._id = response.data.articleId;
+                $scope.articleExists = true;
+            }
 
             $scope.addAlert('success', 'Article saved!');
 
