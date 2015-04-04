@@ -173,6 +173,24 @@ backOfficeApp.controller('generalController', ['$scope', '$rootScope', '$http', 
 
         return $rootScope.openConfirmBox(confirmBox);
     };
+
+    $scope.deleteArticleFromList = function(article) {
+        var confirmBox = {
+            title: 'Delete article?',
+            text: 'Do you really want to delete the article "' + article.title + '"? This operation is not reversible.',
+            acceptCallback: function() {
+                $scope.closeConfirmBox();
+                var url = '/back-office/article/' + article._id + '/delete';
+                $http.post(url, {}).then(function(response) {
+                    window.location = '/back-office/articles';
+                }, function(response) {
+                    $scope.addAlert('error', 'Could not delete article because: ' + response.data.message);
+                });
+            },
+        };
+
+        return $rootScope.openConfirmBox(confirmBox);
+    };
     /* !Articles */
 
     /* Notifications */

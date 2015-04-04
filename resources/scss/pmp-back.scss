@@ -883,33 +883,13 @@ body {
                 background-color: rgba(0, 0, 0, 0.1); /* TMP */
 
                 .pmp-report-author {
-                    position: absolute;
-                    top: -1em;
-                    left: -1.2em;
+                    margin:                     0;
+                    padding:                    0.3em;
 
-                    margin: 0;
-                    padding: 0.3em 0.6em;
+                    color:                      $black-mild;
+                    text-transform:             uppercase;
 
-                    color: $white-mild; /* TMP */
-                    font-size: 0.8em;
-
-                    background-color: $green-dark; /* TMP */
-
-                    &:after {
-                        content: "";
-
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        position: absolute;
-                        bottom: -6px;
-                        left: 0;
-                        z-index: -1;
-
-                        border-style: solid;
-                        border-width: 0 16px 6px 0;
-                        border-color: transparent $green-darker transparent transparent; /* TMP */
-                    }
+                    background-color:           $white-mild;
 
                     .pmp-report-author-name {
                         font-weight: bold;
@@ -1001,41 +981,18 @@ body {
 
 /* Statistics */
 .pmp-stats {
-    & > [class*="cell-"] {
-        padding: 1.2em 1.2em;
-    }
-
     .pmp-stat {
         @extend .pmp-page-content-box;
 
         .pmp-stat-title {
-            position: absolute;
-            top: -1em;
-            left: -1em;
-
             margin: 0;
-            padding: 0.3em 0.6em;
+            padding: 0.3em;
 
-            color: $white-mild; /* TMP */
-            font-size: 1em;
+            color: $white-mild;
+            font-size: 0.9em;
+            text-transform: uppercase;
 
-            background-color: $green-dark; /* TMP */
-
-            &:after {
-                content: "";
-
-                display: block;
-                width: 0;
-                height: 0;
-                position: absolute;
-                bottom: -6px;
-                left: 0;
-                z-index: -1;
-
-                border-style: solid;
-                border-width: 0 16px 6px 0;
-                border-color: transparent $green-darker transparent transparent; /* TMP */
-            }
+            background-color: $green;
         }
 
         .pmp-stat-content {
@@ -1110,3 +1067,73 @@ body {
 }
 /* !Statistics */
 /* !Page content */
+
+/* Generic */
+.pmp-backoffice-table {
+    width: 100%;
+    overflow: auto;
+
+    color: $black-mild;
+    text-align: left;
+
+    background-color: $white-mild;
+
+    thead {
+        tr {
+            border-bottom: 2px solid rgba($black-mild, 0.2);
+
+            th {
+                padding: 0.4em 0.8em;
+
+                border-left: 1px solid rgba($black-mild, 0.05);
+
+                &:first-child {
+                    border-left: none;
+                }
+            }
+        }
+    }
+
+    tbody {
+
+        tr {
+            border-bottom: 1px solid rgba($black-mild, 0.1);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            td {
+                padding: 0.2em 0.4em;
+
+                border-left: 1px solid rgba($black-mild, 0.05);
+
+                &:first-child {
+                    border-left: none;
+                }
+
+                &.pmp-backoffice-table-cell {
+                    &.pmp-backoffice-table-cell-small {
+                        color: rgba($black-mild, 0.8);
+                        font-size: 0.8em;
+                    }
+
+                    &.pmp-backoffice-table-cell-center {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+hr.pmp-break {
+    height: 0.4em;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: $white-milderer;
+    border: 0;
+}
+/* !Generic */

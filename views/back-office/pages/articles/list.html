@@ -1,49 +1,62 @@
-<!-- Widget grid -->
-<div class="pmp-articles grid-12">
-  <div class="cell-2 cell-mobile-6">
-    <!-- Create article -->
-    <div class="pmp-article">
-      <div class="pmp-article-content pmp-new-article">
-        <a class="button button-success" href="/back-office/article/edit">
-          <span class="icon icon-plus"></span>
-        </a>
-      </div>
+<!-- Article list -->
+<div class="pmp-articles">
+  <div class="pmp-page-content-box">
+    <div class="pmp-page-content-box-content">
+      <table class="pmp-backoffice-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th class="hidden-mobile">Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr data-ng-repeat="article in globals.articleList">
+            <td class="pmp-backoffice-table-cell"
+                ng-bind="article.title"></td>
+
+            <td class="hidden-mobile pmp-backoffice-table-cell pmp-backoffice-table-cell-small pmp-backoffice-table-cell-center">
+              {{article.created | date: 'yyyy-MM-dd'}}
+            </td>
+
+            <td class="pmp-backoffice-table-cell pmp-backoffice-table-cell-center">
+              <button type="button" class="button button-success"
+                      title="Deactivate"
+                      data-ng-click="deactivateArticle(article)" data-ng-show="article.activated">
+                <span class="icon icon-checkmark-circle"></span>
+              </button>
+
+              <button type="button" class="button"
+                      title="Activate"
+                      data-ng-click="activateArticle(article)" data-ng-hide="article.activated">
+                <span class="icon icon-blocked"></span>
+              </button>
+
+              <a class="button button-info" href="/back-office/article/{{article['_id']}}/edit"
+                 title="Edit">
+                <span class="icon icon-pencil"></span>
+              </a>
+
+              <button type="button" class="button button-error"
+                      title="Delete"
+                      data-ng-click="deleteArticleFromList(article)">
+                <span class="icon icon-remove"></span>
+              </button>
+
+              <a class="button" href="/article/{{article.technicalName}}" target="_blank"
+                 title="Go to article">
+                <span class="icon icon-newtab"></span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a class="button button-success" href="/back-office/article/edit">
+        &nbsp;&nbsp;<span class="icon icon-plus"></span>&nbsp;&nbsp;
+      </a>
     </div>
-    <!-- !Create article -->
-  </div>
-
-  <div class="cell-2 cell-mobile-6" data-ng-repeat="article in globals.articleList">
-    <!-- Article -->
-    <div class="pmp-article">
-      <div class="pmp-article-content">
-        <div class="pmp-article-date">
-          <span data-ng-bind="article.created | date: 'yyyy-MM-dd hh:mm'"></span>
-        </div>
-
-        <h3 class="pmp-article-title" data-ng-bind="article.title"></h3>
-      </div>
-
-      <!-- Article actions -->
-      <div class="pmp-article-actions grid-2">
-        <div class="cell-1">
-          <button type="button" class="button button-activate" data-ng-click="deactivateArticle(article)" data-ng-show="article.activated">
-            <span class="icon icon-checkmark-circle"></span>
-          </button>
-
-          <button type="button" class="button button-deactivate" data-ng-click="activateArticle(article)" data-ng-hide="article.activated">
-            <span class="icon icon-blocked"></span>
-          </button>
-        </div>
-
-        <div class="cell-1">
-          <a class="button button-edit" href="/back-office/article/{{article['_id']}}/edit">
-            <span class="icon icon-pencil"></span>
-          </a>
-        </div>
-      </div>
-      <!-- !Article actions -->
-    </div>
-    <!-- !Article -->
   </div>
 </div>
-<!-- !Widget grid -->
+<!-- !Article list -->
