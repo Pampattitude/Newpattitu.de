@@ -18,7 +18,12 @@ exports.page = function(req, res, callback) {
 };
 
 // Should probably be cached because actually does something like 90 requests on Mongo per call
-var getMongoDBWeekArray_ = function(callback) {
+var getMongoDBWeekArray_ = function(includeBaseDate, callback) {
+    if (undefined === callback) { // Means includeBaseDate is not provided
+        callback = includeBaseDate;
+        includeBaseDate = false;
+    }
+
     var now = new Date();
     var baseDate = new Date();
     baseDate.setMonth(baseDate.getMonth() - constants.statsMonthsBefore);
@@ -50,6 +55,7 @@ var getMongoDBWeekArray_ = function(callback) {
                     grain: 'week',
                     week: weekNumber,
                     year: baseDate.getFullYear(),
+                    baseDate: includeBaseDate ? new Date(baseDate) : undefined,
                 });
                 dateStrings.push('W ' + weekNumber + ' - ' + baseDate.getFullYear());
             }
@@ -119,36 +125,45 @@ var getForEachStatFunction_ = function(stats, field, includeRobots) {
 };
 
 exports.commentGeneralStats = function(req, res, callback) {
-    return getMongoDBWeekArray_(function(err, dateResults) {
+    return getMongoDBWeekArray_(true, function(err, dateResults) {
         if (err) return callback(err);
 
         var dates = dateResults.dates;
         var dateStrings = dateResults.strings;
 
-        var stats = [];
+        return require('../../lib/disqus').listPosts(function(err, posts) {
+            if (err) return callback(err);
 
-        var dateStringIdx = 0;
-        return async.eachSeries(dates, function(date, dateCallback) {
-            return stattitude.get('comment', date, function(err, results) {
-                if (err) return dateCallback(err);
+            var results = {};
 
-                var count = 0;
-                results.forEach(function(stat) { count += stat.count; });
+            posts.forEach(function(post) {
+                var date = new Date(post.createdAt);
 
-                var formattedDate = dateStrings[dateStringIdx];
-                stats.push({
-                    time: formattedDate,
-                    count: count,
-                });
+                for (var i = 0 ; dates.length > i ; ++i) {
+                    var start = dates[i].baseDate;
+                    var end = new Date();
+                    if (dates.length - 1 > i)
+                        end = dates[i + 1].baseDate;
 
-                ++dateStringIdx;
-
-                return dateCallback();
+                    if (start <= date && date < end) {
+                        if (!results[dateStrings[i]])
+                            results[dateStrings[i]] = 0;
+                        ++results[dateStrings[i]];
+                    }
+                }
             });
-        }, function(err) {
-            if (err) return callback({code: 500, message: err});
 
-            return callback(null, { generalCommentStatistics: stats });
+            var formattedResults = [];
+            dateStrings.forEach(function(date) {
+                formattedResults.push({
+                    time: date,
+                    count: results[date] || 0,
+                });
+            });
+
+            return callback(null, {
+                generalCommentStatistics: formattedResults,
+            });
         });
     });
 };
@@ -199,8 +214,6 @@ exports.pageViewRouteStats = function(req, res, callback) {
 
     var dates = generateDayStatArray_();
     var stats = [];
-
-    console.log(dates);
 
     return async.eachSeries(dates, function(date, dateCallback) {
         return stattitude.get('pageView', date, function(err, results) {
