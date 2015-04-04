@@ -51,14 +51,14 @@
       <% include partials/alerts.html %>
       <!-- !Alerts -->
 
-      <div class="grid-5">
-        <div class="cell-1 cell-mobile-5">
+      <div class="grid-6">
+        <div class="cell-1 cell-mobile-6">
           <!-- Main menu -->
           <% include partials/mainMenu.html %>
           <!-- !Main menu -->
         </div>
 
-        <div class="cell-4 cell-mobile-5" <% if ('undefined' !== typeof pageAndToolbarNgController) { %>data-ng-controller="<%= pageAndToolbarNgController %>"<% } %>>
+        <div class="cell-5 cell-mobile-6" <% if ('undefined' !== typeof pageAndToolbarNgController) { %>data-ng-controller="<%= pageAndToolbarNgController %>"<% } %>>
           <!-- Toolbar -->
           <% include partials/toolbar.html %>
           <!-- !Toolbar -->
