@@ -18,17 +18,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
         twitter:        require('./ajax/twitter'),
     };
 
-    var controllers = {
-        about:          require('./front/about'),
-        article:        require('./front/article'),
-        blog:           require('./front/blog'),
-        error:          require('./front/error'),
-        projects:       require('./front/projects'),
-        report:         require('./front/report'),
-        rss:            require('./front/rss'),
-        search:         require('./front/search'),
-    };
-
+    var controllers = require('dirreq')('./front');
     var middleware = require('./middleware/front.js');
     router.use (middleware.defend);
     router.use (middleware.postUniqueSessionStat);
@@ -76,14 +66,7 @@ exports.defineFrontRoutes = function(serverApp, router) {
 exports.defineBackOfficeRoutes = function(serverApp, router) {
     var bindPage = function(m) { return bind(methods.page, bindArg._1, bindArg._2, m, 'back-office/layout.html'); };
 
-    var controllers = {
-        articles: require('./back-office/articles'),
-        error: require('./back-office/error'),
-        login: require('./back-office/login'),
-        notifications: require('./back-office/notifications'),
-        reports: require('./back-office/reports'),
-        stats: require('./back-office/stats'),
-    };
+    var controllers = require('dirreq')('./back-office');
     var middleware = require('./middleware/back.js');
 
     router.get ('/login', bindPage(controllers.login.page));
