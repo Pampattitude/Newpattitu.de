@@ -118,6 +118,7 @@ exports.page = function(req, res, callback) {
         // Keep only a selected number of articles; this is done because
         // the front would have performance issues if there were too many
         // results
+        res.locals.searchResultsCount = articles.length;
         res.locals.articleList = articles.slice(res.locals.actualPageIndex * constants.frontSearchPageArticleCount,
                                                 res.locals.actualPageIndex * constants.frontSearchPageArticleCount + constants.frontSearchPageArticleCount);
 
