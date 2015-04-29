@@ -45,7 +45,12 @@
               </button>
 
               <a class="button" href="/article/{{article.technicalName}}" target="_blank"
-                 title="Go to article">
+                 title="Go to article" data-ng-show="article.activated">
+                <span class="icon icon-newtab"></span>
+              </a>
+
+              <a class="button" href="/article/preview/{{article.technicalName}}" target="_blank"
+                 title="Go to article" data-ng-hide="article.activated">
                 <span class="icon icon-newtab"></span>
               </a>
             </td>
