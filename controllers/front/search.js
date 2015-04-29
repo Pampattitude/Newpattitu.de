@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
 var printer = require('../../lib/printer');
+var search = require('../../lib/search');
 var utils = require('../../lib/utils');
 
 var search_ = exports.search = function(queryString, callback) {
@@ -33,16 +34,12 @@ var search_ = exports.search = function(queryString, callback) {
 
             var dataCopy = data.slice(0);
 
-            var tagGroupRegex = '(';
+            var tagGroupRegex = search.buildSearchRegExp(dataCopy.map(function(elem) {
+                return utils.escapeRegExp(elem.trim());
+            }));
 
             article.pointDetail.tags = 0;
             for (var j = 0 ; dataCopy.length > j ; ++j) {
-                dataCopy[j] = utils.escapeRegExp(dataCopy[j].trim());
-
-                tagGroupRegex += dataCopy[j];
-                if (dataCopy.length > j + 1)
-                    tagGroupRegex += '|';
-
                 for (var i = 0 ; article.tags.length > i ; ++i) {
                     if (article.tags[i].match(new RegExp('(' + dataCopy[j] + ')', 'gi'))) {
                         article.points += pointsForTag;
@@ -50,7 +47,6 @@ var search_ = exports.search = function(queryString, callback) {
                     }
                 }
             }
-            tagGroupRegex += ')+?';
 
             var tagSearch = new RegExp(tagGroupRegex, 'i');
             var titleMatch = article.title.match(tagSearch);
