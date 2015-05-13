@@ -1,7 +1,9 @@
 backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+    var getBotString = $rootScope.globals.bots ? '?bots=true' : '';
+
     /* Comment */
     $scope.getGeneralCommentStatistics = function(callback) {
-        var generalCommentStatisticsUrl = '/back-office/stats/comments/general';
+        var generalCommentStatisticsUrl = '/back-office/stats/comments/general' + getBotString;
         return $http.get(generalCommentStatisticsUrl, {}).then(function(response) {
             if (response.data.generalCommentStatistics)
                 $scope.generalCommentStatistics = response.data.generalCommentStatistics;
@@ -24,7 +26,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Unique sessions - general */
     $scope.getGeneralUniqueSessionStatistics = function(callback) {
-        var generalUniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/general';
+        var generalUniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/general' + getBotString;
         return $http.get(generalUniqueSessionStatisticsUrl, {}).then(function(response) {
             if (response.data.generalUniqueSessionStatistics)
                 $scope.generalUniqueSessionStatistics = response.data.generalUniqueSessionStatistics;
@@ -47,7 +49,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Unique sessions - page view */
     $scope.getUniqueSessionRouteStatistics = function(callback) {
-        var uniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/routes';
+        var uniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/routes' + getBotString;
         return $http.get(uniqueSessionStatisticsUrl, {}).then(function(response) {
             if (response.data.uniqueSessionRouteStatistics)
                 $scope.uniqueSessionRouteStatistics = response.data.uniqueSessionRouteStatistics;
@@ -70,7 +72,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Referrer */
     $scope.getUniqueSessionReferrerStatistics = function(callback) {
-        var uniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/referrer';
+        var uniqueSessionStatisticsUrl = '/back-office/stats/uniqueSessions/referrer' + getBotString;
         $http.get(uniqueSessionStatisticsUrl, {}).then(function(response) {
             if (response.data.uniqueSessionReferrerStatistics)
                 $scope.uniqueSessionReferrerStatistics = response.data.uniqueSessionReferrerStatistics;
@@ -93,7 +95,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Page views - general */
     $scope.getGeneralPageViewStatistics = function(callback) {
-        var generalPageViewStatisticsUrl = '/back-office/stats/pageViews/general';
+        var generalPageViewStatisticsUrl = '/back-office/stats/pageViews/general' + getBotString;
         return $http.get(generalPageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.generalPageViewStatistics)
                 $scope.generalPageViewStatistics = response.data.generalPageViewStatistics;
@@ -116,7 +118,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Page views */
     $scope.getPageViewRouteStatistics = function(callback) {
-        var pageViewStatisticsUrl = '/back-office/stats/pageViews/routes';
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/routes' + getBotString;
         return $http.get(pageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.pageViewRouteStatistics)
                 $scope.pageViewRouteStatistics = response.data.pageViewRouteStatistics;
@@ -139,7 +141,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Referrer */
     $scope.getPageViewReferrerStatistics = function(callback) {
-        var pageViewStatisticsUrl = '/back-office/stats/pageViews/referrer';
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/referrer' + getBotString;
         $http.get(pageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.pageViewReferrerStatistics)
                 $scope.pageViewReferrerStatistics = response.data.pageViewReferrerStatistics;
@@ -162,7 +164,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Browser */
     $scope.getPageViewBrowserStatistics = function(callback) {
-        var pageViewStatisticsUrl = '/back-office/stats/pageViews/browser';
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/browser' + getBotString;
         $http.get(pageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.pageViewBrowserStatistics)
                 $scope.pageViewBrowserStatistics = response.data.pageViewBrowserStatistics;
@@ -185,7 +187,7 @@ backOfficeApp.controller('statisticsController', ['$scope', '$rootScope', '$http
 
     /* Device */
     $scope.getPageViewDeviceStatistics = function(callback) {
-        var pageViewStatisticsUrl = '/back-office/stats/pageViews/device';
+        var pageViewStatisticsUrl = '/back-office/stats/pageViews/device' + getBotString;
         $http.get(pageViewStatisticsUrl, {}).then(function(response) {
             if (response.data.pageViewDeviceStatistics)
                 $scope.pageViewDeviceStatistics = response.data.pageViewDeviceStatistics;

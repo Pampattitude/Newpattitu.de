@@ -14,6 +14,9 @@ exports.page = function(req, res, callback) {
     res.locals.toolbar = 'toolbar/default.html';
     res.locals.activeTopMenu = 'stats';
 
+    if (undefined !== req.query.bots)
+        res.locals.bots = true;
+
     return callback();
 };
 
