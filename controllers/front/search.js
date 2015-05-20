@@ -70,7 +70,6 @@ var search_ = exports.search = function(queryString, callback) {
             }
 
             if (article.points) {
-                printer.debug('Article "' + article.title + '" has ' + article.points + ' points for search ' + queryString);
                 finalArticleList.push({
                     title: article.title,
                     technicalName: article.technicalName,
