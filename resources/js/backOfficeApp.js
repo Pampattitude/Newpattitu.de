@@ -368,6 +368,8 @@ backOfficeApp.controller('editArticleController', ['$scope', '$rootScope', '$htt
             $elem.on('change', function() {
                 if (!$scope.article.title.length)
                     return ;
+                if ($scope.article.technicalName) // Do not update an already defined technicalName, might be TMP
+                    return ;
 
                 var generateTechnicalNameUrl = '/back-office/article/generateTechnicalName?id=' + ($scope.article._id || '') + '&title=' + $scope.article.title.replace(/[#?&]/g, '_');
                 return $http.get(generateTechnicalNameUrl, {}).then(function(response) {
