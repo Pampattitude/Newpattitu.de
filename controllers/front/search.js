@@ -41,7 +41,7 @@ var search_ = exports.search = function(queryString, callback) {
             article.pointDetail.tags = 0;
             for (var j = 0 ; dataCopy.length > j ; ++j) {
                 for (var i = 0 ; article.tags.length > i ; ++i) {
-                    if (article.tags[i].match(new RegExp('(' + dataCopy[j] + ')', 'gi'))) {
+                    if (article.tags[i].match(new RegExp('(' + utils.escapeRegExp(dataCopy[j]) + ')', 'gi'))) {
                         article.points += pointsForTag;
                         article.pointDetail.tags += Math.round(pointsForTag);
                     }
