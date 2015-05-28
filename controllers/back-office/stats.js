@@ -1,10 +1,13 @@
 'use strict';
 
 var async = require('async');
+var memoryCache = require('memory-cache');
 var mongoose = require('mongoose');
 
 var constants = require('../../lib/constants');
 var stattitude = require('../../lib/stattitude');
+
+var weekArrayCacheTime = 60 * 60 * 1000; // 1h
 
 // Get page
 exports.page = function(req, res, callback) {
@@ -26,6 +29,10 @@ var getMongoDBWeekArray_ = function(includeBaseDate, callback) {
         callback = includeBaseDate;
         includeBaseDate = false;
     }
+
+    var cachedWeekArray = memoryCache.get('mongoDbWeekArray' + (includeBaseDate ? 'WithBaseDate' : ''));
+    if (cachedWeekArray)
+        return cachedWeekArray;
 
     var now = new Date();
     var baseDate = new Date();
@@ -69,10 +76,13 @@ var getMongoDBWeekArray_ = function(includeBaseDate, callback) {
     }, function(err) {
         if (err) return callback(err);
 
-        return callback(null, {
+        var weekArray = {
             dates: dates,
             strings: dateStrings,
-        });
+        };
+
+        memoryCache.put('mongoDbWeekArray' + (includeBaseDate ? 'WithBaseDate' : ''), weekArray, weekArrayCacheTime);
+        return callback(null, weekArray);
     });
 };
 
@@ -381,11 +391,13 @@ exports.uniqueSessionAllStats = function(req, res, callback) {
             return callback(err);
 
         var count = 0;
-        results.forEach(function(elem) {
-            if (!includeRobots && true === elem.isBot)
-                return ;
-            count += elem.count;
-        });
+        if (!includeRobots) {
+            results.forEach(function(elem) {
+                if (true === elem.isBot)
+                    return ;
+                count += elem.count;
+            });
+        }
 
         return callback(null, { count: count });
     });
@@ -399,11 +411,13 @@ exports.pageViewAllStats = function(req, res, callback) {
             return callback(err);
 
         var count = 0;
-        results.forEach(function(elem) {
-            if (!includeRobots && true === elem.isBot)
-                return ;
-            count += elem.count;
-        });
+        if (!includeRobots) {
+            results.forEach(function(elem) {
+                if (true === elem.isBot)
+                    return ;
+                count += elem.count;
+            });
+        }
 
         return callback(null, { count: count });
     });
@@ -417,11 +431,13 @@ exports.commentAllStats = function(req, res, callback) {
             return callback(err);
 
         var count = 0;
-        results.forEach(function(elem) {
-            if (!includeRobots && true === elem.isBot)
-                return ;
-            count += elem.count;
-        });
+        if (!includeRobots) {
+            results.forEach(function(elem) {
+                if (true === elem.isBot)
+                    return ;
+                count += elem.count;
+            });
+        }
 
         return callback(null, { count: count });
     });
