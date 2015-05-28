@@ -32,7 +32,7 @@ var getMongoDBWeekArray_ = function(includeBaseDate, callback) {
 
     var cachedWeekArray = memoryCache.get('mongoDbWeekArray' + (includeBaseDate ? 'WithBaseDate' : ''));
     if (cachedWeekArray)
-        return cachedWeekArray;
+        return callback(null, cachedWeekArray);
 
     var now = new Date();
     var baseDate = new Date();
