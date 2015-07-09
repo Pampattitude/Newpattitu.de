@@ -53,9 +53,6 @@ var main = function() {
     printer.info('Started application in ' + process.env.NODE_ENV + ' mode');
 
     if (cluster.isMaster) {
-        var clusterPerCpu   = ('production' === process.env.NODE_ENV ? 2 : 1);
-        var clusterCount    = parseInt(require('os').cpus().length * clusterPerCpu);
-
         cluster.on('fork', function(worker) {
             printer.info('Worker #' + worker.id + ' created');
         });
@@ -67,8 +64,7 @@ var main = function() {
             cluster.fork();
         });
 
-        for (var i = 0 ; i < clusterCount ; ++i)
-            cluster.fork();
+        cluster.fork();
 
         printer.info('Initializing services...');
         return servicesConnect(function(err) {
@@ -161,6 +157,7 @@ var runServer = function() {
     var cookieParser    = require('cookie-parser');
     var expressSession  = require('express-session');
     var helmet          = require('helmet');
+    var prerender       = require('prerender-node');
 
     // Security headers
     serverApp.use(helmet.xframe());

@@ -157,6 +157,10 @@ exports.commentGeneralStats = function(req, res, callback) {
                     var end = new Date();
                     if (dates.length - 1 > i)
                         end = dates[i + 1].baseDate;
+                    end.setHours(start.getHours());
+                    end.setMinutes(start.getMinutes());
+                    end.setSeconds(start.getSeconds());
+                    end.setMilliseconds(start.getMilliseconds());
 
                     if (start <= date && date < end) {
                         if (!results[dateStrings[i]])

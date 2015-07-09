@@ -43,6 +43,7 @@
     "useragent": "~2.1.5",
     "winston": "^0.8.1",
     "disqus-node": "~0.12.0",
-    "dirreq": "~0.1.2"
+    "dirreq": "~0.1.2",
+    "prerender-node": "~1.2.1"
   }
 }
