@@ -17,7 +17,7 @@ case "$1" in
         generate_scss && \
             NODE_ENV=production TZ=UTC forever start --minUptime 1     --spinSleepTime 1     -a -l $LOGS_PATH/websiteServer.log  $WEB_SERVER_PATH/app.js && \
             NODE_ENV=production TZ=UTC forever start --minUptime 1     --spinSleepTime 1     -a -l $LOGS_PATH/statsServer.log    $STAT_SERVER_PATH/server/app.js && \
-            NODE_ENV=production TZ=UTC forever start --minUptime 10000 --spinSleepTime 15000 -a -l $LOGS_PATH/statsProcessor.log $STAT_SERVER_PATH/processor/app.js
+            NODE_ENV=production TZ=UTC forever start --minUptime 10000 --spinSleepTime 60000 -a -l $LOGS_PATH/statsProcessor.log $STAT_SERVER_PATH/processor/app.js
         ;;
 
     stop)
